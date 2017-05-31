@@ -21,5 +21,6 @@ namespace ERP.Web.Models.NewModels.NhapKho
         public int ID_CT_PO { get; set; }
         public List<ChiTietKhoGiu> ChiTiet { set; get; }
         public List<TonKho> TonKho { set; get; }
+        public int SL_DA_GIU { set; get; }
     }
 }

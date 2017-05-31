@@ -453,7 +453,8 @@
             GIU_PO: true,
             ID_CT_PO: $scope.item.ID_DON_CHI_TIET,
             MA_SO_PO: $scope.item.MA_SO_PO,
-            TonKho: $scope.MANG_KHO          
+            TonKho: $scope.MANG_KHO,
+            SL_DA_GIU: $scope.item.SL_DA_GIU
         }
 
         $http.post("/api/Api_KHO_GIU_HANG/PostKHO_GIU_HANG1", data).then(function (response) {
