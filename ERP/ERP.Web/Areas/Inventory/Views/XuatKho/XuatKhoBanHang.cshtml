@@ -85,7 +85,7 @@
             <h6 class="panel-title" style="text-align:left;">Xuất kho</h6>
         </div>
 
-        <table border='1' style="width:85%" id="themmoikhach">
+        <table border='1' style="width:80%" id="themmoikhach">
             <tr>
                 <td style="width:20%" class="text-left"><label class="form-control" style="font-weight:bold; font-size:16px">Phiếu xuất kho</label></td>
                 <td>
@@ -450,7 +450,7 @@
             </tr>
         </table>
         
-        <table border="1" style="width:15% !important;" id="themmoikhach">
+        <table border="1" style="width:20% !important;" id="themmoikhach">
             <tr>
                 <td class="text-center"><p class="blink_me" style="text-shadow: 1px 1px 5px #91DDFD; font-style:italic; font-size: 14px;text-align:center; color: red; margin-left:10px; margin-top:5px;margin-bottom:5px; font-weight: bold">Đơn bán hàng cần xuất</p></td>
             </tr>
@@ -458,9 +458,13 @@
                 <td>
                     <div style="height:410px;overflow-y:auto;">
                         <table style="width:100%;cursor:pointer;">
+                            <tr>
+                                <th class="text-center" style="width:50%;">Số bán hàng</th>
+                                <th class="text-center" style="width:50%;">Ngày bán hàng</th>
+                            </tr>
                             <tr ng-repeat="item in DonBanHang" ng-click="SelectDonTraHang(item)">
-                                <td colspan="2" class="text-left">{{item.MA_SO_BH}}</td>
-                                <td class="text-left">{{item.NGAY_BH | date:'dd/MM/yyyy'}}</td>
+                                <td class="text-center">{{item.MA_SO_BH}}</td>
+                                <td class="text-center">{{item.NGAY_BH | date:'dd/MM/yyyy'}}</td>
                             </tr>
 
                         </table>
@@ -475,9 +479,13 @@
                 <td>
                     <div style="height:200px; overflow-y:auto;">
                         <table style="width:100%;">
+                            <tr>
+                                <th class="text-center" style="width:50%;">Số bán hàng</th>
+                                <th class="text-center" style="width:50%;">Ngày bán hàng</th>
+                            </tr>
                             <tr ng-repeat="item in DonBanHangDaXuat">
-                                <td colspan="2" class="text-left">{{item.MA_SO_BH}}</td>
-                                <td class="text-left">{{item.NGAY_BH | date:'dd/MM/yyyy'}}</td>
+                                <td class="text-center">{{item.MA_SO_BH}}</td>
+                                <td class="text-center">{{item.NGAY_BH | date:'dd/MM/yyyy'}}</td>
 
                             </tr>
                         </table>
