@@ -400,17 +400,7 @@ namespace ERP.Web.Api.DonHangPO
             foreach (var item in thongtinPO.ChiTietPO)
             {
                 var query = db.TONKHO_HOPLONG.Where(x => x.MA_HANG == item.MA_HANG).ToList();
-                //tongton = 0;
-                //if (query != null)
-                //{
-                //    foreach (var tonkho in query)
-                //    {
-                //        tongton = tongton + tonkho.SL_HOPLONG;
-                //    }
-                //} else
-                //{
-                //    tongton = 0;
-                //}
+
                 
                 BH_CT_DON_HANG_PO lienhe = new BH_CT_DON_HANG_PO();
                 lienhe.MA_SO_PO = baogia.MA_SO_PO;
@@ -423,15 +413,7 @@ namespace ERP.Web.Api.DonHangPO
                 lienhe.THUE_GTGT = thongtinPO.THUE_SUAT_GTGT;
                 lienhe.TIEN_THUE_GTGT =( (Convert.ToDouble(item.THANH_TIEN_HANG) * (thongtinPO.THUE_SUAT_GTGT / 100) ));
                 lienhe.TIEN_THANH_TOAN = Convert.ToDouble(lienhe.THANH_TIEN_HANG) + lienhe.TIEN_THUE_GTGT;
-                //if(item.SO_LUONG <= tongton)
-                //{
-                //    lienhe.CAN_GIU_HANG = true;
-                //    lienhe.CAN_DAT_HANG = false;
-                //} else if(item.SO_LUONG > tongton)
-                //{
-                //    lienhe.CAN_GIU_HANG = false;
-                //    lienhe.CAN_DAT_HANG = true;
-                //}
+
                 db.BH_CT_DON_HANG_PO.Add(lienhe);
             }
 

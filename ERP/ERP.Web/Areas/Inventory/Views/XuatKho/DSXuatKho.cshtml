@@ -1,6 +1,7 @@
 ﻿<link href="~/Content/assets/css/components.css" rel="stylesheet" />
 <link href="~/Content/self-writing/css/Kho/common.css" rel="stylesheet" />
 <link href="~/Content/self-writing/css/Kho/site.css" rel="stylesheet" />
+<link href="~/Content/self-writing/css/Kho/kho.css" rel="stylesheet" />
 <link href="~/Content/assets/css/core.css" rel="stylesheet" />
 <link href="~/Content/assets/css/colors.css" rel="stylesheet" />
 <link href="~/Content/download/pnotify.custom.min.css" rel="stylesheet" />
@@ -36,8 +37,8 @@
         <div class="phieuthu padding10 borderRadius3 border">
             <div class="head clearfix paddingTB10">
                 <div class="pull-left marginR45">
-                    <h1 style="color:black;" class="margin0 font20 bold text-blue marginT5">DANH SÁCH PHIẾU XUẤT KHO</h1>
-                </div>
+                    <h2 style="color: #1191BF; font-size: 30px; margin: 20px 0px 20px 0px;">DANH SÁCH PHIẾU XUẤT KHO</h2>
+                </div><br />
                 <div class="pull-left marginR30">
                     <div class="pull-left marginR15 marginT5">Từ ngày</div>
                     <div class="pull-left width100 relative">
@@ -51,7 +52,7 @@
                     </div>
                 </div>
                 <div class="pull-left">
-                    <button class="btn btn-primary" ng-click="SearchPhieuXuatKho(DSXuatKho.From, DSXuatKho.To)">Lấy dữ liệu</button>
+                    <button class="btn fa fa-download" ng-click="SearchPhieuXuatKho(DSXuatKho.From, DSXuatKho.To)">Lấy dữ liệu</button>
                 </div>
             </div>
             <br>
