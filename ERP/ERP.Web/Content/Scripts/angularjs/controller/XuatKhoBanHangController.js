@@ -246,7 +246,7 @@ app.controller('XuatKhoBanHangController', function ($rootScope, $scope, $http, 
 
     function init() {
         //Lấy dữ liệu nhân viên hợp long
-        $http.get("http://27.72.144.148:8003/api/NhanVien/GetAllNhanVien/HOPLONG")
+        $http.get("/api/Api_NhanvienHL/GetListNhanvien")
             .then(function (response) {
                 if (typeof (response.data) == "object") {
                     $scope.NhanVien = response.data;
@@ -610,7 +610,7 @@ app.controller('XuatKhoBanHangController', function ($rootScope, $scope, $http, 
     }
     $scope.SelectDonTraHang = function (item) {
         $scope.ThamChieu.ListSelect = [];
-        $scope.ThamChieu.ListSelect.push({ SO_CHUNG_TU: item.MA_SO_BH});
+        //$scope.ThamChieu.ListSelect.push({ SO_CHUNG_TU: item.MA_SO_BH});
         $scope.ThamChieu.DonBanHang = item.MA_SO_BH;
         $(".tableselect").css({ "display": "none" });
 

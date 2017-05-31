@@ -1407,6 +1407,21 @@
     <Compile Include="Security\SessionPersister.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\DanhSachDuyetPO.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\Details.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\DonPOHome.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\Edit.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\GetPrintPO.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\Index.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ListPO.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ListPO_CanBanNgay.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ListPO_DaDuyet.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ListPO_DaHuy.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ListPO_DaLenDonBanHang.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ListPO_DangChoDuyet.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ListPO_DangDuyet.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ListPO_DangXuatDo.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ThemMoiPO.cshtml" />
     <Content Include="Content\assets\css\bootstrap.css" />
     <Content Include="Content\assets\css\bootstrap.min.css" />
     <Content Include="Content\assets\css\colors.css" />
@@ -7631,21 +7646,6 @@
     <Content Include="Areas\KinhDoanh\Views\DonBanHang\ListDonBanHangChuaXuatKho.cshtml" />
     <Content Include="Areas\KinhDoanh\Views\DonBanHang\ListDonBanHangDaXuatKho.cshtml" />
     <Content Include="Areas\KinhDoanh\Views\DonHangDaGiu\DonHangDaGiu.cshtml" />
-    <Content Include="Areas\KinhDoanh\Views\DonHangPO\DanhSachDuyetPO.cshtml" />
-    <Content Include="Areas\KinhDoanh\Views\DonHangPO\Details.cshtml" />
-    <Content Include="Areas\KinhDoanh\Views\DonHangPO\DonPOHome.cshtml" />
-    <Content Include="Areas\KinhDoanh\Views\DonHangPO\Edit.cshtml" />
-    <Content Include="Areas\KinhDoanh\Views\DonHangPO\GetPrintPO.cshtml" />
-    <Content Include="Areas\KinhDoanh\Views\DonHangPO\Index.cshtml" />
-    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ListPO.cshtml" />
-    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ListPO_CanBanNgay.cshtml" />
-    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ListPO_DaDuyet.cshtml" />
-    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ListPO_DaHuy.cshtml" />
-    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ListPO_DaLenDonBanHang.cshtml" />
-    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ListPO_DangChoDuyet.cshtml" />
-    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ListPO_DangDuyet.cshtml" />
-    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ListPO_DangXuatDo.cshtml" />
-    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ThemMoiPO.cshtml" />
     <Content Include="Areas\KinhDoanh\Views\Feedback\ChamDiem.cshtml" />
     <Content Include="Areas\KinhDoanh\Views\Feedback\Index.cshtml" />
     <Content Include="Areas\KinhDoanh\Views\GiuKho\GiuKhoHome.cshtml" />
@@ -7749,6 +7749,12 @@
     <Content Include="Areas\KinhDoanh\Views\CongNoKhachHang\CongNoNhanVien.cshtml" />
     <Content Include="Areas\KinhDoanh\Views\BaoGia\BaoGiaLenPO.cshtml" />
     <Content Include="Areas\KinhDoanh\Views\BaoGia\EditBaoGia.cshtml" />
+    <Content Include="Areas\Inventory\Views\XuatKho\XuatKhoBanHang.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ChiTietDonPO.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ChiTietPOChuaGiuDu.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ListPO_DaGiuDayDu.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\ListPO_DangGiuDo.cshtml" />
+    <Content Include="Areas\KinhDoanh\Views\DonHangPO\POLenBanHang.cshtml" />
     <None Include="Content\Scripts\_references.js" />
     <Content Include="Content\self-writing\css\BangLuong.css" />
     <Content Include="Content\self-writing\css\BaoGia\baogiacss.css" />
