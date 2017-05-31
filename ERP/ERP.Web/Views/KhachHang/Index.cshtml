@@ -14,31 +14,6 @@
 <script src="~/Content/self-writing/js/Controllers/KhachHangCtrl.js"></script>
 
 <style>
-    /* Let's get this party started */
-    ::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    /* Track */
-    ::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-    }
-
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-        background: #00BFFF;
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-    }
-
-        ::-webkit-scrollbar-thumb:window-inactive {
-            background: #00BFFF;
-        }
-</style>
-<style>
     .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
         color: #fff !important;
         cursor: default;
@@ -214,7 +189,7 @@
                                                 <input type="text" id="addtencongty" placeholder="Tên công ty(*)" class="showtableselect" style="width: 100%;height: 100% ;padding-left: 5px; border:none" ng-model="arraythongtin.ten_cong_ty" ng-change="load_khachhang(1,arraythongtin.ten_cong_ty)">
 
                                             </div>
-                                            <div class="tableselect" id="DataCustomer" style="display:none;max-width: 1180px;">
+                                            @*<div class="tableselect" id="DataCustomer" style="display:none;max-width: 1180px;">
                                                 <table class="table-hover " style="font-size:12px">
 
                                                     <tbody>
@@ -226,7 +201,7 @@
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                            </div>
+                                            </div>*@
                                         </div>
                                     </td>
 
