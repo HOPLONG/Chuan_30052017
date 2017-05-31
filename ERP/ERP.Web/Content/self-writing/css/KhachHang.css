@@ -711,3 +711,8 @@ cursor: pointer;}
 ::-webkit-scrollbar-thumb:window-inactive {
 	background: #00BFFF; 
 }
+
+input
+{
+    border-style: none;
+}
