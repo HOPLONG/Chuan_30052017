@@ -177,7 +177,7 @@
                         <h2>THÊM MỚI KHÁCH HÀNG</h2>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal" action="/KhachHang/Index" method="post">
+                        <form class="form-horizontal" action="/KhachHang/Index" method="post" name="AddNewKH">
                             <p style="text-shadow: 1px 1px 5px #91DDFD; font-style:italic; font-size: 20px; color: #64B5F6; margin-left:10px; margin-top:5px;margin-bottom:5px; font-weight: bold">THÔNG TIN CHUNG</p>
                             <div class="line-bottom"></div>
                             <table border='1' style="width:100%" ng-controller="imgCtrl" id="themmoikhach">
@@ -186,14 +186,18 @@
                                     <td colspan="7">
                                         <div id="themmoiinput">
                                             <div class="has-feedback" ng-click="ShowDataCustomer()">
-                                                <input type="text" id="addtencongty" placeholder="Tên công ty(*)" class="showtableselect" style="width: 100%;height: 100% ;padding-left: 5px; border:none" ng-model="arraythongtin.ten_cong_ty" ng-change="load_khachhang(1,arraythongtin.ten_cong_ty)">
+                                                <ng-form name="valid_ten">
+                                                    <input type="text" name="addtencongty" placeholder="Tên công ty(*)" class="showtableselect" style="width: 100%;height: 100% ;padding-left: 5px; border:none" ng-model="arraythongtin.ten_cong_ty" ng-change="load_khachhang(arraythongtin.ten_cong_ty)" required>
+                                                    <small class="label label-danger" data-ng-show="submitted && valid_ten.addtencongty.$error.required">Tên công ty không được để trống!</small>
+                                                </ng-form>
+                                                
 
                                             </div>
                                             @*<div class="tableselect" id="DataCustomer" style="display:none;max-width: 1180px;">
                                                 <table class="table-hover " style="font-size:12px">
 
                                                     <tbody>
-                                                        <tr ng-repeat="item in filtered| filter:arraythongtin.ten_cong_ty">
+                                                        <tr ng-repeat="item in ListKHTheoSale">
                                                             <td class="text-left">{{item.MA_KHACH_HANG}}</td>
                                                             <td class="text-left">{{item.TEN_CONG_TY}}</td>
                                                             <td class="text-left">{{item.DIA_CHI_XUAT_HOA_DON}}</td>
@@ -242,7 +246,14 @@
                                 </tr>
                                 <tr>
                                     <th>Thông tin</th>
-                                    <td><input type="text" placeholder="Mã số thuế" id="addmasothue" style="width: 100%;height: 100%;padding-left: 5px;" ng-model="arraythongtin.ma_so_thue"></td>
+                                    <td>
+                                        <ng-form name="valid_mst">
+                                            <input type="text" placeholder="Mã số thuế" name="addmasothue" style="width: 100%;height: 100%;padding-left: 5px;" ng-model="arraythongtin.ma_so_thue" required>
+                                            <small class="label label-danger" data-ng-show="submitted && valid_mst.addmasothue.$error.required">MST không được để trống!</small>
+
+                                        </ng-form>
+                                        
+                                    </td>
                                     <td><input type="text" placeholder="Website" id="addwebsite" style="width: 100%;height: 100%;padding-left: 5px;" ng-model="arraythongtin.website"></td>
                                     <td><input type="text" placeholder="Email" id="addemail" ng-model="arraythongtin.email" style="height: 100%;padding-left: 5px;"></td>
                                     <td><input type="tel" placeholder="Số điện thoại" id="addsomayban" style="width: 100%;height: 100%;padding-left: 5px;" ng-model="arraythongtin.hotline"></td>
@@ -387,7 +398,7 @@
                     </div>
                     <div class="modal-footer" style="margin-top: 30px;">
                         <center style="margin-top: 20px;">
-                            <button id="save" name="save" class="btn fa fa-save" data-dismiss="modal" ng-click="createnew()">Lưu</button>
+                            <button id="save" name="save" class="btn fa fa-save" ng-click="createnew(AddNewKH)">Lưu</button>
                             <button id="exit" name="exit" class="btn fa fa-sign-out" data-dismiss="modal">Exit</button>
                         </center>
 
@@ -1584,9 +1595,11 @@
 
         <div class="col-md-2" ng-show="hienchucnang" style="font-size: 14px; color:#1191BF">
             Hiện chức năng admin: <input type="checkbox" ng-model="isadmin" />
-
         </div>
-
+        <div class="col-md-2" style="font-size: 14px; color:#1191BF">
+            Tổng số khách: {{tongsokhachhang_HL}}
+        </div>
+        
         <table id="example" class="table" cellspacing="0">
             <thead>
                 <tr>

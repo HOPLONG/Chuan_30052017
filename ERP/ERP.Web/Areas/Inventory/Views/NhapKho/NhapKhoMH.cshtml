@@ -28,7 +28,7 @@
 <script type="text/javascript" src="~/Content/assets/js/plugins/forms/selects/bootstrap_select.min.js"></script>
 <script type="text/javascript" src="~/Content/assets/js/pages/form_bootstrap_select.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-debounce/0.1.7/angular-debounce.js"></script>
-<script src="~/Content/Scripts/angularjs/controller/NhapKhoMuaHangController .js"></script>
+<script src="~/Content/self-writing/js/Controllers/Kho/NhapKhoMuaHangController .js"></script>
 <style>
     .panel {
         margin-bottom: 1px !important;
@@ -98,13 +98,13 @@
                 </td>
                 <td colspan="10">
                     <div>
-                        <div class="has-feedback" ng-click="ShowDonHangTra()">
+                        <div class="has-feedback">
                             <input type="text" ng-model="ThamChieu.DonBanHang" placeholder="Click vào đây để tìm đơn bán hàng" class="form-control showtableselect">
                             <div class="form-control-feedback">
                                 <i class="icon-arrow-down5"></i>
                             </div>
                         </div>
-                        <div class="tableselect" id="DonTraHang" style="display:none; width: 30% !important;">
+                        @*<div class="tableselect" id="DonTraHang" style="display:none; width: 30% !important;">
                             <table class="table-hover ">
                                 <thead>
                                     <tr>
@@ -121,7 +121,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div>*@
                     </div>
                 </td>
 

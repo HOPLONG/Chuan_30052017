@@ -305,6 +305,7 @@ namespace ERP.Web.Api.BaoGia
             baogia.TIEN_THUE_GTGT = bH_BAO_GIA.TIEN_THUE_GTGT;
             db.BH_BAO_GIA.Add(baogia);
 
+
             try
             {
                 db.SaveChanges();
@@ -417,7 +418,7 @@ namespace ERP.Web.Api.BaoGia
         // Tao bao gia tu khach hang
         [HttpPost]
         [Route("api/Api_BaoGia/BaoGiaTuKhach")]
-        public IHttpActionResult BaoGiaTuKhach(CopyBaoGia bH_BAO_GIA)
+        public IHttpActionResult BaoGiaTuKhach(BaoGiaTuKhach bH_BAO_GIA)
         {
 
             if (!ModelState.IsValid)
@@ -462,6 +463,35 @@ namespace ERP.Web.Api.BaoGia
             baogia.THUE_SUAT_GTGT = bH_BAO_GIA.THUE_SUAT_GTGT;
             baogia.TIEN_THUE_GTGT = bH_BAO_GIA.TIEN_THUE_GTGT;
             db.BH_BAO_GIA.Add(baogia);
+
+            foreach (var item in bH_BAO_GIA.ChiTietCuaBaoGia)
+            {
+                BH_CT_BAO_GIA lienhe = new BH_CT_BAO_GIA();
+                lienhe.SO_BAO_GIA = baogia.SO_BAO_GIA;
+                lienhe.MA_HANG = item.MA_HANG;
+                lienhe.MA_DIEU_CHINH = item.MA_DIEU_CHINH;
+                lienhe.TEN_HANG = item.TEN_HANG;
+                lienhe.HANG_SP = item.HANG_SP;
+                lienhe.ITEM_CODE = item.ITEM_CODE;
+                lienhe.SO_LUONG = item.SO_LUONG;
+                lienhe.DVT = item.DVT;
+                lienhe.DON_GIA = item.DON_GIA;
+                lienhe.THANH_TIEN = item.THANH_TIEN;
+                lienhe.THANH_TIEN_NET = item.THANH_TIEN_NET;
+                lienhe.THOI_GIAN_GIAO_HANG = item.THOI_GIAN_GIAO_HANG;
+                lienhe.CHIET_KHAU = item.CHIET_KHAU;
+                lienhe.GIA_LIST = item.GIA_LIST;
+                lienhe.DON_GIA_NHAP = item.DON_GIA_NHAP;
+                lienhe.HE_SO_LOI_NHUAN = item.HE_SO_LOI_NHUAN;
+                lienhe.DON_GIA_BAO_DI_NET = item.DON_GIA_BAO_DI_NET;
+                lienhe.CM = item.CM;
+                lienhe.DON_GIA_MOI = item.DON_GIA_MOI;
+                lienhe.THUE_TNDN = item.THUE_TNDN;
+                lienhe.TIEN_THUE_TNDN = item.TIEN_THUE_TNDN;
+                lienhe.KHACH_NHAN_DUOC = item.KHACH_NHAN_DUOC;
+                lienhe.GHI_CHU = item.GHI_CHU;
+                db.BH_CT_BAO_GIA.Add(lienhe);
+            }
 
             try
             {

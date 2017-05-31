@@ -65,7 +65,14 @@ namespace ERP.Web.Api.HeThong
 
 
         }
-
+        [HttpPost]
+        [Route("api/Api_KH/KH_THEO_TUNG_SALES/")]
+        public List<HopLong_LocKHTheoTungSale_Result> KH_THEO_TUNG_SALES(ThongTinTimKiem timkiem)
+        {
+            var query = db.Database.SqlQuery<HopLong_LocKHTheoTungSale_Result>("HopLong_LocKHTheoTungSale @sale, @macongty, @isadmin, @tukhoa", new SqlParameter("sale", timkiem.sales), new SqlParameter("macongty", timkiem.macongty), new SqlParameter("isadmin", timkiem.isadmin), new SqlParameter("tukhoa", timkiem.tukhoa));
+            return query.ToList();
+            
+        }
 
         [Route("api/Api_KH/TimKhachTheoMa/{page}")]
         public List<HopLong_TimKH_TheoMaKhach_Result> TimKhachTheoMa(int page, ThongTinTimKiem timkiem)
@@ -362,6 +369,12 @@ namespace ERP.Web.Api.HeThong
             khach.KHACH_DAC_BIET = kH.KHACH_DAC_BIET;
             db.KHs.Add(khach);
 
+            var KHS = db.KHs.Where(x => x.MST == khach.MST).FirstOrDefault();
+            if(KHS != null)
+            {
+                return Ok("Khách hàng đã có trong hệ thống, vui lòng không nhập thêm");
+            }
+
 
             try
             {
@@ -379,7 +392,7 @@ namespace ERP.Web.Api.HeThong
                 }
             }
 
-            return Ok(khach);
+            return Ok(khach.MA_KHACH_HANG + "đã được tạo");
         }
 
         // DELETE: api/Api_KH/5
