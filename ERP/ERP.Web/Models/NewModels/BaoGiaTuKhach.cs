@@ -34,5 +34,16 @@ namespace ERP.Web.Models.NewModels
         public string NGUOI_LIEN_HE { set; get; }
         public string MA_HANG { set; get; }
         public string TEN_HANG { set; get; }
+
+        public List<ChiTietBaoGia> ChiTietCuaBaoGia { set; get; }
+
+        public decimal TONG_GIA_TRI_DON_HANG_THUC_TE { set; get; }
+        public decimal GIA_TRI_THUC_THU_TU_KHACH { set; get; }
+        public decimal TONG_GIA_TRI_CHENH_LECH { set; get; }
+        public decimal TONG_CHI_PHI_HOA_DON { set; get; }
+        public decimal THUC_NHAN_CUA_KHACH { set; get; }
+        public bool   DANG_CHO_PHAN_HOI { set; get; }
+        public float THUE_SUAT_GTGT { set; get; }
+        public decimal TIEN_THUE_GTGT { set; get; }
     }
 }

@@ -1827,8 +1827,35 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService, $timeout) {
         $scope.email_cong_ty = p_dt.EMAIL_CONG_TY;
         $scope.showtable_id_lien_he = false;
     }
+    $scope.idlienhe = true;
+    function checkall() {
+        var check = true;
 
-    $scope.CreateNewFromKH = function () {
+        //for (var i = 0; i < $scope.Detail.ListNew.length; i++) {
+        //    if ($scope.Detail.ListNew[i].ma_hang == null || $scope.Detail.ListNew[i].ma_hang == "") {
+        //        ErrorSystem("Thiếu mã hàng tại dòng " + (i + 1))
+        //    }
+        //    if ($scope.Detail.ListNew[i].so_luong == null || $scope.Detail.ListNew[i].so_luong == "" || $scope.Detail.ListNew[i].so_luong == 0) {
+        //        ErrorSystem("Thiếu số lượng tại dòng " + (i + 1))
+        //    }
+        //    if ($scope.Detail.ListNew[i].dvt == null || $scope.Detail.ListNew[i].dvt == "") {
+        //        ErrorSystem("Thiếu đơn vị tính tại dòng " + (i + 1))
+        //    }
+        //    if ($scope.Detail.ListNew[i].thoi_gian_giao_hang == null || $scope.Detail.ListNew[i].thoi_gian_giao_hang == "") {
+        //        ErrorSystem("Thiếu thời gian giao hàng tại dòng " + (i + 1))
+        //    }
+        //}
+
+        //for (var i = 0; i < $scope.Detail.ListNew.length; i++) {
+        //    if (typeof $scope.Detail.ListNew[i].so_luong != 'undefined' && $scope.Detail.ListNew[i].so_luong != null && $scope.Detail.ListNew[i].so_luong != 0 && $scope.Detail.ListNew[i].thoi_gian_giao_hang != "" && $scope.Detail.ListNew[i].thoi_gian_giao_hang != null
+        //        && $scope.Detail.ListNew[i].dvt != null && $scope.Detail.ListNew[i].dvt != "") {
+
+        //    }
+        //}
+        return check;
+    }
+    $scope.CreateNewFromKH = function (form) {
+        
         var url = document.location.href;
         //this removes the anchor at the end, if there is one
         url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
@@ -1839,31 +1866,12 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService, $timeout) {
         //return
         var username = $('#username').val();
         var tongtien = parseInt($('#tongtienbaogia').text());
-        $scope.BANGBAOGIA = {
-            SALES_BAO_GIA: username,
-            MA_KHACH_HANG: url,
-            LIEN_HE_KHACH_HANG: $scope.id_lien_he,
-            PHUONG_THUC_THANH_TOAN: $scope.phuong_thuc_thanh_toan,
-            HAN_THANH_TOAN: $scope.han_thanh_toan,
-            HIEU_LUC_BAO_GIA: $scope.hieu_luc_bao_gia,
-            DIEU_KHOAN_THANH_TOAN: $scope.dieu_khoan_thanh_toan,
-            PHI_VAN_CHUYEN: parseInt($scope.phivanchuyen),
-            TONG_TIEN: $scope.tong_gia_tri_theo_hop_dong_new,
-            TONG_GIA_TRI_DON_HANG_THUC_TE: $scope.tong_gia_tri_thuc_te_new,
-            GIA_TRI_THUC_THU_TU_KHACH: $scope.tong_gia_tri_thu_cua_khach_new,
-            TONG_GIA_TRI_CHENH_LECH: $scope.gia_tri_chenh_lech_new,
-            TONG_CHI_PHI_HOA_DON: $scope.tong_chi_phi_hoa_don_new,
-            THUC_NHAN_CUA_KHACH: $scope.tong_khach_nhan_new,
-            DA_DUYET: false,
-            DA_TRUNG: false,
-            DA_HUY: false,
-            TRUC_THUOC: 'HOPLONG',
-            DANG_CHO_PHAN_HOI: true,
-            THUE_SUAT_GTGT: $scope.thue_suat_gtgt,
-            TIEN_THUE_GTGT: $scope.thue_vat_new,
-        };
+
 
         $scope.arrayBaoGiaChiTiet = [];
+        //if (checkall() == false) {
+        //    return;
+        //}
 
         for (var i = 0; i < $scope.Detail.ListNew.length; i++) {
 
@@ -1895,40 +1903,56 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService, $timeout) {
             $scope.arrayBaoGiaChiTiet.push(BaoGiaChiTiet);
         }
 
-        //Lưu vào CSDL
-        $http.post("/api/Api_BaoGia/BaoGiaTuKhach", $scope.BANGBAOGIA)
-            .then(function successCallback(response) {
-                $scope.BANGBAOGIA = response.data;
-                if (!$scope.BANGBAOGIA) {
-                    ErrorSystem("Không lưu được thông tin chung của báo giá");
-                    return;
-                }
-                $scope.BANGBAOGIA.SO_BAO_GIA;
+        $scope.BANGBAOGIA = {
+            SALES_BAO_GIA: username,
+            MA_KHACH_HANG: url,
+            LIEN_HE_KHACH_HANG: $scope.id_lien_he,
+            PHUONG_THUC_THANH_TOAN: $scope.phuong_thuc_thanh_toan,
+            HAN_THANH_TOAN: $scope.han_thanh_toan,
+            HIEU_LUC_BAO_GIA: $scope.hieu_luc_bao_gia,
+            DIEU_KHOAN_THANH_TOAN: $scope.dieu_khoan_thanh_toan,
+            PHI_VAN_CHUYEN: parseInt($scope.phivanchuyen),
+            TONG_TIEN: $scope.tong_gia_tri_theo_hop_dong_new,
+            TONG_GIA_TRI_DON_HANG_THUC_TE: $scope.tong_gia_tri_thuc_te_new,
+            GIA_TRI_THUC_THU_TU_KHACH: $scope.tong_gia_tri_thu_cua_khach_new,
+            TONG_GIA_TRI_CHENH_LECH: $scope.gia_tri_chenh_lech_new,
+            TONG_CHI_PHI_HOA_DON: $scope.tong_chi_phi_hoa_don_new,
+            THUC_NHAN_CUA_KHACH: $scope.tong_khach_nhan_new,
+            DA_DUYET: false,
+            DA_TRUNG: false,
+            DA_HUY: false,
+            TRUC_THUOC: 'HOPLONG',
+            DANG_CHO_PHAN_HOI: true,
+            THUE_SUAT_GTGT: $scope.thue_suat_gtgt,
+            TIEN_THUE_GTGT: $scope.thue_vat_new,
+            ChiTietCuaBaoGia: $scope.arrayBaoGiaChiTiet,
+        };
 
-                for (var i = 0; i < $scope.arrayBaoGiaChiTiet.length; i++) {
-                    $scope.arrayBaoGiaChiTiet[i].SO_BAO_GIA = $scope.BANGBAOGIA.SO_BAO_GIA;
-                }
-                if ($scope.arrayBaoGiaChiTiet.length > 0) {
-                    $http.post("/api/ApiChiTietBaoGia/PostKH_LIEN_HE", $scope.arrayBaoGiaChiTiet)
-                        .then(function successCallback(response) {
-                            SuccessSystem("Lưu thành công!");
-                            $scope.createnewPOvalue = true;
-                            $(function () {
-                                setTimeout(function () {
-                                    window.location.href = "/KinhDoanh/BaoGia/GetBaoGia/" + $scope.BANGBAOGIA.SO_BAO_GIA;
+        $scope.submitted = true;
+        // If form is invalid, return and let AngularJS show validation errors.
+        if (form.$invalid) {
+            console.log('invalid');
+            return;
+        } else {
+            //Lưu vào CSDL
+            $http.post("/api/Api_BaoGia/BaoGiaTuKhach", $scope.BANGBAOGIA)
+                .then(function successCallback(response) {
+                    $scope.BANGBAOGIA = response.data;
+                    SuccessSystem("Tạo thành công báo giá số " + $scope.BANGBAOGIA.SO_BAO_GIA);
+                    $scope.createnewPOvalue = true;
+                    $(function () {
+                        setTimeout(function () {
+                            window.location.href = "/KinhDoanh/BaoGia/GetBaoGia/" + $scope.BANGBAOGIA.SO_BAO_GIA;
 
-                                }, 2000);
-                            });
-                        }, function errorCallback(response) {
-                            ErrorSystem("Không lưu được chi tiết của báo giá");
-                        });
-                    return;
-                }
+                        }, 2000);
+                    });
+                }, function errorCallback(response) {
+                    console.log(response);
+                    ErrorSystem("Sự cố hệ thống, Không lưu được phiếu báo giá, Bạn vui lòng liên hệ với admin để khắc phục");
+                });
+        }
+      
 
-            }, function errorCallback(response) {
-                console.log(response);
-                ErrorSystem("Sự cố hệ thống, Không lưu được phiếu báo giá, Bạn vui lòng liên hệ với admin để khắc phục");
-            });
     }
 
     $scope.movetoPrint = function () {
@@ -2055,33 +2079,12 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService, $timeout) {
     $scope.new_ct_khachhang();
 
 
-    $scope.CreateNewBaoGiaFromBaoGia = function () {
+    $scope.CreateNewBaoGiaFromBaoGia = function (form) {
 
         var username = $('#username').val();
 
-        $scope.BANGBAOGIA = {
-            SALES_BAO_GIA: username,
-            MA_KHACH_HANG: $scope.ma_khach_hang,
-            LIEN_HE_KHACH_HANG: $scope.id_lien_he,
-            PHUONG_THUC_THANH_TOAN: $scope.phuong_thuc_thanh_toan,
-            HAN_THANH_TOAN: $scope.han_thanh_toan,
-            HIEU_LUC_BAO_GIA: $scope.hieu_luc_bao_gia,
-            DIEU_KHOAN_THANH_TOAN: $scope.dieu_khoan_thanh_toan,
-            PHI_VAN_CHUYEN: $scope.phivanchuyen,
-            TONG_TIEN: $scope.tong_gia_tri_theo_hop_dong_new,
-            TONG_GIA_TRI_DON_HANG_THUC_TE: $scope.tong_gia_tri_thuc_te_new,
-            GIA_TRI_THUC_THU_TU_KHACH: $scope.tong_gia_tri_thu_cua_khach_new,
-            TONG_GIA_TRI_CHENH_LECH: $scope.gia_tri_chenh_lech_new,
-            TONG_CHI_PHI_HOA_DON: $scope.tong_chi_phi_hoa_don_new,
-            THUC_NHAN_CUA_KHACH: $scope.tong_khach_nhan_new,
-            DA_DUYET: false,
-            DA_TRUNG: false,
-            DA_HUY: false,
-            TRUC_THUOC: 'HOPLONG',
-            DANG_CHO_PHAN_HOI: true,
-            THUE_SUAT_GTGT: $scope.thue_suat_gtgt,
-            TIEN_THUE_GTGT: $scope.thue_vat_new,
-        };
+
+
 
         $scope.arrayBaoGiaChiTiet = [];
 
@@ -2115,36 +2118,58 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService, $timeout) {
             $scope.arrayBaoGiaChiTiet.push(BaoGiaChiTiet);
         }
 
-        //Lưu vào CSDL
-        $http.post("/api/Api_BaoGia/BaoGiaTuKhach", $scope.BANGBAOGIA)
+        $scope.BANGBAOGIA = {
+            SALES_BAO_GIA: username,
+            MA_KHACH_HANG: $scope.ma_khach_hang,
+            LIEN_HE_KHACH_HANG: $scope.id_lien_he,
+            PHUONG_THUC_THANH_TOAN: $scope.phuong_thuc_thanh_toan,
+            HAN_THANH_TOAN: $scope.han_thanh_toan,
+            HIEU_LUC_BAO_GIA: $scope.hieu_luc_bao_gia,
+            DIEU_KHOAN_THANH_TOAN: $scope.dieu_khoan_thanh_toan,
+            PHI_VAN_CHUYEN: $scope.phivanchuyen,
+            TONG_TIEN: $scope.tong_gia_tri_theo_hop_dong_new,
+            TONG_GIA_TRI_DON_HANG_THUC_TE: $scope.tong_gia_tri_thuc_te_new,
+            GIA_TRI_THUC_THU_TU_KHACH: $scope.tong_gia_tri_thu_cua_khach_new,
+            TONG_GIA_TRI_CHENH_LECH: $scope.gia_tri_chenh_lech_new,
+            TONG_CHI_PHI_HOA_DON: $scope.tong_chi_phi_hoa_don_new,
+            THUC_NHAN_CUA_KHACH: $scope.tong_khach_nhan_new,
+            DA_DUYET: false,
+            DA_TRUNG: false,
+            DA_HUY: false,
+            TRUC_THUOC: 'HOPLONG',
+            DANG_CHO_PHAN_HOI: true,
+            THUE_SUAT_GTGT: $scope.thue_suat_gtgt,
+            TIEN_THUE_GTGT: $scope.thue_vat_new,
+            ChiTietCuaBaoGia: $scope.arrayBaoGiaChiTiet
+        };
+
+        $scope.submitted = true;
+        // If form is invalid, return and let AngularJS show validation errors.
+        if (form.$invalid) {
+            console.log('invalid');
+            return;
+        } else {
+            $http.post("/api/Api_BaoGia/BaoGiaTuKhach", $scope.BANGBAOGIA)
             .then(function successCallback(response) {
                 $scope.BANGBAOGIA = response.data;
-                if (!$scope.BANGBAOGIA) {
-                    ErrorSystem("Không lưu được thông tin chung của báo giá");
-                    return;
-                }
-                $scope.BANGBAOGIA.SO_BAO_GIA;
 
-                for (var i = 0; i < $scope.arrayBaoGiaChiTiet.length; i++) {
-                    $scope.arrayBaoGiaChiTiet[i].SO_BAO_GIA = $scope.BANGBAOGIA.SO_BAO_GIA;
-                }
+                SuccessSystem("Tạo thành công phiếu báo giá số " + $scope.BANGBAOGIA.SO_BAO_GIA);
+            $scope.createnewPOvalue = true;
+            $(function () {
+            setTimeout(function () {
+                window.location.href = "/KinhDoanh/BaoGia/GetBaoGia/" + $scope.BANGBAOGIA.SO_BAO_GIA;
 
-
-                if ($scope.arrayBaoGiaChiTiet.length > 0) {
-                    $http.post("/api/ApiChiTietBaoGia/PostKH_LIEN_HE", $scope.arrayBaoGiaChiTiet)
-                        .then(function successCallback(response) {
-                            SuccessSystem("Lưu thành công!");
-                            $scope.createnewPOvalue = true;
-                        }, function errorCallback(response) {
-                            ErrorSystem("Không lưu được chi tiết của báo giá");
-                        });
-                    return;
-                }
+            }, 2000);
+            });
 
             }, function errorCallback(response) {
-                console.log(response);
-                ErrorSystem("Sự cố hệ thống, Không lưu được phiếu giữ kho, Bạn vui lòng liên hệ với admin để khắc phục");
+            console.log(response);
+            ErrorSystem("Sự cố hệ thống, Không tạo được báo giá, Bạn vui lòng liên hệ với admin để khắc phục");
             });
+        }
+
+
+
     }
 
     $scope.CreatePONewFromBaoGia = function () {
@@ -2507,191 +2532,107 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService, $timeout) {
         $scope.thongtinchung.TONG_GIA_TRI_THU_CUA_KHACH = parseFloat($scope.thongtinchung.TONG_TIEN + $scope.thongtinchung.TONG_CHI_PHI_HOA_DON + $scope.thongtinchung.TIEN_THUE_GTGT + $scope.thongtinchung.THUC_NHAN_CUA_KHACH + $scope.thongtinchung.PHI_VAN_CHUYEN);
     };
 
-    $scope.TaoDonPOMoi = function () {
+    $scope.TaoDonPOMoi = function (form) {
 
-        $scope.Bao_Gia_edit = {
-            SO_BAO_GIA: url,
-            SALES_BAO_GIA: $scope.thongtinchung.SALES_BAO_GIA,
-            MA_KHACH_HANG: $scope.thongtinchung.MA_KHACH_HANG,
-            NGAY_BAO_GIA: $scope.thongtinchung.NGAY_BAO_GIA,
-            MA_DU_KIEN: $scope.thongtinchung.MA_DU_KIEN,
-            LIEN_HE_KHACH_HANG: $scope.thongtinchung.LIEN_HE_KHACH_HANG,
-            PHUONG_THUC_THANH_TOAN: $scope.thongtinchung.PHUONG_THUC_THANH_TOAN,
-            HAN_THANH_TOAN: $scope.thongtinchung.HAN_THANH_TOAN,
-            HIEU_LUC_BAO_GIA: $scope.thongtinchung.HIEU_LUC_BAO_GIA,
-            DIEU_KHOAN_THANH_TOAN: $scope.thongtinchung.DIEU_KHOAN_THANH_TOAN,
-            PHI_VAN_CHUYEN: $scope.thongtinchung.PHI_VAN_CHUYEN,
-            TONG_TIEN: $scope.thongtinchung.TONG_TIEN,
-            DA_DUYET: $scope.thongtinchung.DA_DUYET,
-            DA_TRUNG: $scope.thongtinchung.DA_TRUNG,
-            DA_HUY: $scope.thongtinchung.DA_HUY,
-            TRUC_THUOC: 'HOPLONG',
-            THUE_SUAT_GTGT: $scope.thongtinchung.THUE_SUAT_GTGT,
-            TIEN_THUE_GTGT: $scope.thongtinchung.TIEN_THUE_GTGT,
-            TONG_GIA_TRI_DON_HANG_THUC_TE: $scope.thongtinchung.TONG_GIA_TRI_DON_HANG_THUC_TE,
-            GIA_TRI_THUC_THU_TU_KHACH: $scope.thongtinchung.GIA_TRI_THUC_THU_TU_KHACH,
-            TONG_GIA_TRI_CHENH_LECH: $scope.thongtinchung.TONG_GIA_TRI_CHENH_LECH,
-            TONG_CHI_PHI_HOA_DON: $scope.thongtinchung.TONG_CHI_PHI_HOA_DON,
-            THUC_NHAN_CUA_KHACH: $scope.thongtinchung.THUC_NHAN_CUA_KHACH,
-            DANG_CHO_PHAN_HOI: true,
-        };
-
-        $scope.arrayChiTietBaoGia_Edit = [];
+        $scope.arrayChiTietBaoGia = [];
 
         for (var i = 0; i < $scope.thongtinchitiet.length; i++) {
 
 
-            var ChiTietBaoGia_edit = {
-                ID: $scope.thongtinchitiet[i].ID,
-                TEN_HANG: $scope.thongtinchitiet[i].TEN_HANG,
+            var ChiTietBaoGia = {
                 MA_HANG: $scope.thongtinchitiet[i].MA_HANG,
                 MA_DIEU_CHINH: $scope.thongtinchitiet[i].MA_DIEU_CHINH,
-                HANG_SP: $scope.thongtinchitiet[i].HANG_SP,
                 DVT: $scope.thongtinchitiet[i].DVT,
                 SO_LUONG: $scope.thongtinchitiet[i].SO_LUONG,
                 DON_GIA: $scope.thongtinchitiet[i].DON_GIA_MOI,
-                CHIET_KHAU: $scope.thongtinchitiet[i].CHIET_KHAU,
-                GIA_LIST: parseFloat($scope.thongtinchitiet[i].GIA_LIST),
-                DON_GIA_NHAP: parseFloat($scope.thongtinchitiet[i].DON_GIA_NHAP),
-                HE_SO_LOI_NHUAN: $scope.thongtinchitiet[i].HE_SO_LOI_NHUAN,
-                DON_GIA_BAO_DI_NET: $scope.thongtinchitiet[i].DON_GIA_BAO_DI_NET,
-                CM: $scope.thongtinchitiet[i].CM,
-                DON_GIA_MOI: $scope.thongtinchitiet[i].DON_GIA_MOI,
-                THUE_TNDN: $scope.thongtinchitiet[i].THUE_TNDN,
-                TIEN_THUE_TNDN: $scope.thongtinchitiet[i].TIEN_THUE_TNDN,
-                KHACH_NHAN_DUOC: $scope.thongtinchitiet[i].KHACH_NHAN_DUOC,
-                THANH_TIEN: $scope.thongtinchitiet[i].THANH_TIEN,
-                THANH_TIEN_NET: $scope.thongtinchitiet[i].THANH_TIEN_NET,
-                THOI_GIAN_GIAO_HANG: $scope.thongtinchitiet[i].THOI_GIAN_GIAO_HANG,
-                GHI_CHU: $scope.thongtinchitiet[i].GHI_CHU,
+                THANH_TIEN_HANG: $scope.thongtinchitiet[i].THANH_TIEN,
             }
             //PUSH ChiTietGiu VÀO MẢNG arrayChiTietGiu
-            $scope.arrayChiTietBaoGia_Edit.push(ChiTietBaoGia_edit);
+            $scope.arrayChiTietBaoGia.push(ChiTietBaoGia);
         }
+        $scope.Bao_Gia = {
+            MA_KHACH_HANG: $scope.thongtinchung.MA_KHACH_HANG,
+            TEN_LIEN_HE: $scope.thongtinchung.NGUOI_LIEN_HE,
+            HINH_THUC_THANH_TOAN: $scope.thongtinchung.PHUONG_THUC_THANH_TOAN,
+            TONG_TIEN_THANH_TOAN: $scope.thongtinchung.GIA_TRI_THUC_THU_TU_KHACH,
+            TONG_TIEN_HANG: $scope.thongtinchung.TONG_TIEN,
+            TONG_TIEN_THUE_GTGT: $scope.thongtinchung.TIEN_THUE_GTGT,
+            SO_TIEN_VIET_BANG_CHU: docso($scope.thongtinchung.GIA_TRI_THUC_THU_TU_KHACH),
+            THUE_SUAT_GTGT: $scope.thongtinchung.THUE_SUAT_GTGT,
+            PHI_VC: $scope.thongtinchung.PHI_VAN_CHUYEN,
+            TRUC_THUOC: 'HOPLONG',
+            DA_BAN_HANG: false,
+            NHAN_VIEN_QUAN_LY: username,
+            SO_BAO_GIA: url,
+            NGAY_GIAO_HANG: $scope.ngay_giao_hang,
+            DIA_DIEM_GIAO_HANG: $scope.dia_diem_giao_hang,
+            CAN_XUAT_NGAY: $scope.can_xuat_ngay,
+            CAN_LAY_HOA_DON: $scope.can_lay_hoa_don,
+            ChiTietPO: $scope.arrayChiTietBaoGia,
+        };
 
-        //Lưu vào CSDL
+        $scope.submitted = true;
+        // If form is invalid, return and let AngularJS show validation errors.
+        if (form.$invalid) {
+            console.log('invalid');
+            return;
+        } else {
+            $http({
+                method: 'POST',
+                data: $scope.Bao_Gia,
+                url: window.location.origin + '/api/Api_DonHangPO/PostDon_Hang_PO'
+            }).then(function successCallback(response) {
+                SuccessSystem('Bạn đã tạo thành công 1 đơn PO có mã là ' + response.data)
+                $scope.PhuongAnKD = {
+                    MA_SO_PO: response.data,
+                    PHIEU_BAO_GIA: url,
+                    MA_KHACH_HANG: $scope.thongtinchung.MA_KHACH_HANG,
+                    NOI_DUNG_PAKD: $scope.noi_dung_phuong_an_kinh_doanh,
+                    TONG_GIA_TRI_VTHH_DAU_VAO: $scope.tong_gia_tri_vthh_dau_vao,
+                    CHI_PHI_KHAC: $scope.thongtinchung.PHI_VAN_CHUYEN,
+                    TONG_GIA_TRI_DON_HANG_THUC_TE: $scope.thongtinchung.TONG_GIA_TRI_DON_HANG_THUC_TE,
+                    TONG_GIA_TRI_DON_HANG_THEO_PHIEU_XUAT_HOP_DONG: $scope.thongtinchung.TONG_TIEN,
+                    GIA_TRI_CHENH_LECH: $scope.thongtinchung.TONG_GIA_TRI_CHENH_LECH,
+                    CHI_PHI_HOA_DON: 20,
+                    TIEN_CHI_PHI_HOA_DON: $scope.thongtinchung.TONG_CHI_PHI_HOA_DON,
+                    THUE_VAT: $scope.thongtinchung.THUE_SUAT_GTGT,
+                    TIEN_THUE_VAT: $scope.thongtinchung.TIEN_THUE_GTGT,
+                    TONG_GIA_TRI_THU_CUA_KHACH: $scope.thongtinchung.GIA_TRI_THUC_THU_TU_KHACH,
+                    LOI_NHUAN_THUAN: $scope.loi_nhuan_thuan,
+                    CHIET_KHAU_CHO_KHACH: $scope.thongtinchung.THUC_NHAN_CUA_KHACH,
+                    THANH_TOAN_KHI_DAT_HANG: $scope.thanh_toan_khi_dat_hang,
+                    THANH_TOAN_SAU_GIAO_HANG: $scope.thanh_toan_sau_giao_hang,
+                    HINH_THUC_THANH_TOAN: $scope.thongtinchung.PHUONG_THUC_THANH_TOAN,
+                    HOA_DON_CHUNG_TU: $scope.hoa_don_chung_tu,
+                    CONG_NO: $scope.thongtinchung.DIEU_KHOAN_THANH_TOAN,
+                    TRUC_THUOC: 'HOPLONG',
+                    NHAN_VIEN_QUAN_LY: username,
+                }
 
-        $http({
-            method: 'PUT',
-            data: $scope.Bao_Gia_edit,
-            url: window.location.origin + '/api/Api_BaoGia/' + $scope.Bao_Gia_edit.SO_BAO_GIA
-        }).then(function successCallback(response) {
-            $scope.Bao_Gia = response.data;
-
-            $scope.Bao_Gia.SO_BAO_GIA;
-
-            for (var i = 0; i < $scope.arrayChiTietBaoGia_Edit.length; i++) {
-                $scope.arrayChiTietBaoGia_Edit[i].SO_BAO_GIA = $scope.Bao_Gia_edit.SO_BAO_GIA;
-            }
-
-
-            if ($scope.arrayChiTietBaoGia_Edit.length > 0) {
                 $http({
                     method: 'POST',
-                    data: $scope.arrayChiTietBaoGia_Edit,
-                    url: window.location.origin + '/api/Api_ChiTietBaoGia/PutBH_CT_BAO_GIA'
+                    data: $scope.PhuongAnKD,
+                    url: window.location.origin + '/api/Api_PhuongAnKinhDoanh/PostBH_PHUONG_AN_KINH_DOANH'
                 }).then(function successCallback(response) {
-                    
-                    $scope.arrayChiTietBaoGia = [];
+                    SuccessSystem('Bạn đã tạo thành công 1 PAKD có mã là ' + response.data.MA_SO_PAKD);
+                    $(function () {
+                        setTimeout(function () {
+                            window.location.href = "/KinhDoanh/DonHangPO/DonPOHome";
 
-                    for (var i = 0; i < $scope.thongtinchitiet.length; i++) {
-
-
-                        var ChiTietBaoGia = {
-                            MA_HANG: $scope.thongtinchitiet[i].MA_HANG,
-                            MA_DIEU_CHINH: $scope.thongtinchitiet[i].MA_DIEU_CHINH,
-                            DVT: $scope.thongtinchitiet[i].DVT,
-                            SO_LUONG: $scope.thongtinchitiet[i].SO_LUONG,
-                            DON_GIA: $scope.thongtinchitiet[i].DON_GIA_MOI,
-                            THANH_TIEN_HANG: $scope.thongtinchitiet[i].THANH_TIEN,
-                        }
-                        //PUSH ChiTietGiu VÀO MẢNG arrayChiTietGiu
-                        $scope.arrayChiTietBaoGia.push(ChiTietBaoGia);
-                    }
-                    $scope.Bao_Gia = {
-                        MA_KHACH_HANG: $scope.thongtinchung.MA_KHACH_HANG,
-                        TEN_LIEN_HE: $scope.thongtinchung.NGUOI_LIEN_HE,
-                        HINH_THUC_THANH_TOAN: $scope.thongtinchung.PHUONG_THUC_THANH_TOAN,
-                        TONG_TIEN_THANH_TOAN: $scope.thongtinchung.GIA_TRI_THUC_THU_TU_KHACH,
-                        TONG_TIEN_HANG: $scope.thongtinchung.TONG_TIEN,
-                        TONG_TIEN_THUE_GTGT: $scope.thongtinchung.TIEN_THUE_GTGT,
-                        SO_TIEN_VIET_BANG_CHU: docso($scope.thongtinchung.GIA_TRI_THUC_THU_TU_KHACH),
-                        THUE_SUAT_GTGT: $scope.thongtinchung.THUE_SUAT_GTGT,
-                        PHI_VC: $scope.thongtinchung.PHI_VAN_CHUYEN,
-                        TRUC_THUOC: 'HOPLONG',
-                        DA_BAN_HANG: false,
-                        NHAN_VIEN_QUAN_LY: username,
-                        SO_BAO_GIA: url,
-                        NGAY_GIAO_HANG: $scope.ngay_giao_hang,
-                        DIA_DIEM_GIAO_HANG: $scope.dia_diem_giao_hang,
-                        CAN_XUAT_NGAY: $scope.can_xuat_ngay,
-                        CAN_LAY_HOA_DON: $scope.can_lay_hoa_don,
-                        ChiTietPO: $scope.arrayChiTietBaoGia,
-                    };
-                    //Lưu vào CSDL
-
-                    $http({
-                        method: 'POST',
-                        data: $scope.Bao_Gia,
-                        url: window.location.origin + '/api/Api_DonHangPO/PostDon_Hang_PO'
-                    }).then(function successCallback(response) {
-                        SuccessSystem('Bạn đã tạo thành công 1 đơn PO có mã là ' + response.data)
-                        $scope.PhuongAnKD = {
-                            MA_SO_PO: response.data,
-                            PHIEU_BAO_GIA: url,
-                            MA_KHACH_HANG: $scope.thongtinchung.MA_KHACH_HANG,
-                            NOI_DUNG_PAKD: $scope.noi_dung_phuong_an_kinh_doanh,
-                            TONG_GIA_TRI_VTHH_DAU_VAO: $scope.tong_gia_tri_vthh_dau_vao,
-                            CHI_PHI_KHAC: $scope.thongtinchung.PHI_VAN_CHUYEN,
-                            TONG_GIA_TRI_DON_HANG_THUC_TE: $scope.thongtinchung.TONG_GIA_TRI_DON_HANG_THUC_TE,
-                            TONG_GIA_TRI_DON_HANG_THEO_PHIEU_XUAT_HOP_DONG: $scope.thongtinchung.TONG_TIEN,
-                            GIA_TRI_CHENH_LECH: $scope.thongtinchung.TONG_GIA_TRI_CHENH_LECH,
-                            CHI_PHI_HOA_DON: 20,
-                            TIEN_CHI_PHI_HOA_DON: $scope.thongtinchung.TONG_CHI_PHI_HOA_DON,
-                            THUE_VAT: $scope.thongtinchung.THUE_SUAT_GTGT,
-                            TIEN_THUE_VAT: $scope.thongtinchung.TIEN_THUE_GTGT,
-                            TONG_GIA_TRI_THU_CUA_KHACH: $scope.thongtinchung.GIA_TRI_THUC_THU_TU_KHACH,
-                            LOI_NHUAN_THUAN: $scope.loi_nhuan_thuan,
-                            CHIET_KHAU_CHO_KHACH: $scope.thongtinchung.THUC_NHAN_CUA_KHACH,
-                            THANH_TOAN_KHI_DAT_HANG: $scope.thanh_toan_khi_dat_hang,
-                            THANH_TOAN_SAU_GIAO_HANG: $scope.thanh_toan_sau_giao_hang,
-                            HINH_THUC_THANH_TOAN: $scope.thongtinchung.PHUONG_THUC_THANH_TOAN,
-                            HOA_DON_CHUNG_TU: $scope.hoa_don_chung_tu,
-                            CONG_NO: $scope.thongtinchung.DIEU_KHOAN_THANH_TOAN,
-                            TRUC_THUOC: 'HOPLONG',
-                            NHAN_VIEN_QUAN_LY: username,
-                        }
-
-                        $http({
-                            method: 'POST',
-                            data: $scope.PhuongAnKD,
-                            url: window.location.origin + '/api/Api_PhuongAnKinhDoanh/PostBH_PHUONG_AN_KINH_DOANH'
-                        }).then(function successCallback(response) {
-                            SuccessSystem('Bạn đã tạo thành công 1 PAKD có mã là ' + response.data.MA_SO_PAKD);
-                            $(function () {
-                                setTimeout(function () {
-                                    window.location.href = "/KinhDoanh/DonHangPO/DonPOHome";
-
-                                }, 2000);
-                            });
-                        }, function errorCallback(response) {
-                            console.log(response);
-                            ErrorSystem('Sự cố hệ thống, Không lưu được PAKD, Bạn vui lòng liên hệ với admin để khắc phục ');
-                        });
-                    }, function errorCallback(response) {
-                        console.log(response);
-                        ErrorSystem('Sự cố hệ thống, Không lưu được đơn PO, Bạn vui lòng liên hệ với admin để khắc phục ');
+                        }, 2000);
                     });
                 }, function errorCallback(response) {
-                    
+                    console.log(response);
+                    ErrorSystem('Sự cố hệ thống, Không lưu được PAKD, Bạn vui lòng liên hệ với admin để khắc phục ');
                 });
-                return;
-            }
+            }, function errorCallback(response) {
+                console.log(response);
+                ErrorSystem('Sự cố hệ thống, Không lưu được đơn PO, Bạn vui lòng liên hệ với admin để khắc phục ');
+            });
+        }
+        //Lưu vào CSDL
+       
 
-        }, function errorCallback(response) {
-            console.log(response);
-            ErrorSystem('Sự cố hệ thống, Không tạo được đơn PO, Bạn vui lòng liên hệ với admin để khắc phục ');
-        });
 
         var so_tien_viet_bang_chu = docso($scope.thongtinchung.TONG_TIEN);
 

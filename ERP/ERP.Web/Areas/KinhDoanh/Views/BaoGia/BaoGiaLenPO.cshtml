@@ -341,88 +341,68 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     </div>
                     <div class="modal-body">
-                        <table style="font-weight: bold;">
-                            <tr>
-                                <td>Ngày giao hàng <span style="float:right; font-style:italic">(DD/MM/YYYY)</span></td>
-                                <td><input type="text" ng-model="ngay_giao_hang" mask="99/99/9999" placeholder="__/__/____" class="form-control" /></td>
-                            </tr>
-                            <tr>
-                                <td>Địa chỉ giao hàng</td>
-                                <td><input type="text" ng-model="dia_chi_giao_hang" class="form-control" /></td>
-                            </tr>
-                            <tr>
-                                <td>Thanh toán khi đặt hàng</td>
-                                <td><input type="number" ng-model="thanh_toan_khi_dat_hang" placeholder="thanh toán bao nhiêu % ngay khi đặt hàng" class="form-control" /></td>
-                            </tr>
-                            <tr>
-                                <td>Thanh toán sau khi giao hàng</td>
-                                <td><input type="number" ng-model="thanh_toan_sau_giao_hang" placeholder="thanh toán bao nhiêu % sau khi giao hàng" class="form-control" /></td>
-                            </tr>
-                            <tr>
-                                <td>Nội dung PAKD</td>
-                                <td><input type="text" ng-model="noi_dung_phuong_an_kinh_doanh" class="form-control" /></td>
-                            </tr>
-                            <tr>
-                                <td>Hóa đơn chứng từ</td>
-                                <td><select class="form-control" ng-model="hoa_don_chung_tu" id="adddieukhoanthanhtoan" data-ng-options="item as item for item in hoadonchungtu"></select></td>
-                            </tr>
-                            <tr>
-                                <td>Chú ý</td>
-                                <td>
-                                    Cần xuất ngay &nbsp;<input type="checkbox" ng-model="can_xuat_ngay" /> &nbsp; | &nbsp;
-                                    Cần lấy hóa đơn &nbsp;<input type="checkbox" ng-model="can_lay_hoa_don" />
-                                </td>
-                            </tr>
-
-                            @*<div class="col-md-12 form-group">
-                                    <label class="col-md-2">Ngày giao hàng</label>
-                                    <div class="col-md-2">
-                                        <input type="text" ng-model="ngay_giao_hang" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <label class="col-md-2">Địa chỉ giao hàng</label>
-                                    <div class="col-md-10">
-                                        <input type="text" ng-model="dia_diem_giao_hang" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <div class="col-md-6">
-                                        <label class="control-label">Cần xuất ngay</label>
-                                        <input type="checkbox" ng-model="can_xuat_ngay" />
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="control-label">Cần lấy hóa đơn</label>
-                                        <input type="checkbox" ng-model="can_lay_hoa_don" />
-                                    </div>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <div class="col-md-6">
-                                        <label class="control-label">Thanh toán khi đặt hàng</label>
-                                        <input type="number" ng-model="thanh_toan_khi_dat_hang" />
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="control-label">Thanh toán sau khi giao hàng</label>
-                                        <input type="number" ng-model="thanh_toan_sau_giao_hang" />
-                                    </div>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <label class="col-md-2">Nội dung PAKD</label>
-                                    <div class="col-md-10">
-                                        <input type="text" ng-model="noi_dung_phuong_an_kinh_doanh" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <label class="col-md-2">Hóa đơn chứng từ</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control select" ng-model="hoa_don_chung_tu" id="adddieukhoanthanhtoan"
-                                                data-ng-options="item as item for item in hoadonchungtu"></select>
-                                    </div>
-                                </div>*@
-                        </table>
+                        <form name="form_PO">
+                            <table style="font-weight: bold;">
+                                <tr>
+                                    <td>Ngày giao hàng <span style="float:right; font-style:italic">(DD/MM/YYYY)</span></td>
+                                    <td>
+                                        <ng-form name="valid_ngay_giao_hang">
+                                            <input type="text" ng-model="ngay_giao_hang" name="ngay_giao_hang" mask="99/99/9999" placeholder="__/__/____" class="form-control" required />
+                                            <small class="label label-danger" data-ng-show="submitted && valid_ngay_giao_hang.ngay_giao_hang.$error.required">Không được để trống ngày giao hàng</small>
+                                        </ng-form>
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Địa chỉ giao hàng</td>
+                                    <td>
+                                        <ng-form name="valid_dia_diem_giao_hang">
+                                            <input type="text" ng-model="dia_diem_giao_hang" name="dia_diem_giao_hang" class="form-control" required />
+                                            <small class="label label-danger" data-ng-show="submitted && valid_dia_diem_giao_hang.dia_diem_giao_hang.$error.required">Không được để trống địa điểm giao hàng</small>
+                                        </ng-form>
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Thanh toán khi đặt hàng</td>
+                                    <td>
+                                        <ng-form name="valid_thanh_toan_dat_hang">
+                                            <input type="number" ng-model="thanh_toan_khi_dat_hang" name="thanh_toan_khi_dat_hang" placeholder="thanh toán bao nhiêu % ngay khi đặt hàng" class="form-control" required />
+                                            <small class="label label-danger" data-ng-show="submitted && valid_thanh_toan_dat_hang.thanh_toan_khi_dat_hang.$error.required">Không được để trống % thanh toán khi đặt hàng</small>
+                                        </ng-form>                                       
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Thanh toán sau khi giao hàng</td>
+                                    <td>
+                                        <ng-form name="valid_thanh_toan_giao_hang">
+                                            <input type="number" ng-model="thanh_toan_sau_giao_hang" name="thanh_toan_sau_giao_hang" placeholder="thanh toán bao nhiêu % sau khi giao hàng" class="form-control" required />
+                                            <small class="label label-danger" data-ng-show="submitted && valid_thanh_toan_giao_hang.thanh_toan_sau_giao_hang.$error.required">Không được để trống % thanh toán khi giao hàng</small>
+                                        </ng-form>
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Nội dung PAKD</td>
+                                    <td><input type="text" ng-model="noi_dung_phuong_an_kinh_doanh" class="form-control" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Hóa đơn chứng từ</td>
+                                    <td><select class="form-control" ng-model="hoa_don_chung_tu" id="adddieukhoanthanhtoan" data-ng-options="item as item for item in hoadonchungtu"></select></td>
+                                </tr>
+                                <tr>
+                                    <td>Chú ý</td>
+                                    <td>
+                                        Cần xuất ngay &nbsp;<input type="checkbox" ng-model="can_xuat_ngay" /> &nbsp; | &nbsp;
+                                        Cần lấy hóa đơn &nbsp;<input type="checkbox" ng-model="can_lay_hoa_don" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                        
                     </div>
                     <div class="modal-footer" style="text-align: center;">
-                        <button class="btn fa fa-arrow-up" ng-click="TaoDonPOMoi()">Lên PO</button>
+                        <button class="btn fa fa-arrow-up" ng-click="TaoDonPOMoi(form_PO)">Lên PO</button>
                         <button class="btn fa fa-sign-out" data-dismiss="modal">Exit</button>
 
                     </div>
