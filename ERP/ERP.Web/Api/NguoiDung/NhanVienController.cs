@@ -52,12 +52,13 @@ namespace ERP.Api.Controllers.CCTC
         #region "Get Nhân Viên Theo Phòng Ban"
         // GET: api/NhanVien
         // [DisableCors]
-        [System.Web.Http.Route("api/NhanVien/GetNhanVienPhongBan/{maphongban}")]
-        public List<Prod_CCTC_NhanVienPhongBan_Result> GetNhanVienPhongBan(string maphongban)
+        [System.Web.Http.Route("api/NhanVien/GetNhanVienPhongBan/{maphongban}/{isadmin}")]
+        public List<Prod_CCTC_NhanVienPhongBan_Result> GetNhanVienPhongBan(string maphongban, bool isadmin)
+        
         {
             using (var db = new ERP_DATABASEEntities())
             {
-                var query = db.Database.SqlQuery<Prod_CCTC_NhanVienPhongBan_Result>("Prod_CCTC_NhanVienPhongBan @maphongban", new SqlParameter("maphongban", maphongban));
+                var query = db.Database.SqlQuery<Prod_CCTC_NhanVienPhongBan_Result>("Prod_CCTC_NhanVienPhongBan @maphongban,@isadmin", new SqlParameter("maphongban", maphongban), new SqlParameter("isadmin", isadmin));
                 var result = query.ToList();
                 return result;
             }

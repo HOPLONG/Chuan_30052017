@@ -33,6 +33,17 @@ namespace ERP.Web.Api.DangKyPheDuyet
 
             return result;
         }
+        [HttpPost]
+        // GET: api/Api_DangKyPheDuyetPO/5
+        [ResponseType(typeof(XL_DANG_KY_PHE_DUYET))]
+        [Route("api/Api_DangKyPheDuyetPO/DanhsachpheduyetGV/{isadmin}/{username}")]
+        public List<Prod_XL_List_DangKyPheDuyetGV_Result> DanhsachpheduyetGV(bool isadmin, string username)
+        {
+            var query = db.Database.SqlQuery<Prod_XL_List_DangKyPheDuyetGV_Result>("Prod_XL_List_DangKyPheDuyetGV  @macongty,@loaipheduyet,@username,@isadmin", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("loaipheduyet", "GIAO_VIEC"), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
+            var result = query.ToList();
+
+            return result;
+        }
 
         [Route("api/Api_DangKyPheDuyetPO/Danhsachduocpheduyet")]
         public List<Prod_CCTC_GetAllSale_Result> Danhsachduocpheduyet()

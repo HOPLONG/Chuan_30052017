@@ -2,6 +2,9 @@
 app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
 
     var salehienthoi = $('#salehienthoi').val();
+    var IsAdmin = $('#isadmin').val();
+    var Username = $('#username').val();
+    var MaPhongBan = $('#maphongban').val();
 
     //get data lich lam viec
     $scope.get_datalichlamviec = function (nhanvienthuchien) {
@@ -71,7 +74,7 @@ app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
             THOI_GIAN_KET_THUC: $scope.thoi_gian_ket_thuc,
             TRANG_THAI: $scope.trang_thai,
             GHI_CHU: $scope.ghi_chu,
-            NHAN_VIEN_THUC_HIEN : salehienthoi,
+            NHAN_VIEN_THUC_HIEN: Username,
         }
         $http.post('/api/Api_TaiKhoanKH/PostLichLamViec', data_add).then(function (response) {
             alert('Thêm mới thành công');
@@ -101,25 +104,28 @@ app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
     $scope.edit = function (kq) {
         $scope.kq = kq;
     };
-
-    $http.get('/api/Api_GiaoViec/GetGiaoViec/' + salehienthoi).then(function (response) {
-        $scope.list_congviec = response.data;
-    });
+    $scope.Loadgiaoviec = function () {
+        $http.get('/api/Api_GiaoViec/GetGiaoViec/' + Username).then(function (response) {
+            $scope.list_congviec = response.data;
+        });
+    };
+    $scope.Loadgiaoviec();
+    
 
 
     $scope.save_giao_viec = function (entry) {
         $scope.entry = entry;
         var data_save = {
+
             TRANG_THAI: $scope.entry.TRANG_THAI,
-            GHI_CHU : $scope.entry.GHI_CHU,
+            GHI_CHU: $scope.entry.GHI_CHU,
+            PHUONG_AN_XU_LY: $scope.entry.PHUONG_AN_XU_LY,
         }
         $http.put('/api/Api_GiaoViec/PutNV_GIAO_VIEC/' + $scope.entry.ID, data_save).then(function (response) {
-            alert('Sửa thành công')
-            $http.get('/api/Api_GiaoViec/GetGiaoViec/' + salehienthoi).then(function (response) {
-                $scope.list_congviec = response.data;
-            });
+            SuccessSystem('Sửa thành công')
+            $scope.Loadgiaoviec();
         }, function (error) {
-            alert("Lỗi khi sửa");
+            ErrorSystem("Lỗi khi sửa");
         });
     };
 
@@ -156,7 +162,7 @@ app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
     $scope.arrayNV = [];
     $scope.showtable_NV = false;
 
-    $http.get(window.location.origin + '/api/Api_NguoidungHL')
+    $http.get(window.location.origin + '/api/NhanVien/GetNhanVienPhongBan/' + MaPhongBan + '/' + IsAdmin)
      .then(function (response) {
          if (response.data) {
              $scope.arrayNV = response.data;
@@ -193,17 +199,39 @@ app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
 
     $scope.newgiaoviec = function () {
         var data = {
-            TIEU_DE_CONG_VIEC: $scope.tieu_de_cong_viec_giao_viec,
+            PHUONG_AN_XU_LY: $scope.phuong_an_xu_ly,
+            NGAY_GIAO_VIEC: $scope.NGAY_GIAO_VIEC,
             NOI_DUNG_CONG_VIEC: $scope.noi_dung_cong_viec_giao_viec,
-            THOI_GIAN_HOAN_THANH: $scope.thoi_gian_hoan_thanh_giao_viec,
+            NGAY_HOAN_THANH: $scope.thoi_gian_hoan_thanh_giao_viec,
             NHAN_VIEN_THUC_HIEN: $scope.username,
             GHI_CHU: $scope.ghi_chu_giao_viec,
             TRANG_THAI: $scope.trang_thai_giao_viec,
-            NGUOI_GIAO_VIEC: salehienthoi,
+            NGUOI_GIAO_VIEC: Username,
+            HUY_CONG_VIEC: $scope.huy_cong_viec
         }
 
         $http.post('/api/Api_GiaoViec/PostNV_GIAO_VIEC', data).then(function (response) {
             SuccessSystem('Thành công');
         });
     };
+    
+    $scope.showbutton = false;
+    function init() {
+        $scope.list_dspheduyet = [];
+        $http.post(window.location.origin + '/api/Api_DangKyPheDuyetPO/DanhsachpheduyetGV/' + IsAdmin + '/' + Username)
+        .then(function (response) {
+
+            $scope.list_dspheduyet = response.data;
+            $scope.nguoiduyet = response.data[0].NGUOI_PHE_DUYET
+            if ($scope.nguoiduyet == Username || IsAdmin == 'True') {
+                $scope.showbutton = true;
+            }
+            else {
+                $scope.showbutton = false;
+            }
+        });
+       
+    }
+    init();
+
 });
