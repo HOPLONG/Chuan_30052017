@@ -18,11 +18,12 @@ namespace ERP.Web.Api.NhaCungCap
         private ERP_DATABASEEntities db = new ERP_DATABASEEntities();
 
         // GET: api/Api_NhanvienMua
-        public List<nhanvien> GetCCTC_NHAN_VIEN()
+
+        public List<nhanvien> GetCCTC_NHAN_VIEN(string maphongban,string macongty)
         {
             var vData = (from t1 in db.HT_NGUOI_DUNG
                          join t2 in db.CCTC_NHAN_VIEN on t1.USERNAME equals t2.USERNAME
-                         where t2.MA_PHONG_BAN == "PURC_HL"
+                         where maphongban.Substring(1,4) == "PURC" && t1.MA_CONG_TY == macongty
                          select new
                          {
                              t1.USERNAME,
@@ -36,18 +37,6 @@ namespace ERP.Web.Api.NhaCungCap
             return result;
         }
 
-        // GET: api/Api_NhanvienMua/5
-        [ResponseType(typeof(CCTC_NHAN_VIEN))]
-        public IHttpActionResult GetCCTC_NHAN_VIEN(string id)
-        {
-            CCTC_NHAN_VIEN cCTC_NHAN_VIEN = db.CCTC_NHAN_VIEN.Find(id);
-            if (cCTC_NHAN_VIEN == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(cCTC_NHAN_VIEN);
-        }
 
         // PUT: api/Api_NhanvienMua/5
         [ResponseType(typeof(void))]

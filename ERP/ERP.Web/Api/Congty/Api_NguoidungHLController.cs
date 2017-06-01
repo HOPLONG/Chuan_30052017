@@ -17,9 +17,9 @@ namespace ERP.Web.Areas.HopLong.Api.HeThong
         private ERP_DATABASEEntities db = new ERP_DATABASEEntities();
 
         // GET: api/Api_NguoidungHL
-        public List<HT_NGUOI_DUNG> GetHT_NGUOI_DUNG()
+        public List<HT_NGUOI_DUNG> GetHT_NGUOI_DUNG(string macongty)
         {
-            var vData = db.HT_NGUOI_DUNG.Where(x => x.MA_CONG_TY == "HOPLONG");
+            var vData = db.HT_NGUOI_DUNG.Where(x => x.MA_CONG_TY == macongty);
             var result = vData.ToList().Select(x => new HT_NGUOI_DUNG()
             {
                 USERNAME = x.USERNAME,
@@ -35,18 +35,7 @@ namespace ERP.Web.Areas.HopLong.Api.HeThong
             return result;
         }
 
-        // GET: api/Api_NguoidungHL/5
-        [ResponseType(typeof(HT_NGUOI_DUNG))]
-        public IHttpActionResult GetHT_NGUOI_DUNG(string id)
-        {
-            HT_NGUOI_DUNG hT_NGUOI_DUNG = db.HT_NGUOI_DUNG.Find(id);
-            if (hT_NGUOI_DUNG == null)
-            {
-                return NotFound();
-            }
 
-            return Ok(hT_NGUOI_DUNG);
-        }
 
         // PUT: api/Api_NguoidungHL/5
         [ResponseType(typeof(void))]

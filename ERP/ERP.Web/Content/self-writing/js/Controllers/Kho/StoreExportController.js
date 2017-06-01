@@ -1,5 +1,7 @@
 ﻿
 app.controller('StoreExportController', function ($rootScope, $scope, $http, config) {
+
+    var macongty = $('#macongty').val();
     $rootScope.title = "Xuất kho";
     $rootScope.dashboard = false;
     $scope.StoreType = 1;
@@ -75,7 +77,7 @@ app.controller('StoreExportController', function ($rootScope, $scope, $http, con
 
     //Lấy dữ liệu hàng hóa
     $scope.SearchHH = function (mh) {
-        $http.get(window.location.origin + '/api/Api_XuatNhapKho/GetAllHH/' + 'HOPLONG/' + 'XUATKHO/' + mh)
+        $http.get(window.location.origin + '/api/Api_XuatNhapKho/GetAllHH/' + macongty + '/' + 'XUATKHO/' + mh)
          .then(function (response) {
              if (typeof (response.data) == "object") {
                  $scope.Detail.ListHangHoa = response.data;
@@ -129,7 +131,7 @@ app.controller('StoreExportController', function ($rootScope, $scope, $http, con
 
 
         //Lấy dữ liệu kho hợp long
-        $http.get("/api/Api_KhoHL")
+        $http.get("/api/Api_KhoHL/" + macongty)
             .then(function (response) {
             if (typeof (response.data) == "object") {
                 $scope.Detail.ListKho = response.data;
@@ -506,7 +508,7 @@ app.controller('StoreExportController', function ($rootScope, $scope, $http, con
             $("#Input_MaChungTu").css({ "display": "none" });
             $("#DataGiaTriChungTu").css({ "display": "block" });
             $scope.DoiTuongFind = function () {
-                $http.post(window.location.origin + '/api/Api_XuatNhapKho/GetAllDoiTuong/' + $scope.GiaTriChungTu.Search)
+                $http.post(window.location.origin + '/api/Api_XuatNhapKho/GetAllDoiTuong/' + $scope.GiaTriChungTu.Search + '/' + macongty)
                  .then(function (response) {
                      if (typeof (response.data) == "object") {
                          var data = response.data.DoiTuong;
@@ -558,7 +560,7 @@ app.controller('StoreExportController', function ($rootScope, $scope, $http, con
 
             }
 
-            $http.post('/api/Api_XuatNhapKho/SearchByTypeWithDate', data)
+            $http.post('/api/Api_XuatNhapKho/SearchByTypeWithDate/' + macongty, data)
             .then(function (response) {
                 console.log(response);
                 if (typeof (response.data) == "object") {
@@ -603,7 +605,7 @@ app.controller('StoreExportController', function ($rootScope, $scope, $http, con
 
             }
 
-            $http.post('/api/Api_XuatNhapKho/SearchByDoiTuongWithDate', data)
+            $http.post('/api/Api_XuatNhapKho/SearchByDoiTuongWithDate/' + macongty, data)
             .then(function (response) {
                 console.log(response);
                 if (typeof (response.data) == "object") {
@@ -621,7 +623,7 @@ app.controller('StoreExportController', function ($rootScope, $scope, $http, con
         }
         else {
             var mact = $scope.MaChungTu.Search;
-            $http.get('/api/Api_XuatNhapKho/GetbyMa/' + mact)
+            $http.get('/api/Api_XuatNhapKho/GetbyMa/' + mact + '/' + macongty)
             .then(function (response) {
                 console.log(response);
                 if (typeof (response.data) == "object") {

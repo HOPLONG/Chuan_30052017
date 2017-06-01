@@ -17,9 +17,10 @@ namespace ERP.Web.Areas.HopLong.Api.HeThong
         private ERP_DATABASEEntities db = new ERP_DATABASEEntities();
 
         // GET: api/Api_Nghiepvu
-        public List<CN_NGHIEP_VU> GetDS_NghiepVu()
+        [Route("api/Api_Nghiepvu/GetDS_NghiepVu/{macongty}")]
+        public List<CN_NGHIEP_VU> GetDS_NghiepVu(string macongty)
         {
-            var vData = db.CN_NGHIEP_VU.Where(x => x.TRUC_THUOC == "HOPLONG");
+            var vData = db.CN_NGHIEP_VU.Where(x => x.TRUC_THUOC == macongty);
             var result = vData.ToList().Select(x => new CN_NGHIEP_VU()
             {
                 ID = x.ID,

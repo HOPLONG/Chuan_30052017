@@ -2,6 +2,7 @@
 // Khach hang
 app.controller('khachhangCtrl', function (khachhangService, $scope, $http, $location) {
     var salehienthoi = $('#salehienthoi').val();
+    var username = $('#username').val();
     var macongty = $('#macongty').val();
     var isadmin = $('#isadmin').val();
     var phongban = $('#maphongban').val();
@@ -461,7 +462,7 @@ app.controller('khachhangCtrl', function (khachhangService, $scope, $http, $loca
             TINH: $scope.arraythongtin.tinh,
             TINH_TRANG_HOAT_DONG: $scope.arraythongtin.tinh_trang_hoat_dong,
             QUOC_GIA: $scope.arraythongtin.quoc_gia,
-            TRUC_THUOC: 'HOPLONG',
+            TRUC_THUOC: macongty,
             SALES_TAO: salestao,
             KHACH_DO_MARKETING_TIM_KIEM: $scope.arraythongtin.khach_do_marketing_tim_kiem,
             THONG_TIN_DA_DAY_DU: $scope.arraythongtin.thong_tin_da_day_du,
@@ -723,7 +724,7 @@ app.controller('khachhangCtrl', function (khachhangService, $scope, $http, $loca
             SO_NO_TOI_DA: $scope.kh.SO_NO_TOI_DA,
             GHI_CHU: editghichu,
             HO_SO_THANH_TOAN: edit_ho_so_thanh_toan,
-            TRUC_THUOC: "HOPLONG",
+            TRUC_THUOC: macongty,
             KHACH_DO_MARKETING_TIM_KIEM: $scope.kh.KHACH_DO_MARKETING_TIM_KIEM,
             THONG_TIN_DA_DAY_DU: $scope.kh.THONG_TIN_DA_DAY_DU,
             KHACH_MUA_SO_LUONG_NHIEU: $scope.kh.KHACH_MUA_SO_LUONG_NHIEU,
@@ -1093,7 +1094,7 @@ app.controller('khachhangCtrl', function (khachhangService, $scope, $http, $loca
         tinh: '',
         tinh_trang_hoat_dong: '',
         quoc_gia: '',
-        truc_thuoc: 'HOPLONG',
+        truc_thuoc: macongty,
         khach_do_marketing_tim_kiem: '',
         thong_tin_da_day_du: '',
         khach_mua_so_luong_nhieu: '',
@@ -1239,7 +1240,7 @@ app.controller('khachhangCtrl', function (khachhangService, $scope, $http, $loca
         //this removes everything before the last slash in the path
         url = url.substring(url.lastIndexOf("/") + 1, url.length);
 
-        khachhangService.chitietkhachhang(url).then(function (abc) {
+        khachhangService.chitietkhachhang(url,macongty).then(function (abc) {
             $scope.list_chitietkhachhangnew = abc;
         });
         khachhangService.get_lienhekh(url).then(function (a) {
@@ -1337,7 +1338,7 @@ app.controller('khachhangCtrl', function (khachhangService, $scope, $http, $loca
             SO_NGAY_DUOC_NO: $scope.kh.SO_NGAY_DUOC_NO,
             SO_NO_TOI_DA: $scope.kh.SO_NO_TOI_DA,
             GHI_CHU: editghichu,
-            TRUC_THUOC: "HOPLONG"
+            TRUC_THUOC: macongty
         }
         khachhangService.save_khachhang(url, kh_save).then(function (response) {
             $scope.phantrangkh(0);
@@ -1540,7 +1541,7 @@ app.controller('khachhangCtrl', function (khachhangService, $scope, $http, $loca
     $scope.showtable_marketing = false;
 
 
-    $http.get(window.location.origin + '/api/Api_KhachHangPolicy/GetNvMarketing')
+    $http.get(window.location.origin + '/api/Api_KhachHangPolicy/GetNvMarketing/' + macongty)
             .then(function (response) {
                 if (response.data) {
                     $scope.arrayMarketing = response.data;
@@ -1582,7 +1583,7 @@ app.controller('khachhangCtrl', function (khachhangService, $scope, $http, $loca
     $scope.showtable_purchase = false;
 
 
-    $http.get(window.location.origin + '/api/Api_KhachHangPolicy/GetNvMuaHang')
+    $http.get(window.location.origin + '/api/Api_KhachHangPolicy/GetNvMuaHang/' + macongty)
             .then(function (response) {
                 if (response.data) {
                     $scope.arrayPurc = response.data;
@@ -1759,7 +1760,7 @@ app.controller('khachhangCtrl', function (khachhangService, $scope, $http, $loca
         });
     }
     $scope.load_nhanvienkho();
-    
+
 
     $scope.showkhsearch = function () {
         $scope.find = true;
@@ -1794,6 +1795,48 @@ app.controller('khachhangCtrl', function (khachhangService, $scope, $http, $loca
           ErrorSystem("Không tìm thấy dữ liệu theo yêu cầu");
           //alert('Chưa thêm được tài khoản khách hàng');
       });
+
+
+    if (username.substring(0, 4) == "MARK" || isadmin == "True") {
+        $scope.kiemtra_username = true;
+        $http.post('/api/Api_ChienDichMKT/ListChienDich').then(function (response) {
+            $scope.list_chiendichmkt = response.data;
+        });
+    }
+
+    $scope.show_addnew_chien_dich_function = function () {
+        $scope.show_addnew_chien_dich = true;
+    };
+
+    $scope.addnew_chien_dich = function () {
+        var data = {
+            TEN_LIST: $scope.ten_chien_dich,
+        }
+
+        $http.post('/api/Api_ChienDichMKT/PostDM_LIST_CHIEN_DICH_MARKETING', data).then(function (response) {
+            SuccessSystem("Thêm chiến dịch thành công");
+            $scope.show_addnew_chien_dich = false;
+            $http.post('/api/Api_ChienDichMKT/ListChienDich').then(function (response) {
+                $scope.list_chiendichmkt = response.data;
+            }, function errorCallback(response1) {
+                ErrorSystem("Thêm chiến dịch thất bại");
+            });
+        });
+    }
+
+    $scope.addnew_kh_chien_dich = function (chiendich) {
+        $scope.chiendich = chiendich;
+        var data_add = {
+            ID_CHIEN_DICH: $scope.chiendich.ID,
+            MA_KHACH_HANG : $scope.item.MA_KHACH_HANG,
+        }
+
+        $http.post('/api/Api_ChienDichMKT/KH_CHIEN_DICH_MKT',data_add).then(function (response) {
+            SuccessSystem("Thêm khách hàng vào chiến dịch thành công");
+        }, function errorCallback(response1) {
+            ErrorSystem("Không thêm được khách hàng vào chiến dịch");
+        });
+
     }
 });
 

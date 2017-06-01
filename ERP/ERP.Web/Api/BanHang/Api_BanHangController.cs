@@ -51,37 +51,37 @@ namespace ERP.Web.Api.BanHang
         }
 
         // List don ban hang chua xuat kho
-        [Route("api/Api_BanHang/ListDonBanHangChuaXuatKho/{isadmin}/{username}")]
-        public List<Prod_BH_List_DonBanHangChuaXuatKho_Result> ListDonBanHangChuaXuatKho(bool isadmin, string username)
+        [Route("api/Api_BanHang/ListDonBanHangChuaXuatKho/{isadmin}/{username}/{macongty}")]
+        public List<Prod_BH_List_DonBanHangChuaXuatKho_Result> ListDonBanHangChuaXuatKho(bool isadmin, string username,string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_BH_List_DonBanHangChuaXuatKho_Result>("Prod_BH_List_DonBanHangChuaXuatKho @macongty,@username,@isadmin", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<Prod_BH_List_DonBanHangChuaXuatKho_Result>("Prod_BH_List_DonBanHangChuaXuatKho @macongty,@username,@isadmin", new SqlParameter("macongty", macongty), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }
 
         // List don ban hang da xuat kho
-        [Route("api/Api_BanHang/ListDonBanHangDaXuatKho/{isadmin}/{username}")]
-        public List<Prod_BH_List_DonBanHangDaXuatKho_Result> ListDonBanHangDaXuatKho(bool isadmin, string username)
+        [Route("api/Api_BanHang/ListDonBanHangDaXuatKho/{isadmin}/{username}/{macongty}")]
+        public List<Prod_BH_List_DonBanHangDaXuatKho_Result> ListDonBanHangDaXuatKho(bool isadmin, string username,string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_BH_List_DonBanHangDaXuatKho_Result>("Prod_BH_List_DonBanHangDaXuatKho @macongty,@username,@isadmin", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<Prod_BH_List_DonBanHangDaXuatKho_Result>("Prod_BH_List_DonBanHangDaXuatKho @macongty,@username,@isadmin", new SqlParameter("macongty", macongty), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }
 
 
-        [Route("api/Api_BanHang/Get_DON_BAN_HANG")]
-        public List<GetAll_DonBanHang_Result> Get_DON_BAN_HANG()
+        [Route("api/Api_BanHang/Get_DON_BAN_HANG/{macongty}")]
+        public List<GetAll_DonBanHang_Result> Get_DON_BAN_HANG(string macongty)
         {
-            var query = db.Database.SqlQuery<GetAll_DonBanHang_Result>("GetAll_DonBanHang @macongty", new SqlParameter("macongty", "HOPLONG"));
+            var query = db.Database.SqlQuery<GetAll_DonBanHang_Result>("GetAll_DonBanHang @macongty", new SqlParameter("macongty", macongty));
             var result = query.ToList();
             return result;
         }
 
         // GET: api/Api_BanHang đã Xuất
-        [Route("api/Api_BanHang/Get_DON_BAN_HANG_DA_XUAT/{isadmin}/{username}")]
-        public List<GetAll_DonBanHangDaXuat_Result> Get_DON_BAN_HANG_DA_XUAT(bool isadmin, string username)
+        [Route("api/Api_BanHang/Get_DON_BAN_HANG_DA_XUAT/{isadmin}/{username}/{macongty}")]
+        public List<GetAll_DonBanHangDaXuat_Result> Get_DON_BAN_HANG_DA_XUAT(bool isadmin, string username,string macongty)
         {
-            var query = db.Database.SqlQuery<GetAll_DonBanHangDaXuat_Result>("GetAll_DonBanHangDaXuat @macongty,@isadmin,@username", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("isadmin", isadmin), new SqlParameter("username", username));
+            var query = db.Database.SqlQuery<GetAll_DonBanHangDaXuat_Result>("GetAll_DonBanHangDaXuat @macongty,@isadmin,@username", new SqlParameter("macongty", macongty), new SqlParameter("isadmin", isadmin), new SqlParameter("username", username));
             var result = query.ToList();
             return result;
         }
@@ -96,13 +96,13 @@ namespace ERP.Web.Api.BanHang
             public string makh { get; set; }
            
         }
-        [Route("api/Api_BanHang/GetDetailDON_BAN_HANG/{masobanhang}")]
-        public GetDonBanHang GetDetailDON_BAN_HANG(string masobanhang)
+        [Route("api/Api_BanHang/GetDetailDON_BAN_HANG/{masobanhang}/{macongty}")]
+        public GetDonBanHang GetDetailDON_BAN_HANG(string masobanhang,string macongty)
         {
 
             //Lưu thông tin nhập kho
             GetDonBanHang dbh = new GetDonBanHang();
-            var query = db.Database.SqlQuery<GetDonBanHang_Result>("GetDonBanHang @masobanhang, @macongty", new SqlParameter("masobanhang", masobanhang), new SqlParameter("macongty", "HOPLONG"));
+            var query = db.Database.SqlQuery<GetDonBanHang_Result>("GetDonBanHang @masobanhang, @macongty", new SqlParameter("masobanhang", masobanhang), new SqlParameter("macongty", macongty));
             var data = db.Database.SqlQuery<GetAll_ChiTiet_DonBanHang_Result>("GetAll_ChiTiet_DonBanHang @masoBH", new SqlParameter("masoBH", masobanhang));
             dbh.donbanhang = query.FirstOrDefault();
             dbh.ctdonbanhang = data.ToList();
@@ -112,11 +112,11 @@ namespace ERP.Web.Api.BanHang
 
         #region "Get ĐƠN BÁN HÀNG theo khách hàng"
         [HttpPost]
-        [Route("api/Api_BanHang/GetDBHByKhach")]
-        public List<GetDonBanHang_ByKhachHang_Result> GetDBHByKhach(DataDBHByKH data)
+        [Route("api/Api_BanHang/GetDBHByKhach/{macongty}")]
+        public List<GetDonBanHang_ByKhachHang_Result> GetDBHByKhach(string macongty,DataDBHByKH data)
         {
            
-            var query = db.Database.SqlQuery<GetDonBanHang_ByKhachHang_Result>("GetDonBanHang_ByKhachHang @macongty, @makhachhang", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("makhachhang", data.makh));
+            var query = db.Database.SqlQuery<GetDonBanHang_ByKhachHang_Result>("GetDonBanHang_ByKhachHang @macongty, @makhachhang", new SqlParameter("macongty", macongty), new SqlParameter("makhachhang", data.makh));
             resultDBHByKhach = query.ToList();
             return resultDBHByKhach;
         }

@@ -4,11 +4,11 @@ app.controller('DonDuKienCtrl', function ($scope, $http) {
     var salehienthoi = $('#salehienthoi').val();
     var phongban = $('#maphongban').val();
     var isadmin = $('#isadmin').val();
-
+    var macongty = $('#macongty').val();
     //Get Danh sách dự kiến theo sale
     $scope.getDanhSachDuKien = function () {
         var datas = {
-            macongty: 'HOPLONG',
+            macongty: macongty,
             ma: salehienthoi,
             isadmin: isadmin,
             maphongban: phongban,
@@ -42,7 +42,7 @@ app.controller('DonDuKienCtrl', function ($scope, $http) {
     $scope.showtable_ma_khach_hang = false;
 
     //get data khách hàng
-    $http.get(window.location.origin + '/api/Api_KH/GET_KHACH_CUA_SALE/' + salehienthoi)
+    $http.get(window.location.origin + '/api/Api_KH/GET_KHACH_CUA_SALE/' + salehienthoi + '/' + isadmin + '/' + macongty)
          .then(function (response) {
              if (response.data) {
                  $scope.arrayKH = response.data;

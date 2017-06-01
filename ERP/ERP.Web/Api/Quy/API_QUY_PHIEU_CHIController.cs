@@ -174,7 +174,7 @@ namespace ERP.Web.Api.Quy
             qpc.NGUOI_NHAN = quy_phieuchi.NGUOI_NHAN;
             qpc.NHAN_VIEN_MUA_HANG = quy_phieuchi.NHAN_VIEN_MUA_HANG;
             qpc.NGUOI_LAP_BIEU = quy_phieuchi.NGUOI_LAP_BIEU;
-            qpc.TRUC_THUOC = "HOPLONG";
+            qpc.TRUC_THUOC = quy_phieuchi.TRUC_THUOC;
             db.QUY_PHIEU_CHI.Add(qpc);
 
             //Lưu thông tin tham chiếu
@@ -240,7 +240,7 @@ namespace ERP.Web.Api.Quy
                     newitem.NGAY_CHUNG_TU = qpc.NGAY_CHUNG_TU;
                     newitem.NGAY_HACH_TOAN = qpc.NGAY_HACH_TOAN;
                     newitem.DOI_TUONG = qpc.MA_DOI_TUONG;
-                    newitem.TRUC_THUOC = "HOPLONG";
+                    newitem.TRUC_THUOC = qpc.TRUC_THUOC;
                     newitem.DIEN_GIAI_CHUNG = qpc.DIEN_GIAI_LY_DO_CHI;
                     newitem.DIEN_GIAI_CHI_TIET = item.DIEN_GIAI;
                     newitem.TAI_KHOAN_HACH_TOAN = item.TK_NO;
@@ -253,7 +253,7 @@ namespace ERP.Web.Api.Quy
                     newitem1.NGAY_CHUNG_TU = qpc.NGAY_CHUNG_TU;
                     newitem1.NGAY_HACH_TOAN = qpc.NGAY_HACH_TOAN;
                     newitem1.DOI_TUONG = qpc.MA_DOI_TUONG;
-                    newitem1.TRUC_THUOC = "HOPLONG";
+                    newitem1.TRUC_THUOC = qpc.TRUC_THUOC;
                     newitem1.DIEN_GIAI_CHUNG = qpc.DIEN_GIAI_LY_DO_CHI;
                     newitem1.DIEN_GIAI_CHI_TIET = item.DIEN_GIAI;
                     newitem1.TAI_KHOAN_HACH_TOAN = item.TK_CO;
@@ -269,7 +269,7 @@ namespace ERP.Web.Api.Quy
                         newitem2.NGAY_CHUNG_TU = qpc.NGAY_CHUNG_TU;
                         newitem2.NGAY_HACH_TOAN = qpc.NGAY_HACH_TOAN;
                         newitem2.DOI_TUONG = qpc.MA_DOI_TUONG;
-                        newitem2.TRUC_THUOC = "HOPLONG";
+                        newitem2.TRUC_THUOC = qpc.TRUC_THUOC;
                         newitem2.DIEN_GIAI_CHUNG = qpc.DIEN_GIAI_LY_DO_CHI;
                         newitem2.DIEN_GIAI_CHI_TIET = item.DIEN_GIAI;
                         newitem2.TAI_KHOAN_HACH_TOAN = item.TK_THUE_GTGT;
@@ -282,7 +282,7 @@ namespace ERP.Web.Api.Quy
                         newitem3.NGAY_CHUNG_TU = qpc.NGAY_CHUNG_TU;
                         newitem3.NGAY_HACH_TOAN = qpc.NGAY_HACH_TOAN;
                         newitem3.DOI_TUONG = qpc.MA_DOI_TUONG;
-                        newitem3.TRUC_THUOC = "HOPLONG";
+                        newitem3.TRUC_THUOC = qpc.TRUC_THUOC;
                         newitem3.DIEN_GIAI_CHUNG = qpc.DIEN_GIAI_LY_DO_CHI;
                         newitem3.DIEN_GIAI_CHI_TIET = item.DIEN_GIAI;
                         newitem3.TAI_KHOAN_HACH_TOAN = item.TK_NO;

@@ -46,7 +46,7 @@
     var macongty = $('#macongty').val();
 
     $scope.load_danhsachPO = function () {
-        DonHangPOService.get_danhsachPO(isadmin, username).then(function (a) {
+        DonHangPOService.get_danhsachPO(isadmin, username,macongty).then(function (a) {
             $scope.list_donhangPO = a;
         });
     };
@@ -60,7 +60,7 @@
             da_duyet: $scope.item.da_duyet,
             dang_duyet: $scope.item.dang_duyet,
         }
-        $http.post('/api/Api_DonHangPO/LocDuLieuPO', locdulieu).then(function (response) {
+        $http.post('/api/Api_DonHangPO/LocDuLieuPO/' + macongty, locdulieu).then(function (response) {
             $scope.list_donhangPO = response.data;
         });
     };
@@ -370,7 +370,7 @@
             DIA_DIEM_GIAO_HANG: $scope.thongtinchung[0].DIA_DIEM_GIAO_HANG,
             DA_XUAT_KHO: false,
             DA_LAP_HOA_DON: false,
-            TRUC_THUOC: 'HOPLONG',
+            TRUC_THUOC: macongty,
             NHAN_VIEN_QUAN_LY: username,
             MA_SO_PO: url,
             ChiTietPO: $scope.arrayChiTietPO,
@@ -405,7 +405,7 @@
             $scope.SoNhatKy = {
                 MA_SO_BH: response.data,
                 MA_KHACH_HANG: $scope.thongtinchung[0].MA_KHACH_HANG,
-                TRUC_THUOC: 'HOPLONG',
+                TRUC_THUOC: macongty,
                 DIEN_GIAI_CHUNG: 'Bán hàng',
                 ChiTietBH: $scope.arrayChiTietBH,
             }
@@ -439,7 +439,7 @@
         });
     };
 
-    $http.get(window.location.origin + '/api/Api_KH/GET_KHACH_CUA_SALE/' + salehienthoi + '/' + isadmin)
+    $http.get(window.location.origin + '/api/Api_KH/GET_KHACH_CUA_SALE/' + salehienthoi + '/' + isadmin + '/' + macongty)
 
          .then(function (response) {
              $scope.list_khachhang = response.data;
@@ -455,7 +455,7 @@
              ErrorSystem(error);
          });
 
-    $http.post('/api/Api_DonHangPO/ListPO_Duyet/' + username + '/' + isadmin).then(function (response) {
+    $http.post('/api/Api_DonHangPO/ListPO_Duyet/' + username + '/' + isadmin + '/' + macongty).then(function (response) {
         $scope.list_POcanduyet = response.data;
     });
 
@@ -669,52 +669,52 @@
 
 
         // List PO da duyet
-        $http.post('/api/Api_DonHangPO/ListPO_DaDuyet/' + isadmin + '/' + username).then(function (response) {
+        $http.post('/api/Api_DonHangPO/ListPO_DaDuyet/' + isadmin + '/' + username + '/' + macongty).then(function (response) {
             $scope.list_PO_DaDuyet = response.data;
         });
 
         // List PO da huy
-        $http.post('/api/Api_DonHangPO/ListPO_DaHuy/' + isadmin + '/' + username).then(function (response) {
+        $http.post('/api/Api_DonHangPO/ListPO_DaHuy/' + isadmin + '/' + username + '/' + macongty).then(function (response) {
             $scope.list_PO_DaHuy = response.data;
         });
 
         // List PO dang cho duyet
-        $http.post('/api/Api_DonHangPO/ListPO_DangChoDuyet/' + isadmin + '/' + username).then(function (response) {
+        $http.post('/api/Api_DonHangPO/ListPO_DangChoDuyet/' + isadmin + '/' + username + '/' + macongty).then(function (response) {
             $scope.list_PO_DangChoDuyet = response.data;
         });
 
         // List PO dang  duyet
-        $http.post('/api/Api_DonHangPO/ListPO_DangDuyet/' + isadmin + '/' + username).then(function (response) {
+        $http.post('/api/Api_DonHangPO/ListPO_DangDuyet/' + isadmin + '/' + username + '/' + macongty).then(function (response) {
             $scope.list_PO_DangDuyet = response.data;
         });
 
         // List PO da len don ban hang
-        $http.post('/api/Api_DonHangPO/ListPO_DaLenDonBanHang/' + isadmin + '/' + username).then(function (response) {
+        $http.post('/api/Api_DonHangPO/ListPO_DaLenDonBanHang/' + isadmin + '/' + username + '/' + macongty).then(function (response) {
             $scope.list_PO_DaLenDonBanHang = response.data;
         });
 
         // List PO can ban ngay
-        $http.post('/api/Api_DonHangPO/ListPO_CanBanNgay/' + isadmin + '/' + username).then(function (response) {
+        $http.post('/api/Api_DonHangPO/ListPO_CanBanNgay/' + isadmin + '/' + username + '/' + macongty).then(function (response) {
             $scope.list_PO_CanBanNgay = response.data;
         });
 
         // List PO dang xuat do
-        $http.post('/api/Api_DonHangPO/ListPO_DangXuatDo/' + isadmin + '/' + username).then(function (response) {
+        $http.post('/api/Api_DonHangPO/ListPO_DangXuatDo/' + isadmin + '/' + username + '/' + macongty).then(function (response) {
             $scope.list_PO_DangXuatDo = response.data;
         });
 
         // List PO chua len don ban
-        $http.post('/api/Api_DonHangPO/ListPO_ChuaLenDonBan/' + isadmin + '/' + username).then(function (response) {
+        $http.post('/api/Api_DonHangPO/ListPO_ChuaLenDonBan/' + isadmin + '/' + username + '/' + macongty).then(function (response) {
             $scope.list_PO_ChuaLenDonBan = response.data;
         });
 
         // List PO da giu day du
-        $http.post('/api/Api_DonHangPO/ListPO_DaGiuDayDu/' + isadmin + '/' + username).then(function (response) {
+        $http.post('/api/Api_DonHangPO/ListPO_DaGiuDayDu/' + isadmin + '/' + username + '/' + macongty).then(function (response) {
             $scope.list_PO_DaGiuDayDu = response.data;
         });
 
         // List PO dang giu do
-        $http.post('/api/Api_DonHangPO/ListPO_DangGiuDo/' + isadmin + '/' + username).then(function (response) {
+        $http.post('/api/Api_DonHangPO/ListPO_DangGiuDo/' + isadmin + '/' + username + '/' + macongty).then(function (response) {
             $scope.list_PO_DangGiuDo = response.data;
         });
     };
@@ -763,7 +763,7 @@
     $scope.arrayKH_BaoGia = [];
     $scope.showtable_KH_BaoGia = false;
 
-    $http.post(window.location.origin + '/api/Api_BaoGia/KhachHangTheoSale/' + username + '/' + isadmin)
+    $http.post(window.location.origin + '/api/Api_BaoGia/KhachHangTheoSale/' + username + '/' + isadmin + '/' + macongty)
      .then(function (response) {
          if (response.data) {
              $scope.arrayKH_BaoGia = response.data;
@@ -861,7 +861,7 @@
     var inputChangedPromise;
     //hàm tìm kiếm
     $scope.onHHFind = function (mh) {
-        $http.get(window.location.origin + '/api/Api_HanghoaHL/GetAllHHBaoGia/' + mh)
+        $http.get(window.location.origin + '/api/Api_HanghoaHL/GetAllHHBaoGia/' + mh + '/' + macongty)
          .then(function (response) {
              if (response.data) {
                  $scope.arrayHH = response.data;
@@ -1004,7 +1004,7 @@
             TONG_TIEN_HANG: $scope.tongtien,
             TONG_TIEN_THUE_GTGT: $scope.thuegtgt,
             SO_TIEN_VIET_BANG_CHU: $scope.sotienvietbangchu,
-            TRUC_THUOC: 'HOPLONG',
+            TRUC_THUOC: macongty,
             NHAN_VIEN_QUAN_LY: username,
             NGAY_GIAO_HANG_KD: $scope.ngay_giao_hang,
             DIA_DIEM_GIAO_HANG: $scope.dia_diem_giao_hang,

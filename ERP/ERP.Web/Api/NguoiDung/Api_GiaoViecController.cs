@@ -46,7 +46,7 @@ namespace ERP.Web.Api.NguoiDung
             if(query != null)
             {
                 if (nV_GIAO_VIEC.TRANG_THAI == "Đã xong việc")
-                    //query.THOI_GIAN_HOAN_THANH =Convert.ToString(DateTime.Now);
+
                 query.TRANG_THAI = nV_GIAO_VIEC.TRANG_THAI;
                 query.GHI_CHU = nV_GIAO_VIEC.GHI_CHU;
                 query.PHUONG_AN_XU_LY = nV_GIAO_VIEC.PHUONG_AN_XU_LY;
@@ -79,10 +79,12 @@ namespace ERP.Web.Api.NguoiDung
                 return BadRequest(ModelState);
             }
             NV_GIAO_VIEC newviec = new NV_GIAO_VIEC();
+
             newviec.PHUONG_AN_XU_LY = giaoviec.PHUONG_AN_XU_LY;
             newviec.NGAY_GIAO_VIEC = giaoviec.NGAY_GIAO_VIEC;
             newviec.NOI_DUNG_CONG_VIEC = giaoviec.NOI_DUNG_CONG_VIEC;
             newviec.NGAY_HOAN_THANH = giaoviec.NGAY_HOAN_THANH;
+
             newviec.NGUOI_GIAO_VIEC = giaoviec.NGUOI_GIAO_VIEC;
             newviec.NHAN_VIEN_THUC_HIEN = giaoviec.NHAN_VIEN_THUC_HIEN;
             newviec.TRANG_THAI = giaoviec.TRANG_THAI;

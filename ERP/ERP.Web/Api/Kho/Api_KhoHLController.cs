@@ -17,10 +17,10 @@ namespace ERP.Web.Areas.HopLong.Api.Kho
         private ERP_DATABASEEntities db = new ERP_DATABASEEntities();
 
         // GET: api/Api_KhoHL
-
-        public List<DM_KHO> GetDM_KHo()
+        [Route("api/Api_KhoHL/{macongty}")]
+        public List<DM_KHO> GetDM_KHo(string macongty)
         {
-            var vData = db.DM_KHO.Where(x => x.TRUC_THUOC == "HOPLONG");
+            var vData = db.DM_KHO.Where(x => x.TRUC_THUOC == macongty);
             var result = vData.ToList().Select(x => new DM_KHO()
             {
                 MA_KHO = x.MA_KHO,
@@ -33,18 +33,7 @@ namespace ERP.Web.Areas.HopLong.Api.Kho
             return result;
         }
 
-        // GET: api/Api_KhoHL/5
-        [ResponseType(typeof(DM_KHO))]
-        public IHttpActionResult GetDM_KHO(string id)
-        {
-            DM_KHO dM_KHO = db.DM_KHO.Find(id);
-            if (dM_KHO == null)
-            {
-                return NotFound();
-            }
 
-            return Ok(dM_KHO);
-        }
 
         // PUT: api/Api_KhoHL/5
         [ResponseType(typeof(void))]

@@ -29,21 +29,21 @@ namespace ERP.Web.Api.Kho
         }
         // GET: api/Api_ChuyenKho
         [HttpPost]
-        [Route("api/Api_ChuyenKho/GetKHO_CHUYEN_KHO/")]
-        public List<GetAll_PhieuChuyenKho_Result> GetKHO_CHUYEN_KHO(DataDSChuyenKho data)
+        [Route("api/Api_ChuyenKho/GetKHO_CHUYEN_KHO/{macongty}")]
+        public List<GetAll_PhieuChuyenKho_Result> GetKHO_CHUYEN_KHO(string macongty,DataDSChuyenKho data)
         {
             
             if (data.tungay == null && data.denngay == null)
             {
                 
-                var query = db.Database.SqlQuery<GetAll_PhieuChuyenKho_Result>("GetAll_PhieuChuyenKho @macongty,@tungay,@denngay", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("tungay", DBNull.Value), new SqlParameter("denngay", DBNull.Value));
+                var query = db.Database.SqlQuery<GetAll_PhieuChuyenKho_Result>("GetAll_PhieuChuyenKho @macongty,@tungay,@denngay", new SqlParameter("macongty", macongty), new SqlParameter("tungay", DBNull.Value), new SqlParameter("denngay", DBNull.Value));
                 resultDSChuyen = query.ToList();
             }
             else
             {
                 DateTime FromDate = xlnt.Xulydatetime(data.tungay);
                 DateTime ToDate = xlnt.Xulydatetime(data.denngay);
-                var query = db.Database.SqlQuery<GetAll_PhieuChuyenKho_Result>("GetAll_PhieuChuyenKho @macongty,@tungay,@denngay", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("tungay", FromDate), new SqlParameter("denngay", ToDate));
+                var query = db.Database.SqlQuery<GetAll_PhieuChuyenKho_Result>("GetAll_PhieuChuyenKho @macongty,@tungay,@denngay", new SqlParameter("macongty", macongty), new SqlParameter("tungay", FromDate), new SqlParameter("denngay", ToDate));
                 resultDSChuyen = query.ToList();
                 return resultDSChuyen;
             }
@@ -52,10 +52,10 @@ namespace ERP.Web.Api.Kho
         }
 
         // GET: api/Api_ChuyenKho
-        [Route("api/Api_ChuyenKho/GetCTPhieuChuyenKho/{sct}")]
-        public List<GetCTChuyenKho_Result> GetCTPhieuChuyenKho(string sct)
+        [Route("api/Api_ChuyenKho/GetCTPhieuChuyenKho/{sct}/{macongty}")]
+        public List<GetCTChuyenKho_Result> GetCTPhieuChuyenKho(string sct,string macongty)
         {
-            var query = db.Database.SqlQuery<GetCTChuyenKho_Result>("GetCTChuyenKho @sochungtu,@macongty ", new SqlParameter("sochungtu", sct), new SqlParameter("macongty", "HOPLONG"));
+            var query = db.Database.SqlQuery<GetCTChuyenKho_Result>("GetCTChuyenKho @sochungtu,@macongty ", new SqlParameter("sochungtu", sct), new SqlParameter("macongty", macongty));
 
             return query.ToList();
         }

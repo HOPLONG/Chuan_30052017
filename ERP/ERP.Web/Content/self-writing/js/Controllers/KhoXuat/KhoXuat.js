@@ -1,11 +1,11 @@
 ﻿app.controller('KhoXuatController', function ($scope, $http) {
     var IsAdmin = $('#isadmin').val();
     var Username = $('#username').val();
-    var MaCongTy = $('#macongty').val();
+    var macongty = $('#macongty').val();
     function init() {
         //Get List Hàng cần đặt
         $scope.lisHangCanDat = [];
-        $http.get(window.location.origin + '/api/Api_KhoXuat/GetHangCanDat/' + IsAdmin + '/' + Username)
+        $http.get(window.location.origin + '/api/Api_KhoXuat/GetHangCanDat/' + IsAdmin + '/' + Username + '/' + macongty)
         .then(function (response) {
             if (response.data) {
                 $scope.lisHangCanDat = response.data;
@@ -15,7 +15,7 @@
         });
         //Get List Bán hàng
         $scope.ListBanHang = [];
-        $http.get(window.location.origin + '/api/Api_KhoXuat/GetListBanHang/' + IsAdmin + '/' + Username)
+        $http.get(window.location.origin + '/api/Api_KhoXuat/GetListBanHang/' + IsAdmin + '/' + Username + '/' + macongty)
         .then(function (response) {
             if (response.data) {
                 $scope.ListBanHang = response.data;
@@ -25,7 +25,7 @@
         });
         ////Get List Xuất hàng
         //$scope.ListXuatHang = [];
-        //$http.post(window.location.origin + '/api/Api_KhoXuat/GetListXuatHang/' + IsAdmin + '/' + Username)
+        //$http.post(window.location.origin + '/api/Api_KhoXuat/GetListXuatHang/' + IsAdmin + '/' + Username+ '/' + macongty)
         //.then(function (response) {
         //    if (response.data) {
         //        $scope.ListXuatHang = response.data;
@@ -35,7 +35,7 @@
         //});
         //Get List bán hàng chưa xuất
         $scope.ListBanHangChuaXuat = [];
-        $http.get(window.location.origin + '/api/Api_KhoXuat/Get_DON_BAN_HANG_CHUA_XUAT/' + IsAdmin + '/' + Username)
+        $http.get(window.location.origin + '/api/Api_KhoXuat/Get_DON_BAN_HANG_CHUA_XUAT/' + IsAdmin + '/' + Username + '/' + macongty)
         .then(function (response) {
             if (response.data) {
                 $scope.ListBanHangChuaXuat = response.data;
@@ -45,7 +45,7 @@
         });
         //Get List bán hàng đã xuất
         $scope.ListBanHangDaXuat = [];
-        $http.get(window.location.origin + '/api/Api_KhoXuat/Get_DON_BAN_HANG_DA_XUAT/' + IsAdmin + '/' + Username)
+        $http.get(window.location.origin + '/api/Api_KhoXuat/Get_DON_BAN_HANG_DA_XUAT/' + IsAdmin + '/' + Username + '/' + macongty)
         .then(function (response) {
             if (response.data) {
                 $scope.ListBanHangDaXuat = response.data;
@@ -58,7 +58,7 @@
         {
             var username = $('#username').val();
             $scope.ListHangCanXuat = [];
-            $http.get(window.location.origin + '/api/Api_KhoXuat/Get_List_HANG_CAN_XUAT/' + IsAdmin + '/' + Username)
+            $http.get(window.location.origin + '/api/Api_KhoXuat/Get_List_HANG_CAN_XUAT/' + IsAdmin + '/' + Username + '/' + macongty)
             .then(function (response) {
                 if (response.data) {
                     $scope.ListHangCanXuat = response.data;
@@ -71,7 +71,7 @@
         //Get List hàng giữ
         var username = $('#username').val();
         $scope.ListHangGiu = [];
-        $http.get(window.location.origin + '/api/Api_KhoXuat/Get_List_HANG_GIU/' + IsAdmin + '/' + Username)
+        $http.get(window.location.origin + '/api/Api_KhoXuat/Get_List_HANG_GIU/' + IsAdmin + '/' + Username + '/' + macongty)
         .then(function (response) {
             if (response.data) {
                 $scope.ListHangGiu = response.data;
@@ -82,7 +82,7 @@
         //Get List hàng chưa giữ
         var username = $('#username').val();
         $scope.ListHangChuaGiu = [];
-        $http.get(window.location.origin + '/api/Api_KhoXuat/Get_List_HANG_CHUA_GIU/' + IsAdmin + '/' + Username)
+        $http.get(window.location.origin + '/api/Api_KhoXuat/Get_List_HANG_CHUA_GIU/' + IsAdmin + '/' + Username + '/' + macongty)
         .then(function (response) {
             if (response.data) {
                 $scope.ListHangChuaGiu = response.data;
@@ -93,7 +93,7 @@
         //Get List hàng giữ chưa bán
         var username = $('#username').val();
         $scope.ListHangGiuChuaBan = [];
-        $http.get(window.location.origin + '/api/Api_KhoXuat/Get_List_HANG_GIU_CHUA_BAN/' + IsAdmin + '/' + Username)
+        $http.get(window.location.origin + '/api/Api_KhoXuat/Get_List_HANG_GIU_CHUA_BAN/' + IsAdmin + '/' + Username + '/' + macongty)
         .then(function (response) {
             if (response.data) {
                 $scope.ListHangGiuChuaBan = response.data;
@@ -104,7 +104,7 @@
         //Get List hàng giữ đã bán
         var username = $('#username').val();
         $scope.ListHangGiuDaBan = [];
-        $http.get(window.location.origin + '/api/Api_KhoXuat/Get_List_HANG_GIU_DA_BAN/' + IsAdmin + '/' + Username)
+        $http.get(window.location.origin + '/api/Api_KhoXuat/Get_List_HANG_GIU_DA_BAN/' + IsAdmin + '/' + Username + '/' + macongty)
         .then(function (response) {
             if (response.data) {
                 $scope.ListHangGiuDaBan = response.data;
@@ -115,7 +115,7 @@
         //Get List hàng giữ quá ngày giao hàng
         var username = $('#username').val();
         $scope.ListHangGiuQuaNgayGiao = [];
-        $http.get(window.location.origin + '/api/Api_KhoXuat/Get_List_HANG_GIU_QUA_NGAY_GIAO/' + IsAdmin + '/' + Username)
+        $http.get(window.location.origin + '/api/Api_KhoXuat/Get_List_HANG_GIU_QUA_NGAY_GIAO/' + IsAdmin + '/' + Username + '/' + macongty)
         .then(function (response) {
             if (response.data) {
                 $scope.ListHangGiuQuaNgayGiao = response.data;
@@ -126,7 +126,7 @@
         //Get List hàng giữ sắp đến ngày xuất
         var username = $('#username').val();
         $scope.ListHangGiuSapDenNgayXuat = [];
-        $http.get(window.location.origin + '/api/Api_KhoXuat/Get_List_HANG_GIU_SAP_DEN_NGAY_XUAT/' + IsAdmin + '/' + Username)
+        $http.get(window.location.origin + '/api/Api_KhoXuat/Get_List_HANG_GIU_SAP_DEN_NGAY_XUAT/' + IsAdmin + '/' + Username + '/' + macongty)
         .then(function (response) {
             if (response.data) {
                 $scope.ListHangGiuSapDenNgayXuat = response.data;
@@ -164,7 +164,7 @@
         console.log($scope.MA_KHO_TON, mahang, dvt, soluong);
         var data = {
             NGUOI_LAP_PHIEU: Username,
-            TRUC_THUOC: MaCongTy,
+            TRUC_THUOC: macongty,
             DIEN_GIAI:'Chuyển kho giữ hàng',
             ChiTiet:  $scope.ListChiTiet
         }
@@ -337,7 +337,7 @@
 
         $http({
             method: 'GET',
-            url: '/api/Api_NhapKho/GetDetailKHO_NHAP_KHO/' + item.SO_CHUNG_TU,
+            url: '/api/Api_NhapKho/GetDetailKHO_NHAP_KHO/' + item.SO_CHUNG_TU + '/' + macongty
         }).then(function (response) {
             if (typeof (response.data) == "object") {
                 $scope.Detail.ListAdd = response.data.ctxuatkho;

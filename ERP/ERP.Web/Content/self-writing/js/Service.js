@@ -1,4 +1,7 @@
-﻿app.service('giamdocService', function ($http) {
+﻿
+var macongty = $('#macongty').val();
+
+app.service('giamdocService', function ($http) {
     this.get_giamdoc = function (username) {
         return $http.get("/api/Api_ChiTietNhanVien/" + username).then(function (response) {
             return response.data;
@@ -32,8 +35,8 @@ app.service('NhomvthhService', function ($http) {
 
 
 app.service('khoService', function ($http) {
-    this.get_kho = function () {
-        return $http.get("/api/Api_KhoHL").then(function (response) {
+    this.get_kho = function (macongty) {
+        return $http.get("/api/Api_KhoHL/" + macongty).then(function (response) {
             return response.data;
         });
     };
@@ -51,8 +54,8 @@ app.service('khoService', function ($http) {
 });
 
 app.service('userService', function ($http) {
-    this.get_user = function () {
-        return $http.get("/api/Api_NguoidungHL").then(function (response) {
+    this.get_user = function (macongty) {
+        return $http.get("/api/Api_NguoidungHL/" + macongty).then(function (response) {
             return response.data;
         });
     };
@@ -81,8 +84,8 @@ app.service('nhanvienService', function ($http) {
 });
 
 app.service('phongbanService', function ($http) {
-    this.get_phongban = function () {
-        return $http.get("/api/Api_PhongbanHL").then(function (response) {
+    this.get_phongban = function (macongty) {
+        return $http.get("/api/Api_PhongbanHL/" + macongty).then(function (response) {
             return response.data;
         });
     };
@@ -204,8 +207,8 @@ app.service('addmenuService', function ($http) {
 });
 
 app.service('tonghopnvService', function ($http) {
-    this.get_tonghop = function () {
-        return $http.get('/api/Api_TongHopNhanVien').then(function (response) {
+    this.get_tonghop = function (macongty) {
+        return $http.get('/api/Api_TongHopNhanVien/' + macongty).then(function (response) {
             return response.data;
         });
     };
@@ -224,7 +227,7 @@ app.service('dsnghiepvuService', function ($http) {
 
 app.service('danhsachnghiepvuService', function ($http) {
     this.get_nv = function () {
-        return $http.get('/api/Api_Nghiepvu').then(function (response) {
+        return $http.get('/api/Api_Nghiepvu/GetDS_NghiepVu/' + macongty).then(function (response) {
             return response.data;
         });
     }
@@ -492,7 +495,7 @@ app.service('MausohoadonService', function ($http) {
 // Đơn hàng dự kiến
 app.service('DonhangdukienService', function ($http) {
     this.get_donhangdukien = function (username) {
-        return $http.post("/api/Api_Donhangdukien/LocDonDuKien/" + username).then(function (response) {
+        return $http.post("/api/Api_Donhangdukien/LocDonDuKien/" + username + '/' + macongty).then(function (response) {
             return response.data;
         });
     }
@@ -713,8 +716,8 @@ app.service('nhacungcapService', function ($http) {
             return response.data;
         });
     };
-    this.get_nhanvienmua = function () {
-        return $http.get('/api/Api_NhanvienMua').then(function (response) {
+    this.get_nhanvienmua = function (maphongban,macongty) {
+        return $http.get('/api/Api_NhanvienMua/' + maphongban + macongty).then(function (response) {
             return response.data;
         });
     };

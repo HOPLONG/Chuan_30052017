@@ -1,7 +1,7 @@
 ﻿
 app.controller('nganhangCtrl', nganhangCtrl);
 nganhangCtrl.$inject = ['$rootScope','$scope', "$location", '$http', '$uibModal'];
-
+var macongty = $('#macongty').val();
 function nganhangCtrl($rootScope, $scope, $location, $http, $uibModal) {
 
     function ErrorSystem() {
@@ -248,7 +248,7 @@ function nganhangCtrl($rootScope, $scope, $location, $http, $uibModal) {
     *loc dữ liệu khi input thay đổi
     */
     $scope.onDoiTuongFind = function () {
-        $http.post(window.location.origin + '/api/Api_XuatNhapKho/GetAllDoiTuong/' + $scope.arrayTongHop.ma_doi_tuong)
+        $http.post(window.location.origin + '/api/Api_XuatNhapKho/GetAllDoiTuong/' + $scope.arrayTongHop.ma_doi_tuong + '/' + macongty)
          .then(function (response) {
              console.log(response);
              if (response.data) {
@@ -658,7 +658,7 @@ function nganhangCtrl($rootScope, $scope, $location, $http, $uibModal) {
             $("#Input_MaChungTu").css({ "display": "none" });
             $("#DataGiaTriChungTu").css({ "display": "block" });
             $scope.DoiTuongFind = function () {
-                $http.post(window.location.origin + '/api/Api_XuatNhapKho/GetAllDoiTuong/' + $scope.GiaTriChungTu.Search)
+                $http.post(window.location.origin + '/api/Api_XuatNhapKho/GetAllDoiTuong/' + $scope.GiaTriChungTu.Search + '/' + macongty)
                  .then(function (response) {
                      if (typeof (response.data) == "object") {
                          var data = response.data.DoiTuong;
@@ -710,7 +710,7 @@ function nganhangCtrl($rootScope, $scope, $location, $http, $uibModal) {
 
             }
 
-            $http.post('/api/Api_XuatNhapKho/SearchByTypeWithDate', data)
+            $http.post('/api/Api_XuatNhapKho/SearchByTypeWithDate/' + macongty, data)
             .then(function (response) {
                 console.log(response);
                 if (typeof (response.data) == "object") {
@@ -755,7 +755,7 @@ function nganhangCtrl($rootScope, $scope, $location, $http, $uibModal) {
 
             }
 
-            $http.post('/api/Api_XuatNhapKho/SearchByDoiTuongWithDate', data)
+            $http.post('/api/Api_XuatNhapKho/SearchByDoiTuongWithDate/' + macongty, data)
             .then(function (response) {
                 console.log(response);
                 if (typeof (response.data) == "object") {
@@ -773,7 +773,7 @@ function nganhangCtrl($rootScope, $scope, $location, $http, $uibModal) {
         }
         else {
             var mact = $scope.MaChungTu.Search;
-            $http.get('/api/Api_XuatNhapKho/GetbyMa/' + mact)
+            $http.get('/api/Api_XuatNhapKho/GetbyMa/' + mact + '/' + macongty)
             .then(function (response) {
                 console.log(response);
                 if (typeof (response.data) == "object") {

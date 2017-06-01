@@ -58,10 +58,10 @@ namespace ERP.Web.Api.MuaHang
 
         // GET: api/Api_DonPOMuaHang
         // List PO
-        [Route("api/Api_DonPOMuaHang/ListPOMuaHang/{isadmin}/{username}")]
-        public List<Prod_ListDonMuaHangPO_Result> ListPOMuaHang(bool isadmin, string username)
+        [Route("api/Api_DonPOMuaHang/ListPOMuaHang/{isadmin}/{username}/{macongty}")]
+        public List<Prod_ListDonMuaHangPO_Result> ListPOMuaHang(bool isadmin, string username,string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_ListDonMuaHangPO_Result>("Prod_ListDonMuaHangPO @macongty,@username,@isadmin", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<Prod_ListDonMuaHangPO_Result>("Prod_ListDonMuaHangPO @macongty,@username,@isadmin", new SqlParameter("macongty", macongty), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }

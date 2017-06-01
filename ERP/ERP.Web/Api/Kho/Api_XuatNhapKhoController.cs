@@ -42,19 +42,19 @@ namespace ERP.Web.Api.Kho
             public string tungay { get; set; }
             public string denngay { get; set; }
         }
-        [Route("api/Api_XuatNhapKho/SearchByTypeWithDate")]
-        public List<Search_SearchByType_Result> SearchByTypeWithDate(DataCondition data)
+        [Route("api/Api_XuatNhapKho/SearchByTypeWithDate/{macongty}")]
+        public List<Search_SearchByType_Result> SearchByTypeWithDate(string macongty,DataCondition data)
         {
             if (data.ToTime == "" && data.FromTime == "")
             {
-                var query = db.Database.SqlQuery<Search_SearchByType_Result>("Search_SearchByType @LoaiChungTu,@macongty", new SqlParameter("LoaiChungTu", data.GiaTriChungTu), new SqlParameter("macongty", "HOPLONG"));
+                var query = db.Database.SqlQuery<Search_SearchByType_Result>("Search_SearchByType @LoaiChungTu,@macongty", new SqlParameter("LoaiChungTu", data.GiaTriChungTu), new SqlParameter("macongty", macongty));
                 result = query.ToList();
             }
             else
             {
                 DateTime FromDate = xlnt.Xulydatetime(data.FromTime);
                 DateTime ToDate = xlnt.Xulydatetime(data.ToTime);
-                var query = db.Database.SqlQuery<Search_SearchByType_Result>("Search_SearchByTypeWithDate @LoaiChungTu,@FromDate,@ToDate, @macongty", new SqlParameter("LoaiChungTu", data.GiaTriChungTu), new SqlParameter("FromDate", FromDate), new SqlParameter("ToDate", ToDate), new SqlParameter("macongty", "HOPLONG"));
+                var query = db.Database.SqlQuery<Search_SearchByType_Result>("Search_SearchByTypeWithDate @LoaiChungTu,@FromDate,@ToDate, @macongty", new SqlParameter("LoaiChungTu", data.GiaTriChungTu), new SqlParameter("FromDate", FromDate), new SqlParameter("ToDate", ToDate), new SqlParameter("macongty", macongty));
                 result = query.ToList();
             }
             return result;
@@ -64,13 +64,13 @@ namespace ERP.Web.Api.Kho
 
 
         #region "Search by Object"
-        [Route("api/Api_XuatNhapKho/SearchByDoiTuongWithDate")]
-        public List<GetChungTuFromDoiTuong_Result> SearchByDoiTuongWithDate(DataCondition data)
+        [Route("api/Api_XuatNhapKho/SearchByDoiTuongWithDate/{macongty}")]
+        public List<GetChungTuFromDoiTuong_Result> SearchByDoiTuongWithDate(string macongty,DataCondition data)
         {
 
             if (data.FromTime == "" && data.ToTime == "")
             {
-                var query = db.Database.SqlQuery<GetChungTuFromDoiTuong_Result>("GetChungTuFromDoiTuong @MaDoiTuong,@macongty", new SqlParameter("MaDoiTuong", data.GiaTriChungTu), new SqlParameter("macongty", "HOPLONG"));
+                var query = db.Database.SqlQuery<GetChungTuFromDoiTuong_Result>("GetChungTuFromDoiTuong @MaDoiTuong,@macongty", new SqlParameter("MaDoiTuong", data.GiaTriChungTu), new SqlParameter("macongty", macongty));
                 resultDoiTuong = query.ToList();
             }
             else
@@ -78,7 +78,7 @@ namespace ERP.Web.Api.Kho
             {
                 DateTime FromDate = xlnt.Xulydatetime(data.FromTime);
                 DateTime ToDate = xlnt.Xulydatetime(data.ToTime);
-                var query = db.Database.SqlQuery<GetChungTuFromDoiTuong_Result>("GetChungTuFromDoiTuong_WithDate @MaDoiTuong,@FromDate,@ToDate, @macongty", new SqlParameter("MaDoiTuong", data.GiaTriChungTu), new SqlParameter("FromDate", FromDate), new SqlParameter("ToDate", ToDate), new SqlParameter("macongty", "HOPLONG"));
+                var query = db.Database.SqlQuery<GetChungTuFromDoiTuong_Result>("GetChungTuFromDoiTuong_WithDate @MaDoiTuong,@FromDate,@ToDate, @macongty", new SqlParameter("MaDoiTuong", data.GiaTriChungTu), new SqlParameter("FromDate", FromDate), new SqlParameter("ToDate", ToDate), new SqlParameter("macongty", macongty));
                 resultDoiTuong = query.ToList();
             }
 
@@ -89,10 +89,10 @@ namespace ERP.Web.Api.Kho
 
         #region "Get Chung tu theo ma"
 
-        [Route("api/Api_XuatNhapKho/GetbyMa/{data}")]
-        public List<GetChungTu_ByMa_Result> GetbyMa(string data)
+        [Route("api/Api_XuatNhapKho/GetbyMa/{data}/{macongty}")]
+        public List<GetChungTu_ByMa_Result> GetbyMa(string data,string macongty)
         {
-            var query = db.Database.SqlQuery<GetChungTu_ByMa_Result>("GetChungTu_ByMa @sochungtu,@macongty", new SqlParameter("sochungtu", data), new SqlParameter("macongty", "HOPLONG"));
+            var query = db.Database.SqlQuery<GetChungTu_ByMa_Result>("GetChungTu_ByMa @sochungtu,@macongty", new SqlParameter("sochungtu", data), new SqlParameter("macongty", macongty));
             resulByMa = query.ToList();
             return resulByMa;
         }
@@ -102,10 +102,10 @@ namespace ERP.Web.Api.Kho
 
         #region "Get All Doi Tuong"
         [HttpPost]
-        [Route("api/Api_XuatNhapKho/GetAllDoiTuong/{mdt}")]
-        public List<GetAllDoiTuong_Result> GetAllDoiTuong(string mdt)
+        [Route("api/Api_XuatNhapKho/GetAllDoiTuong/{mdt}/{macongty}")]
+        public List<GetAllDoiTuong_Result> GetAllDoiTuong(string mdt,string macongty)
         {
-            var query = db.Database.SqlQuery<GetAllDoiTuong_Result>("GetAllDoiTuong @macongty, @tendoituong", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("tendoituong", mdt));
+            var query = db.Database.SqlQuery<GetAllDoiTuong_Result>("GetAllDoiTuong @macongty, @tendoituong", new SqlParameter("macongty", macongty), new SqlParameter("tendoituong", mdt));
             var resultAllDT = query.ToList();
             return resultAllDT;
            
@@ -115,21 +115,21 @@ namespace ERP.Web.Api.Kho
 
         #region "Get All Danh Sach Phieu Xuat Kho"
         [HttpPost]
-        [Route("api/Api_XuatNhapKho/GetAllDSPhieuXuatKho/{sotrang}")]
+        [Route("api/Api_XuatNhapKho/GetAllDSPhieuXuatKho/{sotrang}/{macongty}")]
 
-        public List<GetAll_DS_PhieuXuatKho_NoDate_Result> GetAllDSPhieuXuatKho(int sotrang, DataDSXuatKho data)
+        public List<GetAll_DS_PhieuXuatKho_NoDate_Result> GetAllDSPhieuXuatKho(int sotrang,string macongty, DataDSXuatKho data)
 
         {
             if (data.tungay == "" && data.denngay == "")
             {
-                var query = db.Database.SqlQuery<GetAll_DS_PhieuXuatKho_NoDate_Result>("GetAll_DS_PhieuXuatKho_NoDate @macongty,@sotrang", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("sotrang", sotrang));
+                var query = db.Database.SqlQuery<GetAll_DS_PhieuXuatKho_NoDate_Result>("GetAll_DS_PhieuXuatKho_NoDate @macongty,@sotrang", new SqlParameter("macongty", macongty), new SqlParameter("sotrang", sotrang));
                 resultDSXuatKho = query.ToList();
             }
             else
             {
                 DateTime FromDate = xlnt.Xulydatetime(data.tungay);
                 DateTime ToDate = xlnt.Xulydatetime(data.denngay);
-                var query = db.Database.SqlQuery<GetAll_DS_PhieuXuatKho_NoDate_Result>("GetAll_DS_PhieuXuatKho @macongty, @tungay,@denngay", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("tungay", FromDate), new SqlParameter("denngay", ToDate));
+                var query = db.Database.SqlQuery<GetAll_DS_PhieuXuatKho_NoDate_Result>("GetAll_DS_PhieuXuatKho @macongty, @tungay,@denngay", new SqlParameter("macongty", macongty), new SqlParameter("tungay", FromDate), new SqlParameter("denngay", ToDate));
                 resultDSXuatKho = query.ToList();
             }
             return resultDSXuatKho;
@@ -174,19 +174,19 @@ namespace ERP.Web.Api.Kho
 
         #region "Get All Danh Sach Phieu nhập Kho with date"
         [HttpPost]
-        [Route("api/Api_XuatNhapKho/GetAllDSPhieuNhapKho/{sotrang}")]
-        public List<GetAll_PhieuNhapKho_Result> GetAllDSPhieuNhapKho(int sotrang, DataDSXuatKho data)
+        [Route("api/Api_XuatNhapKho/GetAllDSPhieuNhapKho/{sotrang}/{macongty}")]
+        public List<GetAll_PhieuNhapKho_Result> GetAllDSPhieuNhapKho(int sotrang,string macongty, DataDSXuatKho data)
         {
             if (data.tungay == "" && data.denngay == "")
             {
-                var query = db.Database.SqlQuery<GetAll_PhieuNhapKho_Result>("GetAll_PhieuNhapKho @macongty,@sotrang", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("sotrang", sotrang));
+                var query = db.Database.SqlQuery<GetAll_PhieuNhapKho_Result>("GetAll_PhieuNhapKho @macongty,@sotrang", new SqlParameter("macongty", macongty), new SqlParameter("sotrang", sotrang));
                 resultDSNhap = query.ToList();
             }
             else
             {
                 DateTime FromDate = xlnt.Xulydatetime(data.tungay);
                 DateTime ToDate = xlnt.Xulydatetime(data.denngay);
-                var query = db.Database.SqlQuery<GetAll_PhieuNhapKho_Result>("GetAll_PhieuNhapKho_WithDate @macongty,@tungay,@denngay", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("tungay", FromDate), new SqlParameter("denngay", ToDate));
+                var query = db.Database.SqlQuery<GetAll_PhieuNhapKho_Result>("GetAll_PhieuNhapKho_WithDate @macongty,@tungay,@denngay", new SqlParameter("macongty", macongty), new SqlParameter("tungay", FromDate), new SqlParameter("denngay", ToDate));
                 resultDSNhap = query.ToList();
                 return resultDSNhap;
             }

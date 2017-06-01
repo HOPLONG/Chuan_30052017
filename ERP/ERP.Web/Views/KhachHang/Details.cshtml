@@ -32,10 +32,16 @@
 </style>
 <div ng-app="myApp" ng-controller="khachhangCtrl">
     <!-- Modal them moi lien he -->
+
     <input type="hidden" id="salehienthoi" name="salehienthoi" value="@Session["USERNAME"]" />
     <input type="hidden" id="maphongban" name="maphongban" value="@Session["MA_PHONG_BAN"]" />
     <input type="hidden" id="macongty" name="macongty" value="@Session["MA_CONG_TY"]" />
     <input type="hidden" id="isadmin" name="isadmin" value="@Session["IS_AMIN"]" />
+
+    <div class="modal fade" id="newlienhe" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-lg" style="width: 90%">
+            <div class="modal-content" style="height: 100%">
+
 
 
 

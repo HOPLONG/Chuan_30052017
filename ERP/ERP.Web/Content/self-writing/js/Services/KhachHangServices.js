@@ -108,8 +108,8 @@ app.service('khachhangService', function ($http) {
         return $http.post('/api/Api_PhanLoaiKH/XuLyChyenSale', data_save);
     };
 
-    this.chitietkhachhang = function (makh) {
-        return $http.get('/api/Api_KH/GetCT_KH/' + makh).then(function (response) {
+    this.chitietkhachhang = function (makh,macongty) {
+        return $http.get('/api/Api_KH/GetCT_KH/' + makh + '/' + macongty).then(function (response) {
             return response.data;
         });
     };

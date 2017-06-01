@@ -118,6 +118,7 @@
                         <input type="hidden" value="@Session["MA_PHONG_BAN"]" id="maphongban" />
                         <input type="hidden" value="@Session["USERNAME"]" id="username" name="username" />
                     <input type="hidden" value="@Session["MA_CONG_TY"]" id="macongty" name="macongty" />
+                    <input type="hidden" value="@Session["IS_AMIN"]" id="isadmin" />
                     <ul class="nav navbar-nav" ng-repeat="menu in danhsachmenu" ng-class="get(menu.USERNAME)">                       
                         <li  ng-class="check(menu.TRANG_THAI)">
                             <a href="{{menu.LINK}}" class="dropdown-toggle"  ng-mouseup="edit(menu.MA_MENU)">{{menu.TEN_MENU}}</a>                          

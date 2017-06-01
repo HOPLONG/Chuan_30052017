@@ -181,7 +181,7 @@ namespace ERP.Web.Api.NganHang
             nhnttk.DIEN_GIAI_LY_DO_THU = chi_nganhang.DIEN_GIAI_LY_DO_THU;
             nhnttk.NHAN_VIEN_THU = chi_nganhang.NHAN_VIEN_THU;
             nhnttk.NGUOI_LAP_BIEU = chi_nganhang.NGUOI_LAP_BIEU;
-            nhnttk.TRUC_THUOC = "HOPLONG";
+            nhnttk.TRUC_THUOC = chi_nganhang.TRUC_THUOC;
             db.NH_NTTK.Add(nhnttk);
 
             //Lưu thông tin tham chiếu
@@ -231,7 +231,7 @@ namespace ERP.Web.Api.NganHang
                     newitem.NGAY_CHUNG_TU = nhnttk.NGAY_CHUNG_TU;
                     newitem.NGAY_HACH_TOAN = nhnttk.NGAY_HACH_TOAN;
                     newitem.DOI_TUONG = nhnttk.MA_DOI_TUONG;
-                    newitem.TRUC_THUOC = "HOPLONG";
+                    newitem.TRUC_THUOC = nhnttk.TRUC_THUOC;
                     newitem.DIEN_GIAI_CHUNG = nhnttk.DIEN_GIAI_LY_DO_THU;
                     newitem.DIEN_GIAI_CHI_TIET = item.DIEN_GIAI;
                     newitem.TAI_KHOAN_HACH_TOAN = item.TK_NO;
@@ -244,7 +244,7 @@ namespace ERP.Web.Api.NganHang
                     newitem1.NGAY_CHUNG_TU = nhnttk.NGAY_CHUNG_TU;
                     newitem1.NGAY_HACH_TOAN = nhnttk.NGAY_HACH_TOAN;
                     newitem1.DOI_TUONG = nhnttk.MA_DOI_TUONG;
-                    newitem1.TRUC_THUOC = "HOPLONG";
+                    newitem1.TRUC_THUOC = nhnttk.TRUC_THUOC;
                     newitem1.DIEN_GIAI_CHUNG = nhnttk.DIEN_GIAI_LY_DO_THU;
                     newitem1.DIEN_GIAI_CHI_TIET = item.DIEN_GIAI;
                     newitem1.TAI_KHOAN_HACH_TOAN = item.TK_CO;

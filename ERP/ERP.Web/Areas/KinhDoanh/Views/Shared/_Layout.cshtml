@@ -74,6 +74,7 @@
     <!-- Angular Material Library -->
     <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
     <script src="~/Content/self-writing/js/Controllers/ThongBaoKinhDoanhCtrl.js"></script>
+    <script src="~/Content/self-writing/js/Controllers/DoanhSoCtrl.js"></script>
     <script src="~/Content/self-writing/pagination.js"></script>
     <script>
         $(function () {
@@ -105,6 +106,8 @@
                 <div class="navbar-custom-menu pull-left">
                     <input type="hidden" value="@Session["MA_PHONG_BAN"]" id="maphongban" />
                     <input type="hidden" value="@Session["USERNAME"]" id="username" />
+                    <input type="hidden" value="@Session["IS_AMIN"]" id="isadmin" />
+                    <input type="hidden" value="@Session["MA_CONG_TY"]" id="macongty" />
                     <ul class="nav navbar-nav" ng-repeat="menu in danhsachmenu" ng-class="get(menu.USERNAME)">
                         <li ng-class="check(menu.TRANG_THAI)">
                             <a href="{{menu.LINK}}" class="dropdown-toggle" ng-mouseup="edit(menu.MA_MENU)">{{menu.TEN_MENU}}</a>
@@ -296,6 +299,15 @@
                             <span>Giữ kho</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
+                    </li>
+                    <li class="treeview" style="margin-top: 200px" ng-controller="DoanhSoCtrl">
+                        <p id="newdate" style="display: none">{{newdate | date: 'dd/MM/yyyy'}}</p>
+                        <div ng-repeat="item in list_doanhso">
+                            - Chỉ tiêu tháng {{item.THANG_CHI_TIEU}} : {{item.MUC_TIEU_DOANH_SO_THANG | number:0}} <br />
+                            - Doanh số đã đạt được : {{item.DOANH_SO_THANG | number : 0}}<br />
+                            - Chỉ tiêu năm {{item.NAM_CHI_TIEU}} : {{item.MUC_TIEU_DOANH_SO_NAM | number: 0}}<br />
+                            - Doanh số đã đạt được : {{item.DOANH_SO_NAM | number: 0}}
+                        </div>
                     </li>
                 </ul>
             </section>
