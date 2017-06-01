@@ -18,18 +18,18 @@ namespace ERP.Web.Api.Kho
         private ERP_DATABASEEntities db = new ERP_DATABASEEntities();
 
         // List PO da len don ban hang
-        [Route("api/Api_DonHangPO/ListHangGiuTheoSale/{isadmin}/{username}")]
-        public List<Prod_ListHangGiuTheoSale_Result> ListHangGiuTheoSale(bool isadmin, string username)
+        [Route("api/Api_DonHangPO/ListHangGiuTheoSale/{isadmin}/{username}/{macongty}")]
+        public List<Prod_ListHangGiuTheoSale_Result> ListHangGiuTheoSale(bool isadmin, string username,string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_ListHangGiuTheoSale_Result>("Prod_ListHangGiuTheoSale @macongty,@username,@isadmin", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<Prod_ListHangGiuTheoSale_Result>("Prod_ListHangGiuTheoSale @macongty,@username,@isadmin", new SqlParameter("macongty", macongty), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }
 
-        [Route("api/Api_DonHangPO/ListHangGiuTongHop")]
-        public List<Prod_ListHangGiuTongHop_KD_Result> ListHangGiuTongHop()
+        [Route("api/Api_DonHangPO/ListHangGiuTongHop/{macongty}")]
+        public List<Prod_ListHangGiuTongHop_KD_Result> ListHangGiuTongHop(string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_ListHangGiuTongHop_KD_Result>("Prod_ListHangGiuTongHop_KD @macongty", new SqlParameter("macongty", "HOPLONG"));
+            var query = db.Database.SqlQuery<Prod_ListHangGiuTongHop_KD_Result>("Prod_ListHangGiuTongHop_KD @macongty", new SqlParameter("macongty", macongty));
             var result = query.ToList();
             return result;
         }

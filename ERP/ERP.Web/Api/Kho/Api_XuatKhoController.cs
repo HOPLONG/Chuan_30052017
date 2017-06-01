@@ -26,10 +26,10 @@ namespace ERP.Web.Api.Kho
       
         // GET: api/Api_XuatKho/5
         [ResponseType(typeof(KHO_XUAT_KHO))]
-        [Route("api/Api_XuatKho/GetCTPhieuXuatKho/{ChungTu}")]
-        public List<GetChiTietPhieuXuatKho_Result> GetCTPhieuXuatKho(string ChungTu)
+        [Route("api/Api_XuatKho/GetCTPhieuXuatKho/{ChungTu}/{macongty}")]
+        public List<GetChiTietPhieuXuatKho_Result> GetCTPhieuXuatKho(string ChungTu,string macongty)
         {
-            var data = db.Database.SqlQuery<GetChiTietPhieuXuatKho_Result>("GetChiTietPhieuXuatKho @sochungtu, @macongty", new SqlParameter("sochungtu", ChungTu), new SqlParameter("macongty", "HOPLONG"));
+            var data = db.Database.SqlQuery<GetChiTietPhieuXuatKho_Result>("GetChiTietPhieuXuatKho @sochungtu, @macongty", new SqlParameter("sochungtu", ChungTu), new SqlParameter("macongty", macongty));
             return data.ToList();
         }
 
@@ -52,7 +52,7 @@ namespace ERP.Web.Api.Kho
             xk.NGUOI_NHAN = kho_xuatkho.NGUOI_NHAN;
             xk.KHACH_HANG = kho_xuatkho.KHACH_HANG;
             xk.NGUOI_LAP_PHIEU = kho_xuatkho.NGUOI_LAP_PHIEU;
-            xk.TRUC_THUOC = "HOPLONG";
+            xk.TRUC_THUOC = kho_xuatkho.TRUC_THUOC;
             xk.LOAI_XUAT_KHO = kho_xuatkho.LOAI_XUAT_KHO;
 
             //Lưu thông tin tham chiếu
@@ -141,12 +141,12 @@ namespace ERP.Web.Api.Kho
 
 
         #region "Print Phieu Xuat Kho"
-        [Route("api/Api_XuatKho/PrintPhieuXuatKho/{sochungtu}")]
-        public PrintPhieuXuatKho PrintPhieuXuatKho(string sochungtu)
+        [Route("api/Api_XuatKho/PrintPhieuXuatKho/{sochungtu}/{macongty}")]
+        public PrintPhieuXuatKho PrintPhieuXuatKho(string sochungtu,string macongty)
         {
-            var data = db.Database.SqlQuery<GetThongTinChungPhieuXuatKho_Result>("GetThongTinChungPhieuXuatKho @sochungtu,@macongty", new SqlParameter("sochungtu", sochungtu), new SqlParameter("macongty", "HOPLONG"));
+            var data = db.Database.SqlQuery<GetThongTinChungPhieuXuatKho_Result>("GetThongTinChungPhieuXuatKho @sochungtu,@macongty", new SqlParameter("sochungtu", sochungtu), new SqlParameter("macongty", macongty));
             var resultdata = data.FirstOrDefault();
-            var query = db.Database.SqlQuery<GetChiTietPhieuXuatKho_Result>("GetChiTietPhieuXuatKho @sochungtu,@macongty", new SqlParameter("sochungtu", sochungtu), new SqlParameter("macongty", "HOPLONG"));
+            var query = db.Database.SqlQuery<GetChiTietPhieuXuatKho_Result>("GetChiTietPhieuXuatKho @sochungtu,@macongty", new SqlParameter("sochungtu", sochungtu), new SqlParameter("macongty", macongty));
             var resultquery = query.ToList();
             PrintPhieuXuatKho baogia = new PrintPhieuXuatKho();
             baogia.ChungPhieuXuatKho = resultdata;
@@ -204,7 +204,7 @@ namespace ERP.Web.Api.Kho
             xk.NHAN_VIEN_BAN_HANG = kho_xuatkho.NHAN_VIEN_BAN_HANG;
 
             xk.NGUOI_LAP_PHIEU = kho_xuatkho.NGUOI_LAP_PHIEU;
-            xk.TRUC_THUOC = "HOPLONG";
+            xk.TRUC_THUOC = kho_xuatkho.TRUC_THUOC;
             xk.LOAI_XUAT_KHO = kho_xuatkho.LOAI_XUAT_KHO;
             db.KHO_XUAT_KHO.Add(xk);
 
@@ -275,7 +275,7 @@ namespace ERP.Web.Api.Kho
                         sonhatky.DOI_TUONG = xk.NGUOI_NHAN;
                     }
 
-                    sonhatky.TRUC_THUOC = "HOPLONG";
+                    sonhatky.TRUC_THUOC = xk.TRUC_THUOC;
                     sonhatky.DIEN_GIAI_CHUNG = xk.LY_DO_XUAT;
                     sonhatky.DIEN_GIAI_CHI_TIET = xk.LY_DO_XUAT;
                     sonhatky.TAI_KHOAN_HACH_TOAN = newItem.TK_NO;
@@ -295,7 +295,7 @@ namespace ERP.Web.Api.Kho
                     {
                         sonhatky1.DOI_TUONG = xk.NGUOI_NHAN;
                     }
-                    sonhatky1.TRUC_THUOC = "HOPLONG";
+                    sonhatky1.TRUC_THUOC = xk.TRUC_THUOC;
                     sonhatky1.DIEN_GIAI_CHUNG = xk.LY_DO_XUAT;
                     sonhatky1.DIEN_GIAI_CHI_TIET = xk.LY_DO_XUAT;
                     sonhatky1.TAI_KHOAN_HACH_TOAN = newItem.TK_CO;

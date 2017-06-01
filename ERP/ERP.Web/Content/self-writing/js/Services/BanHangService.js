@@ -1,6 +1,6 @@
 ﻿app.service('BanHangService', function ($http) {
-    this.get_donbanhang = function () {
-        return $http.get('/api/Api_BanHang/Get_DON_BAN_HANG').then(function (response) {
+    this.get_donbanhang = function (macongty) {
+        return $http.post('/api/Api_BanHang/Get_DON_BAN_HANG/' + macongty).then(function (response) {
             return response.data;
         });
     };

@@ -50,42 +50,42 @@ namespace ERP.Web.Api.BaoGia
             return kq;
         }
 
-        [Route("api/Api_BaoGia/ListBaoGiaDaHuy/{isadmin}/{username}")]
-        public List<Prod_BH_ListBaoGiaDaHuy_Result> ListBaoGiaDaHuy(bool isadmin, string username)
+        [Route("api/Api_BaoGia/ListBaoGiaDaHuy/{isadmin}/{username}/{macongty}")]
+        public List<Prod_BH_ListBaoGiaDaHuy_Result> ListBaoGiaDaHuy(bool isadmin, string username,string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_BH_ListBaoGiaDaHuy_Result>("Prod_BH_ListBaoGiaDaHuy @username,@macongty,@isadmin", new SqlParameter("username", username), new SqlParameter("macongty", "HOPLONG"), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<Prod_BH_ListBaoGiaDaHuy_Result>("Prod_BH_ListBaoGiaDaHuy @username,@macongty,@isadmin", new SqlParameter("username", username), new SqlParameter("macongty", macongty), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }
 
-        [Route("api/Api_BaoGia/ListBaoGiaThatBai/{isadmin}/{username}")]
-        public List<Prod_BH_ListBaoGiaThatBai_Result> ListBaoGiaThatBai(bool isadmin, string username)
+        [Route("api/Api_BaoGia/ListBaoGiaThatBai/{isadmin}/{username}/{macongty}")]
+        public List<Prod_BH_ListBaoGiaThatBai_Result> ListBaoGiaThatBai(bool isadmin, string username,string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_BH_ListBaoGiaThatBai_Result>("Prod_BH_ListBaoGiaThatBai @username,@macongty,@isadmin", new SqlParameter("username", username), new SqlParameter("macongty", "HOPLONG"), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<Prod_BH_ListBaoGiaThatBai_Result>("Prod_BH_ListBaoGiaThatBai @username,@macongty,@isadmin", new SqlParameter("username", username), new SqlParameter("macongty", macongty), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }
 
-        [Route("api/Api_BaoGia/ListBaoGiaDangChoPhanHoi/{isadmin}/{username}")]
-        public List<Prod_BH_ListBaoGiaDangChoPhanHoi_Result> ListBaoGiaDangChoPhanHoi(bool isadmin, string username)
+        [Route("api/Api_BaoGia/ListBaoGiaDangChoPhanHoi/{isadmin}/{username}/{macongty}")]
+        public List<Prod_BH_ListBaoGiaDangChoPhanHoi_Result> ListBaoGiaDangChoPhanHoi(bool isadmin, string username,string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_BH_ListBaoGiaDangChoPhanHoi_Result>("Prod_BH_ListBaoGiaDangChoPhanHoi @username,@macongty,@isadmin", new SqlParameter("username", username), new SqlParameter("macongty", "HOPLONG"), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<Prod_BH_ListBaoGiaDangChoPhanHoi_Result>("Prod_BH_ListBaoGiaDangChoPhanHoi @username,@macongty,@isadmin", new SqlParameter("username", username), new SqlParameter("macongty", macongty), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }
 
-        [Route("api/Api_BaoGia/ListBaoGiaDaLenPO/{isadmin}/{username}")]
-        public List<Prod_BH_ListBaoGiaDaLenPO_Result> ListBaoGiaDaLenPO(bool isadmin, string username)
+        [Route("api/Api_BaoGia/ListBaoGiaDaLenPO/{isadmin}/{username}/{macongty}")]
+        public List<Prod_BH_ListBaoGiaDaLenPO_Result> ListBaoGiaDaLenPO(bool isadmin, string username,string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_BH_ListBaoGiaDaLenPO_Result>("Prod_BH_ListBaoGiaDaLenPO @username,@macongty,@isadmin", new SqlParameter("username", username), new SqlParameter("macongty", "HOPLONG"), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<Prod_BH_ListBaoGiaDaLenPO_Result>("Prod_BH_ListBaoGiaDaLenPO @username,@macongty,@isadmin", new SqlParameter("username", username), new SqlParameter("macongty", macongty), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }
 
-        [Route("api/Api_BaoGia/ListBaoGiaThanhCong/{isadmin}/{username}")]
-        public List<Prod_BH_ListBaoGiaThanhCong_Result> ListBaoGiaThanhCong(bool isadmin, string username)
+        [Route("api/Api_BaoGia/ListBaoGiaThanhCong/{isadmin}/{username}/macongty")]
+        public List<Prod_BH_ListBaoGiaThanhCong_Result> ListBaoGiaThanhCong(bool isadmin, string username,string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_BH_ListBaoGiaThanhCong_Result>("Prod_BH_ListBaoGiaThanhCong @username,@macongty,@isadmin", new SqlParameter("username", username), new SqlParameter("macongty", "HOPLONG"), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<Prod_BH_ListBaoGiaThanhCong_Result>("Prod_BH_ListBaoGiaThanhCong @username,@macongty,@isadmin", new SqlParameter("username", username), new SqlParameter("macongty", macongty), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }
@@ -107,10 +107,10 @@ namespace ERP.Web.Api.BaoGia
         #endregion
 
         #region "Lấy khách hàng theo sale"
-        [Route("api/Api_BaoGia/KhachHangTheoSale/{username}/{isadmin}")]
-        public List<GetAll_KhachCuaSale_Result> KhachHangTheoSale(string username,bool isadmin)
+        [Route("api/Api_BaoGia/KhachHangTheoSale/{username}/{isadmin}/{macongty}")]
+        public List<GetAll_KhachCuaSale_Result> KhachHangTheoSale(string username,bool isadmin,string macongty)
         {
-            var query = db.Database.SqlQuery<GetAll_KhachCuaSale_Result>("GetAll_KhachCuaSale @macongty,@sale,@isadmin", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("sale", username), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<GetAll_KhachCuaSale_Result>("GetAll_KhachCuaSale @macongty,@sale,@isadmin", new SqlParameter("macongty", macongty), new SqlParameter("sale", username), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }
@@ -126,10 +126,10 @@ namespace ERP.Web.Api.BaoGia
         }
         #endregion
 
-        [Route("api/Api_BaoGia/BaoGiaTheoDuKien/{sodukien}")]
-        public List<Get_BaoGia_TheoDuKien_Result> GetBaoGiaTheoDuKien(string sodukien)
+        [Route("api/Api_BaoGia/BaoGiaTheoDuKien/{sodukien}/{macongty}")]
+        public List<Get_BaoGia_TheoDuKien_Result> GetBaoGiaTheoDuKien(string sodukien,string macongty)
         {
-            var query = db.Database.SqlQuery<Get_BaoGia_TheoDuKien_Result>("Get_BaoGia_TheoDuKien @sodukien,@macongty", new SqlParameter("sodukien", sodukien), new SqlParameter("macongty", "HOPLONG"));
+            var query = db.Database.SqlQuery<Get_BaoGia_TheoDuKien_Result>("Get_BaoGia_TheoDuKien @sodukien,@macongty", new SqlParameter("sodukien", sodukien), new SqlParameter("macongty", macongty));
             var result = query.ToList();
             return result;
         }

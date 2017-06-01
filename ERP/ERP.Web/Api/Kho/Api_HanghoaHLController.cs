@@ -48,10 +48,10 @@ namespace ERP.Web.Areas.HopLong.Api.Kho
 
         //Hang hoa bao gia
         [HttpGet]
-        [Route("api/Api_HanghoaHL/GetAllHHBaoGia/{machuan}")]
-        public List<Prod_KHO_GetAllTon_Result> GetAllHHBaoGia(string machuan)
+        [Route("api/Api_HanghoaHL/GetAllHHBaoGia/{machuan}/{macongty}")]
+        public List<Prod_KHO_GetAllTon_Result> GetAllHHBaoGia(string machuan,string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_KHO_GetAllTon_Result>("Prod_KHO_GetAllTon @macongty,@machuan", new SqlParameter("macongty","HOPLONG"), new SqlParameter("machuan", machuan));
+            var query = db.Database.SqlQuery<Prod_KHO_GetAllTon_Result>("Prod_KHO_GetAllTon @macongty,@machuan", new SqlParameter("macongty",macongty), new SqlParameter("machuan", machuan));
             var resultHH = query.ToList();
 
             return resultHH;

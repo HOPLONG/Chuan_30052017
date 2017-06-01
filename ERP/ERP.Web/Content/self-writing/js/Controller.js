@@ -1,5 +1,7 @@
 ﻿
 
+var macongty = $('#macongty').val();
+
 app.controller('giamdocCtrl', function (giamdocService, $scope) {
     $scope.push = function (username) {
         giamdocService.get_giamdoc(username).then(function (a) {
@@ -68,7 +70,7 @@ app.controller('NhomvthhCtrl', function (NhomvthhService, $scope) {
 
 app.controller('khoCtrl', function (khoService, $scope) {
     $scope.loadKho = function () {
-        khoService.get_kho().then(function (a) {
+        khoService.get_kho(macongty).then(function (a) {
             $scope.danhsachkho = a;
         });
     };
@@ -80,7 +82,7 @@ app.controller('khoCtrl', function (khoService, $scope) {
             TEN_KHO: $scope.ten_kho,
             DIA_CHI_KHO: $scope.dia_chi,
             MA_KHO_CHA: $scope.ma_kho_cha,
-            TRUC_THUOC: "HOPLONG",
+            TRUC_THUOC: macongty,
             GHI_CHU: $scope.ghi_chu,
         }
         khoService.add(data_add).then(function (response) {
@@ -98,7 +100,7 @@ app.controller('khoCtrl', function (khoService, $scope) {
             TEN_KHO: $scope.item.TEN_KHO,
             DIA_CHI_KHO: $scope.item.DIA_CHI_KHO,
             MA_KHO_CHA: $scope.item.MA_KHO_CHA,
-            TRUC_THUOC: "HOPLONG",
+            TRUC_THUOC: macongty,
             GHI_CHU: $scope.item.GHI_CHU,
         }
         khoService.save(makho, data_update).then(function (response) {
@@ -118,7 +120,7 @@ app.controller('khoCtrl', function (khoService, $scope) {
 
 app.controller('userCtrl', function (userService, $scope) {
     $scope.loadUser = function () {
-        userService.get_user().then(function (a) {
+        userService.get_user(macongty).then(function (a) {
             $scope.danhsachuser = a;
         });
     };
@@ -144,7 +146,7 @@ app.controller('userCtrl', function (userService, $scope) {
             AVATAR: name_without_ext,
             IS_ADMIN: $scope.admin,
             ALLOWED: $scope.allowed,
-            MA_CONG_TY: "HOPLONG",
+            MA_CONG_TY: macongty,
         }
         userService.add(data_add).then(function (response) {
             $scope.loadUser();
@@ -197,7 +199,7 @@ app.controller('userCtrl', function (userService, $scope) {
             EMAIL: $scope.nv.EMAIL,
             IS_ADMIN: $scope.nv.IS_ADMIN,
             ALLOWED: $scope.nv.ALLOWED,
-            MA_CONG_TY: "HOPLONG",
+            MA_CONG_TY: macongty,
         }
         userService.save(username, data_update).then(function (response) {
             $scope.loadUser();
@@ -228,7 +230,7 @@ app.controller('nhanvienCtrl', function (nhanvienService, $scope) {
 
 app.controller('phongbanCtrl', function (phongbanService, $scope) {
     $scope.loadPhongban = function () {
-        phongbanService.get_phongban().then(function (a) {
+        phongbanService.get_phongban(macongty).then(function (a) {
             $scope.danhsachphongban = a;
         });
     };
@@ -251,7 +253,7 @@ app.controller('phongbanCtrl', function (phongbanService, $scope) {
             MA_PHONG_BAN: maphongban,
             TEN_PHONG_BAN: $scope.item.TEN_PHONG_BAN,
             SDT: $scope.item.SDT,
-            MA_CONG_TY: "HOPLONG",
+            MA_CONG_TY: macongty,
             GHI_CHU: $scope.item.GHI_CHU,
         }
         phongbanService.save(maphongban, data_update).then(function (response) {
@@ -488,6 +490,17 @@ app.controller('bangchamcongCtrl', function (bangchamcongService, $scope) {
         });
     };
     $scope.load_chamcong();
+
+
+    $scope.kiemtramk = function (matkhau) {
+        var password = $('#password').val();
+        if (matkhau == password) {
+            $scope.matkhau = true;
+            SuccessSystem("Mật khẩu đúng")
+        } else {
+            ErrorSystem("Sai mật khẩu")
+        }
+    };
 });
 
 app.controller('bangluongCtrl', function (bangluongService, $scope) {
@@ -499,6 +512,16 @@ app.controller('bangluongCtrl', function (bangluongService, $scope) {
     };
     $scope.load_bangluong();
 
+    $scope.xacnhanmk = function (matkhau) {
+        var password = $('#password').val();
+        if(matkhau == password)
+        {
+            $scope.matkhau = true;
+            SuccessSystem("Mật khẩu đúng")
+        } else {
+            ErrorSystem("Sai mật khẩu")
+        }
+    };
 });
 
 app.controller('addmenuCtrl', function (addmenuService, menuService, $scope) {
@@ -564,7 +587,7 @@ app.controller('addmenuCtrl', function (addmenuService, menuService, $scope) {
 
 app.controller('tonghopnvCtrl', function (tonghopnvService, $scope) {
     $scope.load_tonghop = function () {
-        tonghopnvService.get_tonghop().then(function (a) {
+        tonghopnvService.get_tonghop(macongty).then(function (a) {
             $scope.listtonghop = a;
         });
     };
@@ -613,7 +636,7 @@ app.controller('dsnghiepvuCtrl', function (dsnghiepvuService, $scope) {
 app.controller('danhsachnghiepvuCtrl', function (danhsachnghiepvuService, $scope) {
 
     $scope.loaddanhsachnghiepvu = function () {
-        danhsachnghiepvuService.get_nv().then(function (d) {
+        danhsachnghiepvuService.get_nv(macongty).then(function (d) {
             $scope.danhsachnghiepvu = d;
         });
 
@@ -790,7 +813,7 @@ app.controller('nhomnghiepvuCtrl', function (nhomnghiepvuService, $scope) {
         var data_add = {
             TEN_NHOM: $scope.tennhom,
             DIEN_GIAI: $scope.diengiai,
-            TRUC_THUOC: "HOPLONG"
+            TRUC_THUOC: macongty
         }
         nhomnghiepvuService.add_nhomnghiepvu(data_add).then(function (response) {
             $scope.load_nhomnghiepvu();
@@ -801,7 +824,7 @@ app.controller('nhomnghiepvuCtrl', function (nhomnghiepvuService, $scope) {
         var data_save = {
             TEN_NHOM: tennhom,
             DIEN_GIAI: $scope.item.DIEN_GIAI,
-            TRUC_THUOC: "HOPLONG"
+            TRUC_THUOC: macongty
         }
         nhomnghiepvuService.save_nhomnghiepvu(tennhom, data_save).then(function (response) {
             $scope.load_nhomnghiepvu();
@@ -1133,7 +1156,7 @@ app.controller('DangkypheduyetCtrl', function (DangkypheduyetService, $scope) {
             ID: $scope.id,
             MA_PHE_DUYET: $scope.mapheduyet,
             NGUOI_PHE_DUYET: $scope.nguoipheduyet,
-            TRUC_THUOC: 'HOPLONG',
+            TRUC_THUOC: macongty,
             GHI_CHU: $scope.ghichu
 
         }
@@ -1392,7 +1415,7 @@ app.controller('LoaitknganhangnoiboCtrl', function (LoaitknganhangnoiboService, 
     $scope.add = function () {
         var data_add = {
             SO_TAI_KHOAN: $scope.sotaikhoan,
-            MA_CONG_TY: 'HOPLONG',
+            MA_CONG_TY: macongty,
             TEN_TAI_KHOAN: $scope.tentaikhoan,
             LOAI_TAI_KHOAN: $scope.loaitaikhoan,
             TEN_NGAN_HANG: $scope.tennganhang,
@@ -1764,7 +1787,7 @@ app.controller('purphutrachCtrl', function (purphutrachService, $scope) {
 app.controller('DonhangdukienCtrl', function (DonhangdukienService, $scope,$http) {
     $scope.Donhangdukien = function () {
         var username = $('#username').val();
-        DonhangdukienService.get_donhangdukien(username).then(function (a) {
+        DonhangdukienService.get_donhangdukien(username,macongty).then(function (a) {
             $scope.donhangdukien = a;
         });
         DonhangdukienService.get_khachhang().then(function (b) {
@@ -1783,7 +1806,7 @@ app.controller('DonhangdukienCtrl', function (DonhangdukienService, $scope,$http
             ID_LIEN_HE : $scope.id_lien_he,
             LY_DO_THAT_BAI: $scope.lydothatbai,
             SALES_QUAN_LY : username,
-            TRUC_THUOC: 'HOPLONG'
+            TRUC_THUOC: macongty
         }
 
 
@@ -1891,7 +1914,7 @@ app.controller('DonhangdukienCtrl', function (DonhangdukienService, $scope,$http
             ID_LIEN_HE: $scope.id_lien_he,
             LY_DO_THAT_BAI: $scope.lydothatbai,
             SALES_QUAN_LY: username,
-            TRUC_THUOC: 'HOPLONG'
+            TRUC_THUOC: macongty
         }
         DonhangdukienService.add(data_add).then(function (response) {
             SuccessSystem("Bạn đã thêm thành công đơn dự kiến "+ response.data);

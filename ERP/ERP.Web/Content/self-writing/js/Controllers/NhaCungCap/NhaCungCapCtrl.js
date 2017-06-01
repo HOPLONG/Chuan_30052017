@@ -3,7 +3,7 @@ app.controller('nhacungcapCtrl', function (nhacungcapService, $scope, $http, $lo
     var nv = $('#nv').val();
     var macongty = $('#macongty').val();
     var isadmin = $('#isadmin').val();
-    
+    var maphongban = $('#maphongban').val();
     $scope.ListSelect = [];
     
     $scope.ListAdd = [];
@@ -42,7 +42,7 @@ app.controller('nhacungcapCtrl', function (nhacungcapService, $scope, $http, $lo
             GHI_CHU: addghichu,
             DANH_GIA: danh_gia,
             PHAN_LOAI_NCC: $scope.arraythongtin.ma_loai_ncc,
-            TRUC_THUOC: 'HOPLONG',
+            TRUC_THUOC: macongty,
         }
 
         $scope.Tai_khoan_NCC = [];
@@ -249,7 +249,7 @@ app.controller('nhacungcapCtrl', function (nhacungcapService, $scope, $http, $lo
     $scope.load_phanloaincc();
 
     $scope.load_nhanvienmua = function () {
-        nhacungcapService.get_nhanvienmua().then(function (c) {
+        nhacungcapService.get_nhanvienmua(maphongban,macongty).then(function (c) {
             $scope.list_nhanvienmua = c;
         });
     };

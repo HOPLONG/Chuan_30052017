@@ -12,12 +12,12 @@
 
     var salehienthoi = $('#username').val();
 
-    $scope.load_donbanhang = function () {
-        BanHangService.get_donbanhang().then(function (a) {
-            $scope.list_donbanhang = a;
-        });
-    };
-    $scope.load_donbanhang();
+    //$scope.load_donbanhang = function () {
+    //    BanHangService.get_donbanhang(macongty).then(function (a) {
+    //        $scope.list_donbanhang = a;
+    //    });
+    //};
+    //$scope.load_donbanhang();
 
     //$scope.load_thongtinchung_banhang = function () {
     //    //this gets the full url
@@ -198,7 +198,7 @@
             MA_SO_BH: url,
             NGAY_BH: $scope.thongtinchung[0].NGAY_BH.format('DD/MM/YYYY'),
             MA_KHACH_HANG: $scope.thongtinchung[0].MA_KHACH_HANG,
-            TRUC_THUOC: 'HOPLONG',
+            TRUC_THUOC: macongty,
             DIEN_GIAI_CHUNG: 'Bán hàng',
             ChiTietBH: $scope.arrayChiTietBH,
         }
@@ -418,11 +418,11 @@
             $scope.list_donbanhang_kinhdoanh = response.data;
         });
         //List don ban hang chua xuat kho
-        $http.post('/api/Api_BanHang/ListDonBanHangChuaXuatKho/' + isadmin + '/' + username).then(function (response) {
+        $http.post('/api/Api_BanHang/ListDonBanHangChuaXuatKho/' + isadmin + '/' + username + '/' + macongty).then(function (response) {
             $scope.list_donbanhangchuaxuatkho_kinhdoanh = response.data;
         });
         // List don ban hang da xuat kho
-        $http.post('/api/Api_BanHang/ListDonBanHangDaXuatKho/' + isadmin + '/' + username).then(function (response) {
+        $http.post('/api/Api_BanHang/ListDonBanHangDaXuatKho/' + isadmin + '/' + username + '/' + macongty).then(function (response) {
             $scope.list_donbanhangdaxuatkho_kinhdoanh = response.data;
         });
 

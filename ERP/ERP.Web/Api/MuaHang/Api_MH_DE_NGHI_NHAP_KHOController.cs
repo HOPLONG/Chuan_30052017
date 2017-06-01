@@ -93,21 +93,21 @@ namespace ERP.Web.Api.MuaHang
 
          // GET: api/Api_KhoXuat (List xuất hàng)
         [HttpPost]
-        [Route("api/Api_MH_DE_NGHI_NHAP_KHO/GetListHangSapVe/")]
-        public List<GetAll_DeNghiMuaHangSapVe_Result> GetListHangSapVe(DataDSXuatKho data)
+        [Route("api/Api_MH_DE_NGHI_NHAP_KHO/GetListHangSapVe/{macongty}")]
+        public List<GetAll_DeNghiMuaHangSapVe_Result> GetListHangSapVe(string macongty,DataDSXuatKho data)
         {
 
             if (data.ngay == null)
             {
 
-                var query = db.Database.SqlQuery<GetAll_DeNghiMuaHangSapVe_Result>("GetAll_DeNghiMuaHangSapVe @macongty,@isadmin,@username,@ngay", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("isadmin", data.isadmin), new SqlParameter("username", data.username), new SqlParameter("ngay", DBNull.Value));
+                var query = db.Database.SqlQuery<GetAll_DeNghiMuaHangSapVe_Result>("GetAll_DeNghiMuaHangSapVe @macongty,@isadmin,@username,@ngay", new SqlParameter("macongty", macongty), new SqlParameter("isadmin", data.isadmin), new SqlParameter("username", data.username), new SqlParameter("ngay", DBNull.Value));
                 resultDSXuatKho = query.ToList();
             }
            
             if (data.ngay != null)
             {
                 DateTime ngay1 = xlnt.Xulydatetime(data.ngay);
-                var query = db.Database.SqlQuery<GetAll_DeNghiMuaHangSapVe_Result>("GetAll_DeNghiMuaHangSapVe @macongty,@isadmin,@username,@ngay", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("isadmin", data.isadmin), new SqlParameter("username", data.username), new SqlParameter("ngay", ngay1));
+                var query = db.Database.SqlQuery<GetAll_DeNghiMuaHangSapVe_Result>("GetAll_DeNghiMuaHangSapVe @macongty,@isadmin,@username,@ngay", new SqlParameter("macongty", macongty), new SqlParameter("isadmin", data.isadmin), new SqlParameter("username", data.username), new SqlParameter("ngay", ngay1));
                 resultDSXuatKho = query.ToList();
             }
             

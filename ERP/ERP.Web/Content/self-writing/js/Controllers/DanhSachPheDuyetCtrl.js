@@ -1,5 +1,7 @@
 ﻿app.controller('DanhSachPheDuyetCtrl', function ($http, $scope) {
-    $http.post('/api/Api_DangKyPheDuyetPO/DanhsachpheduyetPO').then(function (response) {
+    var macongty = $('#macongty').val();
+
+    $http.post('/api/Api_DangKyPheDuyetPO/DanhsachpheduyetPO/' + macongty).then(function (response) {
         $scope.list_dspheduyet = response.data;
     });
     $scope.hienthidong = function () {
@@ -11,7 +13,7 @@
     $scope.showtable_marketing = false;
 
 
-    $http.post(window.location.origin + '/api/Api_DangKyPheDuyetPO/Danhsachduocpheduyet')
+    $http.post(window.location.origin + '/api/Api_DangKyPheDuyetPO/Danhsachduocpheduyet/' + macongty)
             .then(function (response) {
                 if (response.data) {
                     $scope.arrayMarketing = response.data;
@@ -49,11 +51,11 @@
         var data_add = {
             MA_PHE_DUYET: 'PO',
             NGUOI_PHE_DUYET: $scope.username_marketing,
-            TRUC_THUOC: 'HOPLONG',
+            TRUC_THUOC: macongty,
             GHI_CHU: $scope.ghi_chu_phe_duyet,
         }
         $http.post('/api/Api_DangKyPheDuyetPO/PostXL_DANG_KY_PHE_DUYET', data_add).then(function (response) {
-            $http.post('/api/Api_DangKyPheDuyetPO/DanhsachpheduyetPO').then(function (response) {
+            $http.post('/api/Api_DangKyPheDuyetPO/DanhsachpheduyetPO/' + macongty).then(function (response) {
                 $scope.list_dspheduyet = response.data;
                 $scope.ho_va_ten_marketing = '';
                 $scope.showrow = false;

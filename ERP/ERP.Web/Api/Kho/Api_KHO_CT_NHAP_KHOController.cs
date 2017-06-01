@@ -18,10 +18,10 @@ namespace ERP.Web.Api.Kho
         private ERP_DATABASEEntities db = new ERP_DATABASEEntities();
 
         // GET: api/Api_KHO_CT_NHAP_KHO
-        [Route("api/Api_KHO_CT_NHAP_KHO/GetCTPhieuNhapKho/{sct}")]
-        public List<GetCTNhapKho_Result> GetCTPhieuNhapKho(string sct)
+        [Route("api/Api_KHO_CT_NHAP_KHO/GetCTPhieuNhapKho/{sct}/{macongty}")]
+        public List<GetCTNhapKho_Result> GetCTPhieuNhapKho(string sct,string macongty)
         {
-            var query = db.Database.SqlQuery<GetCTNhapKho_Result>("GetCTNhapKho @sochungtu,@macongty ", new SqlParameter("sochungtu", sct), new SqlParameter("macongty", "HOPLONG"));
+            var query = db.Database.SqlQuery<GetCTNhapKho_Result>("GetCTNhapKho @sochungtu,@macongty ", new SqlParameter("sochungtu", sct), new SqlParameter("macongty", macongty));
 
             return query.ToList();
         }

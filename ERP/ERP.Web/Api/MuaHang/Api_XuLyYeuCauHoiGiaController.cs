@@ -20,10 +20,10 @@ namespace ERP.Web.Api.MuaHang
 
         // GET: api/Api_XuLyYeuCauHoiGia
         [HttpPost]
-        [Route("api/Api_XuLyYeuCauHoiGia/GetMH_XL_YEU_CAU_HOI_GIA")]
-        public List<Prod_MH_XuLyYeuCauHoiGia_Result> GetMH_XL_YEU_CAU_HOI_GIA(XuLyHoiHang item)
+        [Route("api/Api_XuLyYeuCauHoiGia/GetMH_XL_YEU_CAU_HOI_GIA/{macongty}")]
+        public List<Prod_MH_XuLyYeuCauHoiGia_Result> GetMH_XL_YEU_CAU_HOI_GIA(string macongty,XuLyHoiHang item)
         {
-            var query = db.Database.SqlQuery<Prod_MH_XuLyYeuCauHoiGia_Result>("Prod_MH_XuLyYeuCauHoiGia @macongty,@isadmin,@username", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("isadmin", item.IS_ADMIN), new SqlParameter("username", item.USERNAME));
+            var query = db.Database.SqlQuery<Prod_MH_XuLyYeuCauHoiGia_Result>("Prod_MH_XuLyYeuCauHoiGia @macongty,@isadmin,@username", new SqlParameter("macongty", macongty), new SqlParameter("isadmin", item.IS_ADMIN), new SqlParameter("username", item.USERNAME));
             var data = query.ToList();
             return data;
         }

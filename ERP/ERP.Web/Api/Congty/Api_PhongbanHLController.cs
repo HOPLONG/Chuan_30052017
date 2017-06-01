@@ -17,9 +17,9 @@ namespace ERP.Web.Areas.HopLong.Api.HeThong
         private ERP_DATABASEEntities db = new ERP_DATABASEEntities();
 
         // GET: api/Api_PhongbanHL
-        public List<CCTC_PHONG_BAN> GetCCTC_PHONG_BAN()
+        public List<CCTC_PHONG_BAN> GetCCTC_PHONG_BAN(string macongty)
         {
-            var vData = db.CCTC_PHONG_BAN.Where(x => x.MA_CONG_TY == "HOPLONG");
+            var vData = db.CCTC_PHONG_BAN.Where(x => x.MA_CONG_TY == macongty);
             var result = vData.ToList().Select(x => new CCTC_PHONG_BAN()
             {
                 MA_PHONG_BAN = x.MA_PHONG_BAN,
@@ -31,18 +31,7 @@ namespace ERP.Web.Areas.HopLong.Api.HeThong
             return result;
         }
 
-        // GET: api/Api_PhongbanHL/5
-        [ResponseType(typeof(CCTC_PHONG_BAN))]
-        public IHttpActionResult GetCCTC_PHONG_BAN(string id)
-        {
-            CCTC_PHONG_BAN cCTC_PHONG_BAN = db.CCTC_PHONG_BAN.Find(id);
-            if (cCTC_PHONG_BAN == null)
-            {
-                return NotFound();
-            }
 
-            return Ok(cCTC_PHONG_BAN);
-        }
 
         // PUT: api/Api_PhongbanHL/5
         [ResponseType(typeof(void))]

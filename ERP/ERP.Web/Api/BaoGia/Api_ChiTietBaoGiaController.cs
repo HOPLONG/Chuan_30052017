@@ -34,10 +34,10 @@ namespace ERP.Web.Api.BaoGia
         decimal? TIEN_THUE_GTGT = 0 ;
         decimal? GIA_TRI_THUC_THU_TU_KHACH = 0 ;
         // GET: api/Api_ChiTietBaoGia
-        [Route("api/Api_ChiTietBaoGia/CT_BAO_GIA/{so_bao_gia}")]
-        public List<GetAll_ChiTietBaoGia_Result> CT_BAO_GIA(string so_bao_gia)
+        [Route("api/Api_ChiTietBaoGia/CT_BAO_GIA/{so_bao_gia}/{macongty}")]
+        public List<GetAll_ChiTietBaoGia_Result> CT_BAO_GIA(string so_bao_gia,string macongty)
         {
-            var query = db.Database.SqlQuery<GetAll_ChiTietBaoGia_Result>("GetAll_ChiTietBaoGia  @so_bao_gia, @ma_cong_ty", new SqlParameter("so_bao_gia", so_bao_gia),new SqlParameter("ma_cong_ty", "HOPLONG"));
+            var query = db.Database.SqlQuery<GetAll_ChiTietBaoGia_Result>("GetAll_ChiTietBaoGia  @so_bao_gia, @ma_cong_ty", new SqlParameter("so_bao_gia", so_bao_gia),new SqlParameter("ma_cong_ty", macongty));
             var result = query.ToList();
             return result;
         }

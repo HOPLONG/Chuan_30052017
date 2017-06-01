@@ -99,5 +99,17 @@ namespace ERP.Web.Areas.KinhDoanh.Controllers
             return View(sobaogia);
         }
         #endregion
+
+        public ActionResult GetBaoGia_TA(string sobaogia)
+
+        {
+            return View();
+        }
+
+        public ActionResult GetBaoGia_thucTA(string sobaogia)
+
+        {
+            return View();
+        }
     }
 }
