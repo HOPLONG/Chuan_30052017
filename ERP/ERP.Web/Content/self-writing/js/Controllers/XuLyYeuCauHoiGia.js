@@ -1,12 +1,13 @@
 ﻿app.controller('XuLyYeuCauHoiGia', function ($scope, $http, XuLyHoiGiaService) {
     var purhienthoi = $('#purhienthoi').val();
     var isadmin = $('#isadmin').val();
+    var macongty = $('#macongty').val();
     $scope.xuly_hoihang = function () {
         var data = {
             USERNAME: purhienthoi,
             IS_ADMIN : isadmin
         }
-        return $http.post('/api/Api_XuLyYeuCauHoiGia/GetMH_XL_YEU_CAU_HOI_GIA',data).then(function (response)
+        return $http.post('/api/Api_XuLyYeuCauHoiGia/GetMH_XL_YEU_CAU_HOI_GIA/' + macongty,data).then(function (response)
         {
             $scope.list_xuly_hoihang = response.data;
         });
@@ -61,7 +62,7 @@
                 THOI_GIAN_CAP_HANG: $scope.Detail.ListAdd[i].THOI_GIAN_CAP_HANG,
                 NGAY_HOI_GIA: $scope.Detail.ListAdd[i].NGAY_HOI_GIA,
                 GHI_CHU: $scope.Detail.ListAdd[i].GHI_CHU,
-                TRUC_THUOC: 'HOPLONG',
+                TRUC_THUOC: macongty,
                 PUR_XU_LY: purhienthoi
             }
             //PUSH ChiTietGiu VÀO MẢNG arrayChiTietGiu

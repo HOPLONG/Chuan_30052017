@@ -18,54 +18,54 @@ namespace ERP.Web.Api.Kho
         private ERP_DATABASEEntities db = new ERP_DATABASEEntities();
 
         // List hang can xuat
-        [Route("api/Api_HangCanXuatKinhDoanh/ListHangCanXuat/{isadmin}/{username}")]
-        public List<Prod_HangCanXuat_KD_Result> ListHangCanXuat(bool isadmin, string username)
+        [Route("api/Api_HangCanXuatKinhDoanh/ListHangCanXuat/{isadmin}/{username}/{macongty}")]
+        public List<Prod_HangCanXuat_KD_Result> ListHangCanXuat(bool isadmin, string username,string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_HangCanXuat_KD_Result>("Prod_HangCanXuat_KD @macongty,@username,@isadmin", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<Prod_HangCanXuat_KD_Result>("Prod_HangCanXuat_KD @macongty,@username,@isadmin", new SqlParameter("macongty", macongty), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }
         // List hang can xuat da giu
-        [Route("api/Api_HangCanXuatKinhDoanh/ListHangCanXuatDaGiu/{isadmin}/{username}")]
-        public List<Prod_HangCanXuat_DaGiu_KD_Result> ListHangCanXuatDaGiu(bool isadmin, string username)
+        [Route("api/Api_HangCanXuatKinhDoanh/ListHangCanXuatDaGiu/{isadmin}/{username}/{macongty}")]
+        public List<Prod_HangCanXuat_DaGiu_KD_Result> ListHangCanXuatDaGiu(bool isadmin, string username, string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_HangCanXuat_DaGiu_KD_Result>("Prod_HangCanXuat_DaGiu_KD @macongty,@username,@isadmin", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<Prod_HangCanXuat_DaGiu_KD_Result>("Prod_HangCanXuat_DaGiu_KD @macongty,@username,@isadmin", new SqlParameter("macongty", macongty), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }
 
         // List hang can xuat chua giu
-        [Route("api/Api_HangCanXuatKinhDoanh/ListHangCanXuatChuaGiu/{isadmin}/{username}")]
-        public List<Prod_HangCanXuat_ChuaGiu_KD_Result> ListHangCanXuatChuaGiu(bool isadmin, string username)
+        [Route("api/Api_HangCanXuatKinhDoanh/ListHangCanXuatChuaGiu/{isadmin}/{username}/{macongty}")]
+        public List<Prod_HangCanXuat_ChuaGiu_KD_Result> ListHangCanXuatChuaGiu(bool isadmin, string username, string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_HangCanXuat_ChuaGiu_KD_Result>("Prod_HangCanXuat_ChuaGiu_KD @macongty,@username,@isadmin", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<Prod_HangCanXuat_ChuaGiu_KD_Result>("Prod_HangCanXuat_ChuaGiu_KD @macongty,@username,@isadmin", new SqlParameter("macongty", macongty), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }
 
         // List hang can xuat da ban
-        [Route("api/Api_HangCanXuatKinhDoanh/ListHangCanXuatDaBan/{isadmin}/{username}")]
-        public List<Prod_HangCanXuatDaBan_KD_Result> ListHangCanXuatDaBan(bool isadmin, string username)
+        [Route("api/Api_HangCanXuatKinhDoanh/ListHangCanXuatDaBan/{isadmin}/{username}/{macongty}")]
+        public List<Prod_HangCanXuatDaBan_KD_Result> ListHangCanXuatDaBan(bool isadmin, string username, string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_HangCanXuatDaBan_KD_Result>("Prod_HangCanXuatDaBan_KD @macongty,@username,@isadmin", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<Prod_HangCanXuatDaBan_KD_Result>("Prod_HangCanXuatDaBan_KD @macongty,@username,@isadmin", new SqlParameter("macongty", macongty), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }
 
         // List hang can xuat da dat hang
-        [Route("api/Api_HangCanXuatKinhDoanh/ListHangCanXuatDaDatHang/{isadmin}/{username}")]
-        public List<Prod_HangCanXuatDaDatHang_KD_Result> ListHangCanXuatDaDatHang(bool isadmin, string username)
+        [Route("api/Api_HangCanXuatKinhDoanh/ListHangCanXuatDaDatHang/{isadmin}/{username}/{macongty}")]
+        public List<Prod_HangCanXuatDaDatHang_KD_Result> ListHangCanXuatDaDatHang(bool isadmin, string username, string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_HangCanXuatDaDatHang_KD_Result>("Prod_HangCanXuatDaDatHang_KD @macongty,@username,@isadmin", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<Prod_HangCanXuatDaDatHang_KD_Result>("Prod_HangCanXuatDaDatHang_KD @macongty,@username,@isadmin", new SqlParameter("macongty", macongty), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }
 
         // List hang can xuat chua dat hang
-        [Route("api/Api_HangCanXuatKinhDoanh/ListHangCanXuatChuaDatHang/{isadmin}/{username}")]
-        public List<Prod_HangCanXuatCanDatHang_KD_Result> ListHangCanXuatChuaDatHang(bool isadmin, string username)
+        [Route("api/Api_HangCanXuatKinhDoanh/ListHangCanXuatChuaDatHang/{isadmin}/{username}/{macongty}")]
+        public List<Prod_HangCanXuatCanDatHang_KD_Result> ListHangCanXuatChuaDatHang(bool isadmin, string username, string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_HangCanXuatCanDatHang_KD_Result>("Prod_HangCanXuatCanDatHang_KD @macongty,@username,@isadmin", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<Prod_HangCanXuatCanDatHang_KD_Result>("Prod_HangCanXuatCanDatHang_KD @macongty,@username,@isadmin", new SqlParameter("macongty", macongty), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }

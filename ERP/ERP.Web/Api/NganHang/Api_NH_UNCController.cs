@@ -182,7 +182,7 @@ namespace ERP.Web.Api.NganHang
             unc.TAI_KHOAN_NHAN = chi_nganhang.TAI_KHOAN_NHAN;
             unc.NHAN_VIEN_CHUYEN_KHOAN = chi_nganhang.NHAN_VIEN_CHUYEN_KHOAN;
             unc.NGUOI_LAP_BIEU = chi_nganhang.NGUOI_LAP_BIEU;
-            unc.TRUC_THUOC = "HOPLONG";
+            unc.TRUC_THUOC = chi_nganhang.TRUC_THUOC;
             db.NH_UNC.Add(unc);
 
             //Lưu thông tin tham chiếu
@@ -239,7 +239,7 @@ namespace ERP.Web.Api.NganHang
                     sonhatky.NGAY_CHUNG_TU = unc.NGAY_CHUNG_TU;
                     sonhatky.NGAY_HACH_TOAN = unc.NGAY_HACH_TOAN;
                     sonhatky.DOI_TUONG = unc.MA_DOI_TUONG;
-                    sonhatky.TRUC_THUOC = "HOPLONG";
+                    sonhatky.TRUC_THUOC = unc.TRUC_THUOC;
                     sonhatky.DIEN_GIAI_CHUNG = unc.NOI_DUNG_THANH_TOAN;
                     sonhatky.DIEN_GIAI_CHI_TIET = newItem.DIEN_GIAI;
                     sonhatky.TAI_KHOAN_HACH_TOAN = newItem.TK_NO;
@@ -252,7 +252,7 @@ namespace ERP.Web.Api.NganHang
                     sonhatky1.NGAY_CHUNG_TU = unc.NGAY_CHUNG_TU;
                     sonhatky1.NGAY_HACH_TOAN = unc.NGAY_HACH_TOAN;
                     sonhatky1.DOI_TUONG = unc.MA_DOI_TUONG;
-                    sonhatky1.TRUC_THUOC = "HOPLONG";
+                    sonhatky1.TRUC_THUOC = unc.TRUC_THUOC;
                     sonhatky1.DIEN_GIAI_CHUNG = unc.NOI_DUNG_THANH_TOAN;
                     sonhatky1.DIEN_GIAI_CHI_TIET = newItem.DIEN_GIAI;
                     sonhatky1.TAI_KHOAN_HACH_TOAN = newItem.TK_CO;
@@ -267,7 +267,7 @@ namespace ERP.Web.Api.NganHang
                         sonhatky3.NGAY_CHUNG_TU = unc.NGAY_CHUNG_TU;
                         sonhatky3.NGAY_HACH_TOAN = unc.NGAY_HACH_TOAN;
                         sonhatky3.DOI_TUONG = unc.MA_DOI_TUONG;
-                        sonhatky3.TRUC_THUOC = "HOPLONG";
+                        sonhatky3.TRUC_THUOC = unc.TRUC_THUOC;
                         sonhatky3.DIEN_GIAI_CHUNG = unc.NOI_DUNG_THANH_TOAN;
                         sonhatky3.DIEN_GIAI_CHI_TIET = newItem.DIEN_GIAI;
                         sonhatky3.TAI_KHOAN_HACH_TOAN = newItem.TK_THUE_GTGT;
@@ -280,7 +280,7 @@ namespace ERP.Web.Api.NganHang
                         sonhatky4.NGAY_CHUNG_TU = unc.NGAY_CHUNG_TU;
                         sonhatky4.NGAY_HACH_TOAN = unc.NGAY_HACH_TOAN;
                         sonhatky4.DOI_TUONG = unc.MA_DOI_TUONG;
-                        sonhatky4.TRUC_THUOC = "HOPLONG";
+                        sonhatky4.TRUC_THUOC = unc.TRUC_THUOC;
                         sonhatky4.DIEN_GIAI_CHUNG = unc.NOI_DUNG_THANH_TOAN;
                         sonhatky4.DIEN_GIAI_CHI_TIET = newItem.DIEN_GIAI;
                         sonhatky4.TAI_KHOAN_HACH_TOAN = newItem.TK_NO;

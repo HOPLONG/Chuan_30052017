@@ -119,7 +119,7 @@ namespace ERP.Web.Api.Kho
             xk.LY_DO_XUAT = kho_xuatkho.LY_DO_XUAT;
             xk.NHAN_VIEN_BAN_HANG = kho_xuatkho.NHAN_VIEN_BAN_HANG;
             xk.NGUOI_LAP_PHIEU = kho_xuatkho.NGUOI_LAP_PHIEU;
-            xk.TRUC_THUOC = "HOPLONG";
+            xk.TRUC_THUOC = kho_xuatkho.TRUC_THUOC;
             xk.LOAI_XUAT_KHO = kho_xuatkho.LOAI_XUAT_KHO;
             xk.PHIEU_BAN_HANG = kho_xuatkho.PHIEU_BAN_HANG;
             db.KHO_XUAT_KHO.Add(xk);
@@ -199,7 +199,7 @@ namespace ERP.Web.Api.Kho
                         sonhatky.DOI_TUONG = xk.NGUOI_NHAN;
                     }
 
-                    sonhatky.TRUC_THUOC = "HOPLONG";
+                    sonhatky.TRUC_THUOC = xk.TRUC_THUOC;
                     sonhatky.DIEN_GIAI_CHUNG = xk.LY_DO_XUAT;
                     sonhatky.DIEN_GIAI_CHI_TIET = xk.LY_DO_XUAT;
                     sonhatky.TAI_KHOAN_HACH_TOAN = newItem.TK_NO;
@@ -219,7 +219,7 @@ namespace ERP.Web.Api.Kho
                     {
                         sonhatky1.DOI_TUONG = xk.NGUOI_NHAN;
                     }
-                    sonhatky1.TRUC_THUOC = "HOPLONG";
+                    sonhatky1.TRUC_THUOC = xk.TRUC_THUOC;
                     sonhatky1.DIEN_GIAI_CHUNG = xk.LY_DO_XUAT;
                     sonhatky1.DIEN_GIAI_CHI_TIET = xk.LY_DO_XUAT;
                     sonhatky1.TAI_KHOAN_HACH_TOAN = newItem.TK_CO;

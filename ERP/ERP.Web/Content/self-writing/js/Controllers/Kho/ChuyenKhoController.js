@@ -1,5 +1,8 @@
 ﻿
 app.controller('StoreExchangeController', function ($rootScope, $scope, $http, config) {
+
+    var macongty = $('#macongty').val();
+
     $rootScope.title = "Chuyển kho";
     $rootScope.dashboard = false;
     $scope.TitleChuyenKho = "Chuyển kho giữ hàng";
@@ -50,7 +53,7 @@ app.controller('StoreExchangeController', function ($rootScope, $scope, $http, c
     function Init() {
         //Lấy dữ liệu hàng hóa
         $scope.SearchHH = function (mh) {
-            $http.get(window.location.origin + '/api/Api_XuatNhapKho/GetAllHH/' + 'HOPLONG/' + 'NHAPKHO/' + mh)
+            $http.get(window.location.origin + '/api/Api_XuatNhapKho/GetAllHH/' + macongty + '/' + 'NHAPKHO/' + mh)
              .then(function (response) {
                  if (typeof (response.data) == "object") {
                      $scope.Detail.ListHangHoa = response.data;
@@ -65,7 +68,7 @@ app.controller('StoreExchangeController', function ($rootScope, $scope, $http, c
 
         $http({
             method: 'GET',
-            url: '/api/Api_KhoHL'
+            url: '/api/Api_KhoHL/' + macongty
         }).then(function (response) {
             if (typeof (response.data) == "object") {
                 $scope.Detail.ListKho = response.data;

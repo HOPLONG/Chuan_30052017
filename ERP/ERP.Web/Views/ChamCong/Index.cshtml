@@ -7,10 +7,22 @@
 
 <div class="panel-heading">Bảng chấm công của @Session["HO_VA_TEN"]</div>
 <br />
-<body ng-app="myApp" >
-    <div class="content">
-        <input type="hidden" value="@Session["USERNAME"]" id="username"/>
-        <div class="creatediv1 marginTop30">
+<body ng-app="myApp">
+
+
+
+    <div class="content" ng-controller="bangchamcongCtrl">
+
+        <input type="hidden" value="@Session["USERNAME"]" id="username" />
+        <input type="hidden" value="@Session["PASSWORD"]" id="password" />
+        <div class="col-md-12" ng-hide="matkhau">
+            <input type="password" ng-model="password" placeholder="Mật khẩu xác thực" />
+            <button type="button" class="btn btn-default" ng-click="kiemtramk(password)">
+                Xác nhận mật khẩu
+            </button>
+        </div>
+
+        <div class="creatediv1 marginTop30" ng-show="matkhau">
 
             <div class="row margin-top-50">
                 <div class="col-md-12">
@@ -27,7 +39,7 @@
 
                         </div>
                         <div class="main">
-                            <table class="span12 table table-bordered table-striped bg tablescroll" border="1" ng-controller="bangchamcongCtrl">
+                            <table class="span12 table table-bordered table-striped bg tablescroll" border="1">
                                 
                                    
                                         <tr class="filters">

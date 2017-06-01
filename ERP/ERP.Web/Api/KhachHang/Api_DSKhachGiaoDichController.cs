@@ -12,10 +12,10 @@ namespace ERP.Web.Api.KhachHang
     public class Api_DSKhachGiaoDichController : ApiController
     {
         private ERP_DATABASEEntities db = new ERP_DATABASEEntities();
-        [Route("api/Api_DSKhachGiaoDich/GetKHChuaPhatSinh/{username}")]
-        public List<Query_DS_KhachHang_ChuaPhatSinhGiaoDich_Result> GetKHChuaPhatSinh( string username)
+        [Route("api/Api_DSKhachGiaoDich/GetKHChuaPhatSinh/{username}/{macongty}")]
+        public List<Query_DS_KhachHang_ChuaPhatSinhGiaoDich_Result> GetKHChuaPhatSinh( string username,string macongty)
         {
-            var query = db.Database.SqlQuery<Query_DS_KhachHang_ChuaPhatSinhGiaoDich_Result>("Query_DS_KhachHang_ChuaPhatSinhGiaoDich @macongty, @sale", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("sale", username));
+            var query = db.Database.SqlQuery<Query_DS_KhachHang_ChuaPhatSinhGiaoDich_Result>("Query_DS_KhachHang_ChuaPhatSinhGiaoDich @macongty, @sale", new SqlParameter("macongty",macongty), new SqlParameter("sale", username));
             var result = query.ToList();
             return result;
         }

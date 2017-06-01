@@ -176,7 +176,7 @@ namespace ERP.Web.Api.Quy
             qpt.NGUOI_NOP = quy_phieuthu.NGUOI_NOP;
             qpt.NHAN_VIEN_THU = quy_phieuthu.NHAN_VIEN_THU;
             qpt.NGUOI_LAP_BIEU = quy_phieuthu.NGUOI_LAP_BIEU;
-            qpt.TRUC_THUOC = "HOPLONG";
+            qpt.TRUC_THUOC = quy_phieuthu.TRUC_THUOC;
             db.QUY_PHIEU_THU.Add(qpt);
 
             //Lưu thông tin tham chiếu
@@ -226,7 +226,7 @@ namespace ERP.Web.Api.Quy
                     newitem.NGAY_CHUNG_TU = qpt.NGAY_CHUNG_TU;
                     newitem.NGAY_HACH_TOAN = qpt.NGAY_HACH_TOAN;
                     newitem.DOI_TUONG = qpt.MA_DOI_TUONG;
-                    newitem.TRUC_THUOC = "HOPLONG";
+                    newitem.TRUC_THUOC = qpt.TRUC_THUOC;
                     newitem.DIEN_GIAI_CHUNG = qpt.DIEN_GIAI_LY_DO_NOP;
                     newitem.DIEN_GIAI_CHI_TIET = item.DIEN_GIAI;
                     newitem.TAI_KHOAN_HACH_TOAN = item.TK_NO;
@@ -239,7 +239,7 @@ namespace ERP.Web.Api.Quy
                     newitem1.NGAY_CHUNG_TU = qpt.NGAY_CHUNG_TU;
                     newitem1.NGAY_HACH_TOAN = qpt.NGAY_HACH_TOAN;
                     newitem1.DOI_TUONG = qpt.MA_DOI_TUONG;
-                    newitem1.TRUC_THUOC = "HOPLONG";
+                    newitem1.TRUC_THUOC = qpt.TRUC_THUOC;
                     newitem1.DIEN_GIAI_CHUNG = qpt.DIEN_GIAI_LY_DO_NOP;
                     newitem1.DIEN_GIAI_CHI_TIET = item.DIEN_GIAI;
                     newitem1.TAI_KHOAN_HACH_TOAN = item.TK_CO;

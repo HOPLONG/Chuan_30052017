@@ -1,6 +1,9 @@
 ﻿
     app.controller('ctrlThuKhac', ctrlThuKhac);
     ctrlThuKhac.$inject = ['$rootScope', '$scope', "$location", '$http', '$uibModal'];
+    
+    var macongty = $('#macongty').val();
+
     function ctrlThuKhac($rootScope, $scope, $location, $http, $uibModal) {
 
         function ErrorSystem() {
@@ -268,7 +271,7 @@
         *loc dữ liệu khi input thay đổi
         */
         $scope.onDoiTuongFind = function () {
-            $http.post(window.location.origin + '/api/Api_XuatNhapKho/GetAllDoiTuong/' + $scope.arrayTongHop.ma_doi_tuong)
+            $http.post(window.location.origin + '/api/Api_XuatNhapKho/GetAllDoiTuong/' + $scope.arrayTongHop.ma_doi_tuong + '/' + macongty)
              .then(function (response) {
                  console.log(response);
                  if (response.data) {
@@ -563,7 +566,7 @@
                 $("#Input_MaChungTu").css({ "display": "none" });
                 $("#DataGiaTriChungTu").css({ "display": "block" });
                 $scope.DoiTuongFind = function () {
-                    $http.post(window.location.origin + '/api/Api_XuatNhapKho/GetAllDoiTuong/' + $scope.GiaTriChungTu.Search)
+                    $http.post(window.location.origin + '/api/Api_XuatNhapKho/GetAllDoiTuong/' + $scope.GiaTriChungTu.Search + '/' + macongty)
                      .then(function (response) {
                          if (typeof (response.data) == "object") {
                              var data = response.data.DoiTuong;
@@ -615,7 +618,7 @@
 
                 }
 
-                $http.post('/api/Api_XuatNhapKho/SearchByTypeWithDate', data)
+                $http.post('/api/Api_XuatNhapKho/SearchByTypeWithDate/' + macongty, data)
                 .then(function (response) {
                     console.log(response);
                     if (typeof (response.data) == "object") {
@@ -660,7 +663,7 @@
 
                 }
 
-                $http.post('/api/Api_XuatNhapKho/SearchByDoiTuongWithDate', data)
+                $http.post('/api/Api_XuatNhapKho/SearchByDoiTuongWithDate/' + macongty, data)
                 .then(function (response) {
                     console.log(response);
                     if (typeof (response.data) == "object") {
@@ -678,7 +681,7 @@
             }
             else {
                 var mact = $scope.MaChungTu.Search;
-                $http.get('/api/Api_XuatNhapKho/GetbyMa/' + mact)
+                $http.get('/api/Api_XuatNhapKho/GetbyMa/' + mact + '/' + macongty)
                 .then(function (response) {
                     console.log(response);
                     if (typeof (response.data) == "object") {

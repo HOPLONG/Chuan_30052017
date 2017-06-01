@@ -1,7 +1,7 @@
 ﻿app.controller('HangCanDatPurcCtrl', function ($http, $scope) {
     var username = $('#username').val();
     var isadmin = $('#isadmin').val();
-
+    var macongty = $('#macongty').val();
     $scope.Detail = {
         ListAdd: [],
         ListNew: [],
@@ -27,7 +27,7 @@
     $scope.arrayMuaHang = [];
     $scope.showtable_NCC_DatHang = false;
 
-    $http.get(window.location.origin + '/api/Api_HangCanDatPurchase/GetNhaCungCapTheoPurchase/' + isadmin + '/' + username)
+    $http.get(window.location.origin + '/api/Api_HangCanDatPurchase/GetNhaCungCapTheoPurchase/' + isadmin + '/' + username + '/' + macongty)
      .then(function (response) {
          if (response.data) {
              $scope.arrayMuaHang = response.data;
@@ -308,7 +308,7 @@
     };
 
 
-    $http.post('/api/Api_DonPOMuaHang/ListPOMuaHang/' + isadmin + '/' + username).then(function (response) {
+    $http.post('/api/Api_DonPOMuaHang/ListPOMuaHang/' + isadmin + '/' + username + '/' + macongty).then(function (response) {
         $scope.list_donPOMUaHang = response.data;
     });
 

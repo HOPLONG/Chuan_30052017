@@ -190,7 +190,7 @@ namespace ERP.Web.Api.KhachHang
             //}
            
 
-            return Ok(lienhe);
+            return Ok(data);
         }
 
         // DELETE: api/Api_LienHeKhachHang/5

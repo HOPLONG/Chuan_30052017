@@ -19,18 +19,18 @@ namespace ERP.Web.Api.KhachHang
         private ERP_DATABASEEntities db = new ERP_DATABASEEntities();
 
         // GET: api/Api_KhachHangPolicy
-        [Route("api/Api_KhachHangPolicy/GetNvMuaHang")]
-        public List<HopLong_GetAll_Nhanvien_MuaHang_Result> GetNvMuaHang()
+        [Route("api/Api_KhachHangPolicy/GetNvMuaHang/{macongty}")]
+        public List<HopLong_GetAll_Nhanvien_MuaHang_Result> GetNvMuaHang(string macongty)
         {
-            var query = db.Database.SqlQuery<HopLong_GetAll_Nhanvien_MuaHang_Result>("HopLong_GetAll_Nhanvien_MuaHang @macongty", new SqlParameter("macongty", "HOPLONG"));
+            var query = db.Database.SqlQuery<HopLong_GetAll_Nhanvien_MuaHang_Result>("HopLong_GetAll_Nhanvien_MuaHang @macongty", new SqlParameter("macongty", macongty));
             var result = query.ToList();
             return result;
         }
 
-        [Route("api/Api_KhachHangPolicy/GetNvMarketing")]
-        public List<Prod_GetAll_Marketing_Result> GetNvMarketing()
+        [Route("api/Api_KhachHangPolicy/GetNvMarketing/{macongty}")]
+        public List<Prod_GetAll_Marketing_Result> GetNvMarketing(string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_GetAll_Marketing_Result>("Prod_GetAll_Marketing @macongty", new SqlParameter("macongty", "HOPLONG"));
+            var query = db.Database.SqlQuery<Prod_GetAll_Marketing_Result>("Prod_GetAll_Marketing @macongty", new SqlParameter("macongty", macongty));
             var result = query.ToList();
             return result;
         }

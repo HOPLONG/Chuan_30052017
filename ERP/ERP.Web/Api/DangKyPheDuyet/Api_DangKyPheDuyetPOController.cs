@@ -25,19 +25,19 @@ namespace ERP.Web.Api.DangKyPheDuyet
 
         // GET: api/Api_DangKyPheDuyetPO/5
         [ResponseType(typeof(XL_DANG_KY_PHE_DUYET))]
-        [Route("api/Api_DangKyPheDuyetPO/DanhsachpheduyetPO")]
-        public List<Prod_XL_List_DangKyPheDuyet_Result> DanhsachpheduyetPO()
+        [Route("api/Api_DangKyPheDuyetPO/DanhsachpheduyetPO/{macongty}")]
+        public List<Prod_XL_List_DangKyPheDuyet_Result> DanhsachpheduyetPO(string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_XL_List_DangKyPheDuyet_Result>("Prod_XL_List_DangKyPheDuyet  @macongty,@loaipheduyet", new SqlParameter("macongty","HOPLONG"), new SqlParameter("loaipheduyet", "PO"));
+            var query = db.Database.SqlQuery<Prod_XL_List_DangKyPheDuyet_Result>("Prod_XL_List_DangKyPheDuyet  @macongty,@loaipheduyet", new SqlParameter("macongty",macongty), new SqlParameter("loaipheduyet", "PO"));
             var result = query.ToList();
 
             return result;
         }
 
-        [Route("api/Api_DangKyPheDuyetPO/Danhsachduocpheduyet")]
-        public List<Prod_CCTC_GetAllSale_Result> Danhsachduocpheduyet()
+        [Route("api/Api_DangKyPheDuyetPO/Danhsachduocpheduyet/{macongty}")]
+        public List<Prod_CCTC_GetAllSale_Result> Danhsachduocpheduyet(string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_CCTC_GetAllSale_Result>("Prod_CCTC_GetAllSale  @macongty", new SqlParameter("macongty", "HOPLONG"));
+            var query = db.Database.SqlQuery<Prod_CCTC_GetAllSale_Result>("Prod_CCTC_GetAllSale  @macongty", new SqlParameter("macongty", macongty));
             var result = query.ToList();
 
             return result;

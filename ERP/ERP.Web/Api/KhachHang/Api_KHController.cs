@@ -66,7 +66,7 @@ namespace ERP.Web.Api.HeThong
 
         }
         [HttpPost]
-        [Route("api/Api_KH/KH_THEO_TUNG_SALES/")]
+        [Route("api/Api_KH/KH_THEO_TUNG_SALES")]
         public List<HopLong_LocKHTheoTungSale_Result> KH_THEO_TUNG_SALES(ThongTinTimKiem timkiem)
         {
             var query = db.Database.SqlQuery<HopLong_LocKHTheoTungSale_Result>("HopLong_LocKHTheoTungSale @sale, @macongty, @isadmin, @tukhoa", new SqlParameter("sale", timkiem.sales), new SqlParameter("macongty", timkiem.macongty), new SqlParameter("isadmin", timkiem.isadmin), new SqlParameter("tukhoa", timkiem.tukhoa));
@@ -148,10 +148,10 @@ namespace ERP.Web.Api.HeThong
             return result;
         }
 
-        [Route("api/Api_KH/LocKH/{username}")]
-        public List<GetAll_KhachCuaSale_Result> LocKH(string username)
+        [Route("api/Api_KH/LocKH/{username}/{macongty}")]
+        public List<GetAll_KhachCuaSale_Result> LocKH(string username,string macongty)
         {
-            var query = db.Database.SqlQuery<GetAll_KhachCuaSale_Result>("GetAll_KhachCuaSale @macongty, @sale", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("sale", username));
+            var query = db.Database.SqlQuery<GetAll_KhachCuaSale_Result>("GetAll_KhachCuaSale @macongty, @sale", new SqlParameter("macongty", macongty), new SqlParameter("sale", username));
             var result = query.ToList();
             return result;
         }
@@ -175,10 +175,10 @@ namespace ERP.Web.Api.HeThong
             return kq;
         }
 
-        [Route("api/Api_KH/GET_KHACH_CUA_SALE/{username}/{isadmin}")]
-        public List<GetAll_KhachCuaSale_Result> GET_KHACH_CUA_SALE(string username, bool isadmin)
+        [Route("api/Api_KH/GET_KHACH_CUA_SALE/{username}/{isadmin}/{macongty}")]
+        public List<GetAll_KhachCuaSale_Result> GET_KHACH_CUA_SALE(string username, bool isadmin,string macongty)
         {
-            var query = db.Database.SqlQuery<GetAll_KhachCuaSale_Result>("GetAll_KhachCuaSale  @macongty, @sale,@isadmin", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("sale", username), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<GetAll_KhachCuaSale_Result>("GetAll_KhachCuaSale  @macongty, @sale,@isadmin", new SqlParameter("macongty", macongty), new SqlParameter("sale", username), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }
@@ -196,10 +196,10 @@ namespace ERP.Web.Api.HeThong
 
         // GET: api/Api_KH/5
 
-        [Route("api/Api_KH/GetCT_KH/{makh}")]
-        public List<Get_ChiTiet_Tung_KhachHang_Result> GetCT_KH(string makh)
+        [Route("api/Api_KH/GetCT_KH/{makh}/{macongty}")]
+        public List<Get_ChiTiet_Tung_KhachHang_Result> GetCT_KH(string makh,string macongty)
         {
-            var query = db.Database.SqlQuery<Get_ChiTiet_Tung_KhachHang_Result>("Get_ChiTiet_Tung_KhachHang @makh,@macongty", new SqlParameter("makh", makh), new SqlParameter("macongty", "HOPLONG"));
+            var query = db.Database.SqlQuery<Get_ChiTiet_Tung_KhachHang_Result>("Get_ChiTiet_Tung_KhachHang @makh,@macongty", new SqlParameter("makh", makh), new SqlParameter("macongty", macongty));
             var result = query.ToList();
             return result;
         }
@@ -392,7 +392,7 @@ namespace ERP.Web.Api.HeThong
                 }
             }
 
-            return Ok(khach.MA_KHACH_HANG + "đã được tạo");
+            return Ok(khach);
         }
 
         // DELETE: api/Api_KH/5

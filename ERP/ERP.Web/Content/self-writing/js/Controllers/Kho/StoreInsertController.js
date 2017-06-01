@@ -1,5 +1,7 @@
 ﻿
 app.controller('StoreInsertController', function ($rootScope, $scope, $http, config) {
+    var macongty = $('#macongty').val();
+
     $rootScope.PageSetting = {
         PageCount: 0,
         NumberPerPage: 10,
@@ -174,7 +176,7 @@ app.controller('StoreInsertController', function ($rootScope, $scope, $http, con
 
     //Lấy dữ liệu hàng hóa
     $scope.SearchHH = function (mh) {
-        $http.get(window.location.origin + '/api/Api_XuatNhapKho/GetAllHH/' + 'HOPLONG/' + 'NHAPKHO/' + mh)
+        $http.get(window.location.origin + '/api/Api_XuatNhapKho/GetAllHH/' + macongty + '/' + 'NHAPKHO/' + mh)
          .then(function (response) {
              if (typeof (response.data) == "object") {
                  $scope.Detail.ListHangHoa = response.data;
@@ -206,7 +208,7 @@ app.controller('StoreInsertController', function ($rootScope, $scope, $http, con
 
         $http({
             method: 'GET',
-            url: '/api/Api_KhoHL'
+            url: '/api/Api_KhoHL/' + macongty
         }).then(function (response) {
             if (typeof (response.data) == "object") {
                 $scope.Detail.ListKho = response.data;
@@ -561,7 +563,7 @@ app.controller('StoreInsertController', function ($rootScope, $scope, $http, con
         $scope.ThamChieu.ListSelect.push($scope.SearchDonHangTra.DonHangSelect);
         $http({
             method: 'GET',
-            url: '/api/Api_NhapKho/GetDetailKHO_NHAP_KHO/' + $scope.SearchDonHangTra.DonHangSelect.SO_CHUNG_TU,
+            url: '/api/Api_NhapKho/GetDetailKHO_NHAP_KHO/' + $scope.SearchDonHangTra.DonHangSelect.SO_CHUNG_TU + '/' + macongty
         }).then(function (response) {
             if (typeof (response.data) == "object") {
                 $scope.Detail.ListAdd = response.data.ctxuatkho;
@@ -586,7 +588,7 @@ app.controller('StoreInsertController', function ($rootScope, $scope, $http, con
         $(".tableselect").css({ "display": "none"});
         $http({
             method: 'GET',
-            url: '/api/Api_NhapKho/GetDetailKHO_NHAP_KHO/' + item.SO_CHUNG_TU,
+            url: '/api/Api_NhapKho/GetDetailKHO_NHAP_KHO/' + item.SO_CHUNG_TU + '/' + macongty
         }).then(function (response) {
             if (typeof (response.data) == "object") {
                 $scope.Detail.ListAdd = response.data.ctxuatkho;
@@ -673,7 +675,7 @@ app.controller('StoreInsertController', function ($rootScope, $scope, $http, con
             $("#Input_MaChungTu").css({ "display": "none" });
             $("#DataGiaTriChungTu").css({ "display": "block" });
             $scope.DoiTuongFind = function () {
-                $http.post(window.location.origin + '/api/Api_XuatNhapKho/GetAllDoiTuong/' + $scope.GiaTriChungTu.Search)
+                $http.post(window.location.origin + '/api/Api_XuatNhapKho/GetAllDoiTuong/' + $scope.GiaTriChungTu.Search + '/' + macongty)
                  .then(function (response) {
                      if (typeof (response.data) == "object") {
                          var data = response.data.DoiTuong;
@@ -725,7 +727,7 @@ app.controller('StoreInsertController', function ($rootScope, $scope, $http, con
 
             }
 
-            $http.post('/api/Api_XuatNhapKho/SearchByTypeWithDate', data)
+            $http.post('/api/Api_XuatNhapKho/SearchByTypeWithDate/' + macongty, data)
             .then(function (response) {
                 console.log(response);
                 if (typeof (response.data) == "object") {
@@ -770,7 +772,7 @@ app.controller('StoreInsertController', function ($rootScope, $scope, $http, con
 
             }
 
-            $http.post('/api/Api_XuatNhapKho/SearchByDoiTuongWithDate', data)
+            $http.post('/api/Api_XuatNhapKho/SearchByDoiTuongWithDate/' + macongty, data)
             .then(function (response) {
                 console.log(response);
                 if (typeof (response.data) == "object") {
@@ -788,7 +790,7 @@ app.controller('StoreInsertController', function ($rootScope, $scope, $http, con
         }
         else {
             var mact = $scope.MaChungTu.Search;
-            $http.get('/api/Api_XuatNhapKho/GetbyMa/' + mact)
+            $http.get('/api/Api_XuatNhapKho/GetbyMa/' + mact + '/' + macongty)
             .then(function (response) {
                 console.log(response);
                 if (typeof (response.data) == "object") {

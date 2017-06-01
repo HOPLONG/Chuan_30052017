@@ -2,7 +2,7 @@
 app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
 
     var salehienthoi = $('#salehienthoi').val();
-
+    var macongty = $('#macongty').val();
     //get data lich lam viec
     $scope.get_datalichlamviec = function (nhanvienthuchien) {
         $http.get("/api/LichLamViec/GetLichLamViec/" + nhanvienthuchien)
@@ -31,7 +31,7 @@ app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
          });
 
     }
-    $scope.get_dataphongban('HOPLONG')
+    $scope.get_dataphongban(macongty)
     //end get data phòng ban
     
     $scope.EditLichLamViec = function (id) {
@@ -156,7 +156,7 @@ app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
     $scope.arrayNV = [];
     $scope.showtable_NV = false;
 
-    $http.get(window.location.origin + '/api/Api_NguoidungHL')
+    $http.get(window.location.origin + '/api/Api_NguoidungHL/' + macongty)
      .then(function (response) {
          if (response.data) {
              $scope.arrayNV = response.data;

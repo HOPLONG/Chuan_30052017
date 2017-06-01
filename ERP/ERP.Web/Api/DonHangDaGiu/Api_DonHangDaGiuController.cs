@@ -18,19 +18,19 @@ namespace ERP.Web.Api.DonHangDaGiu
         private ERP_DATABASEEntities db = new ERP_DATABASEEntities();
 
         // List PO da giu chua ban
-        [Route("api/Api_DonHangDaGiu/ListDonHangDaGiuChuaBan/{isadmin}/{username}")]
-        public List<Get_ListDonDaGiuChuaBan_Result> ListDonHangDaGiuChuaBan(bool isadmin, string username)
+        [Route("api/Api_DonHangDaGiu/ListDonHangDaGiuChuaBan/{isadmin}/{username}/{macongty}")]
+        public List<Get_ListDonDaGiuChuaBan_Result> ListDonHangDaGiuChuaBan(bool isadmin, string username,string macongty)
         {
-            var query = db.Database.SqlQuery<Get_ListDonDaGiuChuaBan_Result>("Get_ListDonDaGiuChuaBan @macongty,@username,@isadmin", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<Get_ListDonDaGiuChuaBan_Result>("Get_ListDonDaGiuChuaBan @macongty,@username,@isadmin", new SqlParameter("macongty", macongty), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }
 
         // List PO da giu chua ban
-        [Route("api/Api_DonHangDaGiu/ListDonHangDaGiu/{isadmin}/{username}")]
-        public List<Get_ListDonHangDaGiu_KD_Result> ListDonHangDaGiu(bool isadmin, string username)
+        [Route("api/Api_DonHangDaGiu/ListDonHangDaGiu/{isadmin}/{username}/{macongty}")]
+        public List<Get_ListDonHangDaGiu_KD_Result> ListDonHangDaGiu(bool isadmin, string username,string macongty)
         {
-            var query = db.Database.SqlQuery<Get_ListDonHangDaGiu_KD_Result>("Get_ListDonHangDaGiu_KD @macongty,@username,@isadmin", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<Get_ListDonHangDaGiu_KD_Result>("Get_ListDonHangDaGiu_KD @macongty,@username,@isadmin", new SqlParameter("macongty", macongty), new SqlParameter("username", username), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }

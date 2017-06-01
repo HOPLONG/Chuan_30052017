@@ -19,10 +19,10 @@ namespace ERP.Web.Api.HeThong
         private ERP_DATABASEEntities db = new ERP_DATABASEEntities();
 
         // GET: api/Api_Donhangdukien
-        [Route("api/Api_Donhangdukien/LocDonDuKien/{username}")]
-        public List<GetAll_DonDuKienTheoSale_Result> LocDonDuKien(string username)
+        [Route("api/Api_Donhangdukien/LocDonDuKien/{username}/{macongty}")]
+        public List<GetAll_DonDuKienTheoSale_Result> LocDonDuKien(string username,string macongty)
         {
-            var query = db.Database.SqlQuery<GetAll_DonDuKienTheoSale_Result>("GetAll_DonDuKienTheoSale @macongty, @sale", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("sale", username));
+            var query = db.Database.SqlQuery<GetAll_DonDuKienTheoSale_Result>("GetAll_DonDuKienTheoSale @macongty, @sale", new SqlParameter("macongty", macongty), new SqlParameter("sale", username));
             var result = query.ToList();
             return result;
         }
@@ -104,7 +104,7 @@ namespace ERP.Web.Api.HeThong
             BH_DON_HANG_DU_KIEN dondukien = new BH_DON_HANG_DU_KIEN();
             dondukien.MA_DU_KIEN = AutoMA_DU_KIEN();
             dondukien.NGAY_TAO = DateTime.Today.Date;
-            dondukien.TRUC_THUOC = "HOPLONG";
+            dondukien.TRUC_THUOC = bH_DON_HANG_DU_KIEN.TRUC_THUOC;
             dondukien.SALES_QUAN_LY = bH_DON_HANG_DU_KIEN.SALES_QUAN_LY;
             dondukien.MA_KHACH_HANG = bH_DON_HANG_DU_KIEN.MA_KHACH_HANG;
             dondukien.THANH_CONG = bH_DON_HANG_DU_KIEN.THANH_CONG;

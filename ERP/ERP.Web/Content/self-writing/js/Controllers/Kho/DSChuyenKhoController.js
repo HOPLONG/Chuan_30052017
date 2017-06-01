@@ -1,4 +1,7 @@
 ﻿app.controller('DSPhieuChuyenKhoController', function ($rootScope, $scope, $http, config) {
+    var macongty = $('#macongty').val();
+
+
     $rootScope.title = "Chuyển kho";
     $rootScope.dashboard = false;
     $scope.TitleChuyenKho = "Chuyển kho giữ hàng";
@@ -68,7 +71,7 @@
             tungay: tn.format('DD/MM/YYYY'),
             denngay: dn.format('DD/MM/YYYY')
         }
-        $http.post('/api/Api_ChuyenKho/GetKHO_CHUYEN_KHO/', data)
+        $http.post('/api/Api_ChuyenKho/GetKHO_CHUYEN_KHO/' + macongty, data)
             .then(function (response) {
                 console.log(response);
                 if (typeof (response.data) == "object") {
@@ -89,7 +92,7 @@
     
     //Lấy dữ liệu hàng hóa
     $scope.SearchHH = function (mh) {
-        $http.get(window.location.origin + '/api/Api_XuatNhapKho/GetAllHH/' + 'HOPLONG/' + 'NHAPKHO/' + mh)
+        $http.get(window.location.origin + '/api/Api_XuatNhapKho/GetAllHH/' + macongty + '/' + 'NHAPKHO/' + mh)
          .then(function (response) {
              if (typeof (response.data) == "object") {
                  $scope.Detail.ListHangHoa = response.data;
@@ -106,7 +109,7 @@
 
         $http({
             method: 'GET',
-            url: '/api/Api_KhoHL'
+            url: '/api/Api_KhoHL/' + macongty
         }).then(function (response) {
             if (typeof (response.data) == "object") {
                 $scope.Detail.ListKho = response.data;
@@ -123,7 +126,7 @@
 
     $scope.transfer = function (transfer) {
         $scope.item = transfer;
-        $http.get('/api/Api_ChuyenKho/GetCTPhieuChuyenKho/' + $scope.item.SO_CHUNG_TU)
+        $http.get('/api/Api_ChuyenKho/GetCTPhieuChuyenKho/' + $scope.item.SO_CHUNG_TU + '/' + macongty)
             .then(function (response) {
                 if (typeof (response.data) == "object") {
                     $scope.Detail.ListAdd = response.data;
@@ -231,7 +234,7 @@
             tungay: null,
             denngay: null,
         }
-        $http.post('/api/Api_ChuyenKho/GetKHO_CHUYEN_KHO/', data)
+        $http.post('/api/Api_ChuyenKho/GetKHO_CHUYEN_KHO/' + macongty, data)
                 .then(function (response) {
                     console.log(response);
                     if (typeof (response.data) == "object") {

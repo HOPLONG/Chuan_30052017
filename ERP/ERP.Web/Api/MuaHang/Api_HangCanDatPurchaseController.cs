@@ -27,10 +27,10 @@ namespace ERP.Web.Api.MuaHang
         }
 
         // GET: api/Api_HangCanDatPurchase/5
-        [Route("api/Api_HangCanDatPurchase/GetNhaCungCapTheoPurchase/{isadmin}/{purc}")]
-        public List<GetAll_NhaCungCapCuaPurc_Result> GetNhaCungCapTheoPurchase(bool isadmin, string purc)
+        [Route("api/Api_HangCanDatPurchase/GetNhaCungCapTheoPurchase/{isadmin}/{purc}/{macongty}")]
+        public List<GetAll_NhaCungCapCuaPurc_Result> GetNhaCungCapTheoPurchase(bool isadmin, string purc,string macongty)
         {
-            var query = db.Database.SqlQuery<GetAll_NhaCungCapCuaPurc_Result >("GetAll_NhaCungCapCuaPurc @macongty,@purc,@isadmin", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("purc", purc), new SqlParameter("isadmin", isadmin));
+            var query = db.Database.SqlQuery<GetAll_NhaCungCapCuaPurc_Result >("GetAll_NhaCungCapCuaPurc @macongty,@purc,@isadmin", new SqlParameter("macongty", macongty), new SqlParameter("purc", purc), new SqlParameter("isadmin", isadmin));
             var result = query.ToList();
             return result;
         }

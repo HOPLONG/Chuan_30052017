@@ -1,12 +1,12 @@
 ﻿app.controller('DonHangDaGiuCtrl', function ($scope, $http) {
     var username = $('#username').val();
     var isadmin = $('#isadmin').val();
-
-    $http.post('/api/Api_DonHangDaGiu/ListDonHangDaGiuChuaBan/' + isadmin + '/' + username).then(function (response) {
+    var macongty = $('#macongty').val();
+    $http.post('/api/Api_DonHangDaGiu/ListDonHangDaGiuChuaBan/' + isadmin + '/' + username + '/' + macongty).then(function (response) {
         $scope.list_donhangdagiuchuaban = response.data;
     });
 
-    $http.post('/api/Api_DonHangDaGiu/ListDonHangDaGiu/' + isadmin + '/' + username).then(function (response) {
+    $http.post('/api/Api_DonHangDaGiu/ListDonHangDaGiu/' + isadmin + '/' + username + '/' + macongty).then(function (response) {
         $scope.list_donhangdagiu = response.data;
     });
 

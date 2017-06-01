@@ -25,10 +25,10 @@ namespace ERP.Web.Api.BanHang
 
         // GET: api/Api_POChuaXuLy/5
         [HttpPost]
-        [Route("api/Api_POChuaXuLy/ListPO_CHUA_XU_LY/{salequanly}")]
-        public List<Prod_BH_ListPoChuaXuLy_Result> Get_DON_BAN_HANG(string salequanly)
+        [Route("api/Api_POChuaXuLy/ListPO_CHUA_XU_LY/{salequanly}/{macongty}")]
+        public List<Prod_BH_ListPoChuaXuLy_Result> Get_DON_BAN_HANG(string salequanly,string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_BH_ListPoChuaXuLy_Result>("Prod_BH_ListPoChuaXuLy @macongty,@salequanly", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("salequanly", salequanly));
+            var query = db.Database.SqlQuery<Prod_BH_ListPoChuaXuLy_Result>("Prod_BH_ListPoChuaXuLy @macongty,@salequanly", new SqlParameter("macongty", macongty), new SqlParameter("salequanly", salequanly));
             var result = query.ToList();
             return result;
         }
