@@ -124,7 +124,7 @@
                                 <tr ng-repeat="item in Detail.ListAdd">
                                     <td>
                                         <div>
-                                            <input type="checkbox" ng-click="CreateBH(item,$index,checkPO)" ng-show="item.CAN_GIU_HANG" ng-model="checkPO" ng-disabled="item.DA_BAN == true" ng-checked="item.DA_BAN == true">
+                                            <input type="checkbox" ng-click="CreateBH(item,$index,checkPO)" @*ng-show="item.CAN_GIU_HANG"*@ ng-model="checkPO" ng-disabled="item.DA_BAN == true" ng-checked="item.DA_BAN == true">
                                             <span ng-show="item.DA_BAN">Đã lên phiếu bán hàng</span>
                                             <div ng-if="checkPO">
                                                 <label ng-init="CreateBH(item)"></label>
