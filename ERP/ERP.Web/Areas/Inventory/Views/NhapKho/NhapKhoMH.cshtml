@@ -28,7 +28,7 @@
 <script type="text/javascript" src="~/Content/assets/js/plugins/forms/selects/bootstrap_select.min.js"></script>
 <script type="text/javascript" src="~/Content/assets/js/pages/form_bootstrap_select.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-debounce/0.1.7/angular-debounce.js"></script>
-<script src="~/Content/Scripts/angularjs/controller/NhapKhoMuaHangController .js"></script>
+<script src="~/Content/self-writing/js/Controllers/Kho/NhapKhoMuaHangController .js"></script>
 <style>
     .panel {
         margin-bottom: 1px !important;
@@ -88,7 +88,7 @@
             <h6 class="panel-title" style="text-align:left;">Nhập kho</h6>
         </div>
 
-        <table border='1' style="width:85%" id="themmoikhach">
+        <table border='1' style="width:80%" id="themmoikhach">
             <tr>
                 <td style="width:20%" class="text-left"><label class="form-control" style="font-weight:bold; font-size:16px">Phiếu nhập kho</label></td>
                 <td>
@@ -98,13 +98,13 @@
                 </td>
                 <td colspan="10">
                     <div>
-                        <div class="has-feedback" ng-click="ShowDonHangTra()">
+                        <div class="has-feedback">
                             <input type="text" ng-model="ThamChieu.DonBanHang" placeholder="Click vào đây để tìm đơn bán hàng" class="form-control showtableselect">
                             <div class="form-control-feedback">
                                 <i class="icon-arrow-down5"></i>
                             </div>
                         </div>
-                        <div class="tableselect" id="DonTraHang" style="display:none; width: 30% !important;">
+                        @*<div class="tableselect" id="DonTraHang" style="display:none; width: 30% !important;">
                             <table class="table-hover ">
                                 <thead>
                                     <tr>
@@ -121,7 +121,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div>*@
                     </div>
                 </td>
 
@@ -332,17 +332,21 @@
             </tr>
         </table>
 
-        <table border="1" style="width:15% !important;" id="themmoikhach">
+        <table border="1" style="width:20% !important;" id="themmoikhach">
             <tr>
-                <td class="text-center"><p class="blink_me" style="text-shadow: 1px 1px 5px #91DDFD; font-style:italic; font-size: 14px;text-align:center; color: red; margin-left:10px; margin-top:5px;margin-bottom:5px; font-weight: bold">List hàng về</p></td>
+                <td class="text-center" colspan="2"><p class="blink_me" style="text-shadow: 1px 1px 5px #91DDFD; font-style:italic; font-size: 14px;text-align:center; color: red; margin-left:10px; margin-top:5px;margin-bottom:5px; font-weight: bold">List hàng về</p></td>
             </tr>
             <tr>
-                <td>
+                <td colspan="2">
                     <div style="height:410px;overflow-y:auto;">
                         <table style="width:100%;cursor:pointer;">
+                            <tr>
+                                <th class="text-center" style="width:50%;">Số đề nghị</th>
+                                <th class="text-center" style="width:50%;">Ngày về</th>
+                            </tr>
                             <tr ng-repeat="item in DeNghiMH" ng-click="SelectDonDeNghiNhapKho(item)">
-                                <td colspan="2" class="text-left">{{item.MA_SO_DN}}</td>
-                                <td class="text-left">{{item.NGAY_DN | date:'dd/MM/yyyy'}}</td>
+                                <td class="text-center">{{item.MA_SO_DN}}</td>
+                                <td class="text-center">{{item.NGAY_VE_DU_KIEN | date:'dd/MM/yyyy'}}</td>
                             </tr>
 
                         </table>
@@ -350,22 +354,25 @@
 
                 </td>
             </tr>
+           
             <tr>
-                <td class="text-left"><input type="text" datepicker ng-model="GeneralInfo.Ngay" placeholder="Ngày cần tìm"></td>
+                <td class="text-center" colspan="2"><p style="text-shadow: 1px 1px 5px #91DDFD; font-style:italic; font-size: 14px;text-align:center; color: #64B5F6; margin-left:10px; margin-top:5px;margin-bottom:5px; font-weight: bold">Tổng list hàng chưa về</p></td>
             </tr>
             <tr>
+                <td class="text-left"><input type="text" datepicker ng-model="GeneralInfo.Ngay" placeholder="Nhập ngày cần tìm....."></td>
                 <td><button class="btn btn-primary" ng-click="SearchNgayHangVe(GeneralInfo.Ngay)">Lấy dữ liệu</button></td>
             </tr>
             <tr>
-                <td class="text-center"><p style="text-shadow: 1px 1px 5px #91DDFD; font-style:italic; font-size: 14px;text-align:center; color: #64B5F6; margin-left:10px; margin-top:5px;margin-bottom:5px; font-weight: bold">Tổng list hàng chưa về</p></td>
-            </tr>
-            <tr>
-                <td>
+                <td colspan="2">
                     <div style="height:200px; overflow-y:auto;">
                         <table style="width:100%;">
+                            <tr>
+                                <th class="text-center" style="width:50%;">Số đề nghị</th>
+                                <th class="text-center" style="width:50%;">Ngày về dự kiến</th>
+                            </tr>
                             <tr ng-repeat="item in ListSapVe">
-                                <td colspan="2" class="text-left">{{item.MA_SO_DN}}</td>
-                                <td class="text-left">{{item.NGAY_VE_DU_KIEN | date:'dd/MM/yyyy'}}</td>
+                                <td class="text-center">{{item.MA_SO_DN}}</td>
+                                <td class="text-center">{{item.NGAY_VE_DU_KIEN | date:'dd/MM/yyyy'}}</td>
 
                             </tr>
                         </table>

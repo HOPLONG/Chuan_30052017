@@ -129,28 +129,15 @@ namespace ERP.Web.Api.Kho
                 kg.MA_KHACH_HANG = khogiuhang.MA_KHACH_HANG;
                 kg.NGAY_GIU = DateTime.Today.Date;
                 kg.MA_HANG = khogiuhang.MA_HANG;
-                kg.SL_GIU = khogiuhang.SL_GIU;
+                kg.SL_GIU = 0;
                 kg.GIU_PO = Convert.ToBoolean(khogiuhang.GIU_PO);
                 kg.TRUC_THUOC = khogiuhang.TRUC_THUOC;
                 kg.ID_CT_PO = khogiuhang.ID_CT_PO;
                 db.KHO_GIU_HANG.Add(kg);
 
 
-            TONKHO_HOPLONG newhanggiu = db.TONKHO_HOPLONG.Where(x => x.MA_HANG == khogiuhang.MA_HANG && x.MA_KHO_CON == "IVHOPLONG05").FirstOrDefault();
-            if (newhanggiu == null)
-            {
-                TONKHO_HOPLONG soluonggiumoi = new TONKHO_HOPLONG();
-                soluonggiumoi.MA_HANG = khogiuhang.MA_HANG;
-                soluonggiumoi.MA_KHO_CON = "IVHOPLONG05";
-                soluonggiumoi.SL_HOPLONG = Convert.ToInt32(khogiuhang.SL_GIU);
-                db.TONKHO_HOPLONG.Add(soluonggiumoi);
-                db.SaveChanges();
-            }
-            else
-            {
-                newhanggiu.SL_HOPLONG += Convert.ToInt32(khogiuhang.SL_GIU);
-            }
-
+          
+            int sl_can_giu;
             foreach (TonKho item in khogiuhang.TonKho)
             {
                 //Cập nhật hàng tồn
@@ -158,7 +145,54 @@ namespace ERP.Web.Api.Kho
                 
                 if(newHangTon != null)
                 {
-                    newHangTon.SL_HOPLONG = newHangTon.SL_HOPLONG - Convert.ToInt32(item.TON_TANG_2) - Convert.ToInt32(item.TON_TANG_3) - Convert.ToInt32(item.TON_TANG_4);
+                    if( (khogiuhang.SL_GIU - khogiuhang.SL_DA_GIU) > (Convert.ToInt32(item.TON_TANG_2) + Convert.ToInt32(item.TON_TANG_3) + Convert.ToInt32(item.TON_TANG_4)))
+                    {
+                        sl_can_giu = khogiuhang.SL_GIU - khogiuhang.SL_DA_GIU;
+                        khogiuhang.SL_DA_GIU = khogiuhang.SL_DA_GIU + (Convert.ToInt32(item.TON_TANG_2) + Convert.ToInt32(item.TON_TANG_3) + Convert.ToInt32(item.TON_TANG_4));
+                        kg.SL_GIU = khogiuhang.SL_DA_GIU;
+
+                        TONKHO_HOPLONG newhanggiu = db.TONKHO_HOPLONG.Where(x => x.MA_HANG == khogiuhang.MA_HANG && x.MA_KHO_CON == "IVHOPLONG05").FirstOrDefault();
+                        if (newhanggiu == null)
+                        {
+                            TONKHO_HOPLONG soluonggiumoi = new TONKHO_HOPLONG();
+                            soluonggiumoi.MA_HANG = khogiuhang.MA_HANG;
+                            soluonggiumoi.MA_KHO_CON = "IVHOPLONG05";
+                            soluonggiumoi.SL_HOPLONG = (Convert.ToInt32(item.TON_TANG_2) + Convert.ToInt32(item.TON_TANG_3) + Convert.ToInt32(item.TON_TANG_4));
+                            db.TONKHO_HOPLONG.Add(soluonggiumoi);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            newhanggiu.SL_HOPLONG += (Convert.ToInt32(item.TON_TANG_2) + Convert.ToInt32(item.TON_TANG_3) + Convert.ToInt32(item.TON_TANG_4));
+                        }
+
+                        newHangTon.SL_HOPLONG = 0;
+
+
+                    }
+                    else
+                    {
+                        sl_can_giu = khogiuhang.SL_GIU - khogiuhang.SL_DA_GIU;
+                        khogiuhang.SL_DA_GIU = khogiuhang.SL_DA_GIU + sl_can_giu;
+                        kg.SL_GIU = khogiuhang.SL_DA_GIU;
+
+                        TONKHO_HOPLONG newhanggiu = db.TONKHO_HOPLONG.Where(x => x.MA_HANG == khogiuhang.MA_HANG && x.MA_KHO_CON == "IVHOPLONG05").FirstOrDefault();
+                        if (newhanggiu == null)
+                        {
+                            TONKHO_HOPLONG soluonggiumoi = new TONKHO_HOPLONG();
+                            soluonggiumoi.MA_HANG = khogiuhang.MA_HANG;
+                            soluonggiumoi.MA_KHO_CON = "IVHOPLONG05";
+                            soluonggiumoi.SL_HOPLONG = sl_can_giu;
+                            db.TONKHO_HOPLONG.Add(soluonggiumoi);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            newhanggiu.SL_HOPLONG += sl_can_giu;
+                        }
+
+                        newHangTon.SL_HOPLONG = (Convert.ToInt32(item.TON_TANG_2) + Convert.ToInt32(item.TON_TANG_3) + Convert.ToInt32(item.TON_TANG_4)) - sl_can_giu;
+                    }
                 }
                 //if (newHangTon == null || newHangTon.SL_HOPLONG < khogiuhang.SL_GIU)
                 //{
