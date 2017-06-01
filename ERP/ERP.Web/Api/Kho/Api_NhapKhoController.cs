@@ -28,24 +28,24 @@ namespace ERP.Web.Api.Kho
             public List<GetChiTietPhieuXuatKho_Result> ctxuatkho { set; get; }
         }
         // GET: api/Api_NhapKho
-        [Route("api/Api_NhapKho/GetDetailKHO_NHAP_KHO/{ChungTu}")]
-        public GetHangtra GetDetailKHO_NHAP_KHO(string ChungTu)
+        [Route("api/Api_NhapKho/GetDetailKHO_NHAP_KHO/{ChungTu}/{macongty}")]
+        public GetHangtra GetDetailKHO_NHAP_KHO(string ChungTu,string macongty)
         {
 
             //Lưu thông tin nhập kho
             GetHangtra xk = new GetHangtra();
-            var query = db.Database.SqlQuery<GetPhieuXuatKho_Result>("GetPhieuXuatKho @sochungtu, @macongty", new SqlParameter("sochungtu", ChungTu), new SqlParameter("macongty", "HOPLONG"));
-            var data = db.Database.SqlQuery<GetChiTietPhieuXuatKho_Result>("GetChiTietPhieuXuatKho @sochungtu, @macongty", new SqlParameter("sochungtu", ChungTu), new SqlParameter("macongty", "HOPLONG"));
+            var query = db.Database.SqlQuery<GetPhieuXuatKho_Result>("GetPhieuXuatKho @sochungtu, @macongty", new SqlParameter("sochungtu", ChungTu), new SqlParameter("macongty", macongty));
+            var data = db.Database.SqlQuery<GetChiTietPhieuXuatKho_Result>("GetChiTietPhieuXuatKho @sochungtu, @macongty", new SqlParameter("sochungtu", ChungTu), new SqlParameter("macongty", macongty));
             xk.xuatkho = query.FirstOrDefault();
             xk.ctxuatkho = data.ToList();
             return xk;
 
         }
 
-        [Route("api/Api_NhapKho/GetDSPhieuNhapKho")]
-        public List<GetAll_PhieuNhapKho_Result> GetDSPhieuNhapKho()
+        [Route("api/Api_NhapKho/GetDSPhieuNhapKho/{macongty}")]
+        public List<GetAll_PhieuNhapKho_Result> GetDSPhieuNhapKho(string macongty)
         {
-            var query = db.Database.SqlQuery<GetAll_PhieuNhapKho_Result>("GetAll_PhieuNhapKho @macongty", new SqlParameter("macongty", "HOPLONG"));
+            var query = db.Database.SqlQuery<GetAll_PhieuNhapKho_Result>("GetAll_PhieuNhapKho @macongty", new SqlParameter("macongty", macongty));
             return query.ToList();
         }
 
@@ -91,7 +91,7 @@ namespace ERP.Web.Api.Kho
             nk.NGUOI_LAP_PHIEU = kho_NhapKho.NGUOI_LAP_PHIEU;
             nk.MA_DOI_TUONG = kho_NhapKho.MA_DOI_TUONG;
             nk.DIEN_GIAI = kho_NhapKho.DIEN_GIAI;
-            nk.TRUC_THUOC = "HOPLONG";
+            nk.TRUC_THUOC = kho_NhapKho.TRUC_THUOC;
             nk.LOAI_NHAP_KHO = kho_NhapKho.LOAI_NHAP_KHO;
             //Lưu thông tin tham chiếu
             if (kho_NhapKho.ThamChieu.Count > 0)
@@ -211,7 +211,7 @@ namespace ERP.Web.Api.Kho
             nk.NGUOI_LAP_PHIEU = kho_NhapKho.NGUOI_LAP_PHIEU;
             nk.MA_DOI_TUONG = kho_NhapKho.MA_DOI_TUONG;
             nk.DIEN_GIAI = kho_NhapKho.DIEN_GIAI;
-            nk.TRUC_THUOC = "HOPLONG";
+            nk.TRUC_THUOC = kho_NhapKho.TRUC_THUOC;
             nk.LOAI_NHAP_KHO = kho_NhapKho.LOAI_NHAP_KHO;
             db.KHO_NHAP_KHO.Add(nk);
 
@@ -276,7 +276,7 @@ namespace ERP.Web.Api.Kho
                         sonhatky.DOI_TUONG = nk.MA_DOI_TUONG;
                     }
                   
-                    sonhatky.TRUC_THUOC = "HOPLONG";
+                    sonhatky.TRUC_THUOC = nk.TRUC_THUOC;
                     sonhatky.DIEN_GIAI_CHUNG = nk.DIEN_GIAI;
                     sonhatky.DIEN_GIAI_CHI_TIET = nk.DIEN_GIAI;
                     sonhatky.TAI_KHOAN_HACH_TOAN = newItem.TK_NO;
@@ -296,7 +296,7 @@ namespace ERP.Web.Api.Kho
                     {
                         sonhatky1.DOI_TUONG = nk.MA_DOI_TUONG;
                     }
-                    sonhatky1.TRUC_THUOC = "HOPLONG";
+                    sonhatky1.TRUC_THUOC = nk.TRUC_THUOC;
                     sonhatky1.DIEN_GIAI_CHUNG = nk.DIEN_GIAI;
                     sonhatky1.DIEN_GIAI_CHI_TIET = nk.DIEN_GIAI;
                     sonhatky1.TAI_KHOAN_HACH_TOAN = newItem.TK_CO;

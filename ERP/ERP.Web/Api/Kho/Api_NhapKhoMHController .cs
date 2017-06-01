@@ -57,7 +57,7 @@ namespace ERP.Web.Api.Kho
             nk.NGUOI_LAP_PHIEU = kho_NhapKho.NGUOI_LAP_PHIEU;
             nk.MA_DOI_TUONG = kho_NhapKho.MA_DOI_TUONG;
             nk.DIEN_GIAI = kho_NhapKho.DIEN_GIAI;
-            nk.TRUC_THUOC = "HOPLONG";
+            nk.TRUC_THUOC = kho_NhapKho.TRUC_THUOC;
             nk.LOAI_NHAP_KHO = kho_NhapKho.LOAI_NHAP_KHO;
             //Lưu thông tin tham chiếu
             if (kho_NhapKho.ThamChieu.Count > 0)
@@ -178,7 +178,7 @@ namespace ERP.Web.Api.Kho
             nk.MA_DOI_TUONG = kho_NhapKhoMH.MA_DOI_TUONG;
             nk.NHAN_VIEN_MUA_HANG = kho_NhapKhoMH.NHAN_VIEN_MUA_HANG;
             nk.DIEN_GIAI = kho_NhapKhoMH.DIEN_GIAI;
-            nk.TRUC_THUOC = "HOPLONG";
+            nk.TRUC_THUOC = kho_NhapKhoMH.TRUC_THUOC;
             nk.LOAI_NHAP_KHO = kho_NhapKhoMH.LOAI_NHAP_KHO;
             db.KHO_NHAP_KHO.Add(nk);
 
@@ -399,7 +399,7 @@ namespace ERP.Web.Api.Kho
                         sonhatky.DOI_TUONG = nk.NHAN_VIEN_MUA_HANG;
                     }
                   
-                    sonhatky.TRUC_THUOC = "HOPLONG";
+                    sonhatky.TRUC_THUOC = nk.TRUC_THUOC;
                     sonhatky.DIEN_GIAI_CHUNG = nk.DIEN_GIAI;
                     sonhatky.DIEN_GIAI_CHI_TIET = nk.DIEN_GIAI;
                     sonhatky.TAI_KHOAN_HACH_TOAN = newItem.TK_NO;
@@ -419,7 +419,7 @@ namespace ERP.Web.Api.Kho
                     {
                         sonhatky1.DOI_TUONG = nk.NHAN_VIEN_MUA_HANG;
                     }
-                    sonhatky1.TRUC_THUOC = "HOPLONG";
+                    sonhatky1.TRUC_THUOC = nk.TRUC_THUOC;
                     sonhatky1.DIEN_GIAI_CHUNG = nk.DIEN_GIAI;
                     sonhatky1.DIEN_GIAI_CHI_TIET = nk.DIEN_GIAI;
                     sonhatky1.TAI_KHOAN_HACH_TOAN = newItem.TK_CO;

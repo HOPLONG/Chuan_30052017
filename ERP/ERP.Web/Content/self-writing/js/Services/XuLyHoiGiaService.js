@@ -1,6 +1,6 @@
 ﻿app.service('XuLyHoiGiaService', function ($http) {
-    this.get_xulyhoigia = function (data) {
-        return $http.get('/api/Api_XuLyYeuCauHoiGia/GetMH_XL_YEU_CAU_HOI_GIA',data).then(function (response) {
+    this.get_xulyhoigia = function (macongty,data) {
+        return $http.get('/api/Api_XuLyYeuCauHoiGia/GetMH_XL_YEU_CAU_HOI_GIA/' + macongty,data).then(function (response) {
             return response.data;
         });
     };

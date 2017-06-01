@@ -4,8 +4,8 @@
             return response.data;
         });
     };
-    this.load_baogiatheodukien = function (madk) {
-        return $http.get('/api/Api_BaoGia/BaoGiaTheoDuKien/' + madk).then(function (response) {
+    this.load_baogiatheodukien = function (madk,macongty) {
+        return $http.get('/api/Api_BaoGia/BaoGiaTheoDuKien/' + madk + '/' + macongty).then(function (response) {
             return response.data;
         });
     };

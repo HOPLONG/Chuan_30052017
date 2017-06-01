@@ -1,6 +1,9 @@
 ﻿
 app.controller('PhieuBaoGiaCtrl', function (PhieuBaoGiaService, $scope, $http) {
     //Mảng chi tiết báo giá
+
+    var macongty = $('#macongty').val();
+
     $scope.Detail = {
         ListAdd: []
     }
@@ -55,7 +58,7 @@ app.controller('PhieuBaoGiaCtrl', function (PhieuBaoGiaService, $scope, $http) {
         url = url.substring(url.lastIndexOf("/") + 1, url.length);
         //return
 
-        PhieuBaoGiaService.get_phieubaogia(url).then(function (a) {
+        PhieuBaoGiaService.get_phieubaogia(url,macongty).then(function (a) {
             $scope.list_duyetbaogia = a;
 
 

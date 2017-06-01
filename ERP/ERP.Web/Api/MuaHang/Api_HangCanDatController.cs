@@ -25,10 +25,10 @@ namespace ERP.Web.Api.MuaHang
 
         // GET: api/Api_HangCanDat/5
         [ResponseType(typeof(BH_DON_HANG_PO))]
-        [Route("api/Api_HangCanDat/GetHangCanDat/{isadmin}/{purchase}")]
-        public List<Prod_HangCanDat_Result> GetHangCanDat(bool isadmin,string purchase)
+        [Route("api/Api_HangCanDat/GetHangCanDat/{isadmin}/{purchase}/{macongty}")]
+        public List<Prod_HangCanDat_Result> GetHangCanDat(bool isadmin,string purchase,string macongty)
         {
-            var query = db.Database.SqlQuery<Prod_HangCanDat_Result>("Prod_HangCanDat @macongty,@isadmin,@purchase", new SqlParameter("macongty", "HOPLONG"), new SqlParameter("isadmin", isadmin), new SqlParameter("purchase", purchase));
+            var query = db.Database.SqlQuery<Prod_HangCanDat_Result>("Prod_HangCanDat @macongty,@isadmin,@purchase", new SqlParameter("macongty", macongty), new SqlParameter("isadmin", isadmin), new SqlParameter("purchase", purchase));
             var result = query.ToList();
             return result;
         }

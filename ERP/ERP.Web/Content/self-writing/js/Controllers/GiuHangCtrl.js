@@ -72,7 +72,7 @@ app.controller('GiuHangHopLongCtrl', function ($scope, $http) {
         }
         //Lấy dữ liệu hàng hóa
         $scope.SearchHH = function (mh) {
-            $http.get(window.location.origin + '/api/Api_XuatNhapKho/GetAllHH/' + 'HOPLONG/' + 'NHAPKHO/' + mh)
+            $http.get(window.location.origin + '/api/Api_XuatNhapKho/GetAllHH/' + macongty + '/' + 'NHAPKHO/' + mh)
              .then(function (response) {
                  if (typeof (response.data) == "object") {
                      $scope.Detail.ListHangHoa = response.data;

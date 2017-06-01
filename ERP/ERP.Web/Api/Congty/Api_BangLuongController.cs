@@ -92,7 +92,7 @@ namespace ERP.Web.Api.HeThong
         #endregion
 
 
-
+        int confirm;
 
 
 
@@ -144,16 +144,21 @@ namespace ERP.Web.Api.HeThong
         }
 
         // GET: api/Api_BangLuong/5
-        [ResponseType(typeof(CCTC_BANG_LUONG))]
-        public IHttpActionResult GetCCTC_BANG_LUONG()
+        [Route("api/Api_BangLuong/KiemtraMK/{username}/{password}")]
+        public IHttpActionResult KiemtraMK(string username,string password)
         {
-            CCTC_BANG_LUONG cCTC_BANG_LUONG = db.CCTC_BANG_LUONG.Find();
-            if (cCTC_BANG_LUONG == null)
+            
+            var query = db.HT_NGUOI_DUNG.Where(x => x.USERNAME == username && x.PASSWORD == password).FirstOrDefault();
+            if(query != null)
             {
-                return NotFound();
+                confirm = 1;
+            }
+            else
+            {
+                confirm = 0;
             }
 
-            return Ok(cCTC_BANG_LUONG);
+            return Ok(confirm);
         }
 
         // PUT: api/Api_BangLuong/5

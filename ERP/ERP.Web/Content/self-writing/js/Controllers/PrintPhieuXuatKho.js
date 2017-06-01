@@ -1,5 +1,6 @@
 ﻿app.controller('PrintPhieuXuatKhoCtrl', function ($scope, $http) {
     //this gets the full url
+    var macongty = $('#macongty').val();
     var url = document.location.href;
     //this removes the anchor at the end, if there is one
     url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
@@ -14,7 +15,7 @@
     $scope.getdataphieuxuatkho = function (sochungtu) {
         var so_luong = 0;
         var tong_tien = 0;
-        $http.post(window.location.origin + '/api/Api_XuatKho/PrintPhieuXuatKho/' + sochungtu)
+        $http.post(window.location.origin + '/api/Api_XuatKho/PrintPhieuXuatKho/' + sochungtu + '/' + macongty)
          .then(function (response) {
              if (response.data) {
                  $scope.thongtinbaogia = response.data;

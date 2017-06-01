@@ -1,4 +1,7 @@
 ﻿app.controller('DSPhieuNhapKhoController', function ($rootScope, $scope, $http, config) {
+
+    var macongty = $('#macongty').val();
+
     $rootScope.PageSetting = {
         PageCount: 0,
         NumberPerPage: 10,
@@ -124,7 +127,7 @@
             tungay: tn,
             denngay: dn
         }
-        $http.post('/api/Api_XuatNhapKho/GetAllDSPhieuNhapKho/' +1, data)
+        $http.post('/api/Api_XuatNhapKho/GetAllDSPhieuNhapKho/' +1 + '/' + macongty, data)
             .then(function (response) {
                 console.log(response);
                 if (typeof (response.data) == "object") {
@@ -145,7 +148,7 @@
     
     //Lấy dữ liệu hàng hóa
     $scope.SearchHH = function (mh) {
-        $http.get(window.location.origin + '/api/Api_XuatNhapKho/GetAllHH/' + 'HOPLONG/' + 'NHAPKHO/' + mh)
+        $http.get(window.location.origin + '/api/Api_XuatNhapKho/GetAllHH/' + macongty + '/' + 'NHAPKHO/' + mh)
          .then(function (response) {
              if (typeof (response.data) == "object") {
                  $scope.Detail.ListHangHoa = response.data;
@@ -162,7 +165,7 @@
 
         $http({
             method: 'GET',
-            url: '/api/Api_KhoHL'
+            url: '/api/Api_KhoHL/' + macongty
         }).then(function (response) {
             if (typeof (response.data) == "object") {
                 $scope.Detail.ListKho = response.data;
@@ -179,7 +182,7 @@
 
     $scope.transfer = function (transfer) {
         $scope.item = transfer;
-        $http.get('/api/Api_KHO_CT_NHAP_KHO/GetCTPhieuNhapKho/' + $scope.item.SO_CHUNG_TU)
+        $http.get('/api/Api_KHO_CT_NHAP_KHO/GetCTPhieuNhapKho/' + $scope.item.SO_CHUNG_TU + '/' + macongty)
             .then(function (response) {
                 if (typeof (response.data) == "object") {
                     $scope.Detail.ListAdd = response.data;
@@ -382,7 +385,7 @@
 
             }
 
-            $http.post('/api/Api_XuatNhapKho/SearchByTypeWithDate', data)
+            $http.post('/api/Api_XuatNhapKho/SearchByTypeWithDate/' + macongty, data)
             .then(function (response) {
                 console.log(response);
                 if (typeof (response.data) == "object") {
@@ -407,7 +410,7 @@
 
             }
 
-            $http.post('/api/Api_XuatNhapKho/SearchByDoiTuongWithDate', data)
+            $http.post('/api/Api_XuatNhapKho/SearchByDoiTuongWithDate/' + macongty, data)
             .then(function (response) {
                 console.log(response);
                 if (typeof (response.data) == "object") {
@@ -425,7 +428,7 @@
         }
         else {
             var mact = $scope.MaChungTu.Search;
-            $http.get('/api/Api_XuatNhapKho/GetbyMa/' + mact)
+            $http.get('/api/Api_XuatNhapKho/GetbyMa/' + mact + '/' + macongty)
             .then(function (response) {
                 console.log(response);
                 if (typeof (response.data) == "object") {
@@ -597,7 +600,7 @@
                 tungay: $scope.DSNhapKho.From,
                 denngay: $scope.DSNhapKho.To
             }
-        $http.post('/api/Api_XuatNhapKho/GetAllDSPhieuNhapKho/' + pageNumber, data)
+        $http.post('/api/Api_XuatNhapKho/GetAllDSPhieuNhapKho/' + pageNumber + '/' + macongty, data)
                 .then(function (response) {
                     console.log(response);
                     if (typeof (response.data) == "object") {
@@ -633,7 +636,7 @@
             tungay: "",
             denngay: "",
         }
-        $http.post('/api/Api_XuatNhapKho/GetAllDSPhieuNhapKho/' + 1, data)
+        $http.post('/api/Api_XuatNhapKho/GetAllDSPhieuNhapKho/' + 1 + '/' + macongty, data)
                 .then(function (response) {
                     console.log(response);
                     if (typeof (response.data) == "object") {

@@ -1,6 +1,6 @@
 ﻿app.service('PhieuBaoGiaService', function ($http) {
-    this.get_phieubaogia = function (so_bao_gia) {
-        return $http.get('/api/Api_PhieuBaoGia/GetThongTinChung/' + so_bao_gia).then(function (response) {
+    this.get_phieubaogia = function (so_bao_gia,macongty) {
+        return $http.get('/api/Api_PhieuBaoGia/GetThongTinChung/' + so_bao_gia + '/' + macongty).then(function (response) {
             return response.data;
         });
     };

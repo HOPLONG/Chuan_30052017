@@ -1,5 +1,7 @@
 ﻿
 app.controller('NhapKhoMHController', function ($rootScope, $scope, $http, config) {
+    var macongty = $('#macongty').val();
+
     $rootScope.PageSetting = {
         PageCount: 0,
         NumberPerPage: 10,
@@ -130,7 +132,7 @@ app.controller('NhapKhoMHController', function ($rootScope, $scope, $http, confi
 
     //Lấy dữ liệu hàng hóa
     $scope.SearchHH = function (mh) {
-        $http.get(window.location.origin + '/api/Api_XuatNhapKho/GetAllHH/' + 'HOPLONG/' + 'NHAPKHO/' + mh)
+        $http.get(window.location.origin + '/api/Api_XuatNhapKho/GetAllHH/' + macongty + '/' + 'NHAPKHO/' + mh)
          .then(function (response) {
              if (typeof (response.data) == "object") {
                  $scope.Detail.ListHangHoa = response.data;
@@ -152,7 +154,7 @@ app.controller('NhapKhoMHController', function ($rootScope, $scope, $http, confi
 
         $http({
             method: 'GET',
-            url: '/api/Api_KhoHL'
+            url: '/api/Api_KhoHL/' + macongty
         }).then(function (response) {
             if (typeof (response.data) == "object") {
                 $scope.Detail.ListKho = response.data;
@@ -419,7 +421,7 @@ app.controller('NhapKhoMHController', function ($rootScope, $scope, $http, confi
                 isadmin: IsAdmin
             }
            
-            $http.post('/api/Api_MH_DE_NGHI_NHAP_KHO/GetListHangSapVe/', data)
+            $http.post('/api/Api_MH_DE_NGHI_NHAP_KHO/GetListHangSapVe/' + macongty, data)
                 .then(function (response) {
                     console.log(response);
                     if (typeof (response.data) == "object") {
@@ -441,7 +443,7 @@ app.controller('NhapKhoMHController', function ($rootScope, $scope, $http, confi
                 username: Username,
                 isadmin: IsAdmin
             }
-            $http.post('/api/Api_MH_DE_NGHI_NHAP_KHO/GetListHangSapVe/', data)
+            $http.post('/api/Api_MH_DE_NGHI_NHAP_KHO/GetListHangSapVe/' + macongty, data)
                 .then(function (response) {
                     console.log(response);
                     if (typeof (response.data) == "object") {
@@ -520,7 +522,7 @@ app.controller('NhapKhoMHController', function ($rootScope, $scope, $http, confi
             $("#Input_MaChungTu").css({ "display": "none" });
             $("#DataGiaTriChungTu").css({ "display": "block" });
             $scope.DoiTuongFind = function () {
-                $http.post(window.location.origin + '/api/Api_XuatNhapKho/GetAllDoiTuong/' + $scope.GiaTriChungTu.Search)
+                $http.post(window.location.origin + '/api/Api_XuatNhapKho/GetAllDoiTuong/' + $scope.GiaTriChungTu.Search + '/' + macongty)
                  .then(function (response) {
                      if (typeof (response.data) == "object") {
                          var data = response.data.DoiTuong;
@@ -572,7 +574,7 @@ app.controller('NhapKhoMHController', function ($rootScope, $scope, $http, confi
 
             }
 
-            $http.post('/api/Api_XuatNhapKho/SearchByTypeWithDate', data)
+            $http.post('/api/Api_XuatNhapKho/SearchByTypeWithDate/' + macongty, data)
             .then(function (response) {
                 console.log(response);
                 if (typeof (response.data) == "object") {
@@ -617,7 +619,7 @@ app.controller('NhapKhoMHController', function ($rootScope, $scope, $http, confi
 
             }
 
-            $http.post('/api/Api_XuatNhapKho/SearchByDoiTuongWithDate', data)
+            $http.post('/api/Api_XuatNhapKho/SearchByDoiTuongWithDate/' + macongty, data)
             .then(function (response) {
                 console.log(response);
                 if (typeof (response.data) == "object") {
@@ -635,7 +637,7 @@ app.controller('NhapKhoMHController', function ($rootScope, $scope, $http, confi
         }
         else {
             var mact = $scope.MaChungTu.Search;
-            $http.get('/api/Api_XuatNhapKho/GetbyMa/' + mact)
+            $http.get('/api/Api_XuatNhapKho/GetbyMa/' + mact + '/' + macongty)
             .then(function (response) {
                 console.log(response);
                 if (typeof (response.data) == "object") {
