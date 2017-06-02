@@ -1,13 +1,16 @@
-﻿<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+﻿<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="~/Content/download/pnotify.custom.min.css" rel="stylesheet" />
 <link href="~/Content/self-writing/css/Feedback.css" rel="stylesheet" />
+<script src="~/Content/self-writing/js/Controllers/RouteCtrl.js"></script>
 <script src="~/Content/Scripts/moment.min.js"></script>
 <script src="~/Content/assets/js/plugins/notifications/pnotify.min.js"></script>
 <link href="~/Content/self-writing/css/MetroUI.css" rel="stylesheet" />
 <script src="~/Content/self-writing/js/Metro UI.js"></script>
+<script src="~/Content/self-writing/js/Controllers/HeSoGiaBanCtrl.js"></script>
 <script src="~/Content/self-writing/js/Controllers/FeedBack/FeedBackCtrl.js"></script>
 
-<div class="container dynamicTile" ng-app="myApp" ng-controller="chitietbaivietCtrl">
+@*<div class="container dynamicTile" ng-app="myApp" ng-controller="chitietbaivietCtrl">
     <style>
         .AUTONICS {
             background-color: red !important;
@@ -18,7 +21,7 @@
             <div id="tile1" class="tile">
 
                 <div class="carousel slide" data-ride="carousel">
-                    <!-- Wrapper for slides -->
+                    
                     <div class="carousel-inner">
                         <div class="item active" style="height: 269px !important">
                             <a href="/Home/Details/{{item.MA_BAI_VIET}}"><img ng-src="~/Content/Images/BaiViet/{{item.ANH_BAI_VIET}}" /></a>
@@ -34,6 +37,19 @@
         </div>
 
     </div>
+</div>*@
+<div ng-app="myApp"
+     ng-controller="HomeThongBaoSaleCtrl"
+     layout="column">
+
+    <md-tabs md-stretch-tabs
+             md-selected="selectedIndex">
+        <md-tab label="Bài viết"></md-tab>
+        <md-tab label="Hệ số giá bán"></md-tab>
+    </md-tabs>
+
+    <div id="content" ui-view flex> </div>
+
 </div>
 @* Phản hồi Sale *@
 <div id="feedback-main"  ng-app="myApp" ng-controller="FeedBackCtrl">

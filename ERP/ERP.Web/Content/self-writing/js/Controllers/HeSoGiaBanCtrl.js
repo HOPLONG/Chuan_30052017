@@ -1,4 +1,4 @@
-﻿app.controller('HeSoGiaBanCtrl', function ($http, $scope) {
+﻿app.controller('HeSoGiaBanCtrl', function ($http, $scope,$filter) {
     var username = $('#username').val();
     var isadmin = $('#isadmin').val();
 
@@ -74,6 +74,21 @@
     };
 
     $scope.date = new Date();
+
+    var myDate = new Date();
+    var myWeek = $filter('date')(myDate, 'ww');
+    var currentYear = (new Date()).getFullYear();
+    
+    $scope.load_hesogiaban = function () {
+        var myDate = new Date();
+        var tuan = $filter('date')(myDate, 'ww');
+        var nam = (new Date()).getFullYear();
+
+        $http.post('/api/Api_HeSoGiaBan/ListHeSoGiaBan/' + tuan + '/' + nam).then(function (response) {
+            $scope.ds_hesogiaban = response.data;
+        });
+    };
+    $scope.load_hesogiaban();
 });
 
 app.directive('date', function (dateFilter) {

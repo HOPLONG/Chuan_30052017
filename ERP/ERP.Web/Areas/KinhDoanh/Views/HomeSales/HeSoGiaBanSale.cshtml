@@ -1,0 +1,42 @@
+﻿
+@{ Layout = null;
+}
+
+<div class="content dynamicTile" ng-app="myApp" ng-controller="HeSoGiaBanCtrl">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tuần</th>
+                <th>Năm</th>
+                <th>Mã nhóm hàng</th>
+                <th>Ngày điều chỉnh</th>
+                <th>Dòng Seri</th>
+                <th>Loại khách lẻ</th>
+                <th>Loại khách mua nhiều</th>
+                <th>Khách đại lý</th>
+                <th>Khách không lấy VAT</th>
+                <th>Số lượng mua trên 30</th>
+                <th>Số lượng mua trên 100</th>
+                <th>Số lượng mua trên 200</th>
+                <th>Ghi chú</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in ds_hesogiaban">
+                <td>{{item.TUAN}}</td>
+                <td>{{item.NAM}}</td>
+                <td>{{item.MA_NHOM_HANG}}</td>
+                <td>{{item.NGAY_DIEU_CHINH | date: 'dd/MM/yyyy'}}</td>
+                <td>{{item.DONG_SERI}}</td>
+                <td>{{item.LOAI_KHACH_LE}}</td>
+                <td>{{item.LOAI_KHACH_MUA_NHIEU}}</td>
+                <td>{{item.KHACH_DAI_LY}}</td>
+                <td>{{item.KHACH_KHONG_LAY_VAT}}</td>
+                <td>{{item.SL_MUA_HON_30}}</td>
+                <td>{{item.SL_MUA_HON_100}}</td>
+                <td>{{item.SL_MUA_HON_200}}</td>
+                <td>{{item.GHI_CHU}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
