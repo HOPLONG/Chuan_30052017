@@ -14,7 +14,7 @@
           <Property Name="MA_DU_KIEN" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="MA_KHACH_HANG" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="LIEN_HE_KHACH_HANG" Type="int" Nullable="false" />
-          <Property Name="PHUONG_THUC_THANH_TOAN" Type="nvarchar" MaxLength="521" />
+          <Property Name="PHUONG_THUC_THANH_TOAN" Type="nvarchar" MaxLength="521" Nullable="false" />
           <Property Name="HAN_THANH_TOAN" Type="nvarchar" MaxLength="128" />
           <Property Name="HIEU_LUC_BAO_GIA" Type="int" />
           <Property Name="DIEU_KHOAN_THANH_TOAN" Type="nvarchar" MaxLength="128" />
@@ -5577,6 +5577,12 @@
           <Parameter Name="isadmin" Type="bit" Mode="In" />
           <Parameter Name="tukhoa" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="HopLong_LocKHTheoTungSale" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sale" Type="varchar" Mode="In" />
+          <Parameter Name="macongty" Type="varchar" Mode="In" />
+          <Parameter Name="isadmin" Type="bit" Mode="In" />
+          <Parameter Name="tukhoa" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="HopLong_LocNCCtheotukhoa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="manv" Type="varchar" Mode="In" />
           <Parameter Name="macongty" Type="varchar" Mode="In" />
@@ -7418,7 +7424,7 @@
           <Property Name="MA_DU_KIEN" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MA_KHACH_HANG" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LIEN_HE_KHACH_HANG" Type="Int32" Nullable="false" />
-          <Property Name="PHUONG_THUC_THANH_TOAN" Type="String" MaxLength="521" FixedLength="false" Unicode="true" />
+          <Property Name="PHUONG_THUC_THANH_TOAN" Type="String" MaxLength="521" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HAN_THANH_TOAN" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="HIEU_LUC_BAO_GIA" Type="Int32" />
           <Property Name="DIEU_KHOAN_THANH_TOAN" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
@@ -15404,6 +15410,12 @@
             <Parameter Name="ngay" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="Prod_KH_ListLienHe_TheoNgay" ReturnType="Collection(ERP_DATABASEModel.Prod_KH_ListLienHe_TheoNgay_Result)" />
+          <FunctionImport Name="HopLong_LocKHTheoTungSale" ReturnType="Collection(ERP_DATABASEModel.HopLong_LocKHTheoTungSale_Result)">
+            <Parameter Name="sale" Mode="In" Type="String" />
+            <Parameter Name="macongty" Mode="In" Type="String" />
+            <Parameter Name="isadmin" Mode="In" Type="Boolean" />
+            <Parameter Name="tukhoa" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="BaiVietTheoDanhMuc_Result">
           <Property Type="Int32" Name="MA_BAI_VIET" Nullable="false" />
@@ -18627,6 +18639,41 @@
           <Property Type="String" Name="TINH_TRANG_LAM_VIEC" Nullable="true" MaxLength="64" />
           <Property Type="DateTime" Name="NGAY_TAO" Nullable="true" />
           <Property Type="String" Name="NGUOI_PHU_TRACH" Nullable="true" MaxLength="64" />
+        </ComplexType>
+        <ComplexType Name="HopLong_LocKHTheoTungSale_Result">
+          <Property Type="String" Name="MA_KHACH_HANG" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="TEN_CONG_TY" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="VAN_PHONG_GIAO_DICH" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="DIA_CHI_XUAT_HOA_DON" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="TINH" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="QUOC_GIA" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="MST" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="HOTLINE" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="FAX" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="LOGO" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="MA_LOAI_KHACH" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="WEBSITE" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="DIEU_KHOAN_THANH_TOAN" Nullable="true" MaxLength="64" />
+          <Property Type="Int32" Name="SO_NGAY_DUOC_NO" Nullable="true" />
+          <Property Type="Int32" Name="SO_NO_TOI_DA" Nullable="true" />
+          <Property Type="String" Name="GHI_CHU" Nullable="true" />
+          <Property Type="String" Name="TRUC_THUOC" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="TEN_LOAI_KHACH" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="NHOM_NGANH" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="TINH_TRANG_HOAT_DONG" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="SALES_PHU_TRACH" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="TEN_CUA_SALES_PHU_TRACH" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="SALE_ME" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="TEN_CUA_SALES_ME" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="KHO_PHU_TRACH" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="TEN_CUA_KHO_PHU_TRACH" Nullable="true" MaxLength="64" />
+          <Property Type="Boolean" Name="KHACH_DO_MARKETING_TIM_KIEM" Nullable="true" />
+          <Property Type="Boolean" Name="KHACH_MUA_DOANH_SO_CAO" Nullable="true" />
+          <Property Type="Boolean" Name="KHACH_MUA_SO_LUONG_NHIEU" Nullable="true" />
+          <Property Type="Boolean" Name="KHACH_DAC_BIET" Nullable="true" />
+          <Property Type="Boolean" Name="THONG_TIN_DA_DAY_DU" Nullable="true" />
+          <Property Type="Int32" Name="ID" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -24426,6 +24473,45 @@
                 <ScalarProperty Name="TINH_TRANG_LAM_VIEC" ColumnName="TINH_TRANG_LAM_VIEC" />
                 <ScalarProperty Name="NGAY_TAO" ColumnName="NGAY_TAO" />
                 <ScalarProperty Name="NGUOI_PHU_TRACH" ColumnName="NGUOI_PHU_TRACH" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="HopLong_LocKHTheoTungSale" FunctionName="ERP_DATABASEModel.Store.HopLong_LocKHTheoTungSale">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_DATABASEModel.HopLong_LocKHTheoTungSale_Result">
+                <ScalarProperty Name="MA_KHACH_HANG" ColumnName="MA_KHACH_HANG" />
+                <ScalarProperty Name="TEN_CONG_TY" ColumnName="TEN_CONG_TY" />
+                <ScalarProperty Name="VAN_PHONG_GIAO_DICH" ColumnName="VAN_PHONG_GIAO_DICH" />
+                <ScalarProperty Name="DIA_CHI_XUAT_HOA_DON" ColumnName="DIA_CHI_XUAT_HOA_DON" />
+                <ScalarProperty Name="TINH" ColumnName="TINH" />
+                <ScalarProperty Name="QUOC_GIA" ColumnName="QUOC_GIA" />
+                <ScalarProperty Name="MST" ColumnName="MST" />
+                <ScalarProperty Name="HOTLINE" ColumnName="HOTLINE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="LOGO" ColumnName="LOGO" />
+                <ScalarProperty Name="MA_LOAI_KHACH" ColumnName="MA_LOAI_KHACH" />
+                <ScalarProperty Name="WEBSITE" ColumnName="WEBSITE" />
+                <ScalarProperty Name="DIEU_KHOAN_THANH_TOAN" ColumnName="DIEU_KHOAN_THANH_TOAN" />
+                <ScalarProperty Name="SO_NGAY_DUOC_NO" ColumnName="SO_NGAY_DUOC_NO" />
+                <ScalarProperty Name="SO_NO_TOI_DA" ColumnName="SO_NO_TOI_DA" />
+                <ScalarProperty Name="GHI_CHU" ColumnName="GHI_CHU" />
+                <ScalarProperty Name="TRUC_THUOC" ColumnName="TRUC_THUOC" />
+                <ScalarProperty Name="TEN_LOAI_KHACH" ColumnName="TEN_LOAI_KHACH" />
+                <ScalarProperty Name="NHOM_NGANH" ColumnName="NHOM_NGANH" />
+                <ScalarProperty Name="TINH_TRANG_HOAT_DONG" ColumnName="TINH_TRANG_HOAT_DONG" />
+                <ScalarProperty Name="SALES_PHU_TRACH" ColumnName="SALES_PHU_TRACH" />
+                <ScalarProperty Name="TEN_CUA_SALES_PHU_TRACH" ColumnName="TEN_CUA_SALES_PHU_TRACH" />
+                <ScalarProperty Name="SALE_ME" ColumnName="SALE_ME" />
+                <ScalarProperty Name="TEN_CUA_SALES_ME" ColumnName="TEN_CUA_SALES_ME" />
+                <ScalarProperty Name="KHO_PHU_TRACH" ColumnName="KHO_PHU_TRACH" />
+                <ScalarProperty Name="TEN_CUA_KHO_PHU_TRACH" ColumnName="TEN_CUA_KHO_PHU_TRACH" />
+                <ScalarProperty Name="KHACH_DO_MARKETING_TIM_KIEM" ColumnName="KHACH_DO_MARKETING_TIM_KIEM" />
+                <ScalarProperty Name="KHACH_MUA_DOANH_SO_CAO" ColumnName="KHACH_MUA_DOANH_SO_CAO" />
+                <ScalarProperty Name="KHACH_MUA_SO_LUONG_NHIEU" ColumnName="KHACH_MUA_SO_LUONG_NHIEU" />
+                <ScalarProperty Name="KHACH_DAC_BIET" ColumnName="KHACH_DAC_BIET" />
+                <ScalarProperty Name="THONG_TIN_DA_DAY_DU" ColumnName="THONG_TIN_DA_DAY_DU" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

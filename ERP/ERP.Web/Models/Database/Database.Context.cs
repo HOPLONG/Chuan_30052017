@@ -2811,5 +2811,26 @@ namespace ERP.Web.Models.Database
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Prod_KH_ListLienHe_TheoNgay_Result>("Prod_KH_ListLienHe_TheoNgay");
         }
+    
+        public virtual ObjectResult<HopLong_LocKHTheoTungSale_Result> HopLong_LocKHTheoTungSale(string sale, string macongty, Nullable<bool> isadmin, string tukhoa)
+        {
+            var saleParameter = sale != null ?
+                new ObjectParameter("sale", sale) :
+                new ObjectParameter("sale", typeof(string));
+    
+            var macongtyParameter = macongty != null ?
+                new ObjectParameter("macongty", macongty) :
+                new ObjectParameter("macongty", typeof(string));
+    
+            var isadminParameter = isadmin.HasValue ?
+                new ObjectParameter("isadmin", isadmin) :
+                new ObjectParameter("isadmin", typeof(bool));
+    
+            var tukhoaParameter = tukhoa != null ?
+                new ObjectParameter("tukhoa", tukhoa) :
+                new ObjectParameter("tukhoa", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<HopLong_LocKHTheoTungSale_Result>("HopLong_LocKHTheoTungSale", saleParameter, macongtyParameter, isadminParameter, tukhoaParameter);
+        }
     }
 }
