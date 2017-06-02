@@ -166,6 +166,21 @@ app.controller('KyDuyetPOCtrl', function ($scope, $location, $log) {
     });
 });
 
+app.controller('HomeThongBaoSaleCtrl', function ($scope, $location, $log) {
+    $scope.selectedIndex = 0;
+
+    $scope.$watch('selectedIndex', function (current, old) {
+        switch (current) {
+            case 0:
+                $location.url("/Action");
+                break;
+            case 1:
+                $location.url("/HeSoGiaBanSale");
+                break;
+        }
+    });
+});
+
 app.config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
@@ -358,6 +373,19 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         url: "/HangCanXuatDaBan",
         templateUrl: "HangCanXuatDaBan",
         controller: "HangCanXuatCtrl"
+    })
+
+    // Trang chu sale
+
+    .state('Action', {
+        url: "/Action",
+        templateUrl: "HomeSales/Action",
+        controller: "chitietbaivietCtrl"
+    })
+    .state('HeSoGiaBanSale', {
+        url: "/HeSoGiaBanSale",
+        templateUrl: "HomeSales/HeSoGiaBanSale",
+        controller: "HeSoGiaBanCtrl"
     })
     ;
 })

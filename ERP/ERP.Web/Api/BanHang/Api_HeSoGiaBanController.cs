@@ -50,6 +50,14 @@ namespace ERP.Web.Api.BanHang
             return result;
         }
 
+        [Route("api/Api_HeSoGiaBan/ListHeSoGiaBan/{tuan}/{nam}")]
+        public List<List_HeSoGiaBan_Result> ListHeSoGiaBan(string tuan, string nam)
+        {
+            var query = db.Database.SqlQuery<List_HeSoGiaBan_Result>("List_HeSoGiaBan @tuan,@nam", new SqlParameter("tuan", tuan), new SqlParameter("nam", nam));
+            var result = query.ToList();
+            return result;
+        }
+
         // PUT: api/Api_HeSoGiaBan/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutHH_HE_SO_GIA_BAN(int id, HH_HE_SO_GIA_BAN hH_HE_SO_GIA_BAN)

@@ -1,49 +1,31 @@
-﻿
-@{
-    ViewBag.Title = "Action";
+﻿@{Layout = null;
+
 }
+<div class="container dynamicTile" ng-app="myApp" ng-controller="chitietbaivietCtrl">
+    <style>
+        .AUTONICS {
+            background-color: red !important;
+        }
+    </style>
+    <div class="row ">
+        <div class="col-sm-2 col-xs-4" ng-repeat="item in list_baiviet" style="margin-bottom: 0px !important;">
+            <div id="tile1" class="tile">
 
-<div ng-app="myApp">
-    <ul>
-        <li class="btn btn-primary" data-toggle="collapse" href="#collapseExample"  onclick="move()" aria-expanded="false" aria-controls="collapseExample">
-            Báo giá
-        </li>
-        <li class="btn btn-primary" data-toggle="collapse" href="#donPO" aria-expanded="false" onclick="move2()" aria-controls="collapseExample">
-            Đơn PO
-        </li>
-    </ul>
-    <div class="collapse" id="collapseExample">
-        <ul>
-            <li>List báo giá</li>
-            <li>List báo giá đã hủy</li>
-            <li>List báo giá thành công</li>
-            <li>List báo giá thất bại</li>
-            <li>List báo giá đang chờ phản hồi</li>
-            <li>List báo giá đã lên PO</li>
-        </ul>
+                <div class="carousel slide" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active" style="height: 269px !important">
+                            <a href="/Home/Details/{{item.MA_BAI_VIET}}"><img ng-src="~/Content/Images/BaiViet/{{item.ANH_BAI_VIET}}" /></a>
+                        </div>
+                        <div class="item" id="{{item.TIEU_DE_BAI_VIET}}" style="height: 269px !important">
+                            <span style="color: white; float: left; margin-top: 35px; margin-left: 10px;margin-right:80px; ">{{item.TIEU_DE_BAI_VIET}} </span>
+                            <span style="color: white; float: left; margin-top: 35px; margin-left: 10px;margin-right:80px">Ngày cập nhật: {{item.NGAY_CAP_NHAT | date: 'dd/MM/yyyy'}}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
-    <div class="collapse" id="donPO">
-        <ul>
-            <li>List PO</li>
-            <li>List PO đã duyệt</li>
-            <li>List PO đã hủy</li>
-            <li>List PO đang chờ duyệt</li>
-            <li>List PO đang duyệt</li>
-            <li>List PO đã lên đơn bán hàng</li>
-            <li>List PO cần bán ngay</li>
-            <li>List PO đang xuất dở</li>
-        </ul>
-    </div>
-    <script>
-        function move() {
-            $('#donPO').removeClass("in");
-        }
-        move();
-        function move2() {
-            $('#collapseExample').removeClass("in");
-        }
-        move();
-    </script>
 </div>
-
-

@@ -1787,8 +1787,30 @@ app.controller('khachhangCtrl', function (khachhangService, $scope, $http, $loca
     $scope.load_nhanvienkho();
 
 
+    if (username.substring(0, 4) == "MARK" || isadmin == "True") {
+        $scope.kiemtra_username = true;
+    }
+
+    $scope.kiemtrakh = function(makh)
+    {
+        $http.post('/api/Api_ChienDichMKT/KiemTraKH/' + makh).then(function (response) {
+            if(response.data.length > 0)
+            {
+                $scope.list_chiendichmkt = response.data;
+                $scope.tick_khach_hang = false;
+                $scope.return_confirm = false;
+            } else {
+                $http.post('/api/Api_ChienDichMKT/ListChienDich').then(function (a) {
+                    $scope.list_chiendichmkt = a.data;
+                });
+                $scope.return_confirm = true;
+                $scope.tick_khach_hang = false;
+            }
+        });
+
     $scope.showkhsearch = function () {
         $scope.find = true;
+
     }
 
     $scope.timkiemkhachhang = function (email,sdt,mst) {
@@ -1827,11 +1849,47 @@ app.controller('khachhangCtrl', function (khachhangService, $scope, $http, $loca
             $http.post('/api/Api_ChienDichMKT/ListChienDich').then(function (response) {
                 $scope.list_chiendichmkt = response.data;
             });
+
+        });
+    }
+
+    $scope.saveID_chiendich = function(chiendich)
+    {
+        $scope.chiendich = chiendich;
+    }
+    $scope.addnew_kh_chien_dich = function () {
+        var data_add = {
+            ID_CHIEN_DICH: $scope.chiendich,
+            MA_KHACH_HANG : $scope.item.MA_KHACH_HANG,
         }
 
-        $scope.show_addnew_chien_dich_function = function () {
-            $scope.show_addnew_chien_dich = true;
-        };
+        $http.post('/api/Api_ChienDichMKT/KH_CHIEN_DICH_MKT',data_add).then(function (response) {
+            SuccessSystem("Thêm khách hàng vào chiến dịch thành công");
+            $scope.tick_khach_hang = false;
+            $scope.return_confirm = false;
+        }, function errorCallback(response1) {
+            ErrorSystem("Không thêm được khách hàng vào chiến dịch");
+        });
+    }
+
+    $scope.delete_lienhe = function (lienhe) {
+        $scope.lienhe = lienhe;
+
+        var result = confirm("Bạn có chắc muốn xóa chứ?");
+        if (result) {
+            $http.post('/api/Api_LienHeKhachHang/' + $scope.lienhe.ID_LIEN_HE).then(function (response) {
+                SuccessSystem("Xóa liên hệ thành công");
+                $scope.get_lienhe($scope.lienhe.MA_KHACH_HANG);
+            }, function errorCallback(response1) {
+                ErrorSystem("Lỗi không xóa được người liên hệ do hệ thống hoặc người liên hệ này đã có phát sinh giao dịch");
+            });
+        } else {
+            $scope.get_lienhe($scope.lienhe.MA_KHACH_HANG);
+        }
+    }
+
+});
+
 
         $scope.addnew_chien_dich = function () {
             var data = {

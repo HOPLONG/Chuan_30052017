@@ -194,19 +194,23 @@ namespace ERP.Web.Api.KhachHang
         }
 
         // DELETE: api/Api_LienHeKhachHang/5
-        [ResponseType(typeof(KH_LIEN_HE))]
+        [Route("api/Api_LienHeKhachHang/DeleteKH_LIEN_HE/{id}")]
         public IHttpActionResult DeleteKH_LIEN_HE(int id)
         {
-            KH_LIEN_HE kH_LIEN_HE = db.KH_LIEN_HE.Find(id);
-            if (kH_LIEN_HE == null)
+            var query = db.KH_SALES_PHU_TRACH.Where(x => x.ID_LIEN_HE == id).FirstOrDefault();
+            if(query != null)
             {
-                return NotFound();
+                db.KH_SALES_PHU_TRACH.Remove(query);
+                db.SaveChanges();
+
+                var query1 = db.KH_LIEN_HE.Where(x => x.ID_LIEN_HE == id).FirstOrDefault();
+                db.KH_LIEN_HE.Remove(query1);
             }
 
-            db.KH_LIEN_HE.Remove(kH_LIEN_HE);
+            
             db.SaveChanges();
 
-            return Ok(kH_LIEN_HE);
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)
