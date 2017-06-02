@@ -383,7 +383,12 @@
         }).then(function successCallback(response) {
             SuccessSystem('Bạn đã tạo thành công 1 đơn bán hàng có mã là ' + response.data);
 
+            $(function () {
+                setTimeout(function () {
+                    window.location.href = "/KinhDoanh/DonHangPO/DonPOHome";
 
+                }, 2000);
+            });
 
             $scope.arrayChiTietBH = [];
 
@@ -421,18 +426,6 @@
             });
             return;
 
-
-
-
-
-
-
-            $(function () {
-                setTimeout(function () {
-                    window.location.href = "/KinhDoanh/DonHangPO/DonPOHome";
-
-                }, 2000);
-            });
         }, function errorCallback(response) {
             console.log(response);
             ErrorSystem('Sự cố hệ thống, Không lưu được phiếu giữ kho, Bạn vui lòng liên hệ với admin để khắc phục ');

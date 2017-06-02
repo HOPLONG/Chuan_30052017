@@ -989,7 +989,8 @@
                                                         <th style="text-align: center">SĐT</th>
                                                         <th style="text-align: center">Skype</th>
                                                         <th style="text-align: center">Sale phụ trách</th>
-                                                        <th style="text-align: center">Loại sales</th>
+                                                        @*<th style="text-align: center">Loại sales</th>*@
+                                                        <th>Xóa</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -1001,8 +1002,9 @@
                                                         <td data-dismiss="modal" data-toggle="modal" data-target="#chitietlienhe">{{lienhe.SDT1}}</td>
                                                         <td data-dismiss="modal" data-toggle="modal" data-target="#chitietlienhe">{{lienhe.SKYPE}}</td>
                                                         <td data-dismiss="modal" data-toggle="modal" data-target="#chitietlienhe">{{lienhe.HO_VA_TEN}}</td>
-                                                        <td data-dismiss="modal" data-toggle="modal" data-target="#chitietlienhe" ng-if="lienhe.SALES_MOI == true">Sales mới</td>
-                                                        <td data-dismiss="modal" data-toggle="modal" data-target="#chitietlienhe" ng-if="lienhe.SALES_CU == true">Sales cũ</td>
+                                                        @*<td data-dismiss="modal" data-toggle="modal" data-target="#chitietlienhe" ng-if="lienhe.SALES_MOI == true">Sales mới</td>
+                                                        <td data-dismiss="modal" data-toggle="modal" data-target="#chitietlienhe" ng-if="lienhe.SALES_CU == true">Sales cũ</td>*@
+                                                        <td ng-click="delete_lienhe(lienhe)">Xóa</td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
@@ -1600,28 +1602,38 @@
         <div class="col-md-2" style="font-size: 14px; color:#1191BF">
             Tổng số khách: {{tongsokhachhang_HL}}
         </div>
-        
-        <div class="col-md-12">
-            Ẩn Email : <input type="checkbox" ng-model="showemail" /> |
-
-            Ẩn Tỉnh : <input type="checkbox" ng-model="showtinh" /> |
-
-            Ẩn Quốc gia : <input type="checkbox" ng-model="showquocgia" /> |
-
-            Ẩn Tình trạng hoạt động : <input type="checkbox" ng-model="showhoatdong" /> |
+       
+        <div class="dropdown col-md-12">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                Ẩn/Hiện cột
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li class="form-group">
+                    Hiện Email : <input type="checkbox" ng-model="showemail" /> 
+                </li>
+                <li class="form-group">
+                    Hiện Tỉnh : <input type="checkbox" ng-model="showtinh" /> 
+                </li>
+                <li class="form-group">
+                    Hiện Quốc gia : <input type="checkbox" ng-model="showquocgia" />
+                </li>
+                <li class="form-group">
+                    Hiện Tình trạng hoạt động : <input type="checkbox" ng-model="showhoatdong" />
+                </li>
+            </ul>
         </div>
-
         <table id="example" class="table" cellspacing="0">
             <thead>
                 <tr>
                     <th></th>
                     <th>Mã khách hàng</th>
                     <th>Tên công ty</th>
-                    <th ng-hide="showemail">Email</th>
-                    <th ng-hide="showtinh">Tỉnh</th>
-                    <th ng-hide="showquocgia">Quốc gia</th>
+                    <th ng-show="showemail">Email</th>
+                    <th ng-show="showtinh">Tỉnh</th>
+                    <th ng-show="showquocgia">Quốc gia</th>
                     <th>Phân loại khách</th>
-                    <th ng-hide="showhoatdong">Tình trạng hoạt động </th>
+                    <th ng-show="showhoatdong">Tình trạng hoạt động </th>
                     <th>Nhân viên kho phụ trách</th>
                     <th>Sales phụ trách</th>
                     <th>Sales quản lý</th>
@@ -1635,11 +1647,11 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th ng-hide="showemail"></th>
-                    <th ng-hide="showtinh"></th>
-                    <th ng-hide="showquocgia"></th>
+                    <th ng-show="showemail"></th>
+                    <th ng-show="showtinh"></th>
+                    <th ng-show="showquocgia"></th>
                     <th></th>
-                    <th ng-hide="showhoatdong"></th>
+                    <th ng-show="showhoatdong"></th>
                     <th></th>
                     <th style="padding:0px 0px 0px 0px">
                         <div>
@@ -1693,15 +1705,15 @@
                         <input type="checkbox" ng-model="item.THONG_TIN_DA_DAY_DU" style="display:none" />
                         <i class="fa fa-check" aria-hidden="true" ng-show="item.THONG_TIN_DA_DAY_DU"></i>
 
-                        <input type="checkbox" data-toggle="modal" data-target="#chiendich_mkt" ng-show="kiemtra_username" ng-click="transfer(item)"/>
+                        <button data-toggle="modal" data-target="#chiendich_mkt" ng-show="kiemtra_username" ng-click="transfer(item);kiemtrakh(item.MA_KHACH_HANG)" style="width:20px;height:20px;">&nbsp;</button>
                     </td>
                     <td class="text-center" data-toggle="modal" data-target="#chitietkhachhang">{{item.MA_KHACH_HANG}}</td>
                     <td class="text-left" data-toggle="modal" data-target="#chitietkhachhang">{{item.TEN_CONG_TY}}</td>
-                    <td class="text-left" data-toggle="modal" data-target="#chitietkhachhang" ng-hide="showemail">{{item.EMAIL}}</td>
-                    <td class="text-left" data-toggle="modal" data-target="#chitietkhachhang" ng-hide="showtinh">{{ item.TINH}}</td>
-                    <td class="text-center" data-toggle="modal" data-target="#chitietkhachhang" ng-hide="showquocgia">{{item.QUOC_GIA}}</td>
+                    <td class="text-left" data-toggle="modal" data-target="#chitietkhachhang" ng-show="showemail">{{item.EMAIL}}</td>
+                    <td class="text-left" data-toggle="modal" data-target="#chitietkhachhang" ng-show="showtinh">{{ item.TINH}}</td>
+                    <td class="text-center" data-toggle="modal" data-target="#chitietkhachhang" ng-show="showquocgia">{{item.QUOC_GIA}}</td>
                     <td class="text-center" data-toggle="modal" data-target="#chitietkhachhang" >{{item.TEN_LOAI_KHACH}}</td>
-                    <td class="text-left" data-toggle="modal" data-target="#chitietkhachhang" ng-hide="showhoatdong">{{item.TINH_TRANG_HOAT_DONG}}</td>
+                    <td class="text-left" data-toggle="modal" data-target="#chitietkhachhang" ng-show="showhoatdong">{{item.TINH_TRANG_HOAT_DONG}}</td>
                     <td class="text-center">
                         <p ng-hide="editMode" ng-model="item.KHO_PHU_TRACH">{{item.TEN_CUA_KHO_PHU_TRACH}}</p>
                         <md-input-container ng-show="editMode">
@@ -1799,7 +1811,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="chiendich_mkt" role="dialog">
+        <div class="modal fade" id="chiendich_mkt" role="dialog" tabindex="-1">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -1808,15 +1820,19 @@
                     <div class="modal-body">
                         <form class="form-horizontal" name="myForm" novalidate>
                             <fieldset>
-                               <ul>
+                               <ul class="col-md-9">
                                    <li ng-repeat="chiendich in list_chiendichmkt">
-                                       <input type="checkbox" ng-click="addnew_kh_chien_dich(chiendich)"/>
-                                       {{chiendich.TEN_LIST}}
+                                       <label>
+                                           <input type="radio" ng-model="chiendich.ID" ng-show="return_confirm" ng-click="saveID_chiendich(chiendich.ID)" name="name" value="{{chiendich.ID}}" required />{{chiendich.TEN_LIST}}
+                                       </label>
                                    </li>
                                    <li>
-                                        <button  ng-click="show_addnew_chien_dich_function()" type="button" class="btn btn-default">Thêm một list mới</button>
+                                        <button ng-show="return_confirm" ng-click="show_addnew_chien_dich_function()" type="button" class="btn btn-default">Thêm một list mới</button>
                                    </li>
                                </ul>
+                                <div class="col-md-3">
+                                    <button class="btn btn-default" ng-click="addnew_kh_chien_dich()" ng-show="return_confirm" data-dismiss="modal">Lưu khách vào chiến dịch</button>
+                                </div>
                             </fieldset>
                         </form>
                     </div>

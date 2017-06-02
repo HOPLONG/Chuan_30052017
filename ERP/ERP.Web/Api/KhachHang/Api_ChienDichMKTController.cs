@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ERP.Web.Models.Database;
+using System.Data.SqlClient;
 
 namespace ERP.Web.Api.KhachHang
 {
@@ -31,6 +32,14 @@ namespace ERP.Web.Api.KhachHang
                 ID = x.ID,
                 TEN_LIST = x.TEN_LIST,
             }).ToList();
+            return result;
+        }
+
+        [Route("api/Api_ChienDichMKT/KiemTraKH/{makh}")]
+        public List<KiemTraKH_ChienDich_Result> KiemTraKH(string makh)
+        {
+            var query = db.Database.SqlQuery<KiemTraKH_ChienDich_Result>("KiemTraKH_ChienDich @makh", new SqlParameter("makh", makh));
+            var result = query.ToList();
             return result;
         }
 
