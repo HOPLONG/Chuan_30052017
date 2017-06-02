@@ -4,17 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ERP.Web.Areas.Marketing.Controllers
+namespace ERP.Web.Controllers
 {
-    public class MKGiaoViecController : Controller
+    public class FAQController : Controller
     {
-        // GET: Marketing/MKGiaoViec
+        // GET: FAQ
         public ActionResult Index()
         {
             return View();
         }
-
-        public ActionResult ListCV()
+        public ActionResult TraLoi()
         {
             return View();
         }

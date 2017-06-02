@@ -29,6 +29,31 @@ namespace ERP.Web.Api.FeedBack
             return result;
         }
 
+        [HttpGet]
+        [Route("api/Api_HT_PHAN_HOI_PHAN_MEM/GetPHAN_HOI_PHAN_MEM/")]
+        public List<Prod_HT_List_Phan_Hoi_Result> GetPHAN_HOI_PHAN_MEM()
+        {
+            var query = db.Database.SqlQuery<Prod_HT_List_Phan_Hoi_Result>("Prod_HT_List_Phan_Hoi");
+            var result = query.ToList();
+            return result;
+        }
+
+        [HttpGet]
+        [Route("api/Api_HT_PHAN_HOI_PHAN_MEM/GetPHAN_HOI_PHAN_MEM_TK/{tukhoa}")]
+        public List<Prod_HT_List_FAQ_Result> GetPHAN_HOI_PHAN_MEM_TK(string tukhoa)
+        {
+            var query = db.Database.SqlQuery<Prod_HT_List_FAQ_Result>("Prod_HT_List_FAQ @tukhoa", new SqlParameter("@tukhoa", tukhoa));
+            var result = query.ToList();
+            return result;
+        }
+        [HttpGet]
+        [Route("api/Api_HT_PHAN_HOI_PHAN_MEM/GetPHAN_HOI_PHAN_MEM_TL/")]
+        public List<Prod_HT_List_FAQ_Tra_loi_Result> GetPHAN_HOI_PHAN_MEM_TL()
+        {
+            var query = db.Database.SqlQuery<Prod_HT_List_FAQ_Tra_loi_Result>("Prod_HT_List_FAQ_Tra_loi");
+            var result = query.ToList();
+            return result;
+        }
         // GET: api/Api_HT_PHAN_HOI_PHAN_MEM/5
         [ResponseType(typeof(HT_PHAN_HOI_PHAN_MEM))]
         public IHttpActionResult GetHT_PHAN_HOI_PHAN_MEM(int id)
@@ -42,6 +67,38 @@ namespace ERP.Web.Api.FeedBack
             return Ok(hT_PHAN_HOI_PHAN_MEM);
         }
 
+        //PUT: 
+        [Route("api/Api_HT_PHAN_HOI_PHAN_MEM/PutTraLoi_PHAN_HOI_PHAN_MEM/{id}")]
+        [ResponseType(typeof(HT_PHAN_HOI_PHAN_MEM))]
+        public IHttpActionResult PutTraLoi_PHAN_HOI_PHAN_MEM(int id, HT_PHAN_HOI_PHAN_MEM phanhoipm)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var query = db.HT_PHAN_HOI_PHAN_MEM.Where(x => x.ID == id).FirstOrDefault();
+            if (query != null)
+            {
+                
+                query.TRA_LOI_PHAN_HOI = phanhoipm.TRA_LOI_PHAN_HOI;
+                
+            }
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+
+
+                throw;
+            }
+
+
+            return Ok(phanhoipm);
+
+        }
         // PUT: api/Api_HT_PHAN_HOI_PHAN_MEM/5
         [Route("api/Api_HT_PHAN_HOI_PHAN_MEM/PutHT_PHAN_HOI_PHAN_MEM")]
         [ResponseType(typeof(HT_PHAN_HOI_PHAN_MEM))]

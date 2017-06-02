@@ -180,9 +180,9 @@ input[type=text]:focus {
             <table class="col-md-12">
                 <tr style="height: 40px; background-color: #1191BF; padding: 0px;">
                     <td style="color:#fff; font-weight:bold; padding-left: 15px !important;">DANH SÁCH NHÂN VIÊN</td>
-                    <td><input type="text" name="search" value="Search..."></td>
+                    <td><input type="text" name="search" placeholder="Nhập tên NV..." ng-model="HO_VA_TEN"></td>
                 </tr>
-                <tr class="option" ng-repeat="item in list_nhanvienHL" class="option" style="height:30px;margin:15px 15px;vertical-align:middle;padding-top: 5px; border-bottom: 1px solid #f0f0f0;" ng-click="transfer(item)">
+                <tr class="option" ng-repeat="item in list_nhanvienHL | filter: HO_VA_TEN" class="option" style="height:30px;margin:15px 15px;vertical-align:middle;padding-top: 5px; border-bottom: 1px solid #f0f0f0;" ng-click="transfer(item)">
                     <td colspan="2" style="padding-left: 30px; padding-top: 16px;">{{item.HO_VA_TEN}}</td>
                 </tr>
             </table>

@@ -3,13 +3,12 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<link href="~/Content/self-writing/css/Feedback.css" rel="stylesheet" />
 <link href="~/Content/self-writing/css/KhachHang.css" rel="stylesheet" />
 <link href="~/Content/assets/css/components.css" rel="stylesheet" />
 <link href="~/Content/download/pnotify.custom.min.css" rel="stylesheet" />
 <link href="~/Content/assets/css/core.css" rel="stylesheet" />
-
-
+<script src="~/Content/self-writing/js/Controllers/FeedBack/FeedBackCtrl.js"></script>
 <script src="~/Content/self-writing/js/Services/KhachHangServices.js"></script>
 <script src="~/Content/self-writing/js/Controllers/KhachHangCtrl.js"></script>
 
@@ -122,8 +121,6 @@
             <div class="search_box corner">
                 <form action="#" method="post">
 
-
-
                     <ul class="formSearch">
                         <li><input class="addText corner" type="text" ng-model="timtheoma" ng-change="Find_Khach_Theo_Ma(1,timtheoma)" placeholder="Mã khách hàng" style="width:100%;"></li>
                         <li><input class="addText corner" type="text" placeholder="Tên công ty" ng-model="timtheoten" ng-change="Find_Khach_Theo_Ten(1,timtheoten)" style="width:100%;"></li>
@@ -135,7 +132,6 @@
                                 <option selected="selected" value="-1">--- Tình trạng hoạt động ---</option>
                                 <option value="1">NV1</option>
                                 <option value="2">NV2</option>
-
                             </select>
                         </li>
                         <li>
@@ -143,7 +139,6 @@
                                 <option selected="selected" value="-1">--- NV kho phụ trách ---</option>
                                 <option value="1">NV1</option>
                                 <option value="2">NV2</option>
-
                             </select>
                         </li>
                         <li>
@@ -151,12 +146,53 @@
                                 <option selected="selected" value="-1">--- Sales phụ trách ---</option>
                                 <option value="1">NV1</option>
                                 <option value="2">NV2</option>
-
                             </select>
                         </li>
                     </ul>
                 </form>
             </div>
+        </div>
+        <div id="quick-access" style="padding-bottom: 20px;" class="text-center">
+            <form class="form-inline quick-search-form" role="form" action="#">
+
+                <ul class="formSearch aligncenter">
+                    <li><input class="form-control" type="text" placeholder="Email" ng-model="search_email" style="width:100%;"></li>
+                    <li><input class="form-control" type="text" placeholder="SĐT" ng-model="search_sdt"  style="width:100%;"></li>
+                    <li><input class="form-control" type="text" placeholder="SĐT" ng-model="search_mst"  style="width:100%;"></li>
+                    <li><button type="button" style="border-radius: 5px" class="btn btn-info" ng-click="timkiemkhachhang(search_email,search_sdt,search_mst);showkhsearch();">Kiểm tra</button></li>
+                </ul>
+                
+            </form>
+        </div>
+        <div class="tab-pane fade in" ng-show="find" >
+            
+            <input type="hidden" id="salehienthoi" name="salehienthoi" value="@Session["USERNAME"]" />
+            <input type="hidden" id="maphongban" name="maphongban" value="@Session["MA_PHONG_BAN"]" />
+            <input type="hidden" id="macongty" name="macongty" value="@Session["MA_CONG_TY"]" />
+            <input type="hidden" id="isadmin" name="isadmin" value="@Session["IS_AMIN"]" />
+            <div id="quick-access" style="padding-bottom: 20px;">
+                <form class="form-inline quick-search-form" role="form" action="#">
+
+                    <table id="example" class="table " ng-repeat="item in timkiemkh">
+                        <tr>
+                            <td colspan='4'><p style="text-shadow: 1px 1px 5px #91DDFD; font-style:italic; font-size: 20px;text-align: center; color: #64B5F6; margin-left:10px; margin-top:5px;margin-bottom:5px; font-weight: bold">{{thongbao}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label>Sale phụ trách hiện thời</label></td>
+                            <td>{{item.SALES_PHU_TRACH}}</td>
+                            <td colspan="2">{{item.TEN_CUA_SALES_PHU_TRACH}}</td>
+                        </tr>
+                        <tr>
+                            <td><label>SĐT nhân viên</label></td>
+                            <td>{{item.SDT_NV}}</td>
+                            <td><label>Email nhân viên</label></td>
+                            <td>{{item.EMAIL_NV}}</td>
+                        </tr>
+                    </table>
+                </form>
+                <button type="button" style="border-radius: 5px" class="btn btn-info" ng-click="find = false">Đóng</button>
+            </div>
+            <br />
         </div>
         <!--End Form tìm kiếm-->
 
@@ -191,10 +227,10 @@
                                                     <input type="text" name="addtencongty" placeholder="Tên công ty(*)" class="showtableselect" style="width: 100%;height: 100% ;padding-left: 5px; border:none" ng-model="arraythongtin.ten_cong_ty" ng-change="load_khachhang(arraythongtin.ten_cong_ty)" required>
                                                     <small class="label label-danger" data-ng-show="submitted && valid_ten.addtencongty.$error.required">Tên công ty không được để trống!</small>
                                                 </ng-form>
-                                                
-
                                             </div>
                                             <div class="tableselect" id="DataCustomer" style="display:none;max-width: 1180px;">
+
+
                                                 <table class="table-hover " style="font-size:12px">
 
                                                     <tbody>
@@ -207,9 +243,9 @@
                                                     </tbody>
                                                 </table>
                                             </div>
+
                                         </div>
                                     </td>
-
 
                                     <td colspan='3' rowspan='4'>
                                         <p style="text-shadow: 1px 1px 5px #91DDFD; font-style:italic; font-size: 20px; color: #64B5F6; margin-left:10px; margin-top:5px; font-weight: bold">Ảnh đại diện</p>
@@ -217,13 +253,10 @@
                                         @Html.AntiForgeryToken()
                                         <input type='file' name="files" id="imgInp" style="width: 100%;display: inline-block" />
                                     </td>
-
-
                                 </tr>
                                 <tr>
                                     <th>Văn phòng giao dịch</th>
                                     <td colspan='7'><input type="text" placeholder="Văn phòng giao dịch" id="addvpgiaodich" style="width: 100%;height: 100%;padding-left: 5px;" ng-model="arraythongtin.van_phong_giao_dich"></td>
-
                                 </tr>
                                 <tr>
                                     <th>Địa chỉ xuất hóa đơn</th>
@@ -251,9 +284,7 @@
                                         <ng-form name="valid_mst">
                                             <input type="text" placeholder="Mã số thuế" name="addmasothue" style="width: 100%;height: 100%;padding-left: 5px;" ng-model="arraythongtin.ma_so_thue" required>
                                             <small class="label label-danger" data-ng-show="submitted && valid_mst.addmasothue.$error.required">MST không được để trống!</small>
-
                                         </ng-form>
-                                        
                                     </td>
                                     <td><input type="text" placeholder="Website" id="addwebsite" style="width: 100%;height: 100%;padding-left: 5px;" ng-model="arraythongtin.website"></td>
                                     <td><input type="text" placeholder="Email" id="addemail" ng-model="arraythongtin.email" style="height: 100%;padding-left: 5px;"></td>
@@ -286,7 +317,6 @@
                                     <td colspan='1'><input type="checkbox" ng-model="arraythongtin.khach_dac_biet" /> Khách đặc biệt</td>
                                     <td colspan='1'><input type="checkbox" ng-model="arraythongtin.thong_tin_da_day_du" /> Thông tin đã đầy đủ</td>
                                     <td colspan="5"></td>
-
                                 </tr>
                                 <tr>
                                     <th>Ghi chú</th>
@@ -317,7 +347,7 @@
                                         <th colspan='2'>Loại TK(*)</th>
                                     </tr>
                                 </thead>
-                                <tr ng-repeat="i in range(0,2)">
+                                <tr ng-repeat="(index,item) in arraytaikhoan">
                                     <td><input type="text" class="form-control" style="height: 100%;padding-left: 5px;" ng-model="arraytaikhoan[$index].so_tai_khoan"></td>
                                     <td colspan='2'><input type="text" class="form-control" style="height: 100%;padding-left: 5px;" ng-model="arraytaikhoan[$index].ten_tai_khoan"></td>
                                     <td colspan='2'><input type="text" class="form-control" style="height: 100%;padding-left: 5px;" ng-model="arraytaikhoan[$index].ten_ngan_hang"></td>
@@ -330,7 +360,7 @@
                                     </td>
                                 </tr>
                             </table>
-                            <button type="button" class="fa fa-plus button_addrow" ng-click="AddNew1()"><span style="font-size: 15px; font-weight: bold; padding-left:5px; padding-top:5px;">Thêm dòng</span></button>
+                            <button type="button" class="fa fa-plus button_addrow" ng-click="AddNew()"><span style="font-size: 15px; font-weight: bold; padding-left:5px; padding-top:5px;">Thêm dòng</span></button>
                             <table>
                                 <p style="text-shadow: 1px 1px 5px #91DDFD; font-style:italic; font-size: 20px; color: #64B5F6; margin-left:10px; margin-top:5px; font-weight: bold">LIÊN HỆ KHÁCH HÀNG</p>
                                 <div class="line-bottom"></div>
@@ -349,8 +379,14 @@
                                         <th>Tình trạng làm việc</th>
                                     </tr>
                                 </thead>
-                                <tr ng-repeat="i in range(0,2)">
-                                    <td><input type="text" style="height: 100%;padding-left: 5px;width:100%" class="form-control" ng-model="arraylienhe[$index].nguoi_lien_he"></td>
+                                <tr ng-repeat="(index,item) in arraylienhe">
+                                    <td>
+                                        <ng-form name="valid_lienhekh">
+                                            <input type="text" style="height: 100%;padding-left: 5px;width:100%" class="form-control" name="lienhe_kh" ng-model="arraylienhe[$index].nguoi_lien_he" required>
+                                            <small class="label label-danger" data-ng-show="submitted && valid_lienhekh.lienhe_kh.$error.required">required</small>
+                                        </ng-form>
+                                        
+                                    </td>
                                     <td><input type="text" style="height: 100%;padding-left: 5px;width:100%" class="form-control" ng-model="arraylienhe[$index].chuc_vu"></td>
                                     <td><input type="text" style="height: 100%;padding-left: 5px;width:100%" class="form-control" ng-model="arraylienhe[$index].phong_ban"></td>
                                     <td>
@@ -360,13 +396,16 @@
                                         <input type="text" style="height: 100%;padding-left: 5px;width:100%" class="form-control" ng-model="arraylienhe[$index].gioi_tinh">
                                     </td>
                                     <td>
-                                        <input type="tel" ng-model="arraylienhe[$index].so_dien_thoai1" placeholder="Số điện thoại 1(*)">
+                                        <ng-form name="valid_sdt">
+                                            <input type="tel" ng-model="arraylienhe[$index].so_dien_thoai1" placeholder="Số điện thoại 1(*)" name="sdt_kh" required>
+                                            <small class="label label-danger" data-ng-show="submitted && valid_sdt.sdt_kh.$error.required">required</small>
+                                        </ng-form>
+                                        
                                         <input type="tel" ng-model="arraylienhe[$index].so_dien_thoai2" placeholder="Số điện thoại 2">
                                     </td>
                                     <td>
                                         <input type="text" ng-model="arraylienhe[$index].email_cong_ty" placeholder="Email công ty">
                                         <input type="text" ng-model="arraylienhe[$index].email_ca_nhan" placeholder="Email cá nhân">
-
                                     </td>
                                     <td><input type="text" class="form-control" ng-model="arraylienhe[$index].skype"></td>
                                     <td><input type="text" style="height: 100%;padding-left: 5px;width:100%" class="form-control" ng-model="arraylienhe[$index].facebook"></td>
@@ -387,14 +426,13 @@
                             </table>
                             <button type="button" class="fa fa-plus button_addrow" ng-click="AddNew1()"><span style="font-size: 15px; font-weight: bold; padding-left:5px; padding-top:5px;">Thêm dòng</span></button>
                             <script>
-                                    CKEDITOR.replace('themghichu', {
-                                        height: 100
-                                    });
-                                    CKEDITOR.replace('ho_so_thanh_toan', {
-                                        height: 100
-                                    });
+                                CKEDITOR.replace('themghichu', {
+                                    height: 100
+                                });
+                                CKEDITOR.replace('ho_so_thanh_toan', {
+                                    height: 100
+                                });
                             </script>
-
                         </form>
                     </div>
                     <div class="modal-footer" style="margin-top: 30px;">
@@ -402,7 +440,6 @@
                             <button id="save" name="save" class="btn fa fa-save" ng-click="createnew(AddNewKH)">Lưu</button>
                             <button id="exit" name="exit" class="btn fa fa-sign-out" data-dismiss="modal">Exit</button>
                         </center>
-
                     </div>
                 </div>
             </div>
@@ -430,14 +467,12 @@
                                     <td rowspan='2'>
                                         <img id="edit_img" src="#" height="100" width="150" />
                                     </td>
-
                                 </tr>
                                 <tr>
                                     <td class="text-left-edit"><label for="addtencongty" class="control-label">Tên công ty</label></td>
                                     <td colspan='3'><input type="text" class="form-control" id="addtencongty" ng-model="kh.TEN_CONG_TY"></td>
 
                                     <td><input type="submit" value="Upload Ảnh" style="width: 25%;display: inline-block;float: right" /></td>
-
                                 </tr>
                                 <tr>
                                     <td class="text-left-edit"><label class="control-label">Phân loại khách hàng</label></td>
@@ -457,7 +492,6 @@
 
                                     <td class="text-left-edit"><label for="addvpgiaodich" class="control-label">Văn phòng giao dịch</label></td>
                                     <td colspan='5'><input type="text" class="form-control" id="addvpgiaodich" ng-model="kh.VAN_PHONG_GIAO_DICH"></td>
-
                                 </tr>
                                 <tr>
                                     <td class="text-left-edit"><label for="adddiachixuathoadon" class="control-label">Địa chỉ xuất hóa đơn</label></td>
@@ -472,7 +506,6 @@
                                     <td class="text-left"><input type="text" class="form-control" id="addemail" ng-model="kh.EMAIL"></td>
                                     <td class="text-left-edit"><label for="addmasothue" class="control-label">Mã số thuế</label></td>
                                     <td><input type="text" class="form-control" id="addmasothue" ng-model="kh.MST"></td>
-
                                 </tr>
                                 <tr>
 
@@ -513,15 +546,14 @@
                                     <td class="text-left-edit"><label>Hồ sơ thanh toán</label></td>
                                     <td colspan='5'><textarea id="edit_ho_so_thanh_toan" name="edit_ho_so_thanh_toan" class="form-control input-md" ng-model="kh.HO_SO_THANH_TOAN"></textarea></td>
                                 </tr>
-
                             </table>
                             <script>
-                                    CKEDITOR.replace('editghichu', {
-                                        height: 150
-                                    });
-                                    CKEDITOR.replace('edit_ho_so_thanh_toan', {
-                                        height: 150
-                                    });
+                                CKEDITOR.replace('editghichu', {
+                                    height: 150
+                                });
+                                CKEDITOR.replace('edit_ho_so_thanh_toan', {
+                                    height: 150
+                                });
                             </script>
                         </form>
                     </div>
@@ -532,7 +564,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <br />
         <!--end modal-->
@@ -618,7 +649,6 @@
                             </div>
                         </div>
                         <button type="button" data-dismiss="modal" data-toggle="modal" data-target="#myEditLienHe" ng-click="EditLienHe(lienhe)" class="btn fa fa-edit">Sửa</button>
-
                     </div>
                 </div>
             </div>
@@ -699,12 +729,10 @@
                                 <td><label>Ghi chú</label></td>
                                 <td colspan="7"><textarea class="form-control" id="aditghichulienhe" name="aditghichulienhe" ng-model="editlh.GHI_CHU"></textarea></textarea></td>
                             </tr>
-
                         </table>
                     </div>
 
                     @*<div class="modal-body">
-
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Sales phụ trách</label>
@@ -718,7 +746,6 @@
                                 <div class="col-md-4">
                                     <select ng-model="editlh.TINH_TRANG_LAM_VIEC" style="height: 27px;padding-left: 5px;width:100%" data-ng-options="item as item for item in tinh_trang"></select>
                                 </div>
-
 
                                 <label class="col-sm-1 control-label">Sale còn phụ trách? </label>
 
@@ -776,7 +803,6 @@
                                     <li><a data-toggle="tab" @*ng-click="GetDataCongNoKH(item.MA_KHACH_HANG,'4-T5-2017')"*@ href="#congnokhachhang">Công nợ khách hàng</a></li>
                                     <li><a data-toggle="tab" href="#hosothanhtoan">Hồ sơ thanh toán</a></li>
                                     <li><a data-toggle="tab" href="#taikhoankhachhang">Tài khoản</a></li>
-
                                 </ul>
                                 <div class="tab-content">
                                     <!--tab công nợ-->
@@ -784,7 +810,6 @@
                                         <div class="col-md-12">
 
                                             <button ng-repeat="tuancongno in list_danhsachtuancongno" ng-click="GetDataCongNoKH(item.MA_KHACH_HANG,tuancongno); GetDataComment_CongNoKH(item.MA_KHACH_HANG,tuancongno)">{{tuancongno.TUAN_CONG_NO}}</button>
-
                                         </div>
                                         <div class="col-md-12" ng-show="hienthicongno">
                                             <table class="table" border="1" cellpadding="0" cellspacing="0">
@@ -881,7 +906,6 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-
                                         </div>
 
                                         <br />
@@ -923,7 +947,6 @@
                                             </div>
                                         </div>
                                         <!--END COMMENTS-->
-
                                     </div>
                                     <!--end tab công nợ-->
                                     <!--Tab chi tiết hàng hóa-->
@@ -937,7 +960,6 @@
                                                 <tr>
                                                     <td style="font-weight:bold">Địa chỉ xuất hóa đơn:</td>
                                                     <td colspan='3'>{{item.DIA_CHI_XUAT_HOA_DON}}</td>
-
                                                 </tr>
                                                 <tr>
                                                     <td style="font-weight:bold">Mã số thuế:</td>
@@ -966,7 +988,6 @@
                                                 <tr>
                                                     <td style="font-weight:bold">Ghi chú</td>
                                                     <td colspan='3' ng-bind-html="item.GHI_CHU | unsafe" class="{{item.MA_KHACH_HANG}}-1"></td>
-
                                                 </tr>
                                             </table><br />
                                             <center>
@@ -974,7 +995,6 @@
                                                 <button id="exit" name="exit" ng-click="showrow = false" class="btn fa fa-sign-out" data-dismiss="modal">Exit</button>
                                             </center>
                                         </div>
-
                                     </div>
                                     <div id="lienhekhachhang" class="tab-pane fade">
                                         <div class="col-md-12">
@@ -1045,19 +1065,16 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                         </th>
                                                         <th colspan="3" style="border-top: 2px solid lightsteelblue !important; border-left: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important;border-right: 2px solid lightsteelblue !important;">
                                                             <button type="button" ng-click="addnew(item.MA_KHACH_HANG);showrow = false" class="btn btn-default">Lưu</button>
                                                             <button type="button" ng-click="showrow = false" class="btn btn-default">Ẩn dòng</button>
                                                         </th>
-
                                                     </tr>
 
                                                     <tr>
                                                         <th colspan="10" style="border: 1px solid #FAEBD7; background-color: #FAEBD7 !important"><span ng-click="hienthidong()" style="cursor: pointer; color: black; font-weight: bold">Click vào đây để thêm dòng mới</span></th>
                                                     </tr>
-
                                                 </tfoot>
                                             </table>
                                         </div>
@@ -1088,23 +1105,22 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-
                                     </div>
                                     <div id="phanhoikhachhang" class="tab-pane fade">
                                         <button type="button" ng-click="transfer(item)" class="btn fa fa-plus" data-dismiss="modal" data-toggle="modal" data-target="#newphanhoi" style="float: right; margin-bottom: 5px;">Thêm mới</button>
                                         <table class="table">
                                             <tr style="border: 1px solid #ddd !important">
-                                                <th style="border: 1px solid #ddd !important">Ngày phản hồi</th>
-                                                <th style="border: 1px solid #ddd !important">Người phản hồi</th>
-                                                <th style="border: 1px solid #ddd !important">Thông tin phản hồi</th>
-                                                <th colspan="2" style="border: 1px solid #ddd !important">Action</th>
+                                                <th style="border: 1px solid #ddd !important; width: 10%">Ngày phản hồi</th>
+                                                <th style="border: 1px solid #ddd !important; width: 10%">Người phản hồi</th>
+                                                <th style="border: 1px solid #ddd !important; width: 70%">Thông tin phản hồi</th>
+                                                <th colspan="2" style="border: 1px solid #ddd !important; width: 10%">Action</th>
                                             </tr>
 
                                             <tr ng-repeat="khachphanhoi in list_phanhoi | orderBy:'-NGAY_PHAN_HOI'">
 
-                                                <td class="text-left" style="width: 10%;">{{khachphanhoi.NGAY_PHAN_HOI}}</td>
-                                                <td class="text-left" style="width: 20%;">{{khachphanhoi.HO_VA_TEN}}</td>
-                                                <td class="text-left" style="width: 64%;">
+                                                <td class="text-left">{{khachphanhoi.NGAY_PHAN_HOI}}</td>
+                                                <td class="text-left">{{khachphanhoi.HO_VA_TEN}}</td>
+                                                <td class="text-left">
                                                     <p ng-bind-html="khachphanhoi.THONG_TIN_PHAN_HOI | unsafe" class="thongtinphanhoi-{{khachphanhoi.ID}}"></p>
                                                 </td>
                                                 <td>
@@ -1114,8 +1130,24 @@
                                                     <button type="button" ng-click="XoaPhanHoi(khachphanhoi)" class="btn fa fa-trash">Xóa</button>
                                                 </td>
                                             </tr>
+                                            <tr style="border: 2px solid #ddd !important" ng-show="themmoidong">
+                                                <th colspan="4" style="background: none !important; width: 90%">
+                                                    <textarea id="phanhoimoi" name="phanhoimoi" class="form-control input-md"></textarea>
+                                                    <script>
+                                                        CKEDITOR.replace('phanhoimoi', {
+                                                            height: 150
+                                                        });
+                                                    </script>
+                                                </th>
+                                                <th colspan="1" style="border-top: 2px solid lightsteelblue !important; border-left: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important;border-right: 2px solid lightsteelblue !important; background: none !important; width: 10%">
+                                                    <button id="addnew" name="addnew" class="btn btn-default" ng-click="addnewphanhoi(item.MA_KHACH_HANG, item.USERNAME);themmoidong = false" style="margin-bottom: 11px;">Thêm</button>
+                                                    <button type="button" ng-click="themmoidong = false" class="btn btn-default">Ẩn dòng</button>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="5" style="border: 1px solid #FAEBD7; background-color: #FAEBD7 !important;"><span ng-click="hienthidongmoi()" style="cursor: pointer; color: black; font-weight: bold">Click vào đây để thêm dòng mới</span></th>
+                                            </tr>
                                         </table>
-
                                     </div>
                                     <div id="thongkemuahang" class="tab-pane fade">
                                         <input ng-model="timkiemthongke" placeholder="Tìm kiếm mã hàng" ng-change="find_thong_ke(timkiemthongke,item.MA_KHACH_HANG)" />
@@ -1183,7 +1215,6 @@
                                                     <th>Chiết khấu cũ 3</th>
                                                     <th ng-show="hienchucnang">Sửa</th>
                                                 </tr>
-
                                             </thead>
                                             <tbody>
                                                 @*<tr ng-repeat="policy in list_policy" class="hover" ng-class-odd="'odd'" ng-class-even="'even'">
@@ -1197,7 +1228,6 @@
                                                             <p ng-hide="editMode"><b style="color:blue">{{policy.CK}} %</b></p>
                                                             <input type="number" ng-model="policy.CK" ng-show="editMode" />
                                                             <i style="font-size:9px;">{{policy.TEN_NGUOI_CAP_NHAT}}({{policy.NGAY_CAP_NHAT | date: 'dd/MM/yyyy HH:mm a'}})</i>
-
                                                         </td>
                                                         <td style="border-left: 2px solid lightsteelblue !important;">{{policy.GIA_HISTORY_1 | currency: '' : 0}}</td>
                                                         <td style="border-right: 2px solid lightsteelblue !important;">{{policy.CK_HISTORY_1 | currency: '' : 0}} %</td>
@@ -1224,7 +1254,6 @@
                                                         <p ng-hide="editMode"><b style="color:blue">{{policy.CK}} %</b></p>
                                                         <input type="number" ng-model="policy.CK" ng-show="editMode" />
                                                         <i style="font-size:9px;">{{policy.TEN_NGUOI_CAP_NHAT}}({{policy.NGAY_CAP_NHAT | date: 'dd/MM/yyyy HH:mm a'}})</i>
-
                                                     </td>
                                                     <td>{{policy.GIA_HISTORY_1 | currency: '' : 0}}</td>
                                                     <td>{{policy.CK_HISTORY_1 | currency: '' : 0}} %</td>
@@ -1239,7 +1268,6 @@
                                                         <button type="submit" ng-show="editMode" ng-click="editMode = false; cancel_policy(policy)" class="btn fa fa-ban">Cancel</button>
                                                     </td>
                                                 </tr>
-
                                             </tbody>
                                             <tfoot>
                                                 <tr style="border: 2px solid #ddd !important" ng-show="showrow">
@@ -1337,16 +1365,13 @@
                                                         <button type="button" ng-click="addnew_policy(item.MA_KHACH_HANG)" class="btn btn-default">Lưu</button>
                                                         <button type="button" ng-click="showrow = false" class="btn btn-default">Ẩn dòng</button>
                                                     </th>
-
                                                 </tr>
 
                                                 <tr>
                                                     <th colspan="10" style="border: 2px solid lightsteelblue !important"><span ng-click="hienthidong()" style="cursor: pointer; text-decoration:underline; color:blue; font-weight: bold">Click vào đây để thêm dòng mới</span></th>
                                                 </tr>
                                             </tfoot>
-
                                         </table>
-
                                     </div>
                                     <div id="hosothanhtoan" class="tab-pane fade">
                                         <div class="col-md-12">
@@ -1355,14 +1380,11 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div class="modal-footer">
-
                     </div>
                 </div>
-
             </div>
         </div>
         <!--end modal-->
@@ -1417,19 +1439,17 @@
                                 </td>
                                 <td class="text-left" colspan="3"><label class="control-label">Tình trạng làm việc</label></td>
                                 <td colspan="3"><select ng-model="tinh_trang_lam_viec" id="adddieukhoanthanhtoan" style="height: 27px;padding-left: 5px;width:100%" data-ng-options="item as item for item in tinh_trang"></select></td>
-
                             </tr>
 
                             <tr>
                                 <td class="text-left" colspan="2"><label class="control-label">Ghi chú</label></td>
                                 <td colspan="9"><textarea id="ghichu" name="ghichu" placeholder="Ghi chú" class="form-control input-md" ng-model="ghi_chu_lh"></textarea></td>
-
                             </tr>
                         </table>
                         <script>
-                                CKEDITOR.replace('ghichu', {
-                                        height: 100
-                                    });
+                            CKEDITOR.replace('ghichu', {
+                                height: 100
+                            });
                         </script>
                     </div>
                     <div class="modal-footer" style="text-align: center;">
@@ -1515,7 +1535,7 @@
         </div>
         <!--end modal-->
         <!-- Modal thêm mới phản hồi -->
-        <div class="modal fade" id="newphanhoi" role="dialog">
+        @*<div class="modal fade" id="newphanhoi" role="dialog">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
 
@@ -1527,9 +1547,9 @@
                             </div>
                         </div>
                         <script>
-                                        CKEDITOR.replace('phanhoimoi', {
-                                        height: 150
-                                    });
+                            CKEDITOR.replace('phanhoimoi', {
+                                height: 150
+                            });
                         </script>
                     </div>
                     <div class="modal-footer">
@@ -1543,7 +1563,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
         <!--end modal-->
         <!--Update phản hồi-->
         <div class="modal fade" id="editphanhoi" role="dialog">
@@ -1571,10 +1591,9 @@
             </div>
             <script>
                 CKEDITOR.replace('edit_thong_tin_phan_hoi', {
-                height: 150
-            });
+                    height: 150
+                });
             </script>
-
         </div>
         <!--End update phản hồi-->
         <div class="col-md-10" style="color: red; font-size:12.5px;">
@@ -1583,9 +1602,7 @@
                     Chú thích:
                     <i class="fa fa-star-o" aria-hidden="true"></i> : Khách đặc biệt |
 
-
                     <i class="fa fa-search" aria-hidden="true"></i> : Khách do marketing tìm kiếm |
-
 
                     <i class="fa fa-money" aria-hidden="true"></i> : Khách mua doanh số cao |
 
@@ -1623,6 +1640,7 @@
                 </li>
             </ul>
         </div>
+
         <table id="example" class="table" cellspacing="0">
             <thead>
                 <tr>
@@ -1661,7 +1679,6 @@
                                     <div class="form-control-feedback">
                                         <i class="fa fa-filter"></i>
                                     </div>
-
                                 </div>
                                 <div class="tableselect" id="DataSales" style="display:none;min-width: 180px;">
                                     <table class="table-hover " style="font-size:12px">
@@ -1754,7 +1771,6 @@
                         <button type="submit" ng-hide="editMode" ng-click="editMode = true; editAppKey(item)" class="button_khachhang fa fa-edit">Edit</button>
                         <button type="submit" ng-show="editMode" ng-click="editMode = false; chuyensale(item)" class="btn btn-default">Save</button>
                         <button type="submit" ng-show="editMode" ng-click="editMode = false; cancel()" class="btn btn-default">Cancel</button>
-
                     </td>
                     <td data-toggle="modal" data-target="#delete_item" ng-click="transfer(item)" ng-show="isadmin">Xóa khách hàng</td>
                     <td data-toggle="modal" data-target="#copy_kh" ng-click="transfer(item)" ng-show="isadmin">Copy khách hàng</td>
@@ -1763,7 +1779,6 @@
                     </td>
                 </tr>
                 <!--Detail row-->
-
             </tbody>
             <tfoot>
                 <tr>
@@ -1784,7 +1799,6 @@
                 </tr>
             </tfoot>
         </table>
-
 
         <div class="modal fade" id="delete_item" role="dialog">
             <div class="modal-dialog modal-sm">
@@ -1912,45 +1926,45 @@
         }
     </style>
 
-    <script type="text/javascript">var startTime=new Date();function currentTime(){var a=Math.floor((new Date()-startTime)/100)/10;if (a%1==0) a+=".0";document.getElementById("endTime").innerHTML=a;}window.onload=function(){clearTimeout(loopTime);}</script>
-    <script type="text/javascript">document.write('<div align="center"><span id="texttime"><i class="fa fa fa-spinner fa-spin"></i> Thời gian tải trang: <span id="endTime">0.0</span>s</span></div> ');var loopTime=setInterval("currentTime()",100);</script>
+    <script type="text/javascript">var startTime = new Date(); function currentTime() { var a = Math.floor((new Date() - startTime) / 100) / 10; if (a % 1 == 0) a += ".0"; document.getElementById("endTime").innerHTML = a; } window.onload = function () { clearTimeout(loopTime); }</script>
+    <script type="text/javascript">document.write('<div align="center"><span id="texttime"><i class="fa fa fa-spinner fa-spin"></i> Thời gian tải trang: <span id="endTime">0.0</span>s</span></div> '); var loopTime = setInterval("currentTime()", 100);</script>
 
     <script src="~/Content/download/pnotify.custom.min.js"></script>
     <script src="http://malsup.github.com/jquery.form.js"></script>
     <script src="~/Content/self-writing/pagination.js"></script>
 
     <script>
-    (function () {
+        (function () {
 
-        var bar = $('.progress-bar');
-        var percent = $('.progress-bar');
-        var status = $('#status');
+            var bar = $('.progress-bar');
+            var percent = $('.progress-bar');
+            var status = $('#status');
 
-        $('form').ajaxForm({
-            beforeSend: function () {
-                status.empty();
-                var percentVal = '0%';
-                bar.width(percentVal)
-                percent.html(percentVal);
-            },
-            uploadProgress: function (event, position, total, percentComplete) {
-                var percentVal = percentComplete + '%';
-                bar.width(percentVal)
-                percent.html(percentVal);
-            },
-            success: function () {
-                var percentVal = '100%';
-                bar.width(percentVal)
-                percent.html(percentVal);
-            },
-            complete: function (xhr) {
-                status.html(xhr.responseText);
-            }
-        });
+            $('form').ajaxForm({
+                beforeSend: function () {
+                    status.empty();
+                    var percentVal = '0%';
+                    bar.width(percentVal)
+                    percent.html(percentVal);
+                },
+                uploadProgress: function (event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar.width(percentVal)
+                    percent.html(percentVal);
+                },
+                success: function () {
+                    var percentVal = '100%';
+                    bar.width(percentVal)
+                    percent.html(percentVal);
+                },
+                complete: function (xhr) {
+                    status.html(xhr.responseText);
+                }
+            });
 
-
-    })();
+        })();
     </script>
+
 
     @*<style>
             .inputDB {
@@ -1969,5 +1983,4 @@
                 border: 1px solid #eeeeee !important;
             }
         </style>*@
-
 </div>
