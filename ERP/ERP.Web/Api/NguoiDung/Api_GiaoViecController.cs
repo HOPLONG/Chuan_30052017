@@ -32,6 +32,15 @@ namespace ERP.Web.Api.NguoiDung
             return result;
         }
 
+        // GET: api/Api_GiaoViec/5
+        [Route("api/Api_GiaoViec/GetGiaoViecChuaHoanThanh/{username}/{isadmin}")]
+        public List<GetAll_ThongTinGiaoViecChuaHoanThanh_Result> GetGiaoViecChuaHoanThanh(string username, Boolean isadmin)
+        {
+            var query = db.Database.SqlQuery<GetAll_ThongTinGiaoViecChuaHoanThanh_Result>("GetAll_ThongTinGiaoViecChuaHoanThanh @username,@isadmin", new SqlParameter("username", username),new SqlParameter("isadmin", isadmin));
+            var result = query.ToList();
+            return result;
+        }
+
         // PUT: api/Api_GiaoViec/5
         [Route("api/Api_GiaoViec/PutNV_GIAO_VIEC/{id}")]
         [ResponseType(typeof(void))]
@@ -50,6 +59,45 @@ namespace ERP.Web.Api.NguoiDung
                 query.TRANG_THAI = nV_GIAO_VIEC.TRANG_THAI;
                 query.GHI_CHU = nV_GIAO_VIEC.GHI_CHU;
                 query.PHUONG_AN_XU_LY = nV_GIAO_VIEC.PHUONG_AN_XU_LY;
+            }
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!NV_GIAO_VIECExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+
+        // PUT: api/Api_GiaoViec/5
+        [Route("api/Api_GiaoViec/PutNV_GIAO_VIEC_CHUA_HT/{id}")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutNV_GIAO_VIEC_CHUA_HT(int id, NV_GIAO_VIEC viecchuaht)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var query = db.NV_GIAO_VIEC.Where(x => x.ID == id).FirstOrDefault();
+            if (query != null)
+            {
+                
+                query.NOI_DUNG_CONG_VIEC = viecchuaht.NOI_DUNG_CONG_VIEC;
+                query.PHUONG_AN_XU_LY = viecchuaht.PHUONG_AN_XU_LY;
+                query.NGAY_HOAN_THANH = viecchuaht.NGAY_HOAN_THANH;
+                query.GHI_CHU = viecchuaht.GHI_CHU;
             }
             try
             {
@@ -111,6 +159,26 @@ namespace ERP.Web.Api.NguoiDung
 
             return Ok(nV_GIAO_VIEC);
         }
+
+
+        // DELETE: api/Api_GiaoViec/5
+        [ResponseType(typeof(NV_GIAO_VIEC))]
+        [Route("api/Api_GiaoViec/DeleteNV_GIAO_VIEC_CHUA_HT/{id}")]
+        public IHttpActionResult DeleteNV_GIAO_VIEC_CHUA_HT(int id)
+        {
+            NV_GIAO_VIEC NV_GIAO_VIEC_CHUA_HT = db.NV_GIAO_VIEC.Find(id);
+            if (NV_GIAO_VIEC_CHUA_HT == null)
+            {
+                return NotFound();
+            }
+
+            db.NV_GIAO_VIEC.Remove(NV_GIAO_VIEC_CHUA_HT);
+            db.SaveChanges();
+
+            return Ok(NV_GIAO_VIEC_CHUA_HT);
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {
