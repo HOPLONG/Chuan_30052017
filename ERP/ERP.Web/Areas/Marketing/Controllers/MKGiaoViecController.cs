@@ -13,5 +13,10 @@ namespace ERP.Web.Areas.Marketing.Controllers
         {
             return View();
         }
+
+        public ActionResult ListCV()
+        {
+            return View();
+        }
     }
 }

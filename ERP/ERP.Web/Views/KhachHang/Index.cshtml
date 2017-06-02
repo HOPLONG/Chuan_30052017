@@ -347,7 +347,7 @@
                                         <th colspan='2'>Loại TK(*)</th>
                                     </tr>
                                 </thead>
-                                <tr ng-repeat="i in range(0,2)">
+                                <tr ng-repeat="(index,item) in arraytaikhoan">
                                     <td><input type="text" class="form-control" style="height: 100%;padding-left: 5px;" ng-model="arraytaikhoan[$index].so_tai_khoan"></td>
                                     <td colspan='2'><input type="text" class="form-control" style="height: 100%;padding-left: 5px;" ng-model="arraytaikhoan[$index].ten_tai_khoan"></td>
                                     <td colspan='2'><input type="text" class="form-control" style="height: 100%;padding-left: 5px;" ng-model="arraytaikhoan[$index].ten_ngan_hang"></td>
@@ -360,7 +360,7 @@
                                     </td>
                                 </tr>
                             </table>
-                            <button type="button" class="fa fa-plus button_addrow" ng-click="AddNew1()"><span style="font-size: 15px; font-weight: bold; padding-left:5px; padding-top:5px;">Thêm dòng</span></button>
+                            <button type="button" class="fa fa-plus button_addrow" ng-click="AddNew()"><span style="font-size: 15px; font-weight: bold; padding-left:5px; padding-top:5px;">Thêm dòng</span></button>
                             <table>
                                 <p style="text-shadow: 1px 1px 5px #91DDFD; font-style:italic; font-size: 20px; color: #64B5F6; margin-left:10px; margin-top:5px; font-weight: bold">LIÊN HỆ KHÁCH HÀNG</p>
                                 <div class="line-bottom"></div>
@@ -379,8 +379,14 @@
                                         <th>Tình trạng làm việc</th>
                                     </tr>
                                 </thead>
-                                <tr ng-repeat="i in range(0,2)">
-                                    <td><input type="text" style="height: 100%;padding-left: 5px;width:100%" class="form-control" ng-model="arraylienhe[$index].nguoi_lien_he"></td>
+                                <tr ng-repeat="(index,item) in arraylienhe">
+                                    <td>
+                                        <ng-form name="valid_lienhekh">
+                                            <input type="text" style="height: 100%;padding-left: 5px;width:100%" class="form-control" name="lienhe_kh" ng-model="arraylienhe[$index].nguoi_lien_he" required>
+                                            <small class="label label-danger" data-ng-show="submitted && valid_lienhekh.lienhe_kh.$error.required">required</small>
+                                        </ng-form>
+                                        
+                                    </td>
                                     <td><input type="text" style="height: 100%;padding-left: 5px;width:100%" class="form-control" ng-model="arraylienhe[$index].chuc_vu"></td>
                                     <td><input type="text" style="height: 100%;padding-left: 5px;width:100%" class="form-control" ng-model="arraylienhe[$index].phong_ban"></td>
                                     <td>
@@ -390,7 +396,11 @@
                                         <input type="text" style="height: 100%;padding-left: 5px;width:100%" class="form-control" ng-model="arraylienhe[$index].gioi_tinh">
                                     </td>
                                     <td>
-                                        <input type="tel" ng-model="arraylienhe[$index].so_dien_thoai1" placeholder="Số điện thoại 1(*)">
+                                        <ng-form name="valid_sdt">
+                                            <input type="tel" ng-model="arraylienhe[$index].so_dien_thoai1" placeholder="Số điện thoại 1(*)" name="sdt_kh" required>
+                                            <small class="label label-danger" data-ng-show="submitted && valid_sdt.sdt_kh.$error.required">required</small>
+                                        </ng-form>
+                                        
                                         <input type="tel" ng-model="arraylienhe[$index].so_dien_thoai2" placeholder="Số điện thoại 2">
                                     </td>
                                     <td>

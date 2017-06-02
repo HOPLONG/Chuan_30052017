@@ -1,6 +1,4 @@
-﻿
-app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
-
+﻿app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
     var salehienthoi = $('#salehienthoi').val();
 
     var IsAdmin = $('#isadmin').val();
@@ -23,8 +21,6 @@ app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
     }
     //End get data lịch làm việc
 
-
-
     //Get data_phòng ban
     $scope.get_dataphongban = function (macongty) {
         $http.get("/api/PhongBan/GetPhongBan/" + macongty)
@@ -35,11 +31,10 @@ app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
          }, function (error) {
              alert("Lỗi kết nối không thể lấy được danh sách phòng ban");
          });
-
     }
     $scope.get_dataphongban(macongty)
     //end get data phòng ban
-    
+
     $scope.EditLichLamViec = function (id) {
         var data_save = {
             TIEU_DE_CONG_VIEC: $scope.kq.TIEU_DE_CONG_VIEC,
@@ -49,9 +44,9 @@ app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
             THOI_GIAN_KET_THUC: $scope.kq.THOI_GIAN_KET_THUC,
             TRANG_THAI: $scope.kq.TRANG_THAI,
             GHI_CHU: $scope.kq.GHI_CHU,
-            HUY_CONG_VIEC : $scope.kq.HUY_CONG_VIEC
+            HUY_CONG_VIEC: $scope.kq.HUY_CONG_VIEC
         }
-        $http.put("/api/Api_TaiKhoanKH/PutLichLamViec/" + id,data_save).then(function (response) {
+        $http.put("/api/Api_TaiKhoanKH/PutLichLamViec/" + id, data_save).then(function (response) {
             alert('Sửa thành công')
             $scope.get_datalichlamviec($scope.kq.NHAN_VIEN_THUC_HIEN);
         }, function (error) {
@@ -87,7 +82,6 @@ app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
         });
     };
 
-
     //Get data_nhân viên phòng ban
     $scope.get_datanhanvienphongban = function (maphongban) {
         $http.get("/api/NhanVien/GetNhanVienPhongBan/" + maphongban)
@@ -103,7 +97,6 @@ app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
     }
     //end get data nhân viên phòng ban
 
-
     $scope.edit = function (kq) {
         $scope.kq = kq;
     };
@@ -113,13 +106,10 @@ app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
         });
     };
     $scope.Loadgiaoviec();
-    
-
 
     $scope.save_giao_viec = function (entry) {
         $scope.entry = entry;
         var data_save = {
-
             TRANG_THAI: $scope.entry.TRANG_THAI,
             GHI_CHU: $scope.entry.GHI_CHU,
             PHUONG_AN_XU_LY: $scope.entry.PHUONG_AN_XU_LY,
@@ -165,7 +155,6 @@ app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
     $scope.arrayNV = [];
     $scope.showtable_NV = false;
 
-
     $http.get(window.location.origin + '/api/NhanVien/GetNhanVienPhongBan/' + MaPhongBan + '/' + IsAdmin)
 
      .then(function (response) {
@@ -200,7 +189,6 @@ app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
         $scope.username = p_dt.USERNAME;
         $scope.showtable_NV = false;
     }
-    
 
     $scope.newgiaoviec = function () {
         var data = {
@@ -219,13 +207,12 @@ app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
             SuccessSystem('Thành công');
         });
     };
-    
+
     $scope.showbutton = false;
     function init() {
         $scope.list_dspheduyet = [];
         $http.post(window.location.origin + '/api/Api_DangKyPheDuyetPO/DanhsachpheduyetGV/' + IsAdmin + '/' + Username)
         .then(function (response) {
-
             $scope.list_dspheduyet = response.data;
             $scope.nguoiduyet = response.data[0].NGUOI_PHE_DUYET
             if ($scope.nguoiduyet == Username || IsAdmin == 'True') {
@@ -235,8 +222,45 @@ app.controller('LichLamViecNhanVienCtrl', function ($scope, $http) {
                 $scope.showbutton = false;
             }
         });
-       
     }
     init();
 
+    //List giao việc chưa hoàn thành
+    function loadlistCV() {
+        $http.get(window.location.origin + '/api/Api_GiaoViec/GetGiaoViecChuaHoanThanh/' + Username + '/' + IsAdmin)
+
+  .then(function (response) {
+      if (response.data) {
+          $scope.ListCVChuaHoanThanh = response.data;
+      }
+  }, function (error) {
+      console.log(error);
+  });
+    }
+
+    loadlistCV();
+
+    $scope.EditLichLamViecNV = function (item) {
+        var data_save = {
+            NOI_DUNG_CONG_VIEC: item.NOI_DUNG_CONG_VIEC,
+            PHUONG_AN_XU_LY: item.PHUONG_AN_XU_LY,
+            NGAY_HOAN_THANH: item.NGAY_HOAN_THANH,
+            GHI_CHU: item.GHI_CHU
+        }
+        $http.put("/api/Api_GiaoViec/PutNV_GIAO_VIEC_CHUA_HT/" + item.ID, data_save).then(function (response) {
+            SuccessSystem('Sửa thành công')
+            loadlistCV();
+        }, function (error) {
+            ErrorSystem("Lỗi khi sửa");
+        });
+    }
+
+    $scope.delete_lichlamviecNV = function (item) {
+        $http.delete('/api/Api_GiaoViec/DeleteNV_GIAO_VIEC_CHUA_HT/' + item.ID).then(function (response) {
+            SuccessSystem('Xóa thành công');
+            loadlistCV();
+        }, function (error) {
+            ErrorSystem("Lỗi khi xóa");
+        });
+    };
 });

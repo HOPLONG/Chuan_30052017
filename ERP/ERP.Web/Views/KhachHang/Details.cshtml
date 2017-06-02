@@ -32,16 +32,10 @@
 </style>
 <div ng-app="myApp" ng-controller="khachhangCtrl">
     <!-- Modal them moi lien he -->
-
     <input type="hidden" id="salehienthoi" name="salehienthoi" value="@Session["USERNAME"]" />
     <input type="hidden" id="maphongban" name="maphongban" value="@Session["MA_PHONG_BAN"]" />
     <input type="hidden" id="macongty" name="macongty" value="@Session["MA_CONG_TY"]" />
     <input type="hidden" id="isadmin" name="isadmin" value="@Session["IS_AMIN"]" />
-
-    <div class="modal fade" id="newlienhe" role="dialog" tabindex="-1">
-        <div class="modal-dialog modal-lg" style="width: 90%">
-            <div class="modal-content" style="height: 100%">
-
 
 
 
@@ -403,10 +397,10 @@
                                                 <th colspan="4" style="background: none !important; width: 90%">
                                                     <textarea id="phanhoimoi" name="phanhoimoi" class="form-control input-md"></textarea>
                                                     @*<script>
-                                                        CKEDITOR.replace('phanhoimoi', {
-                                                            height: 150
-                                                        });
-                                                    </script>*@
+                                                            CKEDITOR.replace('phanhoimoi', {
+                                                                height: 150
+                                                            });
+                                                        </script>*@
                                                 </th>
                                                 <th colspan="1" style="border-top: 2px solid lightsteelblue !important; border-left: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important;border-right: 2px solid lightsteelblue !important; background: none !important; width: 10%">
                                                     <button id="addnew" name="addnew" class="btn btn-default" ng-click="addnewphanhoi(item.MA_KHACH_HANG, item.USERNAME);themmoidong = false" style="margin-bottom: 11px;">Thêm</button>
@@ -460,17 +454,17 @@
                                         <table class="table">
                                             <thead>
                                                 @*<tr style="border: 2px solid #ddd !important; font-weight:bold; background:#64B5F6">
-                                                    <th style="border: 2px solid lightsteelblue !important; background: wheat;">Mã nhóm hàng</th>
-                                                    <th style="border-top: 2px solid lightsteelblue !important; border-left: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important; background: wheat;">Giá bán<br />(Lợi nhuận từ giá nhập bao nhiêu %)</th>
-                                                    <th style="border-top: 2px solid lightsteelblue !important; border-right: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important; background: wheat;">Chiết khấu<br /> (từ giá list) </th>
-                                                    <th style="border-top: 2px solid lightsteelblue !important; border-left: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important; background: wheat;">Giá bán cũ 1</th>
-                                                    <th style="border-top: 2px solid lightsteelblue !important; border-right: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important; background: wheat;">Chiết khấu cũ 1</th>
-                                                    <th style="border-top: 2px solid lightsteelblue !important; border-left: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important; background: wheat;">Giá bán cũ 2</th>
-                                                    <th style="border-top: 2px solid lightsteelblue !important; border-right: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important; background: wheat;">Chiết khấu cũ 2</th>
-                                                    <th style="border-top: 2px solid lightsteelblue !important; border-left: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important; background: wheat;">Giá báncũ 3</th>
-                                                    <th style="border-top: 2px solid lightsteelblue !important; border-right: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important; background: wheat;">Chiết khấu cũ 3</th>
-                                                    <th style="border: 2px solid lightsteelblue !important; background: wheat;" ng-show="hienchucnang">Sửa</th>
-                                                </tr>*@
+                                                        <th style="border: 2px solid lightsteelblue !important; background: wheat;">Mã nhóm hàng</th>
+                                                        <th style="border-top: 2px solid lightsteelblue !important; border-left: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important; background: wheat;">Giá bán<br />(Lợi nhuận từ giá nhập bao nhiêu %)</th>
+                                                        <th style="border-top: 2px solid lightsteelblue !important; border-right: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important; background: wheat;">Chiết khấu<br /> (từ giá list) </th>
+                                                        <th style="border-top: 2px solid lightsteelblue !important; border-left: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important; background: wheat;">Giá bán cũ 1</th>
+                                                        <th style="border-top: 2px solid lightsteelblue !important; border-right: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important; background: wheat;">Chiết khấu cũ 1</th>
+                                                        <th style="border-top: 2px solid lightsteelblue !important; border-left: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important; background: wheat;">Giá bán cũ 2</th>
+                                                        <th style="border-top: 2px solid lightsteelblue !important; border-right: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important; background: wheat;">Chiết khấu cũ 2</th>
+                                                        <th style="border-top: 2px solid lightsteelblue !important; border-left: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important; background: wheat;">Giá báncũ 3</th>
+                                                        <th style="border-top: 2px solid lightsteelblue !important; border-right: 2px solid lightsteelblue !important; border-bottom: 2px solid lightsteelblue !important; background: wheat;">Chiết khấu cũ 3</th>
+                                                        <th style="border: 2px solid lightsteelblue !important; background: wheat;" ng-show="hienchucnang">Sửa</th>
+                                                    </tr>*@
 
                                                 <tr>
                                                     <th>Mã nhóm hàng</th>
@@ -487,30 +481,30 @@
                                             </thead>
                                             <tbody>
                                                 @*<tr ng-repeat="policy in list_policy" class="hover" ng-class-odd="'odd'" ng-class-even="'even'">
-                                                    <td style="border-left: 2px solid lightsteelblue !important;" class="text-left">{{policy.MA_NHOM_HANG}}</td>
-                                                    <td style="border-left: 2px solid lightsteelblue !important;">
-                                                        <p ng-hide="editMode"><b style="color:blue">{{policy.GIA_BAN | currency : '' : 0}}</b></p>
-                                                        <input type="number" ng-model="policy.GIA_BAN" ng-show="editMode" />
-                                                        <i style="font-size:9px;">{{policy.TEN_NGUOI_CAP_NHAT}}({{policy.NGAY_CAP_NHAT | date: 'dd/MM/yyyy HH:mm a'}})</i>
-                                                    </td>
-                                                    <td style="border-right: 2px solid lightsteelblue !important;">
-                                                        <p ng-hide="editMode"><b style="color:blue">{{policy.CK}} %</b></p>
-                                                        <input type="number" ng-model="policy.CK" ng-show="editMode" />
-                                                        <i style="font-size:9px;">{{policy.TEN_NGUOI_CAP_NHAT}}({{policy.NGAY_CAP_NHAT | date: 'dd/MM/yyyy HH:mm a'}})</i>
-                                                    </td>
-                                                    <td style="border-left: 2px solid lightsteelblue !important;">{{policy.GIA_HISTORY_1 | currency: '' : 0}}</td>
-                                                    <td style="border-right: 2px solid lightsteelblue !important;">{{policy.CK_HISTORY_1 | currency: '' : 0}} %</td>
-                                                    <td style="border-left: 2px solid lightsteelblue !important;">{{policy.GIA_HISTORY_2 | currency: '' : 0}}</td>
-                                                    <td style="border-right: 2px solid lightsteelblue !important;">{{policy.CK_HISTORY_2 | currency: '' : 0}} %</td>
-                                                    <td style="border-left: 2px solid lightsteelblue !important;">{{policy.GIA_HISTORY_3 | currency: '' : 0}}</td>
-                                                    <td style="border-right: 2px solid lightsteelblue !important;">{{policy.CK_HISTORY_3 | currency: '' : 0}} %</td>
-                                                    <td style="border-right: 2px solid lightsteelblue !important;" ng-show="hienchucnang">
-                                                        <button type="submit" ng-hide="editMode" ng-click="editMode = true; editpolicy(policy)" class="btn btn-default">Sửa nhanh</button>
-                                                        <button type="submit" ng-show="editMode" ng-click="editMode = false; save_policy(policy)" class="btn btn-default">Save</button>
-                                                        <button type="submit" ng-show="editMode" ng-click="editMode = false; delete_policy(policy)" class="btn btn-default">Delete</button>
-                                                        <button type="submit" ng-show="editMode" ng-click="editMode = false; cancel_policy(policy)" class="btn btn-default">Cancel</button>
-                                                    </td>
-                                                </tr>*@
+                                                        <td style="border-left: 2px solid lightsteelblue !important;" class="text-left">{{policy.MA_NHOM_HANG}}</td>
+                                                        <td style="border-left: 2px solid lightsteelblue !important;">
+                                                            <p ng-hide="editMode"><b style="color:blue">{{policy.GIA_BAN | currency : '' : 0}}</b></p>
+                                                            <input type="number" ng-model="policy.GIA_BAN" ng-show="editMode" />
+                                                            <i style="font-size:9px;">{{policy.TEN_NGUOI_CAP_NHAT}}({{policy.NGAY_CAP_NHAT | date: 'dd/MM/yyyy HH:mm a'}})</i>
+                                                        </td>
+                                                        <td style="border-right: 2px solid lightsteelblue !important;">
+                                                            <p ng-hide="editMode"><b style="color:blue">{{policy.CK}} %</b></p>
+                                                            <input type="number" ng-model="policy.CK" ng-show="editMode" />
+                                                            <i style="font-size:9px;">{{policy.TEN_NGUOI_CAP_NHAT}}({{policy.NGAY_CAP_NHAT | date: 'dd/MM/yyyy HH:mm a'}})</i>
+                                                        </td>
+                                                        <td style="border-left: 2px solid lightsteelblue !important;">{{policy.GIA_HISTORY_1 | currency: '' : 0}}</td>
+                                                        <td style="border-right: 2px solid lightsteelblue !important;">{{policy.CK_HISTORY_1 | currency: '' : 0}} %</td>
+                                                        <td style="border-left: 2px solid lightsteelblue !important;">{{policy.GIA_HISTORY_2 | currency: '' : 0}}</td>
+                                                        <td style="border-right: 2px solid lightsteelblue !important;">{{policy.CK_HISTORY_2 | currency: '' : 0}} %</td>
+                                                        <td style="border-left: 2px solid lightsteelblue !important;">{{policy.GIA_HISTORY_3 | currency: '' : 0}}</td>
+                                                        <td style="border-right: 2px solid lightsteelblue !important;">{{policy.CK_HISTORY_3 | currency: '' : 0}} %</td>
+                                                        <td style="border-right: 2px solid lightsteelblue !important;" ng-show="hienchucnang">
+                                                            <button type="submit" ng-hide="editMode" ng-click="editMode = true; editpolicy(policy)" class="btn btn-default">Sửa nhanh</button>
+                                                            <button type="submit" ng-show="editMode" ng-click="editMode = false; save_policy(policy)" class="btn btn-default">Save</button>
+                                                            <button type="submit" ng-show="editMode" ng-click="editMode = false; delete_policy(policy)" class="btn btn-default">Delete</button>
+                                                            <button type="submit" ng-show="editMode" ng-click="editMode = false; cancel_policy(policy)" class="btn btn-default">Cancel</button>
+                                                        </td>
+                                                    </tr>*@
 
                                                 <tr ng-repeat="policy in list_policy" class="hover" ng-class-odd="'odd'" ng-class-even="'even'">
                                                     <td class="text-left">{{policy.MA_NHOM_HANG}}</td>
@@ -544,8 +538,8 @@
                                                         <input type="text" placeholder="Mã nhóm hàng" ng-model="ma_nhom_hang_policy" ng-focus="showtable_VTHH = true" ng-blur="showtable_VTHH = false" ng-change="onVTHHFind()" style="color: black !important" />
                                                         <div class="input-group-btn">
                                                             @*<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-click="showtable_VTHH = !showtable_VTHH" aria-haspopup="true" aria-expanded="false">
-                                                                <span class="caret"></span>
-                                                            </button>*@
+                                                                    <span class="caret"></span>
+                                                                </button>*@
                                                             <div class="dropdown-menu dropdown-menu-center borderRadius0 padding0" style="display: block" ng-show="showtable_VTHH">
                                                                 <div class="table-responsive" style="max-height: 280px">
                                                                     <table class="table table-striped table-hover" st-pagination-scroll st-table="VTHHCollection" st-safe-src="arrayVTHHFinded">
@@ -596,8 +590,8 @@
                                                         <input type="hidden" class="form-control" ng-model="username_marketing">
                                                         <div class="input-group-btn">
                                                             @*<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-click="showtable_marketing = !showtable_marketing" aria-haspopup="true" aria-expanded="false" style="background: transparent !important; color: black !important;">
-                                                                <span class="caret"></span>
-                                                            </button>*@
+                                                                    <span class="caret"></span>
+                                                                </button>*@
                                                             <div class="dropdown-menu dropdown-menu-center borderRadius0 padding0" style="display: block" ng-show="showtable_marketing">
                                                                 <div class="table-responsive" style="max-height: 280px">
                                                                     <table class="table table-striped table-hover" st-pagination-scroll st-table="MarketingCollection" st-safe-src="arrayMarketingFinded">
@@ -656,7 +650,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 
     <script>

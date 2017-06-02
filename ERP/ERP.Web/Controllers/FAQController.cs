@@ -13,5 +13,9 @@ namespace ERP.Web.Controllers
         {
             return View();
         }
+        public ActionResult TraLoi()
+        {
+            return View();
+        }
     }
 }
