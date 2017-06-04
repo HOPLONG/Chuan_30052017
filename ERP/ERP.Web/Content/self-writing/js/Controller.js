@@ -494,7 +494,7 @@ app.controller('bangchamcongCtrl', function (bangchamcongService, $scope) {
 
     $scope.kiemtramk = function (matkhau) {
         var password = $('#password').val();
-        if (matkhau == password) {
+        if (matkhau.toLowerCase() == password.toLowerCase()) {
             $scope.matkhau = true;
             SuccessSystem("Mật khẩu đúng")
         } else {
@@ -514,7 +514,7 @@ app.controller('bangluongCtrl', function (bangluongService, $scope) {
 
     $scope.xacnhanmk = function (matkhau) {
         var password = $('#password').val();
-        if(matkhau == password)
+        if(matkhau.toLowerCase() == password.toLowerCase())
         {
             $scope.matkhau = true;
             SuccessSystem("Mật khẩu đúng")

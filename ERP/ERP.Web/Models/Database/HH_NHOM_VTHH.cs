@@ -21,6 +21,7 @@ namespace ERP.Web.Models.Database
             this.HHs1 = new HashSet<HH>();
             this.HH_BANG_GIA_BAN = new HashSet<HH_BANG_GIA_BAN>();
             this.HH_BANG_GIA_BAN1 = new HashSet<HH_BANG_GIA_BAN>();
+            this.HH_HE_SO_GIA_BAN = new HashSet<HH_HE_SO_GIA_BAN>();
             this.HH_NHOM_VTHH1 = new HashSet<HH_NHOM_VTHH>();
             this.NCC_LOAI_HANG_CUNG_CAP = new HashSet<NCC_LOAI_HANG_CUNG_CAP>();
             this.KH_POLICY = new HashSet<KH_POLICY>();
@@ -43,6 +44,8 @@ namespace ERP.Web.Models.Database
         public virtual ICollection<HH_BANG_GIA_BAN> HH_BANG_GIA_BAN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HH_BANG_GIA_BAN> HH_BANG_GIA_BAN1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HH_HE_SO_GIA_BAN> HH_HE_SO_GIA_BAN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HH_NHOM_VTHH> HH_NHOM_VTHH1 { get; set; }
         public virtual HH_NHOM_VTHH HH_NHOM_VTHH2 { get; set; }

@@ -52,6 +52,7 @@ namespace ERP.Web.Models.Database
         public virtual DbSet<COMMENTS_CONG_NO_KH> COMMENTS_CONG_NO_KH { get; set; }
         public virtual DbSet<DM_DINH_KHOAN_TU_DONG> DM_DINH_KHOAN_TU_DONG { get; set; }
         public virtual DbSet<DM_KHO> DM_KHO { get; set; }
+        public virtual DbSet<DM_LIST_CHIEN_DICH_MARKETING> DM_LIST_CHIEN_DICH_MARKETING { get; set; }
         public virtual DbSet<DM_LOAI_CHUNG_TU> DM_LOAI_CHUNG_TU { get; set; }
         public virtual DbSet<DM_LOAI_DOI_TUONG> DM_LOAI_DOI_TUONG { get; set; }
         public virtual DbSet<DM_LOAI_TK_NGAN_HANG> DM_LOAI_TK_NGAN_HANG { get; set; }
@@ -63,6 +64,7 @@ namespace ERP.Web.Models.Database
         public virtual DbSet<HH_BANG_GIA_BAN> HH_BANG_GIA_BAN { get; set; }
         public virtual DbSet<HH_COMMENTS> HH_COMMENTS { get; set; }
         public virtual DbSet<HH_HANG_DUOC_QUAN_TAM> HH_HANG_DUOC_QUAN_TAM { get; set; }
+        public virtual DbSet<HH_HE_SO_GIA_BAN> HH_HE_SO_GIA_BAN { get; set; }
         public virtual DbSet<HH_NHOM_VTHH> HH_NHOM_VTHH { get; set; }
         public virtual DbSet<HT_CONG_VIEC_NHAN_VIEN> HT_CONG_VIEC_NHAN_VIEN { get; set; }
         public virtual DbSet<HT_LICH_SU_DANG_NHAP> HT_LICH_SU_DANG_NHAP { get; set; }
@@ -70,7 +72,9 @@ namespace ERP.Web.Models.Database
         public virtual DbSet<HT_NHIEM_VU_PHONG_BAN> HT_NHIEM_VU_PHONG_BAN { get; set; }
         public virtual DbSet<HT_PHAN_HOI_PHAN_MEM> HT_PHAN_HOI_PHAN_MEM { get; set; }
         public virtual DbSet<HT_THONG_BAO_MARKETING> HT_THONG_BAO_MARKETING { get; set; }
+        public virtual DbSet<KD_MUC_TIEU_DOANH_SO> KD_MUC_TIEU_DOANH_SO { get; set; }
         public virtual DbSet<KH> KHs { get; set; }
+        public virtual DbSet<KH_CHIEN_DICH_MARKETING> KH_CHIEN_DICH_MARKETING { get; set; }
         public virtual DbSet<KH_CHUYEN_SALES> KH_CHUYEN_SALES { get; set; }
         public virtual DbSet<KH_CONG_NO> KH_CONG_NO { get; set; }
         public virtual DbSet<KH_DC_XUAT_HANG> KH_DC_XUAT_HANG { get; set; }
@@ -131,6 +135,7 @@ namespace ERP.Web.Models.Database
         public virtual DbSet<QUY_CT_PHIEU_THU> QUY_CT_PHIEU_THU { get; set; }
         public virtual DbSet<QUY_PHIEU_CHI> QUY_PHIEU_CHI { get; set; }
         public virtual DbSet<QUY_PHIEU_THU> QUY_PHIEU_THU { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TONKHO_HANG> TONKHO_HANG { get; set; }
         public virtual DbSet<TONKHO_HOPLONG> TONKHO_HOPLONG { get; set; }
         public virtual DbSet<TONKHO_TADN> TONKHO_TADN { get; set; }
@@ -1717,13 +1722,17 @@ namespace ERP.Web.Models.Database
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Prod_CCTC_GetAllSale_Result>("Prod_CCTC_GetAllSale", macongtyParameter);
         }
     
-        public virtual ObjectResult<Prod_CCTC_NhanVienPhongBan_Result> Prod_CCTC_NhanVienPhongBan(string maphongban)
+        public virtual ObjectResult<Prod_CCTC_NhanVienPhongBan_Result> Prod_CCTC_NhanVienPhongBan(string maphongban, Nullable<bool> isadmin)
         {
             var maphongbanParameter = maphongban != null ?
                 new ObjectParameter("maphongban", maphongban) :
                 new ObjectParameter("maphongban", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Prod_CCTC_NhanVienPhongBan_Result>("Prod_CCTC_NhanVienPhongBan", maphongbanParameter);
+            var isadminParameter = isadmin.HasValue ?
+                new ObjectParameter("isadmin", isadmin) :
+                new ObjectParameter("isadmin", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Prod_CCTC_NhanVienPhongBan_Result>("Prod_CCTC_NhanVienPhongBan", maphongbanParameter, isadminParameter);
         }
     
         public virtual ObjectResult<Prod_CCTC_PhongBan_Result> Prod_CCTC_PhongBan(string macongty)
@@ -2831,6 +2840,149 @@ namespace ERP.Web.Models.Database
                 new ObjectParameter("tukhoa", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<HopLong_LocKHTheoTungSale_Result>("HopLong_LocKHTheoTungSale", saleParameter, macongtyParameter, isadminParameter, tukhoaParameter);
+        }
+    
+        public virtual ObjectResult<Get_NhomVTHH_TheoMark_Result> Get_NhomVTHH_TheoMark(string mark, Nullable<bool> isadmin)
+        {
+            var markParameter = mark != null ?
+                new ObjectParameter("mark", mark) :
+                new ObjectParameter("mark", typeof(string));
+    
+            var isadminParameter = isadmin.HasValue ?
+                new ObjectParameter("isadmin", isadmin) :
+                new ObjectParameter("isadmin", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Get_NhomVTHH_TheoMark_Result>("Get_NhomVTHH_TheoMark", markParameter, isadminParameter);
+        }
+    
+        public virtual ObjectResult<GetAll_ThongTinGiaoViecChuaHoanThanh_Result> GetAll_ThongTinGiaoViecChuaHoanThanh(string username, string isadmin)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var isadminParameter = isadmin != null ?
+                new ObjectParameter("isadmin", isadmin) :
+                new ObjectParameter("isadmin", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAll_ThongTinGiaoViecChuaHoanThanh_Result>("GetAll_ThongTinGiaoViecChuaHoanThanh", usernameParameter, isadminParameter);
+        }
+    
+        public virtual ObjectResult<KiemTraKH_ChienDich_Result> KiemTraKH_ChienDich(string makh)
+        {
+            var makhParameter = makh != null ?
+                new ObjectParameter("makh", makh) :
+                new ObjectParameter("makh", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<KiemTraKH_ChienDich_Result>("KiemTraKH_ChienDich", makhParameter);
+        }
+    
+        public virtual ObjectResult<List_HeSoGiaBan_Result> List_HeSoGiaBan(string tuan, string nam)
+        {
+            var tuanParameter = tuan != null ?
+                new ObjectParameter("tuan", tuan) :
+                new ObjectParameter("tuan", typeof(string));
+    
+            var namParameter = nam != null ?
+                new ObjectParameter("nam", nam) :
+                new ObjectParameter("nam", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<List_HeSoGiaBan_Result>("List_HeSoGiaBan", tuanParameter, namParameter);
+        }
+    
+        public virtual ObjectResult<Prod_Admin_TongHopDoanhSoCongTy_Result> Prod_Admin_TongHopDoanhSoCongTy(Nullable<int> thang, Nullable<int> nam, string macongty, Nullable<bool> isadmin)
+        {
+            var thangParameter = thang.HasValue ?
+                new ObjectParameter("thang", thang) :
+                new ObjectParameter("thang", typeof(int));
+    
+            var namParameter = nam.HasValue ?
+                new ObjectParameter("nam", nam) :
+                new ObjectParameter("nam", typeof(int));
+    
+            var macongtyParameter = macongty != null ?
+                new ObjectParameter("macongty", macongty) :
+                new ObjectParameter("macongty", typeof(string));
+    
+            var isadminParameter = isadmin.HasValue ?
+                new ObjectParameter("isadmin", isadmin) :
+                new ObjectParameter("isadmin", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Prod_Admin_TongHopDoanhSoCongTy_Result>("Prod_Admin_TongHopDoanhSoCongTy", thangParameter, namParameter, macongtyParameter, isadminParameter);
+        }
+    
+        public virtual ObjectResult<Prod_HT_List_FAQ_Result> Prod_HT_List_FAQ(string tukhoa)
+        {
+            var tukhoaParameter = tukhoa != null ?
+                new ObjectParameter("tukhoa", tukhoa) :
+                new ObjectParameter("tukhoa", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Prod_HT_List_FAQ_Result>("Prod_HT_List_FAQ", tukhoaParameter);
+        }
+    
+        public virtual ObjectResult<Prod_HT_List_FAQ_Tra_loi_Result> Prod_HT_List_FAQ_Tra_loi()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Prod_HT_List_FAQ_Tra_loi_Result>("Prod_HT_List_FAQ_Tra_loi");
+        }
+    
+        public virtual ObjectResult<Prod_HT_List_Phan_Hoi_Result> Prod_HT_List_Phan_Hoi()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Prod_HT_List_Phan_Hoi_Result>("Prod_HT_List_Phan_Hoi");
+        }
+    
+        public virtual ObjectResult<Prod_KD_MucTieuDoanhSoThang_Result> Prod_KD_MucTieuDoanhSoThang(Nullable<int> thang, Nullable<int> nam, string sale)
+        {
+            var thangParameter = thang.HasValue ?
+                new ObjectParameter("thang", thang) :
+                new ObjectParameter("thang", typeof(int));
+    
+            var namParameter = nam.HasValue ?
+                new ObjectParameter("nam", nam) :
+                new ObjectParameter("nam", typeof(int));
+    
+            var saleParameter = sale != null ?
+                new ObjectParameter("sale", sale) :
+                new ObjectParameter("sale", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Prod_KD_MucTieuDoanhSoThang_Result>("Prod_KD_MucTieuDoanhSoThang", thangParameter, namParameter, saleParameter);
+        }
+    
+        public virtual ObjectResult<Prod_XL_List_DangKyPheDuyetGV_Result> Prod_XL_List_DangKyPheDuyetGV(string macongty, string loaipheduyet, string username, Nullable<bool> isadmin)
+        {
+            var macongtyParameter = macongty != null ?
+                new ObjectParameter("macongty", macongty) :
+                new ObjectParameter("macongty", typeof(string));
+    
+            var loaipheduyetParameter = loaipheduyet != null ?
+                new ObjectParameter("loaipheduyet", loaipheduyet) :
+                new ObjectParameter("loaipheduyet", typeof(string));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var isadminParameter = isadmin.HasValue ?
+                new ObjectParameter("isadmin", isadmin) :
+                new ObjectParameter("isadmin", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Prod_XL_List_DangKyPheDuyetGV_Result>("Prod_XL_List_DangKyPheDuyetGV", macongtyParameter, loaipheduyetParameter, usernameParameter, isadminParameter);
+        }
+    
+        public virtual ObjectResult<HopLong_TimAllKH_TheoSDT_MST_EMAIL_Result> HopLong_TimAllKH_TheoSDT_MST_EMAIL(string macongty, string tukhoa, Nullable<int> sotrang)
+        {
+            var macongtyParameter = macongty != null ?
+                new ObjectParameter("macongty", macongty) :
+                new ObjectParameter("macongty", typeof(string));
+    
+            var tukhoaParameter = tukhoa != null ?
+                new ObjectParameter("tukhoa", tukhoa) :
+                new ObjectParameter("tukhoa", typeof(string));
+    
+            var sotrangParameter = sotrang.HasValue ?
+                new ObjectParameter("sotrang", sotrang) :
+                new ObjectParameter("sotrang", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<HopLong_TimAllKH_TheoSDT_MST_EMAIL_Result>("HopLong_TimAllKH_TheoSDT_MST_EMAIL", macongtyParameter, tukhoaParameter, sotrangParameter);
         }
     }
 }

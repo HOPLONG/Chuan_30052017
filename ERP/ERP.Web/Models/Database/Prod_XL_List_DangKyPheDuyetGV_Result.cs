@@ -10,21 +10,14 @@
 namespace ERP.Web.Models.Database
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class KH_THONG_KE_MUA_HANG
+    public partial class Prod_XL_List_DangKyPheDuyetGV_Result
     {
         public int ID { get; set; }
-        public string MA_KHACH_HANG { get; set; }
-        public string MA_HANG { get; set; }
-        public int SL_MUA { get; set; }
-        public decimal DON_GIA_MUA { get; set; }
-        public System.DateTime NGAY_MUA { get; set; }
-        public string NHAN_VIEN_BAN_HANG { get; set; }
+        public string MA_PHE_DUYET { get; set; }
+        public string NGUOI_PHE_DUYET { get; set; }
         public string TRUC_THUOC { get; set; }
-    
-        public virtual CCTC_CONG_TY CCTC_CONG_TY { get; set; }
-        public virtual CCTC_NHAN_VIEN CCTC_NHAN_VIEN { get; set; }
-        public virtual KH KH { get; set; }
+        public string GHI_CHU { get; set; }
+        public string HO_VA_TEN { get; set; }
     }
 }

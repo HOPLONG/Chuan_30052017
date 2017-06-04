@@ -205,6 +205,7 @@
                             <li><a href="/Marketing/ImportBangGiaBan/ImportPolicy">Import Policy</a></li>
                             <li><a href="/Marketing/ImportBangGiaBan/ImportBangGia">Import bảng giá bán</a></li>
                             <li @*ng-if="is_admin = 'True' "*@><a  href="/Marketing/ChucNang/ExportLienHeKH">Export liên hệ KH</a></li>
+                            <li @*ng-if="is_admin = 'True' "*@><a href="/Marketing/MKGiaoViec/ListCV">List Công việc NV</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -243,18 +244,20 @@
                         </a>
                     </li>
 
-                    <li class="treeview" style="margin-top: 200px" ng-controller="DoanhSoCtrl">
-                        <p id="newdate" style="display: none">{{newdate | date: 'dd/MM/yyyy'}}</p>
-                        <div ng-repeat="item in list_tonghopdoanhso">
-                            - Chỉ tiêu tháng {{thanghientai}} : {{item.MUC_TIEU_DOANH_SO_THANG | number:0}} <br />
-                            - Doanh số đã đạt được : {{item.DOANH_SO_THANG | number : 0}}<br />
-                            - Chỉ tiêu năm {{namhientai}} : {{item.MUC_TIEU_DOANH_SO_NAM | number: 0}}<br />
-                            - Doanh số đã đạt được : {{item.DOANH_SO_NAM | number: 0}}
-                        </div>
-                        
+                    <li class="treeview" style="bottom: 0%" >
+                       
                     </li>
                 </ul>
             </section>
+            <div ng-controller="DoanhSoCtrl" style="bottom: 0px;position:absolute">
+                <p id="newdate" style="display: none">{{newdate | date: 'dd/MM/yyyy'}}</p>
+                <div ng-repeat="item in list_tonghopdoanhso">
+                    - Chỉ tiêu tháng {{thanghientai}} : {{item.MUC_TIEU_DOANH_SO_THANG | number:0}} <br />
+                    - Doanh số đã đạt được : {{item.DOANH_SO_THANG | number : 0}}<br />
+                    - Chỉ tiêu năm {{namhientai}} : {{item.MUC_TIEU_DOANH_SO_NAM | number: 0}}<br />
+                    - Doanh số đã đạt được : {{item.DOANH_SO_NAM | number: 0}}
+                </div>
+            </div>
             <!-- /.sidebar -->
         </aside>
         <!-- Content Wrapper. Contains page content -->

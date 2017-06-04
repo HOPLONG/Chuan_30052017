@@ -95,10 +95,10 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
         var tong_khach_nhan_edit = 0;
 
         for (var i = 0; i < $scope.thongtinchitiet.length; i++) {
-            tong_gia_tri_thuc_te_edit = parseFloat($scope.thongtinchitiet[i].THANH_TIEN_NET + tong_gia_tri_thuc_te_edit);
-            tong_gia_tri_theo_hop_dong_edit = parseFloat($scope.thongtinchitiet[i].THANH_TIEN + tong_gia_tri_theo_hop_dong_edit);
-            tong_chi_phi_hoa_don_edit = parseFloat($scope.thongtinchitiet[i].TIEN_THUE_TNDN + tong_chi_phi_hoa_don_edit);
-            tong_khach_nhan_edit = parseFloat($scope.thongtinchitiet[i].KHACH_NHAN_DUOC + tong_khach_nhan_edit);
+            tong_gia_tri_thuc_te_edit = LamTron(parseFloat($scope.thongtinchitiet[i].THANH_TIEN_NET + tong_gia_tri_thuc_te_edit));
+            tong_gia_tri_theo_hop_dong_edit = LamTron(parseFloat($scope.thongtinchitiet[i].THANH_TIEN + tong_gia_tri_theo_hop_dong_edit));
+            tong_chi_phi_hoa_don_edit = LamTron(parseFloat($scope.thongtinchitiet[i].TIEN_THUE_TNDN + tong_chi_phi_hoa_don_edit));
+            tong_khach_nhan_edit = LamTron(parseFloat($scope.thongtinchitiet[i].KHACH_NHAN_DUOC + tong_khach_nhan_edit));
         }
 
         $scope.thongtinchung.TONG_TIEN = tong_gia_tri_theo_hop_dong_edit
@@ -106,12 +106,12 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
         $scope.thongtinchung.TONG_CHI_PHI_HOA_DON = tong_chi_phi_hoa_don_edit;
         $scope.thongtinchung.THUC_NHAN_CUA_KHACH = tong_khach_nhan_edit;
 
-        $scope.thongtinchung.TONG_GIA_TRI_CHENH_LECH = parseFloat($scope.thongtinchung.TONG_TIEN - $scope.thongtinchung.TONG_GIA_TRI_DON_HANG_THUC_TE);
+        $scope.thongtinchung.TONG_GIA_TRI_CHENH_LECH = LamTron(parseFloat($scope.thongtinchung.TONG_TIEN - $scope.thongtinchung.TONG_GIA_TRI_DON_HANG_THUC_TE));
 
-        $scope.thongtinchung.TIEN_THUE_GTGT = parseFloat($scope.thongtinchung.TONG_TIEN * ($scope.thongtinchung.THUE_SUAT_GTGT / 100));
+        $scope.thongtinchung.TIEN_THUE_GTGT = LamTron(parseFloat($scope.thongtinchung.TONG_TIEN * ($scope.thongtinchung.THUE_SUAT_GTGT / 100)));
 
 
-        $scope.thongtinchung.GIA_TRI_THUC_THU_TU_KHACH = parseFloat($scope.thongtinchung.TONG_GIA_TRI_DON_HANG_THUC_TE + $scope.thongtinchung.TONG_CHI_PHI_HOA_DON + $scope.thongtinchung.TIEN_THUE_GTGT + $scope.thongtinchung.THUC_NHAN_CUA_KHACH + parseInt($scope.thongtinchung.PHI_VAN_CHUYEN));
+        $scope.thongtinchung.GIA_TRI_THUC_THU_TU_KHACH = LamTron(parseFloat($scope.thongtinchung.TONG_GIA_TRI_DON_HANG_THUC_TE + $scope.thongtinchung.TONG_CHI_PHI_HOA_DON + $scope.thongtinchung.TIEN_THUE_GTGT + $scope.thongtinchung.THUC_NHAN_CUA_KHACH + parseInt($scope.thongtinchung.PHI_VAN_CHUYEN)));
 
         if ($scope.Detail.ListXoa[0].ID != null && $scope.Detail.ListXoa[0].ID != undefined) {
             $http({
@@ -243,22 +243,22 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
         var tong_khach_nhan_new = 0;
 
         for (var i = 0; i < $scope.Detail.ListNew.length; i++) {
-            tong_gia_tri_thuc_te_new = parseInt($scope.Detail.ListNew[i].thanh_tien_net + tong_gia_tri_thuc_te_new);
-            tong_gia_tri_theo_hop_dong_new = parseInt($scope.Detail.ListNew[i].thanh_tien + tong_gia_tri_theo_hop_dong_new);
-            tong_chi_phi_hoa_don_new = parseInt($scope.Detail.ListNew[i].tien_thue_tndn + tong_chi_phi_hoa_don_new);
-            tong_khach_nhan_new = parseInt($scope.Detail.ListNew[i].khach_nhan + tong_khach_nhan_new);
+            tong_gia_tri_thuc_te_new = LamTron(parseInt($scope.Detail.ListNew[i].thanh_tien_net + tong_gia_tri_thuc_te_new));
+            tong_gia_tri_theo_hop_dong_new = LamTron(parseInt($scope.Detail.ListNew[i].thanh_tien + tong_gia_tri_theo_hop_dong_new));
+            tong_chi_phi_hoa_don_new = LamTron(parseInt($scope.Detail.ListNew[i].tien_thue_tndn + tong_chi_phi_hoa_don_new));
+            tong_khach_nhan_new = LamTron(parseInt($scope.Detail.ListNew[i].khach_nhan + tong_khach_nhan_new));
         }
         $scope.tong_gia_tri_thuc_te_new = tong_gia_tri_thuc_te_new;
         $scope.tong_gia_tri_theo_hop_dong_new = tong_gia_tri_theo_hop_dong_new;
         $scope.tong_chi_phi_hoa_don_new = tong_chi_phi_hoa_don_new;
         $scope.tong_khach_nhan_new = tong_khach_nhan_new;
 
-        $scope.gia_tri_chenh_lech_new = parseInt($scope.tong_gia_tri_theo_hop_dong_new - $scope.tong_gia_tri_thuc_te_new);
+        $scope.gia_tri_chenh_lech_new = LamTron(parseInt($scope.tong_gia_tri_theo_hop_dong_new - $scope.tong_gia_tri_thuc_te_new));
 
-        $scope.thue_vat_new = parseInt($scope.tong_gia_tri_theo_hop_dong_new * ($scope.thue_suat_gtgt / 100));
+        $scope.thue_vat_new = LamTron(parseInt($scope.tong_gia_tri_theo_hop_dong_new * ($scope.thue_suat_gtgt / 100)));
 
 
-        $scope.tong_gia_tri_thu_cua_khach_new = parseInt($scope.tong_gia_tri_thuc_te_new + $scope.tong_chi_phi_hoa_don_new + $scope.thue_vat_new + $scope.tong_khach_nhan_new + parseInt($scope.phivanchuyen));
+        $scope.tong_gia_tri_thu_cua_khach_new = LamTron(parseInt($scope.tong_gia_tri_thuc_te_new + $scope.tong_chi_phi_hoa_don_new + $scope.thue_vat_new + $scope.tong_khach_nhan_new + parseInt($scope.phivanchuyen)));
 
         tong_gia_tri_thuc_te_tinh_cm_new = $scope.tong_gia_tri_thuc_te_new;
         tong_gia_tri_theo_hop_dong_tinh_cm_new = $scope.tong_gia_tri_theo_hop_dong_new;
@@ -284,19 +284,19 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
             $scope.item.KHACH_NHAN_DUOC = LamTron(parseInt($scope.item.DON_GIA_BAO_DI_NET * ($scope.item.CM / 100)) * $scope.item.SO_LUONG);
 
             $scope.bien_trung_gian = LamTron(parseInt(($scope.item.KHACH_NHAN_DUOC * 100) / 80));
-            $scope.item.TIEN_THUE_TNDN = LamTron(parseInt($scope.bien_trung_gian * ($scope.item.THUE_TNDN / 100)));
+            $scope.item.TIEN_THUE_TNDN = LamTron(parseInt($scope.bien_trung_gian * (parseInt($scope.item.THUE_TNDN) / 100)));
 
             $scope.item.DON_GIA_MOI = LamTron(parseInt($scope.item.DON_GIA_BAO_DI_NET + ($scope.item.KHACH_NHAN_DUOC / $scope.item.SO_LUONG) + ($scope.item.TIEN_THUE_TNDN / $scope.item.SO_LUONG)));
         }
 
-        $scope.item.THANH_TIEN = $scope.item.DON_GIA_MOI * $scope.item.SO_LUONG;
+        $scope.item.THANH_TIEN = LamTron($scope.item.DON_GIA_MOI * $scope.item.SO_LUONG);
         $scope.item.THANH_TIEN_NET = LamTron($scope.item.SO_LUONG * $scope.item.DON_GIA_BAO_DI_NET);
 
         for (var i = 0; i < $scope.Detail.ListAdd.length; i++) {
-            tong_gia_tri_thuc_te_edit = parseInt($scope.Detail.ListAdd[i].THANH_TIEN_NET + tong_gia_tri_thuc_te_edit);
-            tong_gia_tri_theo_hop_dong_edit = parseInt($scope.Detail.ListAdd[i].THANH_TIEN + tong_gia_tri_theo_hop_dong_edit);
-            tong_chi_phi_hoa_don_edit = parseInt($scope.Detail.ListAdd[i].TIEN_THUE_TNDN + tong_chi_phi_hoa_don_edit);
-            tong_khach_nhan_edit = parseInt($scope.Detail.ListAdd[i].KHACH_NHAN_DUOC + tong_khach_nhan_edit);
+            tong_gia_tri_thuc_te_edit = LamTron(parseInt($scope.Detail.ListAdd[i].THANH_TIEN_NET + tong_gia_tri_thuc_te_edit));
+            tong_gia_tri_theo_hop_dong_edit = LamTron(parseInt($scope.Detail.ListAdd[i].THANH_TIEN + tong_gia_tri_theo_hop_dong_edit));
+            tong_chi_phi_hoa_don_edit = LamTron(parseInt($scope.Detail.ListAdd[i].TIEN_THUE_TNDN + tong_chi_phi_hoa_don_edit));
+            tong_khach_nhan_edit = LamTron(parseInt($scope.Detail.ListAdd[i].KHACH_NHAN_DUOC + tong_khach_nhan_edit));
         }
         $scope.tong_gia_tri_thuc_te_edit = LamTron(tong_gia_tri_thuc_te_edit);
         $scope.tong_gia_tri_theo_hop_dong_edit = LamTron(tong_gia_tri_theo_hop_dong_edit);
@@ -327,10 +327,10 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
         };
 
         if ($scope.detail.hoa_hong != null && $scope.detail.hoa_hong != undefined) {
-            $scope.detail.khach_nhan = LamTron(parseInt($scope.detail.gia_bao_di_net * ($scope.detail.hoa_hong / 100)) * $scope.detail.so_luong);
+            $scope.detail.khach_nhan = LamTron((parseInt($scope.detail.gia_bao_di_net * ($scope.detail.hoa_hong / 100)) * $scope.detail.so_luong) * 0.8);
 
             $scope.bien_trung_gian = parseInt(($scope.detail.khach_nhan * 100) / 80);
-            $scope.detail.tien_thue_tndn =LamTron(parseInt($scope.bien_trung_gian * ($scope.detail.thue_tndn / 100)));
+            $scope.detail.tien_thue_tndn =LamTron(parseInt($scope.bien_trung_gian * (parseInt($scope.detail.thue_tndn) / 100)));
 
             $scope.detail.don_gia_ban = LamTron(parseInt($scope.detail.gia_bao_di_net + ($scope.detail.khach_nhan / $scope.detail.so_luong) + ($scope.detail.tien_thue_tndn / $scope.detail.so_luong)));
         }
@@ -339,15 +339,15 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
         $scope.detail.thanh_tien_net = LamTron($scope.detail.so_luong * $scope.detail.gia_bao_di_net);
 
         for (var i = 0; i < $scope.Detail.ListNew.length; i++) {
-            tong_gia_tri_thuc_te_new = parseInt($scope.Detail.ListNew[i].thanh_tien_net + tong_gia_tri_thuc_te_new);
-            tong_gia_tri_theo_hop_dong_new = parseInt($scope.Detail.ListNew[i].thanh_tien + tong_gia_tri_theo_hop_dong_new);
-            tong_chi_phi_hoa_don_new = parseInt($scope.Detail.ListNew[i].tien_thue_tndn + tong_chi_phi_hoa_don_new);
-            tong_khach_nhan_new = parseInt($scope.Detail.ListNew[i].khach_nhan + tong_khach_nhan_new);
+            tong_gia_tri_thuc_te_new = LamTron(parseInt($scope.Detail.ListNew[i].thanh_tien_net + tong_gia_tri_thuc_te_new));
+            tong_gia_tri_theo_hop_dong_new = LamTron(parseInt($scope.Detail.ListNew[i].thanh_tien + tong_gia_tri_theo_hop_dong_new));
+            tong_chi_phi_hoa_don_new = LamTron(parseInt($scope.Detail.ListNew[i].tien_thue_tndn + tong_chi_phi_hoa_don_new));
+            tong_khach_nhan_new = LamTron(parseInt($scope.Detail.ListNew[i].khach_nhan + tong_khach_nhan_new));
         }
-        $scope.tong_gia_tri_thuc_te_new = LamTron(tong_gia_tri_thuc_te_new);
-        $scope.tong_gia_tri_theo_hop_dong_new = LamTron(tong_gia_tri_theo_hop_dong_new);
-        $scope.tong_chi_phi_hoa_don_new = LamTron(tong_chi_phi_hoa_don_new);
-        $scope.tong_khach_nhan_new = LamTron(tong_khach_nhan_new);
+        $scope.tong_gia_tri_thuc_te_new = (tong_gia_tri_thuc_te_new);
+        $scope.tong_gia_tri_theo_hop_dong_new = (tong_gia_tri_theo_hop_dong_new);
+        $scope.tong_chi_phi_hoa_don_new = (tong_chi_phi_hoa_don_new);
+        $scope.tong_khach_nhan_new = (tong_khach_nhan_new);
 
         $scope.gia_tri_chenh_lech_new = LamTron(parseInt($scope.tong_gia_tri_theo_hop_dong_new - $scope.tong_gia_tri_thuc_te_new));
 
@@ -374,15 +374,15 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
         var newcm = 0;
 
         for (var i = 0; i < $scope.Detail.ListNew.length; i++) {
-            $scope.Detail.ListNew[i].don_gia_ban = $scope.Detail.ListNew[i].gia_bao_di_net;
+            $scope.Detail.ListNew[i].don_gia_ban = LamTron($scope.Detail.ListNew[i].gia_bao_di_net);
 
-            $scope.Detail.ListNew[i].thanh_tien = $scope.Detail.ListNew[i].don_gia_ban * $scope.Detail.ListNew[i].so_luong;
-            $scope.Detail.ListNew[i].thanh_tien_net = $scope.Detail.ListNew[i].so_luong * $scope.Detail.ListNew[i].gia_bao_di_net;
+            $scope.Detail.ListNew[i].thanh_tien = LamTron($scope.Detail.ListNew[i].don_gia_ban * $scope.Detail.ListNew[i].so_luong);
+            $scope.Detail.ListNew[i].thanh_tien_net = LamTron($scope.Detail.ListNew[i].so_luong * $scope.Detail.ListNew[i].gia_bao_di_net);
         };
 
         for (var i = 0; i < $scope.Detail.ListNew.length; i++) {
-            tong_gia_tri_thuc_te_new = parseFloat($scope.Detail.ListNew[i].thanh_tien_net + tong_gia_tri_thuc_te_new);
-            tong_gia_tri_theo_hop_dong_new = parseFloat($scope.Detail.ListNew[i].thanh_tien + tong_gia_tri_theo_hop_dong_new);
+            tong_gia_tri_thuc_te_new = LamTron(parseFloat($scope.Detail.ListNew[i].thanh_tien_net + tong_gia_tri_thuc_te_new));
+            tong_gia_tri_theo_hop_dong_new = LamTron(parseFloat($scope.Detail.ListNew[i].thanh_tien + tong_gia_tri_theo_hop_dong_new));
         }
 
         $scope.tong_gia_tri_thuc_te_new = tong_gia_tri_thuc_te_new;
@@ -401,22 +401,22 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
         for (var i = 0; i < $scope.Detail.ListNew.length; i++) {
             $scope.Detail.ListNew[i].hoa_hong = newcm;
 
-            $scope.Detail.ListNew[i].khach_nhan = parseFloat($scope.Detail.ListNew[i].gia_bao_di_net * ($scope.Detail.ListNew[i].hoa_hong / 100)) * $scope.Detail.ListNew[i].so_luong;
+            $scope.Detail.ListNew[i].khach_nhan = LamTron(parseFloat($scope.Detail.ListNew[i].gia_bao_di_net * ($scope.Detail.ListNew[i].hoa_hong / 100)) * $scope.Detail.ListNew[i].so_luong);
 
-            $scope.Detail.ListNew[i].bien_trung_gian = parseFloat(($scope.Detail.ListNew[i].khach_nhan * 100) / 80);
-            $scope.Detail.ListNew[i].tien_thue_tndn = parseFloat($scope.Detail.ListNew[i].bien_trung_gian * ($scope.Detail.ListNew[i].thue_tndn / 100));
+            $scope.Detail.ListNew[i].bien_trung_gian = LamTron(parseFloat(($scope.Detail.ListNew[i].khach_nhan * 100) / 80));
+            $scope.Detail.ListNew[i].tien_thue_tndn = LamTron(parseFloat($scope.Detail.ListNew[i].bien_trung_gian * ($scope.Detail.ListNew[i].thue_tndn / 100)));
 
-            $scope.Detail.ListNew[i].don_gia_ban = parseFloat($scope.Detail.ListNew[i].gia_bao_di_net + ($scope.Detail.ListNew[i].khach_nhan/$scope.Detail.ListNew[i].so_luong) + ($scope.Detail.ListNew[i].tien_thue_tndn/$scope.Detail.ListNew[i].so_luong));
+            $scope.Detail.ListNew[i].don_gia_ban = LamTron(parseFloat($scope.Detail.ListNew[i].gia_bao_di_net + ($scope.Detail.ListNew[i].khach_nhan/$scope.Detail.ListNew[i].so_luong) + ($scope.Detail.ListNew[i].tien_thue_tndn/$scope.Detail.ListNew[i].so_luong)));
 
-            $scope.Detail.ListNew[i].thanh_tien = $scope.Detail.ListNew[i].don_gia_ban * $scope.Detail.ListNew[i].so_luong;
-            $scope.Detail.ListNew[i].thanh_tien_net = $scope.Detail.ListNew[i].so_luong * $scope.Detail.ListNew[i].gia_bao_di_net;
+            $scope.Detail.ListNew[i].thanh_tien = LamTron($scope.Detail.ListNew[i].don_gia_ban * $scope.Detail.ListNew[i].so_luong);
+            $scope.Detail.ListNew[i].thanh_tien_net = LamTron($scope.Detail.ListNew[i].so_luong * $scope.Detail.ListNew[i].gia_bao_di_net);
         }
 
         for (var i = 0; i < $scope.Detail.ListNew.length; i++) {
-            tong_gia_tri_thuc_te_new = parseFloat($scope.Detail.ListNew[i].thanh_tien_net + tong_gia_tri_thuc_te_new);
-            tong_gia_tri_theo_hop_dong_new = parseFloat($scope.Detail.ListNew[i].thanh_tien + tong_gia_tri_theo_hop_dong_new);
-            tong_chi_phi_hoa_don_new = parseFloat($scope.Detail.ListNew[i].tien_thue_tndn + tong_chi_phi_hoa_don_new);
-            tong_khach_nhan_new = parseFloat($scope.Detail.ListNew[i].khach_nhan + tong_khach_nhan_new);
+            tong_gia_tri_thuc_te_new = LamTron(parseFloat($scope.Detail.ListNew[i].thanh_tien_net + tong_gia_tri_thuc_te_new));
+            tong_gia_tri_theo_hop_dong_new = LamTron(parseFloat($scope.Detail.ListNew[i].thanh_tien + tong_gia_tri_theo_hop_dong_new));
+            tong_chi_phi_hoa_don_new = LamTron(parseFloat($scope.Detail.ListNew[i].tien_thue_tndn + tong_chi_phi_hoa_don_new));
+            tong_khach_nhan_new = LamTron(parseFloat($scope.Detail.ListNew[i].khach_nhan + tong_khach_nhan_new));
         }
         $scope.tong_gia_tri_thuc_te_new = tong_gia_tri_thuc_te_new;
         $scope.tong_gia_tri_theo_hop_dong_new = tong_gia_tri_theo_hop_dong_new;
@@ -449,22 +449,22 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
         for (var i = 0; i < $scope.Detail.ListAdd.length; i++) {
             $scope.Detail.ListAdd[i].DON_GIA_MOI = $scope.Detail.ListAdd[i].DON_GIA_BAO_DI_NET;
 
-            $scope.Detail.ListAdd[i].THANH_TIEN = $scope.Detail.ListAdd[i].DON_GIA_MOI * $scope.Detail.ListAdd[i].SO_LUONG;
-            $scope.Detail.ListAdd[i].THANH_TIEN_NET = $scope.Detail.ListAdd[i].SO_LUONG * $scope.Detail.ListAdd[i].DON_GIA_BAO_DI_NET;
+            $scope.Detail.ListAdd[i].THANH_TIEN = LamTron($scope.Detail.ListAdd[i].DON_GIA_MOI * $scope.Detail.ListAdd[i].SO_LUONG);
+            $scope.Detail.ListAdd[i].THANH_TIEN_NET = LamTron($scope.Detail.ListAdd[i].SO_LUONG * $scope.Detail.ListAdd[i].DON_GIA_BAO_DI_NET);
         };
 
         for (var i = 0; i < $scope.Detail.ListAdd.length; i++) {
-            tong_gia_tri_thuc_te_edit = parseFloat($scope.Detail.ListAdd[i].THANH_TIEN_NET + tong_gia_tri_thuc_te_edit);
-            tong_gia_tri_theo_hop_dong_edit = parseFloat($scope.Detail.ListAdd[i].THANH_TIEN + tong_gia_tri_theo_hop_dong_edit);
+            tong_gia_tri_thuc_te_edit = LamTron(parseFloat($scope.Detail.ListAdd[i].THANH_TIEN_NET + tong_gia_tri_thuc_te_edit));
+            tong_gia_tri_theo_hop_dong_edit = LamTron(parseFloat($scope.Detail.ListAdd[i].THANH_TIEN + tong_gia_tri_theo_hop_dong_edit));
         }
 
         $scope.tong_gia_tri_thuc_te_edit = tong_gia_tri_thuc_te_edit;
         $scope.tong_gia_tri_theo_hop_dong_edit = tong_gia_tri_theo_hop_dong_edit;
 
 
-        chenhlech = parseFloat(tien_khach_nhan_edit - $scope.tong_gia_tri_theo_hop_dong_edit);
-        khachnhan = parseFloat(chenhlech * 80) / 100;
-        newcm = parseFloat((khachnhan * 100) / $scope.tong_gia_tri_thuc_te_edit);
+        chenhlech = LamTron(parseFloat(tien_khach_nhan_edit - $scope.tong_gia_tri_theo_hop_dong_edit));
+        khachnhan = LamTron(parseFloat(chenhlech * 80) / 100);
+        newcm = LamTron(parseFloat((khachnhan * 100) / $scope.tong_gia_tri_thuc_te_edit));
 
         tong_gia_tri_thuc_te_edit = 0;
         tong_gia_tri_theo_hop_dong_edit = 0;
@@ -474,35 +474,35 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
         for (var i = 0; i < $scope.Detail.ListAdd.length; i++) {
             $scope.Detail.ListAdd[i].CM = newcm;
 
-            $scope.Detail.ListAdd[i].KHACH_NHAN_DUOC = parseFloat($scope.Detail.ListAdd[i].DON_GIA_BAO_DI_NET * ($scope.Detail.ListAdd[i].CM / 100)) * $scope.Detail.ListAdd[i].SO_LUONG;
+            $scope.Detail.ListAdd[i].KHACH_NHAN_DUOC = LamTron(parseFloat($scope.Detail.ListAdd[i].DON_GIA_BAO_DI_NET * ($scope.Detail.ListAdd[i].CM / 100)) * $scope.Detail.ListAdd[i].SO_LUONG);
 
-            $scope.Detail.ListAdd[i].BIEN_TRUNG_GIAN = parseFloat(($scope.Detail.ListAdd[i].KHACH_NHAN_DUOC * 100) / 80);
-            $scope.Detail.ListAdd[i].TIEN_THUE_TNDN = parseFloat($scope.Detail.ListAdd[i].BIEN_TRUNG_GIAN * ($scope.Detail.ListAdd[i].THUE_TNDN / 100));
+            $scope.Detail.ListAdd[i].BIEN_TRUNG_GIAN = LamTron(parseFloat(($scope.Detail.ListAdd[i].KHACH_NHAN_DUOC * 100) / 80));
+            $scope.Detail.ListAdd[i].TIEN_THUE_TNDN = LamTron(parseFloat($scope.Detail.ListAdd[i].BIEN_TRUNG_GIAN * ($scope.Detail.ListAdd[i].THUE_TNDN / 100)));
 
-            $scope.Detail.ListAdd[i].DON_GIA_MOI = parseFloat($scope.Detail.ListAdd[i].DON_GIA_BAO_DI_NET + ($scope.Detail.ListAdd[i].KHACH_NHAN_DUOC/$scope.Detail.ListAdd[i].SO_LUONG) + ($scope.Detail.ListAdd[i].TIEN_THUE_TNDN/$scope.Detail.ListAdd[i].SO_LUONG));
+            $scope.Detail.ListAdd[i].DON_GIA_MOI = LamTron(parseFloat($scope.Detail.ListAdd[i].DON_GIA_BAO_DI_NET + ($scope.Detail.ListAdd[i].KHACH_NHAN_DUOC/$scope.Detail.ListAdd[i].SO_LUONG) + ($scope.Detail.ListAdd[i].TIEN_THUE_TNDN/$scope.Detail.ListAdd[i].SO_LUONG)));
 
-            $scope.Detail.ListAdd[i].THANH_TIEN = $scope.Detail.ListAdd[i].DON_GIA_MOI * $scope.Detail.ListAdd[i].SO_LUONG;
-            $scope.Detail.ListAdd[i].THANH_TIEN_NET = $scope.Detail.ListAdd[i].SO_LUONG * $scope.Detail.ListAdd[i].DON_GIA_BAO_DI_NET;
+            $scope.Detail.ListAdd[i].THANH_TIEN = LamTron($scope.Detail.ListAdd[i].DON_GIA_MOI * $scope.Detail.ListAdd[i].SO_LUONG);
+            $scope.Detail.ListAdd[i].THANH_TIEN_NET = LamTron($scope.Detail.ListAdd[i].SO_LUONG * $scope.Detail.ListAdd[i].DON_GIA_BAO_DI_NET);
         }
 
         for (var i = 0; i < $scope.Detail.ListAdd.length; i++) {
-            tong_gia_tri_thuc_te_edit = parseFloat($scope.Detail.ListAdd[i].THANH_TIEN_NET + tong_gia_tri_thuc_te_edit);
-            tong_gia_tri_theo_hop_dong_edit = parseFloat($scope.Detail.ListAdd[i].THANH_TIEN + tong_gia_tri_theo_hop_dong_edit);
-            tong_chi_phi_hoa_don_edit = parseFloat($scope.Detail.ListAdd[i].TIEN_THUE_TNDN + tong_chi_phi_hoa_don_edit);
-            tong_khach_nhan_edit = parseFloat($scope.Detail.ListAdd[i].KHACH_NHAN_DUOC + tong_khach_nhan_edit);
+            tong_gia_tri_thuc_te_edit = LamTron(parseFloat($scope.Detail.ListAdd[i].THANH_TIEN_NET + tong_gia_tri_thuc_te_edit));
+            tong_gia_tri_theo_hop_dong_edit = LamTron(parseFloat($scope.Detail.ListAdd[i].THANH_TIEN + tong_gia_tri_theo_hop_dong_edit));
+            tong_chi_phi_hoa_don_edit = LamTron(parseFloat($scope.Detail.ListAdd[i].TIEN_THUE_TNDN + tong_chi_phi_hoa_don_edit));
+            tong_khach_nhan_edit = LamTron(parseFloat($scope.Detail.ListAdd[i].KHACH_NHAN_DUOC + tong_khach_nhan_edit));
         }
         $scope.tong_gia_tri_thuc_te_edit = tong_gia_tri_thuc_te_edit;
         $scope.tong_gia_tri_theo_hop_dong_edit = tong_gia_tri_theo_hop_dong_edit;
         $scope.tong_chi_phi_hoa_don_edit = tong_chi_phi_hoa_don_edit;
         $scope.tong_khach_nhan_edit = tong_khach_nhan_edit;
 
-        $scope.gia_tri_chenh_lech_edit = parseFloat($scope.tong_gia_tri_theo_hop_dong_edit - $scope.tong_gia_tri_thuc_te_edit);
+        $scope.gia_tri_chenh_lech_edit = LamTron(parseFloat($scope.tong_gia_tri_theo_hop_dong_edit - $scope.tong_gia_tri_thuc_te_edit));
 
-        $scope.thue_vat_edit = parseFloat($scope.tong_gia_tri_theo_hop_dong_edit * (thue_suat_gtgt / 100));
+        $scope.thue_vat_edit = LamTron(parseFloat($scope.tong_gia_tri_theo_hop_dong_edit * (thue_suat_gtgt / 100)));
 
 
 
-        $scope.tong_gia_tri_thu_cua_khach_edit = parseFloat($scope.tong_gia_tri_thuc_te_edit + $scope.tong_chi_phi_hoa_don_edit + $scope.thue_vat_edit + $scope.tong_khach_nhan_edit);
+        $scope.tong_gia_tri_thu_cua_khach_edit = LamTron(parseFloat($scope.tong_gia_tri_thuc_te_edit + $scope.tong_chi_phi_hoa_don_edit + $scope.thue_vat_edit + $scope.tong_khach_nhan_edit));
     };
 
     $scope.load_dondukien = function () {
@@ -1348,22 +1348,22 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
             var tong_khach_nhan_edit = 0;
 
             for (var i = 0; i < $scope.Detail.ListAdd.length; i++) {
-                tong_gia_tri_thuc_te_edit = parseFloat($scope.Detail.ListAdd[i].THANH_TIEN_NET + tong_gia_tri_thuc_te_edit);
-                tong_gia_tri_theo_hop_dong_edit = parseFloat($scope.Detail.ListAdd[i].THANH_TIEN + tong_gia_tri_theo_hop_dong_edit);
-                tong_chi_phi_hoa_don_edit = parseFloat($scope.Detail.ListAdd[i].TIEN_THUE_TNDN + tong_chi_phi_hoa_don_edit);
-                tong_khach_nhan_edit = parseFloat($scope.Detail.ListAdd[i].KHACH_NHAN_DUOC + tong_khach_nhan_edit);
+                tong_gia_tri_thuc_te_edit = LamTron(parseFloat($scope.Detail.ListAdd[i].THANH_TIEN_NET + tong_gia_tri_thuc_te_edit));
+                tong_gia_tri_theo_hop_dong_edit = LamTron(parseFloat($scope.Detail.ListAdd[i].THANH_TIEN + tong_gia_tri_theo_hop_dong_edit));
+                tong_chi_phi_hoa_don_edit = LamTron(parseFloat($scope.Detail.ListAdd[i].TIEN_THUE_TNDN + tong_chi_phi_hoa_don_edit));
+                tong_khach_nhan_edit = LamTron(parseFloat($scope.Detail.ListAdd[i].KHACH_NHAN_DUOC + tong_khach_nhan_edit));
             }
             $scope.tong_gia_tri_thuc_te_edit = tong_gia_tri_thuc_te_edit;
             $scope.tong_gia_tri_theo_hop_dong_edit = tong_gia_tri_theo_hop_dong_edit;
             $scope.tong_chi_phi_hoa_don_edit = tong_chi_phi_hoa_don_edit;
             $scope.tong_khach_nhan_edit = tong_khach_nhan_edit;
 
-            $scope.gia_tri_chenh_lech_edit = parseFloat($scope.tong_gia_tri_theo_hop_dong_edit - $scope.tong_gia_tri_thuc_te_edit);
+            $scope.gia_tri_chenh_lech_edit = LamTron(parseFloat($scope.tong_gia_tri_theo_hop_dong_edit - $scope.tong_gia_tri_thuc_te_edit));
 
-            $scope.thue_vat_edit = parseFloat($scope.tong_gia_tri_theo_hop_dong_edit * (thuesuatgtgt / 100));
+            $scope.thue_vat_edit = LamTron(parseFloat($scope.tong_gia_tri_theo_hop_dong_edit * (thuesuatgtgt / 100)));
 
 
-            $scope.tong_gia_tri_thu_cua_khach_edit = parseFloat($scope.tong_gia_tri_thuc_te_edit + $scope.tong_chi_phi_hoa_don_edit + $scope.thue_vat_edit + $scope.tong_khach_nhan_edit);
+            $scope.tong_gia_tri_thu_cua_khach_edit = LamTron(parseFloat($scope.tong_gia_tri_thuc_te_edit + $scope.tong_chi_phi_hoa_don_edit + $scope.thue_vat_edit + $scope.tong_khach_nhan_edit));
         });
     };
     //End Tìm Kiếm Thông Tin hàng Hóa them
@@ -1690,14 +1690,14 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
         });
     };
 
-    $scope.phuongthuctt = ["Chuyển khoản", "Tiền mặt", "Trả tiền sau khi nhận hàng"];
+    $scope.phuongthuctt = ["Thanh toán 100% sau khi giao hàng", "30% trả trước,70% sau khi giao hàng", "40% trả trước,60% sau khi giao hàng","50% trả trước,50% sau khi giao hàng","Thanh toán ngay"];
     $scope.cachtinhthanhtien = ['Giá nhập', 'Giá list'];
-    $scope.dieukhoantt = ['5 ngày', '7 ngày', '30 ngày', 'Ngày 5 hàng tháng', 'Ngày 15 hàng tháng', 'Ngày 30 hàng tháng'];
+    $scope.dieukhoantt = ['Thanh toán sau 5 ngày kể từ ngày nhận hàng', 'Thanh toán sau 7 ngày kể từ ngày nhận hàng', 'Thanh toán ngày 5 hàng tháng', 'Thanh toán ngày 15 hàng tháng', 'Thanh toán sau 30 ngày kể từ ngày nhận hàng', "Thanh toán vào cuối tháng"];
     $scope.ck_vat = [0, 5, 10];
 
-    $scope.phuongthucttnew = ["Chuyển khoản", "Tiền mặt", "Trả tiền sau khi nhận hàng"];
+    $scope.phuongthucttnew = ["Thanh toán 100% sau khi giao hàng", "30% trả trước,70% sau khi giao hàng", "40% trả trước,60% sau khi giao hàng", "50% trả trước,50% sau khi giao hàng", "Thanh toán ngay"];
     $scope.cachtinhthanhtiennew = ['Giá nhập', 'Giá list'];
-    $scope.dieukhoanttnew = ['5 ngày', '7 ngày', '30 ngày', 'Ngày 5 hàng tháng', 'Ngày 15 hàng tháng', 'Ngày 30 hàng tháng'];
+    $scope.dieukhoanttnew = ['Thanh toán sau 5 ngày kể từ ngày nhận hàng', 'Thanh toán sau 7 ngày kể từ ngày nhận hàng', 'Thanh toán ngày 5 hàng tháng', 'Thanh toán ngày 15 hàng tháng', 'Thanh toán sau 30 ngày kể từ ngày nhận hàng', "Thanh toán vào cuối tháng"];
     $scope.ck_vat_new = [0, 5, 10];
     $scope.hoadonchungtu = ['Hóa đơn đỏ(VAT)', 'Hóa đơn thường', 'Không hóa đơn']
 
@@ -2327,7 +2327,7 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
             $scope.item.KHACH_NHAN_DUOC = LamTron(parseInt($scope.item.DON_GIA_BAO_DI_NET * ($scope.item.CM / 100)) * $scope.item.SO_LUONG);
 
             $scope.bien_trung_gian = parseInt(($scope.item.KHACH_NHAN_DUOC * 100) / 80);
-            $scope.item.TIEN_THUE_TNDN = LamTron(parseInt($scope.bien_trung_gian * ($scope.item.THUE_TNDN / 100)));
+            $scope.item.TIEN_THUE_TNDN = LamTron(parseInt($scope.bien_trung_gian * (parseInt($scope.item.THUE_TNDN) / 100)));
 
             $scope.item.DON_GIA_MOI = LamTron(parseInt($scope.item.DON_GIA_BAO_DI_NET + ($scope.item.KHACH_NHAN_DUOC / $scope.item.SO_LUONG) + ($scope.item.TIEN_THUE_TNDN / $scope.item.SO_LUONG)));
         }
@@ -2336,10 +2336,10 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
         $scope.item.THANH_TIEN_NET = LamTron($scope.item.SO_LUONG * $scope.item.DON_GIA_BAO_DI_NET);
 
         for (var i = 0; i < $scope.thongtinchitiet.length; i++) {
-            tong_gia_tri_thuc_te_edit = parseInt($scope.thongtinchitiet[i].THANH_TIEN_NET + tong_gia_tri_thuc_te_edit);
-            tong_gia_tri_theo_hop_dong_edit = parseInt($scope.thongtinchitiet[i].THANH_TIEN + tong_gia_tri_theo_hop_dong_edit);
-            tong_chi_phi_hoa_don_edit = parseInt($scope.thongtinchitiet[i].TIEN_THUE_TNDN + tong_chi_phi_hoa_don_edit);
-            tong_khach_nhan_edit = parseInt($scope.thongtinchitiet[i].KHACH_NHAN_DUOC + tong_khach_nhan_edit);
+            tong_gia_tri_thuc_te_edit = LamTron(parseInt($scope.thongtinchitiet[i].THANH_TIEN_NET + tong_gia_tri_thuc_te_edit));
+            tong_gia_tri_theo_hop_dong_edit = LamTron(parseInt($scope.thongtinchitiet[i].THANH_TIEN + tong_gia_tri_theo_hop_dong_edit));
+            tong_chi_phi_hoa_don_edit = LamTron(parseInt($scope.thongtinchitiet[i].TIEN_THUE_TNDN + tong_chi_phi_hoa_don_edit));
+            tong_khach_nhan_edit = LamTron(parseInt($scope.thongtinchitiet[i].KHACH_NHAN_DUOC + tong_khach_nhan_edit));
         }
         $scope.thongtinchung.TONG_TIEN = LamTron(tong_gia_tri_theo_hop_dong_edit);
         $scope.thongtinchung.TONG_GIA_TRI_DON_HANG_THUC_TE = LamTron(tong_gia_tri_thuc_te_edit);
@@ -2361,22 +2361,22 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
         var tong_chi_phi_hoa_don_edit = 0;
         var tong_khach_nhan_edit = 0;
         for (var i = 0; i < $scope.thongtinchitiet.length; i++) {
-            tong_gia_tri_thuc_te_edit = parseFloat($scope.thongtinchitiet[i].THANH_TIEN_NET + tong_gia_tri_thuc_te_edit);
-            tong_gia_tri_theo_hop_dong_edit = parseFloat($scope.thongtinchitiet[i].THANH_TIEN + tong_gia_tri_theo_hop_dong_edit);
-            tong_chi_phi_hoa_don_edit = parseFloat($scope.thongtinchitiet[i].TIEN_THUE_TNDN + tong_chi_phi_hoa_don_edit);
-            tong_khach_nhan_edit = parseFloat($scope.thongtinchitiet[i].KHACH_NHAN_DUOC + tong_khach_nhan_edit);
+            tong_gia_tri_thuc_te_edit = LamTron(parseFloat($scope.thongtinchitiet[i].THANH_TIEN_NET + tong_gia_tri_thuc_te_edit));
+            tong_gia_tri_theo_hop_dong_edit = LamTron(parseFloat($scope.thongtinchitiet[i].THANH_TIEN + tong_gia_tri_theo_hop_dong_edit));
+            tong_chi_phi_hoa_don_edit = LamTron(parseFloat($scope.thongtinchitiet[i].TIEN_THUE_TNDN + tong_chi_phi_hoa_don_edit));
+            tong_khach_nhan_edit = LamTron(parseFloat($scope.thongtinchitiet[i].KHACH_NHAN_DUOC + tong_khach_nhan_edit));
         }
         $scope.thongtinchung.TONG_TIEN = tong_gia_tri_theo_hop_dong_edit
         $scope.thongtinchung.TONG_GIA_TRI_DON_HANG_THUC_TE = tong_gia_tri_thuc_te_edit;
         $scope.thongtinchung.TONG_CHI_PHI_HOA_DON = tong_chi_phi_hoa_don_edit;
         $scope.thongtinchung.THUC_NHAN_CUA_KHACH = tong_khach_nhan_edit;
 
-        $scope.thongtinchung.TONG_GIA_TRI_CHENH_LECH = parseFloat($scope.thongtinchung.TONG_TIEN - $scope.thongtinchung.TONG_GIA_TRI_DON_HANG_THUC_TE);
+        $scope.thongtinchung.TONG_GIA_TRI_CHENH_LECH = LamTron(parseFloat($scope.thongtinchung.TONG_TIEN - $scope.thongtinchung.TONG_GIA_TRI_DON_HANG_THUC_TE));
 
-        $scope.thongtinchung.TIEN_THUE_GTGT = parseFloat($scope.thongtinchung.TONG_TIEN * ($scope.thongtinchung.THUE_SUAT_GTGT / 100));
+        $scope.thongtinchung.TIEN_THUE_GTGT = LamTron(parseFloat($scope.thongtinchung.TONG_TIEN * ($scope.thongtinchung.THUE_SUAT_GTGT / 100)));
 
 
-        $scope.thongtinchung.GIA_TRI_THUC_THU_TU_KHACH = parseFloat($scope.thongtinchung.TONG_GIA_TRI_DON_HANG_THUC_TE + $scope.thongtinchung.TONG_CHI_PHI_HOA_DON + $scope.thongtinchung.TIEN_THUE_GTGT + $scope.thongtinchung.THUC_NHAN_CUA_KHACH + parseInt($scope.thongtinchung.PHI_VAN_CHUYEN));
+        $scope.thongtinchung.GIA_TRI_THUC_THU_TU_KHACH = LamTron(parseFloat($scope.thongtinchung.TONG_GIA_TRI_DON_HANG_THUC_TE + $scope.thongtinchung.TONG_CHI_PHI_HOA_DON + $scope.thongtinchung.TIEN_THUE_GTGT + $scope.thongtinchung.THUC_NHAN_CUA_KHACH + parseInt($scope.thongtinchung.PHI_VAN_CHUYEN)));
     };
 
     $scope.SaveBaoGia = function () {
@@ -2507,22 +2507,22 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
         for (var i = 0; i < $scope.thongtinchitiet.length; i++) {
             $scope.thongtinchitiet[i].DON_GIA_MOI = $scope.thongtinchitiet[i].DON_GIA_BAO_DI_NET;
 
-            $scope.thongtinchitiet[i].THANH_TIEN = $scope.thongtinchitiet[i].DON_GIA_MOI * $scope.thongtinchitiet[i].SO_LUONG;
-            $scope.thongtinchitiet[i].THANH_TIEN_NET = $scope.thongtinchitiet[i].SO_LUONG * $scope.thongtinchitiet[i].DON_GIA_BAO_DI_NET;
+            $scope.thongtinchitiet[i].THANH_TIEN = LamTron($scope.thongtinchitiet[i].DON_GIA_MOI * $scope.thongtinchitiet[i].SO_LUONG);
+            $scope.thongtinchitiet[i].THANH_TIEN_NET = LamTron($scope.thongtinchitiet[i].SO_LUONG * $scope.thongtinchitiet[i].DON_GIA_BAO_DI_NET);
         };
 
         for (var i = 0; i < $scope.thongtinchitiet.length; i++) {
-            tong_gia_tri_thuc_te_edit = parseFloat($scope.thongtinchitiet[i].THANH_TIEN_NET + tong_gia_tri_thuc_te_edit);
-            tong_gia_tri_theo_hop_dong_edit = parseFloat($scope.thongtinchitiet[i].THANH_TIEN + tong_gia_tri_theo_hop_dong_edit);
+            tong_gia_tri_thuc_te_edit = LamTron(parseFloat($scope.thongtinchitiet[i].THANH_TIEN_NET + tong_gia_tri_thuc_te_edit));
+            tong_gia_tri_theo_hop_dong_edit = LamTron(parseFloat($scope.thongtinchitiet[i].THANH_TIEN + tong_gia_tri_theo_hop_dong_edit));
         }
 
         $scope.tong_gia_tri_thuc_te_edit = tong_gia_tri_thuc_te_edit;
         $scope.tong_gia_tri_theo_hop_dong_edit = tong_gia_tri_theo_hop_dong_edit;
 
 
-        chenhlech = parseFloat(tien_khach_nhan_edit - $scope.tong_gia_tri_theo_hop_dong_edit);
-        khachnhan = parseFloat(chenhlech * 80) / 100;
-        newcm = parseFloat((khachnhan * 100) / $scope.tong_gia_tri_thuc_te_edit);
+        chenhlech = LamTron(parseFloat(tien_khach_nhan_edit - $scope.tong_gia_tri_theo_hop_dong_edit));
+        khachnhan = LamTron(parseFloat(chenhlech * 80) / 100);
+        newcm = LamTron(parseFloat((khachnhan * 100) / $scope.tong_gia_tri_thuc_te_edit));
 
         tong_gia_tri_thuc_te_edit = 0;
         tong_gia_tri_theo_hop_dong_edit = 0;
@@ -2532,35 +2532,35 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
         for (var i = 0; i < $scope.thongtinchitiet.length; i++) {
             $scope.thongtinchitiet[i].CM = newcm;
 
-            $scope.thongtinchitiet[i].KHACH_NHAN_DUOC = parseFloat($scope.thongtinchitiet[i].DON_GIA_BAO_DI_NET * ($scope.thongtinchitiet[i].CM / 100)) * $scope.thongtinchitiet[i].SO_LUONG;
+            $scope.thongtinchitiet[i].KHACH_NHAN_DUOC = LamTron(parseFloat($scope.thongtinchitiet[i].DON_GIA_BAO_DI_NET * ($scope.thongtinchitiet[i].CM / 100)) * $scope.thongtinchitiet[i].SO_LUONG);
 
-            $scope.thongtinchitiet[i].BIEN_TRUNG_GIAN = parseFloat(($scope.thongtinchitiet[i].KHACH_NHAN_DUOC * 100) / 80);
-            $scope.thongtinchitiet[i].TIEN_THUE_TNDN = parseFloat($scope.thongtinchitiet[i].BIEN_TRUNG_GIAN * ($scope.thongtinchitiet[i].THUE_TNDN / 100));
+            $scope.thongtinchitiet[i].BIEN_TRUNG_GIAN = LamTron(parseFloat(($scope.thongtinchitiet[i].KHACH_NHAN_DUOC * 100) / 80));
+            $scope.thongtinchitiet[i].TIEN_THUE_TNDN = LamTron(parseFloat($scope.thongtinchitiet[i].BIEN_TRUNG_GIAN * ($scope.thongtinchitiet[i].THUE_TNDN / 100)));
 
-            $scope.thongtinchitiet[i].DON_GIA_MOI = parseFloat($scope.thongtinchitiet[i].DON_GIA_BAO_DI_NET + ($scope.thongtinchitiet[i].KHACH_NHAN_DUOC/$scope.thongtinchitiet[i].SO_LUONG) + ($scope.thongtinchitiet[i].TIEN_THUE_TNDN/$scope.thongtinchitiet[i].SO_LUONG));
+            $scope.thongtinchitiet[i].DON_GIA_MOI = LamTron(parseFloat($scope.thongtinchitiet[i].DON_GIA_BAO_DI_NET + ($scope.thongtinchitiet[i].KHACH_NHAN_DUOC/$scope.thongtinchitiet[i].SO_LUONG) + ($scope.thongtinchitiet[i].TIEN_THUE_TNDN/$scope.thongtinchitiet[i].SO_LUONG)));
 
-            $scope.thongtinchitiet[i].THANH_TIEN = $scope.thongtinchitiet[i].DON_GIA_MOI * $scope.thongtinchitiet[i].SO_LUONG;
-            $scope.thongtinchitiet[i].THANH_TIEN_NET = $scope.thongtinchitiet[i].SO_LUONG * $scope.thongtinchitiet[i].DON_GIA_BAO_DI_NET;
+            $scope.thongtinchitiet[i].THANH_TIEN = LamTron($scope.thongtinchitiet[i].DON_GIA_MOI * $scope.thongtinchitiet[i].SO_LUONG);
+            $scope.thongtinchitiet[i].THANH_TIEN_NET = LamTron($scope.thongtinchitiet[i].SO_LUONG * $scope.thongtinchitiet[i].DON_GIA_BAO_DI_NET);
         }
 
         for (var i = 0; i < $scope.thongtinchitiet.length; i++) {
-            tong_gia_tri_thuc_te_edit = parseFloat($scope.thongtinchitiet[i].THANH_TIEN_NET + tong_gia_tri_thuc_te_edit);
-            tong_gia_tri_theo_hop_dong_edit = parseFloat($scope.thongtinchitiet[i].THANH_TIEN + tong_gia_tri_theo_hop_dong_edit);
-            tong_chi_phi_hoa_don_edit = parseFloat($scope.thongtinchitiet[i].TIEN_THUE_TNDN + tong_chi_phi_hoa_don_edit);
-            tong_khach_nhan_edit = parseFloat($scope.thongtinchitiet[i].KHACH_NHAN_DUOC + tong_khach_nhan_edit);
+            tong_gia_tri_thuc_te_edit = LamTron(parseFloat($scope.thongtinchitiet[i].THANH_TIEN_NET + tong_gia_tri_thuc_te_edit));
+            tong_gia_tri_theo_hop_dong_edit = LamTron(parseFloat($scope.thongtinchitiet[i].THANH_TIEN + tong_gia_tri_theo_hop_dong_edit));
+            tong_chi_phi_hoa_don_edit = LamTron(parseFloat($scope.thongtinchitiet[i].TIEN_THUE_TNDN + tong_chi_phi_hoa_don_edit));
+            tong_khach_nhan_edit = LamTron(parseFloat($scope.thongtinchitiet[i].KHACH_NHAN_DUOC + tong_khach_nhan_edit));
         }
         $scope.thongtinchung.TONG_GIA_TRI_DON_HANG_THUC_TE = tong_gia_tri_thuc_te_edit;
         $scope.thongtinchung.TONG_TIEN = tong_gia_tri_theo_hop_dong_edit;
         $scope.thongtinchung.TONG_CHI_PHI_HOA_DON = tong_chi_phi_hoa_don_edit;
         $scope.thongtinchung.THUC_NHAN_CUA_KHACH = tong_khach_nhan_edit;
 
-        $scope.thongtinchung.TONG_GIA_TRI_CHENH_LECH = parseFloat($scope.thongtinchung.TONG_TIEN - $scope.thongtinchung.TONG_GIA_TRI_DON_HANG_THUC_TE);
+        $scope.thongtinchung.TONG_GIA_TRI_CHENH_LECH = LamTron(parseFloat($scope.thongtinchung.TONG_TIEN - $scope.thongtinchung.TONG_GIA_TRI_DON_HANG_THUC_TE));
 
-        $scope.thongtinchung.TIEN_THUE_GTGT = parseFloat($scope.thongtinchung.TONG_TIEN * ($scope.thongtinchung.THUE_SUAT_GTGT / 100));
+        $scope.thongtinchung.TIEN_THUE_GTGT = LamTron(parseFloat($scope.thongtinchung.TONG_TIEN * ($scope.thongtinchung.THUE_SUAT_GTGT / 100)));
 
 
 
-        $scope.thongtinchung.TONG_GIA_TRI_THU_CUA_KHACH = parseFloat($scope.thongtinchung.TONG_TIEN + $scope.thongtinchung.TONG_CHI_PHI_HOA_DON + $scope.thongtinchung.TIEN_THUE_GTGT + $scope.thongtinchung.THUC_NHAN_CUA_KHACH + $scope.thongtinchung.PHI_VAN_CHUYEN);
+        $scope.thongtinchung.TONG_GIA_TRI_THU_CUA_KHACH = LamTron(parseFloat($scope.thongtinchung.TONG_TIEN + $scope.thongtinchung.TONG_CHI_PHI_HOA_DON + $scope.thongtinchung.TIEN_THUE_GTGT + $scope.thongtinchung.THUC_NHAN_CUA_KHACH + $scope.thongtinchung.PHI_VAN_CHUYEN));
     };
 
     $scope.TaoDonPOMoi = function (form) {
@@ -3113,6 +3113,17 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
                             url: window.location.origin + '/api/Api_ArrayLienHeKH'
                         }).then(function successCallback(zzz) {
                             SuccessSystem('Thêm liên hệ khách hàng thành công');
+                            $http.get(window.location.origin + '/api/Api_BaoGia/GetLienHeKhach/' + $scope.lastmakh)
+                             .then(function (response) {
+                                 if (response.data) {
+                                     $scope.arrayLH = response.data;
+                                     $scope.arrayLienHeFinded = $scope.arrayLH.map(function (item) {
+                                         return item;
+                                     });
+                                 }
+                             }, function (error) {
+                                 console.log(error);
+                             });
                         }, function errorCallback(zzz) {
                             ErrorSystem("Chưa thêm được liên hệ khách hàng");
                             //alert('Chưa thêm được liên hệ khách hàng');
@@ -3138,6 +3149,19 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
         }
     };
 
+    $scope.refresh = function () {
+        $http.get(window.location.origin + '/api/Api_BaoGia/GetLienHeKhach/' + $scope.ma_khach_hang)
+ .then(function (response) {
+     if (response.data) {
+         $scope.arrayLH = response.data;
+         $scope.arrayLienHeFinded = $scope.arrayLH.map(function (item) {
+             return item;
+         });
+     }
+ }, function (error) {
+     console.log(error);
+ });
+    };
 
     //them lien he kh
     $scope.addnew = function (makh) {
@@ -3172,27 +3196,31 @@ app.controller('baogiaCtrl', function ($scope, $http, baogiaService,khachhangSer
             SALES_CU: $scope.sales_cu,
         }
         khachhangService.add_lienhe(data_add).then(function successCallback(response) {
-            SuccessSystem("Bạn đã thêm thành công 1 liên hệ của khách hàng");
-            $scope.ten_cua_nguoi_lien_he_moi = '';
-            $scope.chuc_vu = '';
-            $scope.phong_ban = '';
-            $scope.ngay_sinh = null;
-            $scope.gioi_tinh = '';
-            $scope.email_ca_nhan = '';
-            $scope.email_cong_ty = '';
-            $scope.skype = '';
-            $scope.facebook = '';
-            CKEDITOR.instances.ghichu.setData('');
-            $scope.so_dien_thoai1 = '';
-            $scope.tinh_trang_lam_viec = '';
-            $scope.so_dien_thoai2 = '';
-            $scope.sales_moi = '';
-            $scope.sales_cu = '';
+            if (typeof response.data == "object")
+            {
+                SuccessSystem("Bạn đã thêm thành công 1 liên hệ của khách hàng");
+                $scope.ten_cua_nguoi_lien_he_moi = '';
+                $scope.chuc_vu = '';
+                $scope.phong_ban = '';
+                $scope.ngay_sinh = null;
+                $scope.gioi_tinh = '';
+                $scope.email_ca_nhan = '';
+                $scope.email_cong_ty = '';
+                $scope.skype = '';
+                $scope.facebook = '';
+                CKEDITOR.instances.ghichu.setData('');
+                $scope.so_dien_thoai1 = '';
+                $scope.tinh_trang_lam_viec = '';
+                $scope.so_dien_thoai2 = '';
+                $scope.sales_moi = '';
+                $scope.sales_cu = '';
 
-            $scope.id_lien_he = response.data.ID_LIEN_HE;
-            $scope.nguoi_lien_he = response.data.NGUOI_LIEN_HE;
+                $scope.id_lien_he = response.data.ID_LIEN_HE;
+                $scope.nguoi_lien_he = response.data.NGUOI_LIEN_HE;
+            } else {
+                ErrorSystem(response.data);
+            }
 
-            console.log(response.data)
         }, function errorCallback(response) {
             ErrorSystem("Đã xảy ra lỗi");
         });

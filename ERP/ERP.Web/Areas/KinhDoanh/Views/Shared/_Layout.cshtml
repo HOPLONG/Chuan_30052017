@@ -300,18 +300,18 @@
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                     </li>
-                    <li class="treeview" style="margin-top: 200px" ng-controller="DoanhSoCtrl">
-                        <p id="newdate" style="display: none">{{newdate | date: 'dd/MM/yyyy'}}</p>
-                        <div ng-repeat="item in list_doanhso">
-                            - Chỉ tiêu tháng {{item.THANG_CHI_TIEU}} : {{item.MUC_TIEU_DOANH_SO_THANG | number:0}} <br />
-                            - Doanh số đã đạt được : {{item.DOANH_SO_THANG | number : 0}}<br />
-                            - Chỉ tiêu năm {{item.NAM_CHI_TIEU}} : {{item.MUC_TIEU_DOANH_SO_NAM | number: 0}}<br />
-                            - Doanh số đã đạt được : {{item.DOANH_SO_NAM | number: 0}}
-                        </div>
-                    </li>
                 </ul>
             </section>
             <!-- /.sidebar -->
+            <div style="position:absolute;bottom:0px" ng-controller="DoanhSoCtrl">
+                <p id="newdate" style="display: none">{{newdate | date: 'dd/MM/yyyy'}}</p>
+                <div ng-repeat="item in list_doanhso">
+                    - Chỉ tiêu tháng {{item.THANG_CHI_TIEU}} : {{item.MUC_TIEU_DOANH_SO_THANG | number:0}} <br />
+                    - Doanh số đã đạt được : {{item.DOANH_SO_THANG | number : 0}}<br />
+                    - Chỉ tiêu năm {{item.NAM_CHI_TIEU}} : {{item.MUC_TIEU_DOANH_SO_NAM | number: 0}}<br />
+                    - Doanh số đã đạt được : {{item.DOANH_SO_NAM | number: 0}}
+                </div>
+            </div>
         </aside>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" style="background: none !important">

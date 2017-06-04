@@ -255,8 +255,12 @@
         });
     }
 
-    $scope.delete_lichlamviecNV = function (item) {
-        $http.delete('/api/Api_GiaoViec/DeleteNV_GIAO_VIEC_CHUA_HT/' + item.ID).then(function (response) {
+    $scope.deleteitem = function (item) {
+        $scope.item = item;
+    }
+
+    $scope.delete_lichlamviecNV = function () {
+        $http.delete('/api/Api_GiaoViec/DeleteNV_GIAO_VIEC_CHUA_HT/' + $scope.item.ID).then(function (response) {
             SuccessSystem('Xóa thành công');
             loadlistCV();
         }, function (error) {

@@ -10,12 +10,12 @@
 namespace ERP.Web.Models.Database
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class HT_PHAN_HOI_PHAN_MEM
+    public partial class Prod_HT_List_FAQ_Result
     {
         public int ID { get; set; }
         public string NHAN_VIEN_PHAN_HOI { get; set; }
+        public string TEN_NHAN_VIEN_PHAN_HOI { get; set; }
         public System.DateTime NGAY_PHAN_HOI { get; set; }
         public string THONG_TIN_PHAN_HOI { get; set; }
         public string TRA_LOI_PHAN_HOI { get; set; }
@@ -24,10 +24,7 @@ namespace ERP.Web.Models.Database
         public bool THONG_TIN_PHAN_HOI_KHONG_TOT { get; set; }
         public bool THONG_TIN_PHAN_HOI_LUNG_TUNG { get; set; }
         public string NGUOI_DUYET { get; set; }
+        public string TEN_NGUOI_DUYET { get; set; }
         public Nullable<System.DateTime> NGAY_DUYET { get; set; }
-        public int TINH_DIEM { get; set; }
-    
-        public virtual HT_NGUOI_DUNG HT_NGUOI_DUNG { get; set; }
-        public virtual HT_NGUOI_DUNG HT_NGUOI_DUNG1 { get; set; }
     }
 }

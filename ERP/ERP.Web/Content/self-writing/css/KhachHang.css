@@ -60,7 +60,7 @@ hr.dots {
 }
 .wrapper {
     width: 100%;
-    padding: 20px 0px;
+    padding: 0px 0px;
 }
 .inner_wrapper {
     width: 960px;
@@ -518,7 +518,7 @@ p:first-child {
 }
 ul.formSearch li {
 	float: left;
-	margin: 10px 0px 0px 10px;
+	margin: 7px 0px 0px 7px;
 }
 ul.formSearch li input.addText, ul.formSearch li select.comboBoxSearch {
 	width: 215px;

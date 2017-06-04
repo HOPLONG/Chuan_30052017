@@ -102,6 +102,9 @@
         display: inline-block;
         float: left;
     }
+    ul, li{
+        padding-left: 0px !important;
+    }
 </style>
 <div class="panel-heading">
     <marquee width="80%">Bạn đang xem danh mục Khách hàng.</marquee>
@@ -122,48 +125,22 @@
                 <form action="#" method="post">
 
                     <ul class="formSearch">
-                        <li><input class="addText corner" type="text" ng-model="timtheoma" ng-change="Find_Khach_Theo_Ma(1,timtheoma)" placeholder="Mã khách hàng" style="width:100%;"></li>
+                        <li><input class="addText corner" type="text" ng-model="timtheoma" ng-change="Find_Khach_Theo_Ma(1,timtheoma)" placeholder="Mã khách hàng" style="width:90px;"></li>
                         <li><input class="addText corner" type="text" placeholder="Tên công ty" ng-model="timtheoten" ng-change="Find_Khach_Theo_Ten(1,timtheoten)" style="width:100%;"></li>
                         <li><input class="addText corner" type="text" placeholder="Email" ng-model="timtheoemail" ng-change="Find_Khach_Theo_Email(1,timtheoemail)" style="width:100%;"></li>
                         <li><input class="addText corner" type="text" placeholder="SĐT" ng-model="timtheosdt" ng-change="Find_Khach_Theo_SDT(1,timtheosdt)" style="width:100%;"></li>
                         <li><input class="addText corner" type="text" placeholder="Tìm theo các thông tin khác" ng-model="search_text" ng-change="load_khachhang(1,search_text)" style="width:100%;"></li>
-                        <li>
-                            <select class="addText comboBoxSearch corner" name="worklocal" style="width:100%;">
-                                <option selected="selected" value="-1">--- Tình trạng hoạt động ---</option>
-                                <option value="1">NV1</option>
-                                <option value="2">NV2</option>
-                            </select>
-                        </li>
-                        <li>
-                            <select class="addText comboBoxSearch corner" name="worklocal" style="width:100%;">
-                                <option selected="selected" value="-1">--- NV kho phụ trách ---</option>
-                                <option value="1">NV1</option>
-                                <option value="2">NV2</option>
-                            </select>
-                        </li>
-                        <li>
-                            <select class="addText comboBoxSearch corner" name="worklocal" style="width:100%;">
-                                <option selected="selected" value="-1">--- Sales phụ trách ---</option>
-                                <option value="1">NV1</option>
-                                <option value="2">NV2</option>
-                            </select>
-                        </li>
+
+                        <li><input class="addText corner" type="text" placeholder="Kiểm tra bằng Email" ng-model="search_email" style="width:100%; background: gold;"></li>
+                        <li><input class="addText corner" type="text" placeholder="Kiểm tra bằng SĐT" ng-model="search_sdt" style="width:110px; background: gold;"></li>
+                        <li><input class="addText corner" type="text" placeholder="Kiểm tra bằng MST" ng-model="search_mst" style="width:110px; background: gold;"></li>
+                        <li><button type="button" class="btn fa fa-check" ng-click="timkiemkhachhang(search_email,search_sdt,search_mst);showkhsearch();">Kiểm tra</button></li>
+
                     </ul>
                 </form>
             </div>
         </div>
-        <div id="quick-access" style="padding-bottom: 20px;" class="text-center">
-            <form class="form-inline quick-search-form" role="form" action="#">
 
-                <ul class="formSearch aligncenter">
-                    <li><input class="form-control" type="text" placeholder="Email" ng-model="search_email" style="width:100%;"></li>
-                    <li><input class="form-control" type="text" placeholder="SĐT" ng-model="search_sdt"  style="width:100%;"></li>
-                    <li><input class="form-control" type="text" placeholder="SĐT" ng-model="search_mst"  style="width:100%;"></li>
-                    <li><button type="button" style="border-radius: 5px" class="btn btn-info" ng-click="timkiemkhachhang(search_email,search_sdt,search_mst);showkhsearch();">Kiểm tra</button></li>
-                </ul>
-                
-            </form>
-        </div>
         <div class="tab-pane fade in" ng-show="find" >
             
             <input type="hidden" id="salehienthoi" name="salehienthoi" value="@Session["USERNAME"]" />
@@ -172,11 +149,9 @@
             <input type="hidden" id="isadmin" name="isadmin" value="@Session["IS_AMIN"]" />
             <div id="quick-access" style="padding-bottom: 20px;">
                 <form class="form-inline quick-search-form" role="form" action="#">
-
+                    <p style="text-shadow: 1px 1px 5px #91DDFD; font-style:italic; font-size: 20px;text-align: center; color: #64B5F6; font-weight: bold">{{thongbao}}</p>
                     <table id="example" class="table " ng-repeat="item in timkiemkh">
-                        <tr>
-                            <td colspan='4'><p style="text-shadow: 1px 1px 5px #91DDFD; font-style:italic; font-size: 20px;text-align: center; color: #64B5F6; margin-left:10px; margin-top:5px;margin-bottom:5px; font-weight: bold">{{thongbao}}</p></td>
-                        </tr>
+                        
                         <tr>
                             <td><label>Sale phụ trách hiện thời</label></td>
                             <td>{{item.SALES_PHU_TRACH}}</td>
@@ -199,6 +174,7 @@
         <div class="col-md-12">
             <br />
             <button type="button" class="button_khachhang fa fa-plus" data-toggle="modal" data-target="#myModal">Thêm khách mới</button>
+            
             <button type="button" class="button_khachhang fa fa-stack-overflow" ng-show="isadmin" onclick="location.href='/ChuyenSale/Index';">Chuyển sales</button>
             <button type="button" class="button_khachhang fa fa-search-plus" ng-show="isadmin" onclick="location.href = '/KhachHang/TimKiem_KhachHang';">Tìm kiếm khách trên toàn hệ thống</button>
             <button type="button" class="button_khachhang fa fa-user-o" ng-show="isadmin" onclick="location.href = '/KhachHang/KhachChuaGiaoDich';">Danh sách khách chưa có giao dịch</button>
@@ -383,7 +359,7 @@
                                     <td>
                                         <ng-form name="valid_lienhekh">
                                             <input type="text" style="height: 100%;padding-left: 5px;width:100%" class="form-control" name="lienhe_kh" ng-model="arraylienhe[$index].nguoi_lien_he" required>
-                                            <small class="label label-danger" data-ng-show="submitted && valid_lienhekh.lienhe_kh.$error.required">required</small>
+                                            <small class="label label-danger" data-ng-show="submitted && valid_lienhekh.lienhe_kh.$error.required">Tên người liên hệ không được để trống</small>
                                         </ng-form>
                                         
                                     </td>
@@ -398,7 +374,7 @@
                                     <td>
                                         <ng-form name="valid_sdt">
                                             <input type="tel" ng-model="arraylienhe[$index].so_dien_thoai1" placeholder="Số điện thoại 1(*)" name="sdt_kh" required>
-                                            <small class="label label-danger" data-ng-show="submitted && valid_sdt.sdt_kh.$error.required">required</small>
+                                            <small class="label label-danger" data-ng-show="submitted && valid_sdt.sdt_kh.$error.required">Số điện thoại không được để trống</small>
                                         </ng-form>
                                         
                                         <input type="tel" ng-model="arraylienhe[$index].so_dien_thoai2" placeholder="Số điện thoại 2">
@@ -1619,18 +1595,17 @@
         <div class="col-md-2" style="font-size: 14px; color:#1191BF">
             Tổng số khách: {{tongsokhachhang_HL}}
         </div>
-       
-        <div class="dropdown col-md-12">
-            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+        <div class="dropdown" style="float:right; margin-right: 55px;">
+            <button class="dropdown-toggle btn btn-default" type="button" data-toggle="dropdown">
                 Ẩn/Hiện cột
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
                 <li class="form-group">
-                    Hiện Email : <input type="checkbox" ng-model="showemail" /> 
+                    Hiện Email : <input type="checkbox" ng-model="showemail" />
                 </li>
                 <li class="form-group">
-                    Hiện Tỉnh : <input type="checkbox" ng-model="showtinh" /> 
+                    Hiện Tỉnh : <input type="checkbox" ng-model="showtinh" />
                 </li>
                 <li class="form-group">
                     Hiện Quốc gia : <input type="checkbox" ng-model="showquocgia" />
@@ -1640,6 +1615,8 @@
                 </li>
             </ul>
         </div>
+       
+        
 
         <table id="example" class="table" cellspacing="0">
             <thead>
@@ -1655,10 +1632,10 @@
                     <th>Nhân viên kho phụ trách</th>
                     <th>Sales phụ trách</th>
                     <th>Sales quản lý</th>
-                    <th ng-show="isadmin">Sửa</th>
+                    <th>Sửa nhanh</th>
                     <th ng-show="isadmin">Xóa</th>
                     <th ng-show="isadmin">Copy khách hàng</th>
-                    <th>Sửa nhanh</th>
+                    
                     <th>Tạo báo giá</th>
                 </tr>
                 <tr>
@@ -1669,8 +1646,8 @@
                     <th ng-show="showtinh"></th>
                     <th ng-show="showquocgia"></th>
                     <th></th>
-                    <th ng-show="showhoatdong"></th>
                     <th></th>
+                    <th ng-show="showhoatdong"></th>
                     <th style="padding:0px 0px 0px 0px">
                         <div>
                             <div id="themmoiinput">
@@ -1702,10 +1679,11 @@
                     <th ng-show="isadmin"></th>
                     <th></th>
                     <th></th>
+                    
                 </tr>
             </thead>
             <tbody id="myTable">
-                <tr ng-repeat="item in filtered" ng-click="transfer(item);get_lienhe(item.MA_KHACH_HANG);get_taikhoan(item.MA_KHACH_HANG);get_phanhoi(item.MA_KHACH_HANG);get_thongkemuahang(item.MA_KHACH_HANG);get_policy(item.MA_KHACH_HANG);load_danhsachtuancongno(item.MA_KHACH_HANG)" class="hover" ng-class-odd="'odd'" ng-class-even="'even'">
+                <tr ng-repeat="item in filtered" ng-click="transfer(item);get_lienhe(item.MA_KHACH_HANG);get_policy(item.MA_KHACH_HANG);get_phanhoi(item.MA_KHACH_HANG);get_taikhoan(item.MA_KHACH_HANG);get_thongkemuahang(item.MA_KHACH_HANG);load_danhsachtuancongno(item.MA_KHACH_HANG)" class="hover" ng-class-odd="'odd'" ng-class-even="'even'">
                     <td>
                         <input type="checkbox" ng-model="item.KHACH_DAC_BIET" style="display:none" />
                         <i class="fa fa-star-o" aria-hidden="true" ng-show="item.KHACH_DAC_BIET"></i>
@@ -1829,34 +1807,34 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        Chiến dịch Marketing
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal" name="myForm" novalidate>
-                            <fieldset>
-                               <ul class="col-md-9">
-                                   <li ng-repeat="chiendich in list_chiendichmkt">
-                                       <label>
-                                           <input type="radio" ng-model="chiendich.ID" ng-show="return_confirm" ng-click="saveID_chiendich(chiendich.ID)" name="name" value="{{chiendich.ID}}" required />{{chiendich.TEN_LIST}}
-                                       </label>
-                                   </li>
-                                   <li>
-                                        <button ng-show="return_confirm" ng-click="show_addnew_chien_dich_function()" type="button" class="btn btn-default">Thêm một list mới</button>
-                                   </li>
-                               </ul>
-                                <div class="col-md-3">
-                                    <button class="btn btn-default" ng-click="addnew_kh_chien_dich()" ng-show="return_confirm" data-dismiss="modal">Lưu khách vào chiến dịch</button>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <div ng-show="show_addnew_chien_dich" class="col-md-12">
-                            <input type="text" ng-model="ten_chien_dich" />
-                            <button class="btn btn-default" ng-click="addnew_chien_dich()">Lưu</button>
+                        <div class="box-header-title" style="background-color:#1191BF;color: #fff;font-weight: bold;font-size: 18px;padding: 10px;">» Danh sách chiến dịch Marketing</div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" name="myForm" novalidate>
+                                <fieldset>
+                                   <ul class="col-md-9">
+                                       <li ng-repeat="chiendich in list_chiendichmkt">
+                                           <label>
+                                               <input style="margin: 0px 8px 0px 0px;" type="radio" ng-model="chiendich.ID" ng-show="return_confirm" ng-click="saveID_chiendich(chiendich.ID)" name="name" value="{{chiendich.ID}}" required />{{chiendich.TEN_LIST}}
+                                           </label>
+                                       </li>
+                                   </ul>
+                                    <div class="col-md-3">
+                                        <button class="btn fa fa-save" ng-click="addnew_kh_chien_dich()" ng-show="return_confirm" data-dismiss="modal">Lưu khách vào chiến dịch</button>
+                                    </div>
+                                </fieldset>
+                            </form>
                         </div>
-                        <button id="exit" name="exit" class="btn" data-dismiss="modal">Exit</button>
-                    </div>
+                        <div class="modal_footer" style="padding-bottom: 20px;">
+                            <button ng-show="return_confirm" ng-click="show_addnew_chien_dich_function()" style="display:inline-block;float:left;margin-bottom:20px" type="button" class="btn fa fa-plus">Thêm một list mới</button>
+                            <div ng-show="show_addnew_chien_dich" class="col-md-8" style="display:inline-block;float:left;margin-bottom:20px;">
+                                <input type="text" ng-model="ten_chien_dich" style="border: 1px solid #f0f0f0; height: 25px; margin-left: 5px;" />
+                                <button class="btn fa fa-save" ng-click="addnew_chien_dich()">Lưu</button>
+                                <button class="btn fa fa-ban" ng-click="show_addnew_chien_dich = false">Hủy</button>
+                            </div>
+                            <button style="float: right;" id="exit" name="exit" class="btn fa fa-sign-out" data-dismiss="modal">Exit</button>
+                        </div>
+                      </div>
+                    
                 </div>
             </div>
         </div>

@@ -65,7 +65,7 @@
                                 <button type="submit" ng-show="editMode" ng-click="editMode = false; cancel_giao_viec(item)" class="btn btn-default">Cancel</button>
                             </td>
                             <td>
-                                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#delete_item">Delete</button>
+                                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#delete_item" ng-click="deleteitem(item)">Delete</button>
                             </td>
                         </tr>
                     </tbody>

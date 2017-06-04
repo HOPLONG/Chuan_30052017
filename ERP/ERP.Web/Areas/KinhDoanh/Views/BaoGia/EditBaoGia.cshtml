@@ -307,49 +307,6 @@
                                         <td colspan="13">
                                             <table border='1' style="width:100%; height: 100%; border:none;">
                                                 <tr>
-                                                    <td>
-                                                        <label class="control-label">Phương thức thanh toán </label>
-                                                    </td>
-                                                    <td>
-                                                        <ng-form name="validphuongthuctt">
-                                                            <select class="form-control select" ng-model="thongtinchung.PHUONG_THUC_THANH_TOAN"
-                                                                    data-ng-options="item as item for item in phuongthucttnew" name="phuongthuctt" required></select>
-                                                            <small class="label label-danger" data-ng-show="submitted && validphuongthuctt.phuongthuctt.$error.required">Phương thức thanh toán không được để trống</small>
-                                                        </ng-form>
-                                                    </td>
-                                                    <td>
-                                                        <label class="control-label">Phí vận chuyển </label>
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control" format="number" ng-model="thongtinchung.PHI_VAN_CHUYEN" id="tienvanchuyen" ng-change="tinhtien(item)" />
-                                                    </td>
-                                                    <td>
-                                                        <label class="control-label">Thuế suất GTGT (%) </label>
-                                                    </td>
-                                                    <td>
-                                                        <input type="number" class="form-control" ng-model="thongtinchung.THUE_SUAT_GTGT" id="thue_suat_gtgt" ng-change="tinhtien(item)" />
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label class="control-label">Hạn thanh toán(*) </label></td>
-                                                    <td>
-                                                        <ng-form name="valid_hanthanhtoan">
-                                                            <input type="text" class="form-control" ng-model="thongtinchung.HAN_THANH_TOAN" name="han_thanh_toan" required />
-                                                            <small class="label label-danger" data-ng-show="submitted && valid_hanthanhtoan.han_thanh_toan.$error.required">Hạn thanh toán không được để trống</small>
-                                                        </ng-form>
-                                                    </td>
-                                                    <td><label class="control-label">Hiệu lực báo giá </label></td>
-                                                    <td><input type="number" class="form-control" ng-model="thongtinchung.HIEU_LUC_BAO_GIA" /></td>
-                                                    <td><label class="control-label">Điều khoản thanh toán(ngày) (*) </label></td>
-                                                    <td>
-                                                        <ng-form name="valid_dieukhoantt">
-                                                            <select class="form-control select" ng-model="thongtinchung.DIEU_KHOAN_THANH_TOAN" name="adddieukhoanthanhtoan"
-                                                                    data-ng-options="item as item for item in dieukhoanttnew" required></select>
-                                                            <small class="label label-danger" data-ng-show="submitted && valid_dieukhoantt.adddieukhoanthanhtoan.$error.required">Điều khoản thanh toán không được để trống</small>
-                                                        </ng-form>
-                                                    </td>
-                                                </tr>
-                                                <tr>
                                                     <td><label class="control-label">Tổng giá trị chênh lệch: </label></td>
                                                     <td colspan='2'><span ng-model="thongtinchung.TONG_GIA_TRI_CHENH_LECH">{{thongtinchung.TONG_GIA_TRI_CHENH_LECH | currency: ''}} vnd</span></td>
                                                     <td><label class="control-label">Tổng giá trị đơn hàng thực tế: </label></td>
@@ -378,6 +335,47 @@
                                                     <td><label class="control-label">Tổng giá trị thu của khách: </label></td>
                                                     <td colspan='2'><span ng-model="thongtinchung.GIA_TRI_THUC_THU_TU_KHACH">{{thongtinchung.GIA_TRI_THUC_THU_TU_KHACH | currency: ''}} vnd</span></td>
 
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="11">
+                                                        <h3 style="font-weight:bold">ĐIỀU KHOẢN THANH TOÁN</h3>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="control-label">Phương thức thanh toán </label>
+                                                    </td>
+                                                    <td>
+                                                        <ng-form name="validphuongthuctt">
+                                                            <select class="form-control select" ng-model="thongtinchung.PHUONG_THUC_THANH_TOAN"
+                                                                    data-ng-options="item as item for item in phuongthucttnew" name="phuongthuctt" required></select>
+                                                            <small class="label label-danger" data-ng-show="submitted && validphuongthuctt.phuongthuctt.$error.required">Phương thức thanh toán không được để trống</small>
+                                                        </ng-form>
+                                                    </td>
+                                                    <td>
+                                                        <label class="control-label">Phí vận chuyển </label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" format="number" ng-model="thongtinchung.PHI_VAN_CHUYEN" id="tienvanchuyen" ng-change="tinhtien(item)" />
+                                                    </td>
+                                                    <td>
+                                                        <label class="control-label">Thuế suất GTGT (%) </label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control" ng-model="thongtinchung.THUE_SUAT_GTGT" id="thue_suat_gtgt" ng-change="tinhtien(item)" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="control-label">Hiệu lực báo giá (ngày)</label></td>
+                                                    <td><input type="number" class="form-control" ng-model="thongtinchung.HIEU_LUC_BAO_GIA" /></td>
+                                                    <td><label class="control-label">Điều khoản thanh toán (*) </label></td>
+                                                    <td>
+                                                        <ng-form name="valid_dieukhoantt">
+                                                            <select class="form-control select" ng-model="thongtinchung.DIEU_KHOAN_THANH_TOAN" name="adddieukhoanthanhtoan"
+                                                                    data-ng-options="item as item for item in dieukhoanttnew" required></select>
+                                                            <small class="label label-danger" data-ng-show="submitted && valid_dieukhoantt.adddieukhoanthanhtoan.$error.required">Điều khoản thanh toán không được để trống</small>
+                                                        </ng-form>
+                                                    </td>
                                                 </tr>
                                             </table>
                                         </td>

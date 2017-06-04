@@ -11,7 +11,7 @@ namespace ERP.Web.Models.Database
 {
     using System;
     
-    public partial class HopLong_TimKH_TheoSDT_Result
+    public partial class HopLong_TimAllKH_TheoSDT_MST_EMAIL_Result
     {
         public string MA_KHACH_HANG { get; set; }
         public string TEN_CONG_TY { get; set; }
@@ -36,6 +36,8 @@ namespace ERP.Web.Models.Database
         public string TINH_TRANG_HOAT_DONG { get; set; }
         public string SALES_PHU_TRACH { get; set; }
         public string TEN_CUA_SALES_PHU_TRACH { get; set; }
+        public string EMAIL_NV { get; set; }
+        public string SDT_NV { get; set; }
         public string SALE_ME { get; set; }
         public string TEN_CUA_SALES_ME { get; set; }
         public string KHO_PHU_TRACH { get; set; }
@@ -46,7 +48,5 @@ namespace ERP.Web.Models.Database
         public Nullable<bool> KHACH_DAC_BIET { get; set; }
         public Nullable<bool> THONG_TIN_DA_DAY_DU { get; set; }
         public Nullable<int> ID { get; set; }
-        public string EMAIL_NV { get; set; }
-        public string SDT_NV { get; set; }
     }
 }
