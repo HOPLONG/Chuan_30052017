@@ -14,7 +14,7 @@ namespace ERP.Web.Models.Database
     
     public partial class KT_SO_NHAT_KY_CHUNG
     {
-        public int ID { get; set; }
+        public decimal ID { get; set; }
         public System.DateTime NGAY_HACH_TOAN { get; set; }
         public System.DateTime NGAY_CHUNG_TU { get; set; }
         public string SO_CHUNG_TU { get; set; }

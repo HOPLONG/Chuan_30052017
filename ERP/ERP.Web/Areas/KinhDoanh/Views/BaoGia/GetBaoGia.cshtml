@@ -21,14 +21,14 @@
                             </table>
                         </td>
                         <td align="left" colspan="9">
-                            <b style="font-size:20px">CÔNG TY CỔ PHẦN CÔNG NGHỆ HỢP LONG</b>
+                            <b style="font-size:20px;color: blue;font-weight:bold">CÔNG TY CỔ PHẦN CÔNG NGHỆ HỢP LONG</b>
                         </td>
 
                     </tr>
                     <tr height="19">
 
                         <td align="left" colspan="7">
-                            <i><b>Head Office:</b> 412 Trần Khát Trân- Hai Bà Trưng- Hà Nội - Tel: 1900.6536 -  Fax: 043.661.7560</i>
+                            <i><b>Head Office:</b> 412 Trần Khát Chân- Hai Bà Trưng- Hà Nội - Tel: 1900.6536 -  Fax: 043.661.7560</i>
                         </td>
 
                     </tr>
@@ -61,44 +61,41 @@
                         </td>
                     </tr>
                     <tr height="32">
-                        <td colspan="9" height="32" style="height:32px;font-size:20px; text-align:center; font-weight: bold">
-                            QUOTATION
+                        <td colspan="9" height="32" style="height:32px;font-size:20px;color:blue; text-align:center;">
+                            <h2 style="text-align:center;font-weight: bold;font-family: 'Times New Roman' ">BẢNG BÁO GIÁ</h2>
                         </td>
                     </tr>
                     <tr height="20">
-                        <td colspan="9" height="20" style="height:20px; ">
-                            &nbsp;
+                        <td colspan="9" height="20" style="height:20px;font-weight:bold; text-align:center ">
+                            Số báo giá : {{thongtinchung.SO_BAO_GIA}}
                         </td>
                     </tr>
                     <tr>
                         <td colspan="9" style="border:1px solid #F0F0F0">
                             <table border="0" cellpadding="0" cellspacing="0" style="padding: 3.5px; width:100%">
                                 <tbody>
-                                    <tr height="18">
-                                        <td width="90px" style="border-right:none; vertical-align:text-top">Khách hàng :</td>
+                                    <tr height="30">
+                                        <td width="90px" style="border-right:none;">Khách hàng :</td>
                                         <td colspan="5" style="border-left:none">{{thongtinchung.TEN_CONG_TY}}</td>
-                                        <td align="left" colspan="3" style="vertical-align:text-top">{{thongtinchung.SO_BAO_GIA}}</td>
-                                        <td align="center" width="80px" style="vertical-align:text-top">{{thongtinchung.NGAY_BAO_GIA| date:'dd/MM/yyyy'}}</td>
+                                        <td align="left" colspan="4" style="">Ngày báo giá: {{thongtinchung.NGAY_BAO_GIA| date:'dd/MM/yyyy'}}</td>
 
                                     </tr>
-                                    <tr height="18">
+                                    <tr height="30">
                                         <td width="90px" colspan="6">Người liên hệ: {{thongtinchung.NGUOI_LIEN_HE}}({{thongtinchung.SDT1}})</td>
-                                        <td align="left" colspan="4">{{thongtinchung.TEN_SALE_QUAN_LY}}</td>
+                                        <td align="left" colspan="4">Tên liên hệ : {{thongtinchung.TEN_SALE_QUAN_LY}}</td>
 
                                     </tr>
-                                    <tr height="18">
+                                    <tr height="30">
                                         <td width="90px" colspan="6">Địa chỉ: {{thongtinchung.DIA_CHI_XUAT_HOA_DON}}</td>
-                                        <td width="90px" align="left" colspan="4">Số điện thoại:{{thongtinchung.SDT_SALE_QUAN_LY}}</td>
+                                        <td width="90px" align="left" colspan="4">Số điện thoại : {{thongtinchung.SDT_SALE_QUAN_LY}}</td>
 
                                     </tr>
-                                    <tr height="18">
-                                        <td width="90px" colspan="6">MST: {{thongtinchung.MST}} &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Tel: {{thongtinchung.HOTLINE}} &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; Fax: {{thongtinchung.FAX}}</td>
-                                        <td align="left" width="135px"></td>
-                                        <td colspan="3"></td>
-
+                                    <tr height="30">
+                                        <td width="90px" colspan="6">MST: {{thongtinchung.MST}} &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td align="left" colspan="4">Email: {{thongtinchung.EMAIL_SALE_QUAN_LY}}</td>
                                     </tr>
-                                    <tr height="18">
-                                        <td width="90px" align="left" colspan="6" height="18">Email:{{thongtinchung.EMAIL_CONG_TY}}</td>
+                                    <tr height="30">
+                                        <td width="90px" align="left" colspan="6" height="18">Tel/Fax: {{thongtinchung.HOTLINE}} / {{thongtinchung.FAX}}  &nbsp;&nbsp;&nbsp;&nbsp; Email: {{thongtinchung.EMAIL_CONG_TY}}</td>
                                         <td colspan="4"></td>
 
                                     </tr>
@@ -118,12 +115,9 @@
                                 <tbody>
                                     <tr height="23">
                                         <td colspan="9" height="23" style="height:23px;">
-                                            We are the leading supplier for industrial products. Here by we would like to quote for your inquiry as follow:
-                                        </td>
-                                    </tr>
-                                    <tr height="17">
-                                        <td colspan="9" height="17" style="height:17px;">
-                                            No.:{{thongtinchung.SO_BAO_GIA}}
+                                            Kính gủi quý công ty !<br />
+                                            Trước tiên,chung tôi xin chân thành cảm ơn Quý Công Ty đã quan tâm tới sản phẩm của chúng tôi.<br />
+                                            Nay chúng tôi xin báo giá thiết bị điện công nghiệp và tự động hóa với các chi tiết như sau:
                                         </td>
                                     </tr>
                                     <tr height="45">
@@ -176,12 +170,6 @@
                                         <td style="width:71px;text-align:right;padding-right: 2px;">{{item.THOI_GIAN_GIAO_HANG}}</td>
                                     </tr>
                                     <tr height="30">
-                                        <td height="30" colspan="9" style="height:30px;">
-                                            &nbsp;
-                                        </td>
-                                    </tr>
-
-                                    <tr height="30">
                                         <td align="left" colspan="4" height="30" style="height:30px; border-right: none; font-weight:bold">
                                             Total
                                         </td>
@@ -221,14 +209,6 @@
                                         </td>
                                         <td style="border-left: none"></td>
                                     </tr>
-
-
-                                    <tr height="17">
-                                        <td height="17" colspan="9" style="height:17px;">
-                                            &nbsp;
-                                        </td>
-
-                                    </tr>
                                 </tbody>
                             </table>
                         </td>
@@ -240,31 +220,24 @@
                                 <tbody>
 
                                     <tr height="17">
-                                        <td height="17" colspan="9" style="height:17px;font-weight:bold; font-style: italic; text-decoration: underline">TERM & CONDITION:</td>
+                                        <td height="17" colspan="9" style="height:17px;font-weight:bold; font-style: italic; text-decoration: underline">ĐIỀU KHOẢN THANH TOÁN:</td>
 
                                     </tr>
-
                                     <tr height="20">
                                         <td height="20" style="height:20px;">
                                             &nbsp;
                                         </td>
+                                        <td align="left">
+                                            * Phương thức thanh toán:&nbsp;
+                                        </td>
                                         <td>
-                                            * Delivery time: ( note)
+                                            [x] {{thongtinchung.PHUONG_THUC_THANH_TOAN}}
                                         </td>
                                         <td>
                                             &nbsp;
                                         </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
+                                        <td align="left" colspan="3">
+                                            
                                         </td>
                                         <td>
                                             &nbsp;
@@ -278,151 +251,50 @@
                                             &nbsp;
                                         </td>
                                         <td align="left">
-                                            * Delivery place:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        </td>
-                                        <td align="left" colspan="2">
-                                            [&nbsp; ] At customer&#39;s office&nbsp;
-                                        </td>
-                                        <td align="left" colspan="3">
-                                            <i>Giao tại văn phòng bên mua</i>
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                    </tr>
-                                    <tr height="20">
-                                        <td height="20" style="height:20px;">
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            <i>Địa điểm giao hàng</i>
+                                            * Thời hạn thanh toán
                                         </td>
                                         <td colspan="2">
-                                            [&nbsp; ] At customer&#39;s warehouse
-                                        </td>
-                                        <td align="left" colspan="3">
-                                            <i>Giao tại kho bên mua</i>
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                    </tr>
-                                    <tr height="20">
-                                        <td height="20" style="height:20px;">
-                                            &nbsp;
-                                        </td>
-                                        <td align="left">
-                                            * Payment method:&nbsp;
-                                        </td>
-                                        <td>
-                                            [&nbsp; ] Cash in advance
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td align="left" colspan="3">
-                                            <i>Thanh toán tiền mặt</i>
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                    </tr>
-                                    <tr height="20">
-                                        <td height="20" style="height:20px;">
-                                            &nbsp;
-                                        </td>
-                                        <td align="left">
-                                            <i>Phương thức thanh toán</i>
-                                        </td>
-                                        <td colspan="2">
-                                            [&nbsp; ] 100% Payment after deliver
+                                            [x] {{thongtinchung.DIEU_KHOAN_THANH_TOAN}}
                                         </td>
                                         <td align="left" colspan="5">
-                                            <i>Thanh toán sau khi nhận hàng	</i>
+                                            
                                         </td>
                                     </tr>
                                     <tr height="19">
-                                        <td height="19" style="height:19px;width:27px;">
+                                        <td height="20" style="height:20px;">
                                             &nbsp;
                                         </td>
-                                        <td style="width:209px;">
-                                            &nbsp;
+                                        <td align="left">
+                                            * Hiệu lực báo giá
                                         </td>
-                                        <td align="left" colspan="6">
-                                            [&nbsp; ] 30% Payment in advance, 70% Payment before deliver the goods.
+                                        <td colspan="2">
+                                            [x] Báo giá có giá trị trong vòng {{thongtinchung.HIEU_LUC_BAO_GIA}} ngày,kể từ ngày báo giá.
                                         </td>
-                                        <td style="width:71px;">
-                                            &nbsp;
-                                        </td>
-                                    </tr>
-                                    <tr height="19">
-                                        <td height="19" style="height:19px;width:27px;">
-                                            &nbsp;
-                                        </td>
-                                        <td style="width:209px;">
-                                            &nbsp;
-                                        </td>
-                                        <td align="left" colspan="7">
-                                            [&nbsp; ] End of next month.
-                                        </td>
+                                        <td align="left" colspan="5"></td>
                                     </tr>
                                     <tr height="20">
                                         <td height="20" style="height:20px;">
                                             &nbsp;
                                         </td>
                                         <td align="left">
-                                            * Validity:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            * Thời gian bảo hành :
                                         </td>
-                                        <td align="left" colspan="2">
-                                            30 days (from date of it)
+                                        <td colspan="2">
+                                            [x] Sản phẩm được bảo hành 12 tháng kể từ ngày giao hàng
                                         </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
+                                        <td align="left" colspan="5"></td>
                                     </tr>
                                     <tr height="20">
                                         <td height="20" style="height:20px;">
                                             &nbsp;
                                         </td>
                                         <td align="left">
-                                            * Warranty:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            * Nội dung bảo hành :
                                         </td>
-                                        <td align="left" colspan="3">
-                                            12 months (for technical error of manufacturer)
+                                        <td colspan="2">
+                                            [x] Sản phẩm được bảo hành do lỗi của nhà sản xuất.
                                         </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
+                                        <td align="left" colspan="5"></td>
                                     </tr>
                                     <tr height="22">
                                         <td height="22" style="height:22px;">
@@ -453,33 +325,9 @@
                                             &nbsp;
                                         </td>
                                     </tr>
-                                    <tr height="25">
-                                        <td height="25" style="height:25px;">
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
+                                    <tr>
+                                        <td colspan="9">
+                                            <i>Rất mong được hợp tác với Quý công ty</i>
                                         </td>
                                     </tr>
                                     <tr height="19">
@@ -487,11 +335,11 @@
                                             &nbsp;
                                         </td>
                                         <td colspan="3">
-                                            &nbsp;CUSTOMER CONFIRMATION&nbsp;
+                                            &nbsp;XÁC NHẬN ĐẶT HÀNG&nbsp;
                                         </td>
 
                                         <td colspan="2">
-                                            HopLongTech
+                                            HOPLONGTECH
                                         </td>
                                         <td>
                                             &nbsp;
@@ -508,11 +356,11 @@
                                             &nbsp;
                                         </td>
                                         <td colspan="3" style="font-style:italic">
-                                            &nbsp;(Sign, write full name &amp; put the seal)&nbsp;
+                                            &nbsp;(Ký,ghi rõ họ tên và đóng dấu)&nbsp;
                                         </td>
 
                                         <td align="left" colspan="3" style="font-style:italic">
-                                            &nbsp;(Sign &amp; write full name)
+                                            &nbsp;(Ký &amp; và ghi rõ họ tên)
                                         </td>
                                         <td>
                                             &nbsp;

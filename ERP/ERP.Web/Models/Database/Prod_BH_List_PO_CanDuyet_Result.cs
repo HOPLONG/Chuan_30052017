@@ -27,7 +27,7 @@ namespace ERP.Web.Models.Database
         public string DIA_DIEM_GIAO_HANG { get; set; }
         public string NHAN_VIEN_QUAN_LY { get; set; }
         public string TEN_NHAN_VIEN_QUAN_LY { get; set; }
-        public Nullable<bool> DA_BAN_HANG { get; set; }
+        public bool DA_BAN_HANG { get; set; }
         public string TRUC_THUOC { get; set; }
         public bool DA_GIU { get; set; }
         public bool DA_HUY { get; set; }

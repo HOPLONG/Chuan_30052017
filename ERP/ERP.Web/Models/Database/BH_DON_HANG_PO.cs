@@ -32,7 +32,7 @@ namespace ERP.Web.Models.Database
         public System.DateTime NGAY_GIAO_HANG { get; set; }
         public string DIA_DIEM_GIAO_HANG { get; set; }
         public string NHAN_VIEN_QUAN_LY { get; set; }
-        public Nullable<bool> DA_BAN_HANG { get; set; }
+        public bool? DA_BAN_HANG { get; set; }
         public string TRUC_THUOC { get; set; }
         public double TONG_TIEN_THANH_TOAN { get; set; }
         public double TONG_TIEN_THUE_GTGT { get; set; }

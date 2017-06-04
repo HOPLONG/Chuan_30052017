@@ -45,13 +45,13 @@
                         <div class="col-md-12 form-group">
                             <div class="form-group">
                                 <label class="col-md-2 text_edit">Ngày lên PO: </label>
-                                <div class="col-md-4"><input type="text" date='dd/MM/yyyy' id="ngay_len_po" datepicker placeholder="Ngày lên PO" class="form-control" ng-model="item.NGAY_LEN_PO" /></div>
+                                <div class="col-md-4"><input type="text" date='dd/MM/yyyy' id="ngay_len_po"  placeholder="Ngày lên PO" class="form-control" ng-model="item.NGAY_LEN_PO" readonly/></div>
                             </div>
                         </div>
                         <div class="col-md-12 form-group">
                             <div class="form-group">
                                 <label class="col-md-2 text_edit">Người liên hệ: </label>
-                                <div class="col-md-8"><input type="text" placeholder="Tên liên hệ" class="form-control" ng-model="item.TEN_LIEN_HE" /></div>
+                                <div class="col-md-8"><input type="text" placeholder="Tên liên hệ" class="form-control" ng-model="item.TEN_LIEN_HE" readonly/></div>
                             </div>
                         </div>
                     </div>
@@ -61,21 +61,21 @@
                                 <label class="col-md-4 text_edit">Phương thức thanh toán: </label>
                                 <div class="col-md-8">
                                     <select class="form-control" ng-model="item.HINH_THUC_THANH_TOAN" id="hinhthuctt"
-                                            data-ng-options="item as item for item in hinhthuctt"></select>
+                                            data-ng-options="item as item for item in hinhthuctt" readonly></select>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12 form-group">
                             <div class="form-group">
                                 <label class="col-md-4 text_edit">Ngày giao hàng: </label>
-                                <div class="col-md-4"><input type="text" date='dd/MM/yyyy' id="ngay_giao_hang" datepicker placeholder="Ngày giao hàng" class="form-control " ng-model="item.NGAY_GIAO_HANG" /></div>
+                                <div class="col-md-4"><input type="text" date='dd/MM/yyyy' id="ngay_giao_hang"  placeholder="Ngày giao hàng" class="form-control " ng-model="item.NGAY_GIAO_HANG" readonly/></div>
                             </div>
                         </div>
                         <div class="col-md-12 form-group">
                             <div class="form-group">
                                 <label class="col-md-4 text_edit">Địa điểm giao hàng: </label>
                                 <div class="col-md-8">
-                                    <input class="form-control" ng-model="item.DIA_DIEM_GIAO_HANG" type="text" />
+                                    <input class="form-control" ng-model="item.DIA_DIEM_GIAO_HANG" type="text" readonly/>
                                 </div>
                             </div>
                         </div>
@@ -153,14 +153,14 @@
                                         <input type="number" style="height: 27px;" ng-model="item.DON_GIA" class="form-control" ng-change="kiemtra(item)" readonly>
                                     </td>
                                     <td class="text-center">
-                                        {{item.THANH_TIEN_HANG | currency: '':0}}
+                                        {{item.THANH_TIEN_HANG |  number: 0}}
                                         <input ng-model="item.THANH_TIEN_HANG" style="height: 27px;" class="form-control" type="hidden" ng-disabled="true" />
                                     </td>
                                     <td class="text-center">
                                         <input type="number" style="height: 27px;" ng-model="item.THUE_GTGT" class="form-control" ng-change="kiemtra(item)" readonly>
                                     </td>
                                     <td class="text-center">
-                                        {{item.TIEN_THUE_GTGT | currency: '':0}}
+                                        {{item.TIEN_THUE_GTGT |  number: 0}}
                                         <input ng-model="item.TIEN_THUE_GTGT" style="height: 27px;" class="form-control" type="hidden" ng-disabled="true" />
                                     </td>
                                 </tr>
@@ -170,22 +170,22 @@
                                     <td colspan="6">
                                         <div class="col-md-12">
                                             <label class="col-md-3">Tổng tiền hàng: </label>
-                                            <p class="col-md-6" style="text-align:left" ng-model="tong_tien_hang">{{tong_tien_hang | currency: '':0}} vnd</p>
+                                            <p class="col-md-6" style="text-align:left" ng-model="tong_tien_hang">{{tong_tien_hang |  number: 0}} vnd</p>
                                         </div>
                                         <div class="col-md-12">
                                             <label class="col-md-3">Thuế VAT : </label>
-                                            <p class="col-md-6" style="text-align:left" ng-model="tong_tien_thue_GTGT">{{tong_tien_thue_GTGT | currency: '':0 }} vnd</p>
+                                            <p class="col-md-6" style="text-align:left" ng-model="tong_tien_thue_GTGT">{{tong_tien_thue_GTGT |  number: 0 }} vnd</p>
                                         </div>
                                         <div class="col-md-12">
                                             <label class="col-md-3">Phí vận chuyển : </label>
-                                            <p class="col-md-6" style="text-align:left" ng-model="item.PHI_VC">{{item.PHI_VC | currency: '':0 }} vnd</p>
+                                            <p class="col-md-6" style="text-align:left" ng-model="item.PHI_VC">{{item.PHI_VC |  number: 0 }} vnd</p>
                                         </div>
                                         <div class="col-md-4">
                                             <hr />
                                         </div>
                                         <div class="col-md-12">
                                             <label class="col-md-3">Tổng tiền thanh toán </label>
-                                            <p class="col-md-6" style="text-align:left"><span id="tong_tien_thuc_te " ng-model="tong_tien_thanh_toan">{{tong_tien_thanh_toan | currency: '':0}}</span> vnd</p>
+                                            <p class="col-md-6" style="text-align:left"><span id="tong_tien_thuc_te " ng-model="tong_tien_thanh_toan">{{tong_tien_thanh_toan |  number: 0}}</span> vnd</p>
                                         </div>
                                         <div class="col-md-12">
                                             <label class="col-md-3">Số tiền viết bằng chữ </label>

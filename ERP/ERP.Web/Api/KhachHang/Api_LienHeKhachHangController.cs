@@ -18,6 +18,8 @@ namespace ERP.Web.Api.KhachHang
     public class Api_LienHeKhachHangController : ApiController
     {
         private ERP_DATABASEEntities db = new ERP_DATABASEEntities();
+
+
         XuLyNgayThang xlnt = new XuLyNgayThang();
         // GET: api/Api_LienHeKhachHang
         [Route("api/Api_LienHeKhachHang/{makh}")]
@@ -149,7 +151,7 @@ namespace ERP.Web.Api.KhachHang
             //    return BadRequest(ModelState);
             //}
             //if(lh.NGUOI_LIEN_HE != "")
-            //{
+            //{         
                 KH_LIEN_HE lienhe = new KH_LIEN_HE();
                 lienhe.MA_KHACH_HANG = lh.MA_KHACH_HANG;
                 lienhe.NGUOI_LIEN_HE = lh.NGUOI_LIEN_HE;
@@ -167,7 +169,18 @@ namespace ERP.Web.Api.KhachHang
                 lienhe.SDT2 = lh.SDT2;
                 lienhe.TINH_TRANG_LAM_VIEC = lh.TINH_TRANG_LAM_VIEC;
                 db.KH_LIEN_HE.Add(lienhe);
+
+            var kiemtra = db.KH_LIEN_HE.Where(x => x.SDT1 == lh.SDT1).FirstOrDefault();
+            if(kiemtra == null)
+            {
                 db.SaveChanges();
+            }
+            else
+            {
+                return Ok("Người liên hệ này đã có trong hệ thông,xin vui lòng kiểm tra lại");
+            }
+
+
                 var query = db.KH_LIEN_HE.Where(x => x.SDT1 == lh.SDT1).ToList();
                 var data = query.LastOrDefault();
                 KH_SALES_PHU_TRACH salept = new KH_SALES_PHU_TRACH();
@@ -187,9 +200,8 @@ namespace ERP.Web.Api.KhachHang
                 }
                 db.KH_SALES_PHU_TRACH.Add(salept);
                 db.SaveChanges();
-            //}
-           
-
+                //}               
+            
             return Ok(data);
         }
 

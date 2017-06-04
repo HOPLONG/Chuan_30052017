@@ -27,5 +27,6 @@ namespace ERP.Web.Models.Database
         public string TEN_NGUOI_DUYET { get; set; }
         public Nullable<System.DateTime> NGAY_DUYET { get; set; }
         public int TINH_DIEM { get; set; }
+        public string TRA_LOI_PHAN_HOI { get; set; }
     }
 }

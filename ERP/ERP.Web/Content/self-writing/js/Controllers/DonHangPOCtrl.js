@@ -100,9 +100,9 @@
                 var tong_tien_thanh_toan = 0;
 
                 for (var i = 0; i < $scope.Detail.ListAdd.length; i++) {
-                    tong_tien_hang = parseFloat($scope.Detail.ListAdd[i].THANH_TIEN_HANG + tong_tien_hang);
-                    tong_tien_thue_GTGT = parseFloat($scope.Detail.ListAdd[i].TIEN_THUE_GTGT + tong_tien_thue_GTGT);
-                    tong_tien_thanh_toan = parseFloat($scope.Detail.ListAdd[i].TIEN_THANH_TOAN + tong_tien_thanh_toan)
+                    tong_tien_hang = LamTron(parseFloat($scope.Detail.ListAdd[i].THANH_TIEN_HANG + tong_tien_hang));
+                    tong_tien_thue_GTGT = LamTron(parseFloat($scope.Detail.ListAdd[i].TIEN_THUE_GTGT + tong_tien_thue_GTGT));
+                    tong_tien_thanh_toan = LamTron(parseFloat($scope.Detail.ListAdd[i].TIEN_THANH_TOAN + tong_tien_thanh_toan));
                 }
                 $scope.tong_tien_hang = tong_tien_hang;
                 $scope.tong_tien_thue_GTGT = tong_tien_thue_GTGT
@@ -127,14 +127,14 @@
         var tong_tien_thue_GTGT = 0;
         var tong_tien_thanh_toan = 0;
 
-        $scope.item.THANH_TIEN_HANG = parseFloat($scope.item.DON_GIA * $scope.item.SO_LUONG);
-        $scope.item.TIEN_THUE_GTGT = parseFloat($scope.item.THANH_TIEN_HANG * ($scope.item.THUE_GTGT / 100));
-        $scope.item.TIEN_THANH_TOAN = $scope.item.THANH_TIEN_HANG + $scope.item.TIEN_THUE_GTGT;
+        $scope.item.THANH_TIEN_HANG =LamTron(parseFloat($scope.item.DON_GIA * $scope.item.SO_LUONG));
+        $scope.item.TIEN_THUE_GTGT =LamTron(parseFloat($scope.item.THANH_TIEN_HANG * ($scope.item.THUE_GTGT / 100)));
+        $scope.item.TIEN_THANH_TOAN =LamTron($scope.item.THANH_TIEN_HANG + $scope.item.TIEN_THUE_GTGT);
 
         for (var i = 0; i < $scope.Detail.ListAdd.length; i++) {
-            tong_tien_hang = parseFloat($scope.Detail.ListAdd[i].THANH_TIEN_HANG + tong_tien_hang);
-            tong_tien_thue_GTGT = parseFloat($scope.Detail.ListAdd[i].TIEN_THUE_GTGT + tong_tien_thue_GTGT);
-            tong_tien_thanh_toan = parseFloat($scope.Detail.ListAdd[i].TIEN_THANH_TOAN + tong_tien_thanh_toan)
+            tong_tien_hang = LamTron(parseFloat($scope.Detail.ListAdd[i].THANH_TIEN_HANG + tong_tien_hang));
+            tong_tien_thue_GTGT = LamTron(parseFloat($scope.Detail.ListAdd[i].TIEN_THUE_GTGT + tong_tien_thue_GTGT));
+            tong_tien_thanh_toan = LamTron(parseFloat($scope.Detail.ListAdd[i].TIEN_THANH_TOAN + tong_tien_thanh_toan));
         }
         $scope.tong_tien_hang = tong_tien_hang;
         $scope.tong_tien_thue_GTGT = tong_tien_thue_GTGT
@@ -352,9 +352,9 @@
 
 
         for (var i = 0; i < $scope.Detail.ListBH.length; i++) {
-            tong_tien_hang = parseFloat($scope.Detail.ListBH[i].THANH_TIEN_HANG + tong_tien_hang);
-            tong_tien_thue_GTGT = parseFloat($scope.Detail.ListBH[i].TIEN_THUE_GTGT + tong_tien_thue_GTGT);
-            tong_tien_thanh_toan = parseFloat($scope.Detail.ListBH[i].TIEN_THANH_TOAN + tong_tien_thanh_toan)
+            tong_tien_hang = LamTron(parseFloat($scope.Detail.ListBH[i].THANH_TIEN_HANG + tong_tien_hang));
+            tong_tien_thue_GTGT = LamTron(parseFloat($scope.Detail.ListBH[i].TIEN_THUE_GTGT + tong_tien_thue_GTGT));
+            tong_tien_thanh_toan = LamTron(parseFloat($scope.Detail.ListBH[i].TIEN_THANH_TOAN + tong_tien_thanh_toan));
         }
 
 
@@ -876,6 +876,7 @@
             detail.so_luong = 0;
             detail.ma_dieu_chinh = kh.MA_CHUAN;
             detail.dvt = kh.DVT;
+            detail.xuat_xu = kh.XUAT_XU;
             detail.hang = kh.MA_NHOM_HANG;
             detail.gia_list = kh.GIA_LIST;
             detail.gia_nhap = 0;
@@ -894,6 +895,7 @@
             detail.ma_chuan = kh.MA_CHUAN;
             detail.ten_hang = kh.TEN_HANG;
             detail.so_luong = 0;
+            detail.xuat_xu = kh.XUAT_XU;
             detail.ma_dieu_chinh = kh.MA_CHUAN;
             detail.dvt = kh.DVT;
             detail.hang = kh.MA_NHOM_HANG;
@@ -945,13 +947,13 @@
         var tienthanhtoan = 0;
 
 
-        $scope.detail.thanh_tien = parseFloat($scope.detail.so_luong * parseInt($scope.detail.gia_list));
-        $scope.detail.tien_thue_gtgt = parseFloat($scope.detail.thanh_tien * 0.1);
-        $scope.detail.tien_thanh_toan = $scope.detail.thanh_tien + $scope.detail.tien_thue_gtgt;
+        $scope.detail.thanh_tien = (parseFloat($scope.detail.so_luong * parseInt($scope.detail.gia_list)));
+        $scope.detail.tien_thue_gtgt = (parseFloat($scope.detail.thanh_tien * 0.1));
+        $scope.detail.tien_thanh_toan = LamTron($scope.detail.thanh_tien + $scope.detail.tien_thue_gtgt);
         for (i = 0; i < $scope.Detail.ListNew.length; i++) {
-            tongtien = parseInt(tongtien + $scope.Detail.ListNew[i].thanh_tien);
-            thuegtgt = parseInt(thuegtgt + $scope.Detail.ListNew[i].tien_thue_gtgt);
-            tienthanhtoan = parseInt(tienthanhtoan + $scope.Detail.ListNew[i].tien_thanh_toan);
+            tongtien = LamTron(parseInt(tongtien + $scope.Detail.ListNew[i].thanh_tien));
+            thuegtgt = LamTron(parseInt(thuegtgt + $scope.Detail.ListNew[i].tien_thue_gtgt));
+            tienthanhtoan = LamTron(parseInt(tienthanhtoan + $scope.Detail.ListNew[i].tien_thanh_toan));
         }
         $scope.tongtien = tongtien;
         $scope.thuegtgt = thuegtgt;
@@ -960,7 +962,7 @@
     };
 
 
-    $scope.TaoPOMoi = function () {
+    $scope.TaoPOMoi = function (form) {
 
         var username = $('#username').val();
         var so_tien_viet_bang_chu = docso($scope.tong_gia_tri_theo_hop_dong_new);
@@ -1008,25 +1010,40 @@
         };
 
         //Lưu vào CSDL
+        $scope.submitted = true;
+        // If form is invalid, return and let AngularJS show validation errors.
+        if (form.$invalid) {
+            console.log('invalid');
+            return;
+        } else {
+            $http({
+                method: 'POST',
+                data: $scope.Bao_Gia,
+                url: window.location.origin + '/api/Api_DonHangPO/ThemPOTuKinhDoanh'
+            }).then(function successCallback(response) {
+                SuccessSystem('Bạn đã tạo thành công 1 đơn PO có mã là ' + response.data);
+                $(function () {
+                    setTimeout(function () {
+                        window.location.href = "/KinhDoanh/DonHangPO/DonPOHome";
 
-        $http({
-            method: 'POST',
-            data: $scope.Bao_Gia,
-            url: window.location.origin + '/api/Api_DonHangPO/ThemPOTuKinhDoanh'
-        }).then(function successCallback(response) {
-            SuccessSystem('Bạn đã tạo thành công 1 đơn PO có mã là ' + response.data);
-            $(function () {
-                setTimeout(function () {
-                    window.location.href = "/KinhDoanh/DonHangPO/DonPOHome";
-
-                }, 2000);
+                    }, 2000);
+                });
+            }, function errorCallback(response) {
+                console.log(response);
+                ErrorSystem('Sự cố hệ thống, Không tạo được đơn PO, Bạn vui lòng liên hệ với admin để khắc phục ');
             });
-        }, function errorCallback(response) {
-            console.log(response);
-            ErrorSystem('Sự cố hệ thống, Không lưu được phiếu giữ kho, Bạn vui lòng liên hệ với admin để khắc phục ');
-        });
+        }
+
 
     };
+
+    function LamTron(number) {
+        var so = number;
+        var phantram = Math.ceil(so / 100);
+        var ketqua = phantram * 100;
+
+        return ketqua;
+    }
 });
 app.directive('date', function (dateFilter) {
     return {

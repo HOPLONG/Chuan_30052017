@@ -843,25 +843,30 @@ app.controller('khachhangCtrl', function (khachhangService, $scope, $http, $loca
             SALES_CU: $scope.sales_cu,
         }
         khachhangService.add_lienhe(data_add).then(function successCallback(response) {
-            $scope.phantrangkh(0);
-            $scope.new_ct_khachhang();
-            $scope.get_lienhe(makh);
-            SuccessSystem("Bạn đã thêm thành công 1 liên hệ của khách hàng");
-            $scope.nguoi_lien_he = '';
-            $scope.chuc_vu = '';
-            $scope.phong_ban = '';
-            $scope.ngay_sinh = null;
-            $scope.gioi_tinh = '';
-            $scope.email_ca_nhan = '';
-            $scope.email_cong_ty = '';
-            $scope.skype = '';
-            $scope.facebook = '';
-            CKEDITOR.instances.ghichu.setData('');
-            $scope.so_dien_thoai1 = '';
-            $scope.tinh_trang_lam_viec = '';
-            $scope.so_dien_thoai2 = '';
-            $scope.sales_moi = '';
-            $scope.sales_cu = '';
+            if (typeof response.data == "object")
+            {
+                $scope.phantrangkh(0);
+                $scope.new_ct_khachhang();
+                $scope.get_lienhe(makh);
+                SuccessSystem("Bạn đã thêm thành công 1 liên hệ của khách hàng");
+                $scope.nguoi_lien_he = '';
+                $scope.chuc_vu = '';
+                $scope.phong_ban = '';
+                $scope.ngay_sinh = null;
+                $scope.gioi_tinh = '';
+                $scope.email_ca_nhan = '';
+                $scope.email_cong_ty = '';
+                $scope.skype = '';
+                $scope.facebook = '';
+                CKEDITOR.instances.ghichu.setData('');
+                $scope.so_dien_thoai1 = '';
+                $scope.tinh_trang_lam_viec = '';
+                $scope.so_dien_thoai2 = '';
+                $scope.sales_moi = '';
+                $scope.sales_cu = '';
+            } else {
+                ErrorSystem(response.data);
+            }
         }, function errorCallback(response) {
             ErrorSystem("Đã xảy ra lỗi");
         });
@@ -1787,109 +1792,68 @@ app.controller('khachhangCtrl', function (khachhangService, $scope, $http, $loca
     $scope.load_nhanvienkho();
 
 
-    if (username.substring(0, 4) == "MARK" || isadmin == "True") {
-        $scope.kiemtra_username = true;
-    }
-
-    $scope.kiemtrakh = function(makh)
-    {
-        $http.post('/api/Api_ChienDichMKT/KiemTraKH/' + makh).then(function (response) {
-            if(response.data.length > 0)
-            {
-                $scope.list_chiendichmkt = response.data;
-                $scope.tick_khach_hang = false;
-                $scope.return_confirm = false;
-            } else {
-                $http.post('/api/Api_ChienDichMKT/ListChienDich').then(function (a) {
-                    $scope.list_chiendichmkt = a.data;
-                });
-                $scope.return_confirm = true;
-                $scope.tick_khach_hang = false;
-            }
-        });
-
     $scope.showkhsearch = function () {
         $scope.find = true;
-
     }
 
-    $scope.timkiemkhachhang = function (email,sdt,mst) {
+    $scope.timkiemkhachhang = function (email, sdt, mst) {
         if (email != null) {
             tukhoa = email;
         }
         if (sdt != null) {
             tukhoa = sdt;
         }
-        if (sdt != null) {
+        if (mst != null) {
             tukhoa = mst;
         }
 
         var thongtintimkiem = {
-            sales: salehienthoi,
             macongty: macongty,
-            isadmin: isadmin,
             tukhoa: tukhoa,
-           
+
         }
         $http.post('/api/Api_KH/TimKhachTheoSDT/' + 1, thongtintimkiem)
       .then(function successCallback(response) {
           $scope.timkiemkh = response.data;
-          if (response.data != null) {
-              $scope.thongbao ='KH đã có trong hệ thống'
+          if (response.data.length != 0) {
+              $scope.thongbao = 'Khách hàng đã có trong hệ thống'
+          }
+          else {
+              $scope.thongbao = 'Khách hàng chưa có trong hệ thống'
           }
 
       }, function errorCallback(response1) {
           ErrorSystem("Không tìm thấy dữ liệu theo yêu cầu");
           //alert('Chưa thêm được tài khoản khách hàng');
       });
-
+    }
 
         if (username.substring(0, 4) == "MARK" || isadmin == "True") {
             $scope.kiemtra_username = true;
-            $http.post('/api/Api_ChienDichMKT/ListChienDich').then(function (response) {
-                $scope.list_chiendichmkt = response.data;
-            });
-
-        });
-    }
-
-    $scope.saveID_chiendich = function(chiendich)
-    {
-        $scope.chiendich = chiendich;
-    }
-    $scope.addnew_kh_chien_dich = function () {
-        var data_add = {
-            ID_CHIEN_DICH: $scope.chiendich,
-            MA_KHACH_HANG : $scope.item.MA_KHACH_HANG,
         }
 
-        $http.post('/api/Api_ChienDichMKT/KH_CHIEN_DICH_MKT',data_add).then(function (response) {
-            SuccessSystem("Thêm khách hàng vào chiến dịch thành công");
-            $scope.tick_khach_hang = false;
-            $scope.return_confirm = false;
-        }, function errorCallback(response1) {
-            ErrorSystem("Không thêm được khách hàng vào chiến dịch");
-        });
-    }
-
-    $scope.delete_lienhe = function (lienhe) {
-        $scope.lienhe = lienhe;
-
-        var result = confirm("Bạn có chắc muốn xóa chứ?");
-        if (result) {
-            $http.post('/api/Api_LienHeKhachHang/' + $scope.lienhe.ID_LIEN_HE).then(function (response) {
-                SuccessSystem("Xóa liên hệ thành công");
-                $scope.get_lienhe($scope.lienhe.MA_KHACH_HANG);
-            }, function errorCallback(response1) {
-                ErrorSystem("Lỗi không xóa được người liên hệ do hệ thống hoặc người liên hệ này đã có phát sinh giao dịch");
+        $scope.kiemtrakh = function(makh)
+        {
+            $http.post('/api/Api_ChienDichMKT/KiemTraKH/' + makh).then(function (response) {
+                if(response.data.length > 0)
+                {
+                    $scope.list_chiendichmkt = response.data;
+                    $scope.tick_khach_hang = false;
+                    $scope.return_confirm = false;
+                } else {
+                    $http.post('/api/Api_ChienDichMKT/ListChienDich').then(function (a) {
+                        $scope.list_chiendichmkt = a.data;
+                    });
+                    $scope.return_confirm = true;
+                    $scope.tick_khach_hang = false;
+                }
             });
-        } else {
-            $scope.get_lienhe($scope.lienhe.MA_KHACH_HANG);
+
         }
-    }
 
-});
-
+        $scope.show_addnew_chien_dich_function = function () {
+            $scope.show_addnew_chien_dich = true;
+        };
 
         $scope.addnew_chien_dich = function () {
             var data = {
@@ -1907,24 +1871,40 @@ app.controller('khachhangCtrl', function (khachhangService, $scope, $http, $loca
             });
         }
 
-        $scope.addnew_kh_chien_dich = function (chiendich) {
+        $scope.saveID_chiendich = function(chiendich)
+        {
             $scope.chiendich = chiendich;
+        }
+        $scope.addnew_kh_chien_dich = function () {
             var data_add = {
-                ID_CHIEN_DICH: $scope.chiendich.ID,
+                ID_CHIEN_DICH: $scope.chiendich,
                 MA_KHACH_HANG : $scope.item.MA_KHACH_HANG,
             }
 
             $http.post('/api/Api_ChienDichMKT/KH_CHIEN_DICH_MKT',data_add).then(function (response) {
                 SuccessSystem("Thêm khách hàng vào chiến dịch thành công");
+                $scope.tick_khach_hang = false;
+                $scope.return_confirm = false;
             }, function errorCallback(response1) {
                 ErrorSystem("Không thêm được khách hàng vào chiến dịch");
             });
-
         }
-    };
+
+        $scope.delete_lienhe = function (lienhe) {
+            $scope.lienhe = lienhe;
+
+            var result = confirm("Bạn có chắc muốn xóa chứ?");
+            if (result) {
+                $http.delete('/api/Api_LienHeKhachHang/DeleteKH_LIEN_HE/' + $scope.lienhe.ID_LIEN_HE).then(function (response) {
+                    SuccessSystem("Xóa liên hệ thành công");
+                    $scope.get_lienhe($scope.lienhe.MA_KHACH_HANG);
+                }, function errorCallback(response1) {
+                    ErrorSystem("Lỗi không xóa được người liên hệ do hệ thống hoặc người liên hệ này đã có phát sinh giao dịch");
+                });
+            } else {
+                $scope.get_lienhe($scope.lienhe.MA_KHACH_HANG);
+            }
+        }
    
-
-
-
 
 });

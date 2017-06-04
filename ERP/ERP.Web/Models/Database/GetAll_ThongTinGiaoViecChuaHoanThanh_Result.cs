@@ -10,22 +10,18 @@
 namespace ERP.Web.Models.Database
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class NV_GIAO_VIEC
+    public partial class GetAll_ThongTinGiaoViecChuaHoanThanh_Result
     {
         public int ID { get; set; }
-        public string NOI_DUNG_CONG_VIEC { get; set; }
-        public System.DateTime NGAY_GIAO_VIEC { get; set; }
         public string PHUONG_AN_XU_LY { get; set; }
+        public System.DateTime NGAY_GIAO_VIEC { get; set; }
+        public string NOI_DUNG_CONG_VIEC { get; set; }
         public string NGAY_HOAN_THANH { get; set; }
         public string NGUOI_GIAO_VIEC { get; set; }
-        public string NHAN_VIEN_THUC_HIEN { get; set; }
+        public string NGUOI_NHAN_VIEC { get; set; }
         public bool HUY_CONG_VIEC { get; set; }
-        public string GHI_CHU { get; set; }
         public string TRANG_THAI { get; set; }
-    
-        public virtual CCTC_NHAN_VIEN CCTC_NHAN_VIEN { get; set; }
-        public virtual CCTC_NHAN_VIEN CCTC_NHAN_VIEN1 { get; set; }
+        public string GHI_CHU { get; set; }
     }
 }

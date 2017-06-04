@@ -94,7 +94,7 @@ namespace ERP.Web.Api.KhachHang
         //    return Ok(qUY_CHI_TIET_PHIEU_CHI);
         //}
 
-        public void PostKH_LIEN_HE(List<LienHeKH> lh)
+        public string PostKH_LIEN_HE(List<LienHeKH> lh)
         {
             if (!ModelState.IsValid)
             {
@@ -119,6 +119,17 @@ namespace ERP.Web.Api.KhachHang
                 lienhe.SDT2 = item.SDT2;
                 lienhe.TINH_TRANG_LAM_VIEC = item.TINH_TRANG_LAM_VIEC;
                 db.KH_LIEN_HE.Add(lienhe);
+
+                var kiemtra = db.KH_LIEN_HE.Where(x => x.SDT1 == item.SDT1).FirstOrDefault();
+                if (kiemtra == null)
+                {
+                    db.SaveChanges();
+                }
+                else
+                {
+                    return "";
+                }
+
                 db.SaveChanges();
                 var query = db.KH_LIEN_HE.Where(x => x.SDT1 == item.SDT1).ToList();
                 var data = query.LastOrDefault();
@@ -138,13 +149,14 @@ namespace ERP.Web.Api.KhachHang
                 }               
                 db.KH_SALES_PHU_TRACH.Add(salept);
                 db.SaveChanges();
-
                 //KH_CHUYEN_SALES chuyensale = new KH_CHUYEN_SALES();
                 //chuyensale.MA_KHACH_HANG = item.MA_KHACH_HANG;
                 //chuyensale.SALE_HIEN_THOI = item.SALES_PHU_TRACH;
                 //db.KH_CHUYEN_SALES.Add(chuyensale);
                 //db.SaveChanges();
+               
             }
+            return "";
         }
 
         // DELETE: api/Api_ArrayLienHeKH/5

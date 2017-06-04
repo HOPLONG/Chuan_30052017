@@ -39,33 +39,33 @@ app.controller('HomeDonPOCtrl', function ($scope, $location, $log) {
             case 1:
                 $location.url("/ThemMoiPO");
                 break
+            //case 2:
+            //    $location.url("/ListPO_DaGiuDayDu");
+            //    break;
+            //case 3:
+            //    $location.url("/ListPO_DangGiuDo");
+            //    break;
+            //case 4:
+            //    $location.url("/ListPO_DaHuy");
+            //    break;
             case 2:
-                $location.url("/ListPO_DaGiuDayDu");
-                break;
-            case 3:
-                $location.url("/ListPO_DangGiuDo");
-                break;
-            case 4:
-                $location.url("/ListPO_DaHuy");
-                break;
-            case 5:
                 $location.url("/ListPO_DangChoDuyet");
                 break;
-            case 6:
-                $location.url("/ListPO_DangDuyet");
-                break;
-            case 7:
-                $location.url("/ListPO_DaLenDonBanHang");
-                break;
-            case 8:
-                $location.url("/ListPO_CanBanNgay");
-                break;
-            case 9:
-                $location.url("/ListPO_DangXuatDo");
-                break;
-            case 10:
-                $location.url("/ListPO_DaDuyet");
-                break;
+            //case 6:
+            //    $location.url("/ListPO_DangDuyet");
+            //    break;
+            //case 7:
+            //    $location.url("/ListPO_DaLenDonBanHang");
+            //    break;
+            //case 8:
+            //    $location.url("/ListPO_CanBanNgay");
+            //    break;
+            //case 9:
+            //    $location.url("/ListPO_DangXuatDo");
+            //    break;
+            //case 10:
+            //    $location.url("/ListPO_DaDuyet");
+            //    break;
         }
     });
 });
@@ -172,10 +172,10 @@ app.controller('HomeThongBaoSaleCtrl', function ($scope, $location, $log) {
     $scope.$watch('selectedIndex', function (current, old) {
         switch (current) {
             case 0:
-                $location.url("/Action");
+                $location.url("/HeSoGiaBanSale");
                 break;
             case 1:
-                $location.url("/HeSoGiaBanSale");
+                $location.url("/Action");
                 break;
         }
     });

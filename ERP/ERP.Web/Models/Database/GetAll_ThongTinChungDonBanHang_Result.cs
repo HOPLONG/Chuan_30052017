@@ -34,5 +34,6 @@ namespace ERP.Web.Models.Database
         public string EMAIL { get; set; }
         public string VAN_PHONG_GIAO_DICH { get; set; }
         public string TEN_LOAI_KHACH { get; set; }
+        public string MST { get; set; }
     }
 }

@@ -84,6 +84,9 @@
         var tuan = $filter('date')(myDate, 'ww');
         var nam = (new Date()).getFullYear();
 
+        $scope.tuan = tuan;
+        $scope.nam = nam;
+
         $http.post('/api/Api_HeSoGiaBan/ListHeSoGiaBan/' + tuan + '/' + nam).then(function (response) {
             $scope.ds_hesogiaban = response.data;
         });
